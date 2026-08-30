@@ -11,8 +11,18 @@
 //
 // Diagnostic: deschide /api/store?diag=1 ca sa vezi ce functioneaza.
 
-const UP_URL = process.env.UPSTASH_REDIS_REST_URL || '';
-const UP_TOK = process.env.UPSTASH_REDIS_REST_TOKEN || '';
+// Vercel poate crea variabilele sub mai multe nume, in functie de cum
+// conectezi baza de date. Le acceptam pe toate.
+const UP_URL =
+  process.env.UPSTASH_REDIS_REST_URL ||
+  process.env.KV_REST_API_URL ||
+  process.env.REDIS_REST_URL ||
+  process.env.STORAGE_REST_API_URL || '';
+const UP_TOK =
+  process.env.UPSTASH_REDIS_REST_TOKEN ||
+  process.env.KV_REST_API_TOKEN ||
+  process.env.REDIS_REST_TOKEN ||
+  process.env.STORAGE_REST_API_TOKEN || '';
 const TTL = 2592000; // 30 de zile
 
 function rid() {
@@ -159,7 +169,14 @@ export default async function handler(req, res) {
 
   try {
     if (req.query && req.query.diag) {
-      return res.status(200).json({ results: await diag(), upstash: upstash.ready() });
+      const seen = Object.keys(process.env).filter(function (k) {
+        return /REDIS|KV_|UPSTASH|STORAGE/i.test(k);
+      });
+      return res.status(200).json({
+        results: await diag(),
+        upstash: upstash.ready(),
+        variabileGasite: seen.length ? seen : ['niciuna']
+      });
     }
 
     if (req.method === 'POST') {
