@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<title>HelloHuman</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B0B0C;--s1:#141416;--s2:#1C1C1F;--s3:#26262A;--bd:rgba(255,255,255,.09);--bd2:rgba(255,255,255,.16);--tx:#F5F4F2;--mu:#8A8A90;--dim:#5A5A60;--ac:#E8B84B;--ok:#5FBF7F;--no:#E86B5B;--hi:#7C9BE8}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{background:var(--bg);color:var(--tx);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.55;display:flex;justify-content:center;-webkit-font-smoothing:antialiased}
+.app{width:100%;max-width:460px;display:flex;flex-direction:column;min-height:100dvh}
+.sc{display:none;flex-direction:column;flex:1;padding:26px 22px 30px}
+.sc.on{display:flex}
+.brand{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ac)}
+h1{font-family:'Bricolage Grotesque',sans-serif;font-size:36px;font-weight:800;letter-spacing:-.035em;line-height:1.03;margin:16px 0 12px}
+h2{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:600;letter-spacing:-.02em;margin:0 0 6px}
+.sub{color:var(--mu);font-size:15px;max-width:34ch}
+.lb{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:20px 0 8px}
+.lb:first-child{margin-top:0}
+input,textarea{width:100%;background:var(--s1);border:1px solid var(--bd);border-radius:11px;color:var(--tx);font-family:'Inter';font-size:16px;padding:13px 14px;outline:none;resize:vertical}
+input.hero{background:transparent;border:0;border-bottom:1px solid var(--bd2);border-radius:0;font-family:'Bricolage Grotesque';font-size:26px;font-weight:600;padding:4px 0 12px;letter-spacing:-.02em}
+input:focus,textarea:focus{border-color:var(--ac)}
+input.hero:focus{border-bottom-color:var(--ac)}
+input::placeholder,textarea::placeholder{color:var(--dim)}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{background:var(--s1);border:1px solid var(--bd);border-radius:13px;color:var(--tx);font-family:'Inter';font-size:16px;font-weight:500;text-align:left;padding:15px 16px;cursor:pointer;line-height:1.3}
+.opt.sel{background:var(--ac);color:#111;border-color:var(--ac);font-weight:600}
+.btn{width:100%;background:var(--ac);color:#111;border:0;border-radius:13px;font-family:'Inter';font-size:16px;font-weight:600;padding:17px;cursor:pointer;margin-top:14px}
+.btn:disabled{background:var(--s2);color:var(--dim);cursor:not-allowed}
+.btn2{width:100%;background:transparent;border:1px solid var(--bd2);color:var(--tx);border-radius:13px;font-family:'Inter';font-size:15px;font-weight:500;padding:15px;cursor:pointer;margin-top:9px}
+.btn2:hover{border-color:var(--ac);color:var(--ac)}
+.btn3{background:var(--s2);border:1px solid var(--bd);color:var(--ac);border-radius:9px;font-family:'Inter';font-size:13px;font-weight:600;padding:10px 14px;cursor:pointer;margin:0 6px 6px 0}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.msg{font-size:13px;margin-top:10px;min-height:19px;line-height:1.5;word-break:break-word}
+.msg.err{color:var(--no)}.msg.ok{color:var(--ok)}
+.push{margin-top:auto;padding-top:20px}
+.row{display:flex;gap:8px}.row>div{flex:1}
+.hint{background:rgba(124,155,232,.1);border:1px solid rgba(124,155,232,.28);border-radius:12px;padding:13px 15px;margin-top:14px;font-size:13.5px;color:#A8BEF0;line-height:1.55}
+.hint b{color:#C7D6F7;font-weight:600;display:block;margin-bottom:3px;font-size:11px;font-family:'JetBrains Mono';letter-spacing:.14em;text-transform:uppercase}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:14px 10px;text-align:center}
+.stat .n{font-family:'JetBrains Mono',monospace;font-size:25px;font-weight:700;color:var(--ac);line-height:1}
+.stat .t{font-size:11px;color:var(--mu);margin-top:5px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{background:var(--s1);border:1px solid var(--bd);border-radius:9px;color:var(--dim);font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;padding:10px 13px;cursor:pointer;min-width:46px}
+.chip.on{background:var(--ac);color:#111;border-color:var(--ac)}
+.list{margin-top:14px;border-top:1px solid var(--bd);max-height:240px;overflow-y:auto}
+.li{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--bd);font-size:14px;gap:12px}
+.li b{font-family:'JetBrains Mono',monospace;color:var(--ac);font-weight:400;flex-shrink:0;font-size:12px}
+.tbl{background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:14px 16px;margin-bottom:8px}
+.tbl .n{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);margin-bottom:5px}
+.tbl .p{font-size:14px;line-height:1.6}
+.tbl .q{font-size:13px;color:var(--mu);margin-top:7px;border-top:1px solid var(--bd);padding-top:7px;line-height:1.5}
+.card{background:var(--ac);color:#111;border-radius:20px;padding:26px 24px 22px;margin:16px 0}
+.card .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8F7020}
+.num{font-family:'JetBrains Mono',monospace;font-size:84px;font-weight:700;line-height:.85;letter-spacing:-.055em;margin:6px 0 0}
+.hr{height:1px;background:rgba(0,0,0,.22);margin:20px 0 14px}
+.pair{display:flex;justify-content:space-between;font-size:14px;padding:5px 0;gap:14px}
+.pair b{font-weight:600;text-align:right}
+.clock{font-family:'JetBrains Mono',monospace;font-size:46px;font-weight:700;text-align:center;letter-spacing:-.04em;margin:4px 0 2px;font-variant-numeric:tabular-nums}
+.clock.low{color:var(--no)}
+.ice{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:16px;font-size:15px;line-height:1.55;margin-top:14px}
+.ice .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ac);display:block;margin-bottom:7px}
+.load{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:16px;text-align:center}
+.ring{width:40px;height:40px;border:2px solid var(--s3);border-top-color:var(--ac);border-radius:50%}
+.qwrap{background:#fff;border-radius:16px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:12px;margin:12px 0}
+.qwrap canvas,.qwrap img{display:block;border-radius:4px}
+.qcap{color:#141416;font-family:'Bricolage Grotesque';font-size:17px;font-weight:600;text-align:center;letter-spacing:-.01em}
+.qsub{color:#61616A;font-family:'JetBrains Mono';font-size:10px;text-align:center;word-break:break-all;line-height:1.5}
+.pre{background:var(--s1);border:1px solid var(--bd);border-radius:11px;padding:12px 14px;cursor:pointer;font-size:13px;color:var(--mu);line-height:1.5;text-align:left;width:100%;font-family:'Inter';margin-bottom:7px}
+.pre:hover{border-color:var(--ac);color:var(--tx)}
+.pre b{color:var(--tx);font-weight:600;display:block;margin-bottom:3px;font-size:14px}
+.link{background:var(--s1);border:1px solid var(--bd);border-radius:11px;padding:13px 15px;font-family:'JetBrains Mono';font-size:12px;color:var(--ac);word-break:break-all;line-height:1.6;margin-top:10px}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ok);margin-right:7px}
+.dot.off{background:var(--no)}
+@media(prefers-reduced-motion:no-preference){.ring{animation:sp 1s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}.sc.on{animation:in .3s cubic-bezier(.2,.7,.3,1)}@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}}
+@media print{body{background:#fff}.app{max-width:none}.sc{padding:0}.noprint{display:none!important}.qwrap{border:1px solid #ddd}}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- LANDING -->
+<section class="sc on" id="s0">
+  <p class="brand" id="b0">HelloHuman</p>
+  <h1 id="h0">Zece minute<br>la altă masă.</h1>
+  <p class="sub" id="p0">Sistemul te așază. Nu ceri nimic nimănui. La final te întorci la ai tăi.</p>
+  <p class="msg" id="m0"></p>
+  <div class="push">
+    <button class="btn" id="bJoin">Intru</button>
+    <button class="btn2" id="bHost">Moderator</button>
+    <button class="btn2" id="bOrg">Organizator</button>
+    <p class="sub" id="foot0" style="margin-top:16px;font-size:13px;color:var(--dim)"></p>
+  </div>
+</section>
+
+<!-- LOGIN -->
+<section class="sc" id="sLog">
+  <p class="brand">Acces</p><h2 id="lt">Parola</h2>
+  <label class="lb" for="pw">Parola</label>
+  <input type="password" id="pw" autocomplete="current-password">
+  <p class="msg err" id="mL"></p>
+  <div class="push"><button class="btn" id="bLog">Intră</button><button class="btn2" id="bL0">Înapoi</button></div>
+</section>
+
+<!-- ORGANIZER -->
+<section class="sc" id="sOrg">
+  <p class="brand">Organizator</p>
+  <h2>Pregătește evenimentul</h2>
+  <p class="sub">Completează, apoi creează evenimentul. Primești un cod QR și un link scurt.</p>
+
+  <div class="hint">
+    <b>Chestionarul pentru client</b>
+    Trimite-i decidentului linkul de mai jos. El răspunde la șapte întrebări scurte și îți trimite înapoi un cod. Îl lipești mai jos și totul se completează singur.
+  </div>
+  <div style="margin-top:10px"><button class="btn3" id="bQuizLink">Copiază linkul chestionarului</button></div>
+  <label class="lb" for="fImport">Linkul primit de la client</label>
+  <div class="row"><div><input type="text" id="fImport" placeholder="lipește linkul aici"></div></div>
+  <button class="btn3" id="bImport" style="margin-top:8px">Încarcă răspunsurile</button>
+
+  <label class="lb" for="fEv">Numele evenimentului</label>
+  <input type="text" id="fEv" maxlength="46" placeholder="Kickoff 2026">
+  <label class="lb" for="fCl">Clientul</label>
+  <input type="text" id="fCl" maxlength="40" placeholder="Compania X">
+  <label class="lb" for="fT">Numerele meselor din sală</label>
+  <input type="text" id="fT" maxlength="180" placeholder="1, 2, 3, 4, 5, 6">
+  <div class="row" style="margin-top:20px">
+    <div><label class="lb" for="fS" style="margin-top:0">Locuri / masă</label><input type="text" id="fS" maxlength="2" placeholder="3"></div>
+    <div><label class="lb" for="fM" style="margin-top:0">Minute / rundă</label><input type="text" id="fM" maxlength="3" placeholder="10"></div>
+  </div>
+
+  <label class="lb">Ce alege participantul</label>
+  <input type="text" id="c0" maxlength="46"><div style="height:7px"></div>
+  <input type="text" id="c1" maxlength="46"><div style="height:7px"></div>
+  <input type="text" id="c2" maxlength="46"><div style="height:7px"></div>
+  <input type="text" id="c3" maxlength="46">
+  <div id="presets" style="margin-top:10px"></div>
+
+  <label class="lb">Cum se formează mesele</label>
+  <div class="opts" id="mix">
+    <button class="opt" data-v="mix">Amestecă — cine a ales diferit stă împreună</button>
+    <button class="opt" data-v="same">Grupează — cine a ales la fel stă împreună</button>
+  </div>
+
+  <label class="lb" for="fQ">Întrebările de la masă, una pe rând</label>
+  <textarea id="fQ" rows="5"></textarea>
+
+  <label class="lb" for="fPwH">Parola moderatorului</label>
+  <input type="text" id="fPwH" maxlength="24" placeholder="o parolă simplă, de dat clientului">
+  <button class="btn3" id="bPwGen" style="margin-top:8px">Generează una</button>
+
+  <label class="lb" for="fBase">Adresa unde stă aplicația</label>
+  <input type="text" id="fBase" placeholder="https://hellohuman.ro">
+
+  <label class="lb">Legătura cu serverul</label>
+  <button class="btn3" id="bTest">Testează conexiunea</button>
+  <div class="hint" id="testBox" style="display:none"></div>
+
+  <p class="msg" id="mO"></p>
+  <button class="btn" id="bCreate">Creează evenimentul</button>
+
+  <div id="outBox" style="display:none">
+    <label class="lb">Pentru participanți</label>
+    <div class="link" id="outLink"></div>
+    <div style="margin-top:10px">
+      <button class="btn3" id="bQRPage">Vezi codul QR</button>
+      <button class="btn3" id="bCopyLink">Copiază linkul</button>
+    </div>
+
+    <label class="lb">Pentru moderator — asta îi trimiți clientului</label>
+    <div class="link" id="outMod"></div>
+    <div class="link" id="outPw" style="font-family:'Bricolage Grotesque';font-size:22px;font-weight:700;letter-spacing:.04em"></div>
+    <div style="margin-top:10px">
+      <button class="btn3" id="bSendMod">Trimite moderatorului</button>
+      <button class="btn3" id="bCopyMod">Copiază</button>
+    </div>
+    <div class="hint"><b>Ce primește clientul</b>Doar acces de moderator. Nu vede configurarea și nu poate schimba nimic. Din panoul lui poate printa codul QR sau îl poate arăta de pe telefon.</div>
+  </div>
+
+  <div class="push"><button class="btn2" id="bO0">Înapoi</button></div>
+</section>
+
+<!-- QUESTIONNAIRE STEPS -->
+<section class="sc" id="sQ1">
+  <p class="brand">HelloHuman · 1 din 7</p>
+  <h1>Ce eveniment<br>pregătiți?</h1>
+  <p class="sub">Șapte întrebări scurte. La final primiți un cod pe care îl trimiteți înapoi organizatorului.</p>
+  <label class="lb" for="qEv">Numele evenimentului</label>
+  <input type="text" class="hero" id="qEv" placeholder="Kickoff 2026" maxlength="46">
+  <label class="lb" for="qCl">Compania</label>
+  <input type="text" id="qCl" placeholder="Compania X" maxlength="40">
+  <p class="msg" id="mQ1"></p>
+  <div class="push"><button class="btn" id="bQ1">Continuă</button></div>
+</section>
+
+<section class="sc" id="sQ2">
+  <p class="brand">HelloHuman · 2 din 7</p>
+  <h1>Câți oameni<br>vor fi în sală?</h1>
+  <p class="sub">O estimare e suficientă.</p>
+  <div class="opts" id="qPeople" style="margin-top:24px">
+    <button class="opt" data-v="20">Sub 30 de oameni</button>
+    <button class="opt" data-v="45">Între 30 și 60</button>
+    <button class="opt" data-v="80">Între 60 și 100</button>
+    <button class="opt" data-v="140">Peste 100</button>
+  </div>
+  <div class="push"><button class="btn2" id="bQ2b">Înapoi</button></div>
+</section>
+
+<section class="sc" id="sQ3">
+  <p class="brand">HelloHuman · 3 din 7</p>
+  <h1>Câte mese<br>are sala?</h1>
+  <p class="sub">Numărul de mese la care se pot așeza oamenii. Dacă nu știți exact, dați o estimare.</p>
+  <label class="lb" for="qT">Număr de mese</label>
+  <input type="text" class="hero" id="qT" placeholder="15" maxlength="4" inputmode="numeric">
+  <p class="hint" id="qTHint"><b>Ce iese din asta</b>—</p>
+  <p class="msg" id="mQ3"></p>
+  <div class="push"><button class="btn" id="bQ3">Continuă</button><button class="btn2" id="bQ3b">Înapoi</button></div>
+</section>
+
+<section class="sc" id="sQ4">
+  <p class="brand">HelloHuman · 4 din 7</p>
+  <h1>Cât durează<br>o rundă?</h1>
+  <p class="sub">După atâtea minute, oamenii se mută la altă masă, cu alți colegi.</p>
+  <div class="opts" id="qMin" style="margin-top:24px">
+    <button class="opt" data-v="5">5 minute — foarte alert</button>
+    <button class="opt" data-v="10">10 minute — recomandat</button>
+    <button class="opt" data-v="15">15 minute — discuții mai adânci</button>
+    <button class="opt" data-v="20">20 de minute — puține runde</button>
+  </div>
+  <div class="push"><button class="btn2" id="bQ4b">Înapoi</button></div>
+</section>
+
+<section class="sc" id="sQ5">
+  <p class="brand">HelloHuman · 5 din 7</p>
+  <h1>Ce vreți<br>să obțineți?</h1>
+  <p class="sub">De asta depinde cine cu cine se așază la masă.</p>
+  <div class="opts" id="qGoal" style="margin-top:24px">
+    <button class="opt" data-v="mix">Vreau ca oameni din echipe diferite să se cunoască între ei</button>
+    <button class="opt" data-v="same">Vreau ca oameni cu roluri asemănătoare să facă schimb de experiență</button>
+  </div>
+  <div class="push"><button class="btn2" id="bQ5b">Înapoi</button></div>
+</section>
+
+<section class="sc" id="sQ6">
+  <p class="brand">HelloHuman · 6 din 7</p>
+  <h1>Ce alege<br>fiecare om?</h1>
+  <p class="sub">O singură atingere la înscriere. Din asta se formează mesele.</p>
+  <div id="qSets" style="margin-top:20px"></div>
+  <div class="push"><button class="btn2" id="bQ6b">Înapoi</button></div>
+</section>
+
+<section class="sc" id="sQ7">
+  <p class="brand">HelloHuman · 7 din 7</p>
+  <h1>Despre ce<br>să vorbească?</h1>
+  <p class="sub">Întrebarea apare pe telefonul fiecăruia, la masă. Alegeți un set sau scrieți-le voi.</p>
+  <div id="qQSets" style="margin-top:20px"></div>
+  <label class="lb" for="qQ">Sau scrieți-le voi, una pe rând</label>
+  <textarea id="qQ" rows="5" placeholder="Ce parte din munca ta crede toată lumea că e simplă și nu e?"></textarea>
+  <p class="msg" id="mQ7"></p>
+  <div class="push"><button class="btn" id="bQ7">Gata, generează codul</button><button class="btn2" id="bQ7b">Înapoi</button></div>
+</section>
+
+<section class="sc" id="sQDone">
+  <p class="brand">Gata</p>
+  <h1>Trimiteți<br>codul acesta.</h1>
+  <p class="sub">Trimiteți-l organizatorului pe WhatsApp sau email. Nu e un link — e un cod pe care îl introduce el.</p>
+  <div class="link" id="qOut" style="font-family:'Bricolage Grotesque';font-size:26px;font-weight:800;letter-spacing:.06em;text-align:center;padding:22px 15px"></div>
+  <p class="msg" id="mQD"></p>
+  <div style="margin-top:12px">
+    <button class="btn3" id="bQCopy">Copiază codul</button>
+    <button class="btn3" id="bQShare">Trimite</button>
+  </div>
+  <div class="hint"><b>Ce urmează</b>Primiți înapoi un cod QR pentru participanți. Îl printați și îl puneți pe mese, sau îl afișați pe ecran.</div>
+  <div class="push"><button class="btn2" id="bQRestart">Reia chestionarul</button></div>
+</section>
+
+<!-- QR PAGE -->
+<section class="sc" id="sQR">
+  <p class="brand noprint">Cod pentru participanți</p>
+  <div class="qwrap">
+    <div id="qrBig"></div>
+    <p class="qcap" id="qrTitle">Eveniment</p>
+    <p class="qsub" id="qrUrl">—</p>
+  </div>
+  <div class="hint noprint"><b>Cum îl folosești</b>Printează pagina și pune-o pe mese, sau arată codul de pe telefon. Poți trimite și doar linkul, pe WhatsApp sau email.</div>
+  <div class="push noprint">
+    <button class="btn" id="bPrint">Printează</button>
+    <button class="btn2" id="bShare2">Trimite linkul</button>
+    <button class="btn2" id="bQR0">Înapoi</button>
+  </div>
+</section>
+
+<!-- MODERATOR -->
+<section class="sc" id="sHost">
+  <p class="brand"><span class="dot" id="dotH"></span>Moderator</p>
+  <h2 id="hName">Eveniment</h2>
+  <div class="grid3" style="margin-top:14px">
+    <div class="stat"><div class="n" id="hW">0</div><div class="t">în sală</div></div>
+    <div class="stat"><div class="n" id="hT">0</div><div class="t">mese</div></div>
+    <div class="stat"><div class="n" id="hC">—</div><div class="t">rămas</div></div>
+  </div>
+  <div style="margin-top:12px"><button class="btn3" id="bQRHost">Arată codul QR</button></div>
+  <label class="lb">Mesele disponibile</label>
+  <div class="chips" id="chips"></div>
+  <p class="hint" id="plan">—</p>
+  <div class="list" id="hL"></div>
+  <p class="msg" id="mH"></p>
+  <div class="push">
+    <button class="btn" id="bStart">Pornește runda</button>
+    <button class="btn2" id="bStop">Oprește runda</button>
+    <button class="btn2" id="bH0">Ieși</button>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section class="sc" id="sJoin">
+  <p class="brand" id="jName">HelloHuman</p>
+  <h1>Câteva<br>detalii.</h1>
+  <label class="lb" for="nm" style="margin-top:22px">Numele tău</label>
+  <input type="text" class="hero" id="nm" placeholder="Andrei" maxlength="30" autocomplete="name">
+  <label class="lb" for="dp">Echipa sau departamentul</label>
+  <input type="text" id="dp" placeholder="Operațiuni" maxlength="30">
+  <label class="lb">Alege una</label>
+  <div class="opts" id="opts"></div>
+  <p class="msg" id="mJ"></p>
+  <div class="push"><button class="btn" id="bIn" disabled>Sunt în sală</button><button class="btn2" id="bJ0">Înapoi</button></div>
+</section>
+
+<!-- WAIT -->
+<section class="sc" id="sWait">
+  <div class="load"><div class="ring"></div><h2>Ești înscris</h2>
+    <p class="sub" id="wS" style="text-align:center">Moderatorul pornește runda în curând. Ține telefonul la îndemână.</p></div>
+  <div class="push"><button class="btn2" id="bW0">Ies</button></div>
+</section>
+
+<!-- TABLE -->
+<section class="sc" id="sTab">
+  <p class="brand">Runda a început</p>
+  <div class="card">
+    <p class="k">Masa</p><p class="num" id="tN">4</p>
+    <div class="hr"></div>
+    <div class="pair"><span>Cu tine</span><b id="tW">—</b></div>
+  </div>
+  <p class="clock" id="clk">10:00</p>
+  <div class="ice"><span class="k">întrebarea mesei</span><span id="iceT">—</span></div>
+  <div class="push"><button class="btn2" id="bDone">Am terminat</button></div>
+</section>
+
+<!-- SEMAPHORE -->
+<section class="sc" id="sSem">
+  <p class="brand">Runda s-a încheiat</p><h1>A fost util?</h1>
+  <p class="sub">Răspunsul e anonim.</p>
+  <div class="opts" style="margin-top:20px">
+    <button class="opt sm" data-v="1">Nu prea</button>
+    <button class="opt sm" data-v="2">A fost în regulă</button>
+    <button class="opt sm" data-v="3">Da, vreau să continui discuția</button>
+  </div>
+  <div class="push"></div>
+</section>
+
+<!-- END -->
+<section class="sc" id="sEnd">
+  <p class="brand">Mulțumim</p><h1>Gata.</h1>
+  <p class="sub">Rămâi înscris dacă vrei să prinzi și runda următoare.</p>
+  <div class="push"><button class="btn" id="bAgain">Rămân pentru runda următoare</button><button class="btn2" id="bE0">Ies</button></div>
+</section>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+var PROV=[
+ {n:'Server propriu',
+  create:async function(o){
+    var r=await fetch('/api/store',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(o)});
+    if(!r.ok){var t='';try{t=(await r.json()).error||''}catch(e){}throw new Error('HTTP '+r.status+(t?' — '+t:''))}
+    var d=await r.json();if(!d.id)throw new Error('serverul nu a returnat identificatorul');return d.id},
+  get:async function(id){var r=await fetch('/api/store?id='+encodeURIComponent(id),{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);return r.json()},
+  put:async function(id,o){var r=await fetch('/api/store?id='+encodeURIComponent(id),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(o)});if(!r.ok)throw new Error('HTTP '+r.status);return true}},
+
+ {n:'JSONBlob',
+  create:async function(o){
+    var r=await fetch('https://jsonblob.com/api/jsonBlob',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(o)});
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    var loc=r.headers.get('Location')||r.headers.get('location')||'';
+    var id=loc.split('/').pop();
+    if(!id)throw new Error('Serverul nu a returnat identificatorul (header Location ascuns de CORS).');
+    return id;},
+  get:async function(id){var r=await fetch('https://jsonblob.com/api/jsonBlob/'+id,{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);return r.json()},
+  put:async function(id,o){var r=await fetch('https://jsonblob.com/api/jsonBlob/'+id,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(o)});if(!r.ok)throw new Error('HTTP '+r.status);return true}},
+ {n:'JSONStorage',
+  create:async function(o){
+    var r=await fetch('https://api.jsonstorage.net/v1/json',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(o)});
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    var d=await r.json();
+    var u=d.uri||d.url||'';
+    var id=u.split('/').slice(-2).join('~');
+    if(!id||id.indexOf('~')<0)throw new Error('Răspuns neașteptat de la server.');
+    return id;},
+  get:async function(id){var p=id.split('~');var r=await fetch('https://api.jsonstorage.net/v1/json/'+p[0]+'/'+p[1],{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);return r.json()},
+  put:async function(id,o){var p=id.split('~');var r=await fetch('https://api.jsonstorage.net/v1/json/'+p[0]+'/'+p[1],{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(o)});if(!r.ok)throw new Error('HTTP '+r.status);return true}}
+];
+var pi=0;
+function splitId(s){var m=String(s).match(/^([0-9]+)~~(.+)$/);if(m)return{p:+m[1],id:m[2]};return{p:0,id:String(s)}}
+function joinId(p,id){return p+'~~'+id}
+var PW='sef2026';
+var CATS=['Vând sau lucrez cu clienții','Construiesc produsul','Susțin echipele din spate','Conduc o echipă'];
+var QSD='Ce parte din munca ta crede toată lumea că e simplă și nu e?\nCu ce echipă ai vrea să lucrezi mai des și nu ai ocazia?\nCe ai afla azi care ți-ar economisi o săptămână de muncă?\nCare e cea mai proastă presupunere pe care o fac ceilalți despre echipa ta?\nDacă ai putea schimba un singur proces, care ar fi?\nCe știi tu și ar trebui să știe și alții?';
+var PRESETS=[
+ {t:'Rol în companie',v:CATS},
+ {t:'După fuziune sau reorganizare',v:['Eram în echipa A','Eram în echipa B','Sunt nou de tot','Fac legătura între ele']},
+ {t:'Onboarding',v:['Sunt aici de sub 6 luni','De 1–3 ani','De peste 3 ani','De la început']},
+ {t:'Ce cauți azi',v:['Caut pe cineva care să mă deblocheze','Am ceva de oferit','Vreau să înțeleg alt departament','Sunt aici să ascult']},
+ {t:'Mod de lucru',v:['Lucrez de acasă','Vin zilnic la birou','Sunt pe teren','Sunt între mai multe locații']}
+];
+var DEFC={ev:'HelloHuman',client:'',tables:[1,2,3,4,5,6],seats:3,minutes:10,cats:CATS.slice(),mix:'mix',qs:QSD};
+
+var eid=null,doc=null,cfg=null,me={id:'p'+Date.now()+Math.floor(Math.random()*99999),name:'',dep:'',cat:''};
+var poll=null,clkT=null,freeT=[],myTable=null,busy=false,lastOk=true;
+
+function el(i){return document.getElementById(i)}
+function go(i){var l=document.querySelectorAll('.sc');for(var k=0;k<l.length;k++)l[k].classList.remove('on');el(i).classList.add('on');window.scrollTo(0,0)}
+function say(id,t,k){var e=el(id);if(!e)return;e.textContent=t;e.className='msg'+(k?' '+k:'')}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function base(){var b=el('fBase')&&el('fBase').value.trim();if(b){b=b.split('#')[0].replace(/\s+/g,'');if(!/^https?:\/\//i.test(b))b='https://'+b;return b}return location.href.split('#')[0]}
+function evUrl(id){return base()+'#e='+id}
+function qsArr(){return (cfg.qs||'').split('\n').map(function(x){return x.trim()}).filter(Boolean)}
+
+/* ---------- server ---------- */
+async function apiCreate(o){
+  var last='';
+  for(var k=0;k<PROV.length;k++){
+    var idx=(pi+k)%PROV.length;
+    try{ var id=await PROV[idx].create(o); pi=idx; return joinId(idx,id); }
+    catch(e){ last=PROV[idx].n+': '+(e&&e.message?e.message:'eroare de rețea') }
+  }
+  throw new Error(last||'Niciun serviciu disponibil.');
+}
+async function apiGet(full){
+  var s=splitId(full);
+  var r=await PROV[s.p].get(s.id);
+  return r;
+}
+async function apiPut(full,o){
+  var s=splitId(full);
+  return PROV[s.p].put(s.id,o);
+}
+async function apiTest(){
+  var out=[];
+  for(var i=0;i<PROV.length;i++){
+    var t0=Date.now();
+    try{
+      var id=await PROV[i].create({t:'test',ts:Date.now()});
+      var d=await PROV[i].get(id);
+      if(!d||d.t!=='test')throw new Error('datele citite nu se potrivesc');
+      await PROV[i].put(id,{t:'test2'});
+      var d2=await PROV[i].get(id);
+      if(!d2||d2.t!=='test2')throw new Error('salvarea nu s-a propagat');
+      out.push({ok:true,n:PROV[i].n,ms:Date.now()-t0,i:i});
+    }catch(e){ out.push({ok:false,n:PROV[i].n,err:(e&&e.message)?e.message:'nu s-a putut conecta',i:i}) }
+  }
+  return out;
+}
+async function pull(){
+  doc=await apiGet(eid);
+  cfg=Object.assign({},DEFC,doc.cfg||{});
+  if(!doc.state)doc.state={wait:[],round:null,rounds:0,votes:{},met:{}};
+  return doc;
+}
+async function push(mut){
+  for(var attempt=0;attempt<3;attempt++){
+    try{
+      var d=await apiGet(eid);
+      if(!d.state)d.state={wait:[],round:null,rounds:0,votes:{},met:{}};
+      mut(d);
+      await apiPut(eid,d);
+      doc=d;cfg=Object.assign({},DEFC,d.cfg||{});
+      return true;
+    }catch(e){ if(attempt===2)throw e; await new Promise(function(r){setTimeout(r,300+Math.random()*500)}) }
+  }
+}
+function online(ok){lastOk=ok;var d=el('dotH');if(d)d.className='dot'+(ok?'':' off')}
+
+/* ---------- routing ---------- */
+function readHash(){
+  var h=location.hash||'';
+  if(h.indexOf('#e=')===0)return{mode:'ev',id:h.slice(3)};
+  if(h.indexOf('#m=')===0)return{mode:'mod',id:h.slice(3)};
+  if(h.indexOf('#q')===0)return{mode:'quiz'};
+  return{mode:'none'};
+}
+function only(what){
+  el('bJoin').style.display=what==='part'?'block':'none';
+  el('bHost').style.display=what==='mod'?'block':'none';
+  el('bOrg').style.display=what==='all'?'block':'none';
+  if(what==='all')el('bJoin').style.display=el('bHost').style.display='block';
+}
+
+async function boot(){
+  paintPresets('presets');paintQSets();
+  var r=readHash();
+  if(r.mode==='quiz'){only('none');go('sQ1');return}
+  if(r.mode==='ev'||r.mode==='mod'){
+    eid=r.id;only(r.mode==='mod'?'mod':'part');
+    try{ await pull(); online(true);
+      el('b0').textContent=cfg.ev;
+      el('jName').textContent=cfg.ev;el('hName').textContent=cfg.ev;
+      if(r.mode==='mod'){
+        el('h0').textContent='Panoul moderatorului.';
+        el('p0').textContent='Intră cu parola primită. De acolo pornești rundele și arăți codul QR participanților.';
+        el('foot0').textContent=cfg.ev;
+      }else{
+        el('h0').textContent='Bine ai venit.';
+        el('p0').textContent='Alege o variantă și primești o masă. La final te întorci la ai tăi.';
+        el('foot0').textContent=cfg.ev;
+      }
+      say('m0','');
+    }catch(e){ online(false); say('m0','Evenimentul nu a putut fi încărcat. '+e.message,'err') }
+    return;
+  }
+  only('all');
+  say('m0','Aplicația de configurare. Intră la Organizator ca să creezi un eveniment.','');
+}
+
+/* ---------- landing ---------- */
+el('bJoin').onclick=function(){
+  if(!eid){say('m0','Deschide linkul evenimentului sau scanează codul QR.','err');return}
+  paintCats();say('mJ','');go('sJoin');
+};
+el('bHost').onclick=function(){modeLog='h';el('lt').textContent='Parola moderatorului';el('pw').value='';say('mL','');go('sLog')};
+el('bOrg').onclick=function(){modeLog='o';el('lt').textContent='Parola ta';el('pw').value='';say('mL','');go('sLog')};
+var modeLog='';
+el('bL0').onclick=function(){go('s0')};
+el('bLog').onclick=async function(){
+  var typed=el('pw').value;
+  if(modeLog==='o'){ if(typed!==PW){say('mL','Parolă greșită.','err');return} }
+  else{
+    if(eid&&!cfg){try{await pull();online(true)}catch(e){online(false);say('mL','Nu am putut încărca evenimentul.','err');return}}
+    var expect=(cfg&&cfg.pwHost)||PW;
+    if(typed!==expect&&typed!==PW){say('mL','Parolă greșită.','err');return}
+  }
+  if(modeLog==='o'){ fillOrg();go('sOrg');return }
+  if(!eid){say('mL','Niciun eveniment activ. Deschide linkul primit.','err');return}
+  try{await pull();online(true)}catch(e){online(false);say('mL','Nu am putut încărca evenimentul. '+e.message,'err');return}
+  el('hName').textContent=cfg.ev;freeT=cfg.tables.slice();paintChips();go('sHost');
+  refHost();if(poll)clearInterval(poll);poll=setInterval(hostTick,3000);
+};
+el('pw').addEventListener('keydown',function(e){if(e.key==='Enter')el('bLog').click()});
+
+/* ---------- presets ---------- */
+function paintPresets(box){
+  var h='';PRESETS.forEach(function(p,i){h+='<button class="pre" data-i="'+i+'" data-box="'+box+'"><b>'+esc(p.t)+'</b>'+esc(p.v.join(' · '))+'</button>'});
+  el(box).innerHTML=h;
+}
+document.addEventListener('click',function(e){
+  var b=e.target.closest('.pre');if(!b)return;
+  var pre=b.dataset.box==='qpresets'?'q':'c';
+  PRESETS[+b.dataset.i].v.forEach(function(v,i){var f=el(pre+i);if(f)f.value=v});
+});
+
+/* ---------- questionnaire ---------- */
+var QSETS=[
+ {t:'Cunoaștere între echipe',q:'Ce parte din munca ta crede toată lumea că e simplă și nu e?\nCu ce echipă ai vrea să lucrezi mai des și nu ai ocazia?\nCe face echipa ta și restul companiei nu vede?\nCare e cea mai proastă presupunere pe care o fac ceilalți despre munca ta?'},
+ {t:'După o reorganizare',q:'Ce funcționa bine înainte și merită păstrat?\nCe nu înțelegi încă din cum lucrează cealaltă parte?\nDe ce ai avea nevoie de la colegul din fața ta ca să-ți fie mai ușor?\nCe te-a surprins plăcut în ultimele luni?'},
+ {t:'Oameni noi în companie',q:'Ce ai fi vrut să știi în prima ta săptămână aici?\nPe cine ar trebui să cunoască toată lumea și nu știe?\nCe regulă nescrisă ai descoperit singur?\nCe te-a mirat cel mai mult când ai ajuns aici?'},
+ {t:'Deblocare și ajutor',q:'La ce ești blocat acum și cine te-ar putea ajuta?\nCe ai afla azi care ți-ar economisi o săptămână de muncă?\nCe știi tu și ar trebui să știe și alții?\nDacă ai putea schimba un singur proces, care ar fi?'}
+];
+var Q={ev:'',client:'',people:45,tables:0,minutes:10,mix:'mix',cats:null,qs:''};
+
+function qGo(n){go('sQ'+n)}
+function qPick(box,val,then){
+  var l=el(box).children;for(var k=0;k<l.length;k++)l[k].classList.toggle('sel',l[k].dataset.v===String(val));
+  if(then)setTimeout(then,180);
+}
+el('bQ1').onclick=function(){
+  var v=el('qEv').value.trim();
+  if(!v){say('mQ1','Scrieți numele evenimentului.','err');return}
+  Q.ev=v;Q.client=el('qCl').value.trim();say('mQ1','');qGo(2);
+};
+el('qPeople').onclick=function(e){var b=e.target.closest('.opt');if(!b)return;
+  Q.people=+b.dataset.v;qPick('qPeople',Q.people,function(){qHint();qGo(3)})};
+el('bQ2b').onclick=function(){qGo(1)};
+
+function qHint(){
+  var t=parseInt(el('qT').value,10);
+  if(isNaN(t)||t<1){el('qTHint').innerHTML='<b>Ce iese din asta</b>Scrieți numărul de mese ca să vedeți cum se împart oamenii.';return}
+  var s=Math.max(2,Math.min(6,Math.round(Q.people/t)));
+  el('qTHint').innerHTML='<b>Ce iese din asta</b>Cu aproximativ '+Q.people+' de oameni la '+t+' mese, ies grupuri de câte '+s+'. Trei sau patru la masă funcționează cel mai bine.';
+}
+el('qT').oninput=qHint;
+el('bQ3').onclick=function(){
+  var t=parseInt(el('qT').value,10);
+  if(isNaN(t)||t<1){say('mQ3','Scrieți câte mese are sala.','err');return}
+  Q.tables=t;say('mQ3','');qGo(4);
+};
+el('bQ3b').onclick=function(){qGo(2)};
+el('qMin').onclick=function(e){var b=e.target.closest('.opt');if(!b)return;
+  Q.minutes=+b.dataset.v;qPick('qMin',Q.minutes,function(){qGo(5)})};
+el('bQ4b').onclick=function(){qGo(3)};
+el('qGoal').onclick=function(e){var b=e.target.closest('.opt');if(!b)return;
+  Q.mix=b.dataset.v;qPick('qGoal',Q.mix,function(){qGo(6)})};
+el('bQ5b').onclick=function(){qGo(4)};
+
+function paintQSets(){
+  var h='';PRESETS.forEach(function(p,i){h+='<button class="pre" data-qs="'+i+'"><b>'+esc(p.t)+'</b>'+esc(p.v.join(' · '))+'</button>'});
+  el('qSets').innerHTML=h;
+  var g='';QSETS.forEach(function(p,i){g+='<button class="pre" data-qq="'+i+'"><b>'+esc(p.t)+'</b>'+esc(p.q.split('\n')[0])+'…</button>'});
+  el('qQSets').innerHTML=g;
+}
+el('qSets').onclick=function(e){var b=e.target.closest('.pre');if(!b)return;
+  Q.cats=PRESETS[+b.dataset.qs].v.slice();
+  var l=el('qSets').children;for(var k=0;k<l.length;k++)l[k].style.borderColor=(l[k]===b?'var(--ac)':'');
+  setTimeout(function(){qGo(7)},180)};
+el('bQ6b').onclick=function(){qGo(5)};
+el('qQSets').onclick=function(e){var b=e.target.closest('.pre');if(!b)return;
+  el('qQ').value=QSETS[+b.dataset.qq].q;
+  var l=el('qQSets').children;for(var k=0;k<l.length;k++)l[k].style.borderColor=(l[k]===b?'var(--ac)':'')};
+el('bQ7b').onclick=function(){qGo(6)};
+
+el('bQ7').onclick=function(){
+  var q=el('qQ').value.split('\n').map(function(x){return x.trim()}).filter(Boolean);
+  if(!q.length){say('mQ7','Alegeți un set sau scrieți cel puțin o întrebare.','err');return}
+  if(!Q.cats)Q.cats=PRESETS[0].v.slice();
+  var tl=[];for(var t=1;t<=Q.tables;t++)tl.push(t);
+  var seats=Math.max(2,Math.min(6,Math.round(Q.people/Math.max(1,Q.tables))));
+  var o={ev:Q.ev,client:Q.client,tables:tl,seats:seats,minutes:Q.minutes,cats:Q.cats,mix:Q.mix,qs:q.join('\n')};
+  say('mQ7','Se pregătește codul…');
+  el('bQ7').disabled=true;
+  apiCreate({quiz:o}).then(function(id){
+    el('qOut').textContent=id;
+    say('mQ7','');say('mQD','');go('sQDone');
+    el('bQ7').disabled=false;
+  }).catch(function(e){
+    say('mQ7','Nu am putut genera codul. '+e.message+' — încercați de pe altă rețea sau de pe date mobile.','err');
+    el('bQ7').disabled=false;
+  });
+};
+el('bQCopy').onclick=function(){copy(el('qOut').textContent,el('bQCopy'),'Copiază codul')};
+el('bQShare').onclick=function(){shareTxt('Codul evenimentului pentru HelloHuman: '+el('qOut').textContent)};
+el('bQRestart').onclick=function(){qGo(1)};
+
+el('bQuizLink').onclick=function(){
+  copy(base()+'#q',el('bQuizLink'),'Copiază linkul chestionarului');
+};
+
+function fillFrom(o){
+  el('fEv').value=o.ev||'';el('fCl').value=o.client||'';
+  el('fT').value=(o.tables||[]).join(', ');el('fS').value=o.seats||3;el('fM').value=o.minutes||10;
+  for(var i=0;i<4;i++)if(el('c'+i))el('c'+i).value=(o.cats||[])[i]||'';
+  el('fQ').value=o.qs||'';setMix(o.mix||'mix');
+}
+el('bImport').onclick=async function(){
+  var v=el('fImport').value.trim().replace(/\s+/g,'');
+  if(!v){say('mO','Lipește codul primit de la client.','err');return}
+  say('mO','Se caută codul…');
+  try{
+    var d=await apiGet(v);
+    if(!d||!d.quiz)throw new Error('Codul nu conține un chestionar.');
+    fillFrom(d.quiz);
+    say('mO','Răspunsurile clientului au fost încărcate. Verifică, pune parola moderatorului și creează evenimentul.','ok');
+  }catch(e){ say('mO','Codul nu a fost găsit. '+e.message,'err') }
+};
+
+/* ---------- organizer ---------- */
+function setMix(v){var l=el('mix').children;for(var k=0;k<l.length;k++)l[k].classList.toggle('sel',l[k].dataset.v===v)}
+el('mix').onclick=function(e){var b=e.target.closest('.opt');if(!b)return;setMix(b.dataset.v)};
+function fillOrg(){
+  var c=cfg||DEFC;
+  if(!el('fEv').value){el('fEv').value=c.ev;el('fCl').value=c.client||'';el('fT').value=(c.tables||[]).join(', ');
+    el('fS').value=c.seats;el('fM').value=c.minutes;el('fQ').value=c.qs;
+    (c.cats||CATS).forEach(function(x,i){if(el('c'+i))el('c'+i).value=x});setMix(c.mix||'mix')}
+  var cur=location.href.split('#')[0];
+  if(!el('fBase').value)el('fBase').value=/^https?:/i.test(cur)?cur:'';
+}
+el('bO0').onclick=function(){go('s0')};
+
+el('bCreate').onclick=async function(){
+  if(busy)return;
+  var t=el('fT').value.split(',').map(function(x){return parseInt(x.trim(),10)}).filter(function(x){return!isNaN(x)&&x>0});
+  if(!t.length){say('mO','Scrie cel puțin un număr de masă.','err');return}
+  var s=parseInt(el('fS').value,10);if(isNaN(s)||s<2){say('mO','Minimum 2 locuri la masă.','err');return}
+  var m=parseInt(el('fM').value,10);if(isNaN(m)||m<1){say('mO','Minimum un minut pe rundă.','err');return}
+  var c=[];for(var i=0;i<4;i++){var v=el('c'+i).value.trim();if(v)c.push(v)}
+  if(c.length<2){say('mO','Minimum două variante.','err');return}
+  var q=el('fQ').value.split('\n').map(function(x){return x.trim()}).filter(Boolean);
+  if(!q.length){say('mO','Scrie cel puțin o întrebare.','err');return}
+  var b=base();
+  if(/^file:/i.test(b)){say('mO','Scrie adresa unde stă aplicația. Fișierul e deschis local.','err');return}
+  busy=true;say('mO','Se creează evenimentul…');
+  var pwh=el('fPwH').value.trim();
+  if(!pwh){pwh=String(Math.floor(1000+Math.random()*9000));el('fPwH').value=pwh}
+  var nc={ev:el('fEv').value.trim()||'HelloHuman',client:el('fCl').value.trim(),tables:t,seats:s,minutes:m,
+    cats:c,mix:(el('mix').querySelector('.sel')||{dataset:{v:'mix'}}).dataset.v,qs:q.join('\n'),pwHost:pwh};
+  try{
+    var id=await apiCreate({cfg:nc,state:{wait:[],round:null,rounds:0,votes:{},met:{}}});
+    eid=id;cfg=nc;online(true);
+    var u=evUrl(id);
+    el('outLink').textContent=u;
+    el('outMod').textContent=base()+'#m='+id;
+    el('outPw').textContent='Parola: '+pwh;
+    el('outBox').style.display='block';
+    el('hName').textContent=cfg.ev;el('jName').textContent=cfg.ev;el('b0').textContent=cfg.ev;
+    say('mO','Evenimentul e activ. Trimite linkul sau codul QR participanților.','ok');
+  }catch(e){ online(false);say('mO','Nu am putut crea evenimentul. '+e.message,'err') }
+  busy=false;
+};
+el('bCopyLink').onclick=function(){copy(el('outLink').textContent,el('bCopyLink'),'Copiază linkul')};
+el('bPwGen').onclick=function(){el('fPwH').value=String(Math.floor(1000+Math.random()*9000))};
+el('bTest').onclick=async function(){
+  var b=el('bTest');b.disabled=true;b.textContent='se testează…';
+  el('testBox').style.display='block';
+  el('testBox').innerHTML='<b>Se testează</b>Durează câteva secunde.';
+  var res=await apiTest();
+  var good=res.filter(function(x){return x.ok});
+  var h='<b>Rezultat</b>';
+  res.forEach(function(x){
+    h+=(x.ok?'✓ ':'✗ ')+x.n+(x.ok?(' — funcționează, '+x.ms+' ms'):(' — '+esc(x.err)))+'<br>';
+  });
+  if(good.length){ pi=good[0].i; h+='<br>Se folosește '+good[0].n+'.' }
+  else h+='<br>Niciun serviciu nu răspunde. Verifică internetul, sau încearcă de pe altă rețea — unele rețele de firmă blochează serviciile astea.';
+  el('testBox').innerHTML=h;
+  b.disabled=false;b.textContent='Testează conexiunea';
+};
+function modMsg(){
+  return 'Bună! Uite accesul de moderator pentru '+(el('fEv').value.trim()||'eveniment')+':\n\n'
+    +el('outMod').textContent+'\n'+el('outPw').textContent
+    +'\n\nDin panou pornești rundele și poți printa sau arăta codul QR participanților.';
+}
+el('bSendMod').onclick=function(){shareTxt(modMsg())};
+el('bCopyMod').onclick=function(){copy(modMsg(),el('bCopyMod'),'Copiază')};
+el('bQRPage').onclick=function(){showQR(el('outLink').textContent)};
+el('bQRHost').onclick=function(){showQR(evUrl(eid))};
+el('bQR0').onclick=function(){go(eid&&el('hName').textContent!=='Eveniment'?'sHost':'sOrg')};
+el('bShare2').onclick=function(){share(el('qrUrl').textContent)};
+el('bPrint').onclick=function(){window.print()};
+
+function showQR(u){
+  el('qrBig').innerHTML='';
+  el('qrTitle').textContent=(cfg&&cfg.ev)||'HelloHuman';
+  el('qrUrl').textContent=u;
+  try{new QRCode(el('qrBig'),{text:u,width:230,height:230,colorDark:'#0B0B0C',colorLight:'#ffffff'})}
+  catch(e){el('qrBig').innerHTML='<p style="color:#141416;font-size:13px">Nu s-a putut genera codul.</p>'}
+  go('sQR');
+}
+function copy(txt,btn,orig){
+  var done=function(ok){btn.textContent=ok?'Copiat':'Nu s-a putut copia';setTimeout(function(){btn.textContent=orig},2000)};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(function(){done(1)},function(){done(0)});
+  else done(0);
+}
+function share(txt){
+  if(navigator.share)navigator.share({title:'HelloHuman',url:txt}).catch(function(){});
+  else if(navigator.clipboard)navigator.clipboard.writeText(txt);
+}
+function shareTxt(txt){
+  if(navigator.share)navigator.share({title:'HelloHuman',text:txt}).catch(function(){});
+  else if(navigator.clipboard)navigator.clipboard.writeText(txt);
+}
+
+/* ---------- moderator ---------- */
+function paintChips(){var h='';(cfg.tables||[]).forEach(function(n){h+='<button class="chip'+(freeT.indexOf(n)>=0?' on':'')+'" data-n="'+n+'">'+n+'</button>'});el('chips').innerHTML=h}
+el('chips').onclick=function(e){var b=e.target.closest('.chip');if(!b)return;
+  var n=+b.dataset.n,i=freeT.indexOf(n);if(i>=0)freeT.splice(i,1);else freeT.push(n);
+  freeT.sort(function(a,b){return a-b});paintChips();refHost()};
+
+function sizes(p,tb,se){var g=Math.min(Math.floor(p/2),tb);if(g<1)return[];
+  var u=Math.min(p,g*se),b=Math.floor(u/g),r=u%g,o=[];for(var i=0;i<g;i++)o.push(b+(i<r?1:0));return o}
+function ordq(a,b){if((b.miss||0)!==(a.miss||0))return(b.miss||0)-(a.miss||0);return a.ts-b.ts}
+
+function makeGroups(queue,sz,mixMode,met){
+  var pool=queue.slice(),out=[];met=met||{};
+  if(mixMode==='mix'){
+    var by={};pool.forEach(function(p){(by[p.cat]=by[p.cat]||[]).push(p)});
+    var keys=Object.keys(by),inter=[],i=0,left=pool.length,guard=0;
+    while(left>0&&guard<pool.length*6){var k=keys[i%keys.length];if(by[k]&&by[k].length){inter.push(by[k].shift());left--}i++;guard++}
+    pool=inter;
+  }else{
+    var b2={};pool.forEach(function(p){(b2[p.cat]=b2[p.cat]||[]).push(p)});
+    var f=[];Object.keys(b2).forEach(function(k){f=f.concat(b2[k])});pool=f;
+  }
+  for(var gi=0;gi<sz.length;gi++){
+    if(!pool.length)break;
+    var g=[pool.shift()];
+    while(g.length<sz[gi]&&pool.length){
+      var bi=0,bs=1e9;
+      for(var j=0;j<pool.length;j++){
+        var sc=0;
+        for(var mm=0;mm<g.length;mm++)if((met[g[mm].id]||[]).indexOf(pool[j].id)>=0)sc++;
+        if(sc<bs){bs=sc;bi=j;if(sc===0)break}
+      }
+      g.push(pool.splice(bi,1)[0]);
+    }
+    out.push(g);
+  }
+  return{groups:out.filter(function(g){return g.length>=2}),left:pool};
+}
+
+async function hostTick(){
+  try{await pull();online(true);refHost()}catch(e){online(false)}
+}
+function refHost(){
+  var s=doc&&doc.state?doc.state:{wait:[],round:null,rounds:0};
+  el('hW').textContent=s.wait.length;
+  el('hT').textContent=s.round?s.round.tables.length:0;
+  if(s.round){var l=Math.max(0,Math.round((s.round.start+s.round.dur-Date.now())/1000));el('hC').textContent=Math.floor(l/60)+':'+('0'+(l%60)).slice(-2)}
+  else el('hC').textContent='—';
+  var sz=sizes(s.wait.length,freeT.length,cfg.seats),seated=sz.reduce(function(a,b){return a+b},0),rest=s.wait.length-seated;
+  el('plan').innerHTML=s.round?('<b>Rundă activă</b>'+s.round.tables.length+' mese. Când se termină cronometrul, apeși din nou pentru runda următoare.')
+    :(!freeT.length?'<b>Alege mesele</b>Bifează numerele meselor libere înainte să pornești.'
+    :(!sz.length?'<b>Prea puțini</b>Ai nevoie de cel puțin doi înscriși.'
+    :'<b>Ce urmează</b>Runda va folosi '+sz.length+' mese ('+sz.join('+')+' persoane)'+(rest>0?', iar '+rest+' rămân pentru următoarea.':'.')));
+  var h='';
+  if(s.round){s.round.tables.forEach(function(t){
+    h+='<div class="tbl"><p class="n">Masa '+t.n+'</p><p class="p">'+t.people.map(function(p){return esc(p.name)+(p.dep?' · '+esc(p.dep):'')}).join('<br>')+'</p><p class="q">'+esc(t.q||'')+'</p></div>'})}
+  else{s.wait.slice().sort(ordq).forEach(function(w){h+='<div class="li"><span>'+esc(w.name)+(w.dep?' · '+esc(w.dep):'')+(w.miss?' · a ratat '+w.miss:'')+'</span><b>'+esc((w.cat||'').slice(0,14))+'</b></div>'})}
+  if(!h)h='<div class="li"><span style="color:var(--mu)">nimeni încă…</span><b></b></div>';
+  el('hL').innerHTML=h;
+}
+el('bStart').onclick=async function(){
+  if(busy)return;
+  if(!freeT.length){say('mH','Bifează mesele disponibile.','err');return}
+  var s=doc.state;
+  if(s.wait.length<2){say('mH','Ai nevoie de cel puțin doi înscriși.','err');return}
+  busy=true;say('mH','Se formează mesele…');
+  try{
+    await push(function(d){
+      var st=d.state,q=st.wait.slice().sort(ordq);
+      var sz=sizes(q.length,freeT.length,cfg.seats);
+      if(!sz.length)throw new Error('Prea puțini participanți.');
+      var b=makeGroups(q,sz,cfg.mix,st.met||{});
+      if(!b.groups.length)throw new Error('Nu se poate forma nicio masă.');
+      var qq=qsArr(),off=(st.rounds||0)*freeT.length;
+      var tables=b.groups.map(function(g,i){
+        return{n:freeT[i],q:qq[(off+i)%qq.length]||qq[0],people:g.map(function(p){return{id:p.id,name:p.name,dep:p.dep}})};
+      });
+      st.met=st.met||{};
+      tables.forEach(function(t){t.people.forEach(function(a){t.people.forEach(function(bb){
+        if(a.id!==bb.id){st.met[a.id]=st.met[a.id]||[];if(st.met[a.id].indexOf(bb.id)<0)st.met[a.id].push(bb.id)}})})});
+      st.round={id:'r'+Date.now(),start:Date.now(),dur:cfg.minutes*60000,tables:tables};
+      st.rounds=(st.rounds||0)+1;
+      st.wait=b.left.map(function(p){return{id:p.id,name:p.name,dep:p.dep,cat:p.cat,ts:p.ts,miss:(p.miss||0)+1}});
+    });
+    online(true);say('mH','');refHost();
+  }catch(e){online(false);say('mH','Nu am putut porni runda. '+e.message,'err')}
+  busy=false;
+};
+el('bStop').onclick=async function(){
+  if(busy)return;busy=true;
+  try{await push(function(d){d.state.round=null});online(true);refHost();say('mH','')}
+  catch(e){online(false);say('mH','Nu am putut opri runda. '+e.message,'err')}
+  busy=false;
+};
+el('bH0').onclick=function(){if(poll){clearInterval(poll);poll=null}go('s0')};
+
+/* ---------- participant ---------- */
+function paintCats(){var h='';(cfg.cats||CATS).forEach(function(c){h+='<button class="opt" data-v="'+esc(c)+'">'+esc(c)+'</button>'});el('opts').innerHTML=h}
+el('opts').onclick=function(e){var b=e.target.closest('.opt');if(!b)return;
+  var l=el('opts').children;for(var k=0;k<l.length;k++)l[k].classList.remove('sel');
+  b.classList.add('sel');me.cat=b.dataset.v;say('mJ','');chk()};
+el('nm').oninput=el('dp').oninput=function(){say('mJ','');chk()};
+function chk(){el('bIn').disabled=!(el('nm').value.trim()&&me.cat)}
+el('bJ0').onclick=function(){go('s0')};
+
+el('bIn').onclick=async function(){
+  if(busy)return;
+  var n=el('nm').value.trim();
+  if(!n){say('mJ','Scrie-ți numele.','err');return}
+  if(!me.cat){say('mJ','Alege una dintre variante.','err');return}
+  me.name=n;me.dep=el('dp').value.trim();
+  busy=true;say('mJ','Se înscrie…');
+  try{
+    await push(function(d){
+      d.state.wait=d.state.wait.filter(function(w){return w.id!==me.id});
+      d.state.wait.push({id:me.id,name:me.name,dep:me.dep,cat:me.cat,ts:Date.now(),miss:0});
+    });
+    online(true);say('mJ','');go('sWait');
+    if(poll)clearInterval(poll);poll=setInterval(partTick,3000);partTick();
+  }catch(e){online(false);say('mJ','Nu am putut înscrie. '+e.message,'err')}
+  busy=false;
+};
+el('bW0').onclick=async function(){
+  if(poll){clearInterval(poll);poll=null}
+  try{await push(function(d){d.state.wait=d.state.wait.filter(function(w){return w.id!==me.id})})}catch(e){}
+  go('s0');
+};
+
+async function partTick(){
+  try{await pull();online(true)}catch(e){online(false);return}
+  var s=doc.state;
+  var mi=s.wait.filter(function(w){return w.id===me.id})[0];
+  if(mi&&mi.miss>0)el('wS').textContent='Runda s-a umplut. Ești primul pe listă la următoarea.';
+  if(!s.round)return;
+  var t=null;s.round.tables.forEach(function(x){if(x.people.filter(function(p){return p.id===me.id}).length)t=x});
+  if(!t)return;
+  if(poll){clearInterval(poll);poll=null}
+  myTable=t;
+  el('tN').textContent=t.n;
+  el('tW').textContent=t.people.filter(function(p){return p.id!==me.id}).map(function(p){return p.name+(p.dep?' · '+p.dep:'')}).join(', ')||'—';
+  el('iceT').textContent=t.q||qsArr()[0]||'—';
+  go('sTab');startClock(s.round.start,s.round.dur);
+}
+function startClock(st,dur){
+  if(clkT)clearInterval(clkT);
+  function tk(){var l=Math.max(0,Math.round((st+dur-Date.now())/1000));
+    el('clk').textContent=Math.floor(l/60)+':'+('0'+(l%60)).slice(-2);
+    el('clk').classList.toggle('low',l<=60);
+    if(l<=0){clearInterval(clkT);clkT=null;go('sSem')}}
+  tk();clkT=setInterval(tk,1000);
+}
+el('bDone').onclick=function(){if(clkT){clearInterval(clkT);clkT=null}go('sSem')};
+document.querySelectorAll('.opt.sm').forEach(function(b){
+  b.onclick=async function(){
+    var v=+b.dataset.v;
+    try{await push(function(d){d.state.votes=d.state.votes||{};d.state.votes[me.id]=v})}catch(e){}
+    go('sEnd');
+  };
+});
+el('bAgain').onclick=async function(){
+  try{
+    await push(function(d){
+      d.state.wait=d.state.wait.filter(function(w){return w.id!==me.id});
+      d.state.wait.push({id:me.id,name:me.name,dep:me.dep,cat:me.cat,ts:Date.now(),miss:0});
+    });
+    go('sWait');if(poll)clearInterval(poll);poll=setInterval(partTick,3000);
+  }catch(e){}
+};
+el('bE0').onclick=function(){if(poll){clearInterval(poll);poll=null}go('s0')};
+
+boot();
+</script>
+</body>
+</html>
