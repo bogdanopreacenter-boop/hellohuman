@@ -24,6 +24,11 @@ const UP_TOK =
   process.env.REDIS_REST_TOKEN ||
   process.env.STORAGE_REST_API_TOKEN || '';
 const TTL = 2592000; // 30 de zile
+// Cheia proprietarului. Pune OWNER_KEY in variabilele de mediu Vercel
+// ca sa o schimbi fara sa modifici codul.
+const OWNER = process.env.OWNER_KEY || 'sef2026';
+const BOOK_KEY = 'hh:book';
+
 
 function rid() {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
@@ -160,6 +165,31 @@ async function diag() {
   return out;
 }
 
+
+/* ---------- registrul proprietarului ---------- */
+// Traieste sub o cheie fixa, deci e accesibil de pe orice dispozitiv.
+// Citirea si scrierea completa cer cheia proprietarului.
+// Adaugarea unui email nu o cere — dar nici nu intoarce nimic din registru.
+
+async function bookRead() {
+  if (!useUpstash) throw new Error('registrul are nevoie de Upstash; adauga-l in Vercel');
+  const v = await upstash.cmd(['GET', BOOK_KEY]);
+  if (v === null || v === undefined) return { partners: [], events: [], leads: [] };
+  return JSON.parse(v);
+}
+async function bookWrite(data) {
+  if (!useUpstash) throw new Error('registrul are nevoie de Upstash; adauga-l in Vercel');
+  await upstash.cmd(['SET', BOOK_KEY, JSON.stringify(data)]);
+  return true;
+}
+async function addLead(email, city) {
+  const b = await bookRead();
+  b.leads = (b.leads || []).filter(function (x) { return x.email !== email; });
+  b.leads.push({ email: email, city: city || '', ts: Date.now() });
+  await bookWrite(b);
+  return b.leads.length;
+}
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,OPTIONS');
@@ -168,6 +198,55 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(204).end();
 
   try {
+
+    // email lasat de un vizitator pe pagina publica: doar scriere
+    if (req.method === 'POST' && req.query && req.query.lead) {
+      const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
+      const email = String(body.email || '').trim();
+      if (!email || email.indexOf('@') < 1) return res.status(400).json({ error: 'email invalid' });
+      const n = await addLead(email, String(body.city || '').slice(0, 40));
+      return res.status(200).json({ ok: true, total: n });
+    }
+
+
+    // partenerul se autentifica si primeste doar ce e al lui
+    if (req.query && req.query.partner) {
+      const b = await bookRead();
+      const p = (b.partners || []).filter(function (x) { return x.id === String(req.query.id || ''); })[0];
+      if (!p) return res.status(404).json({ error: 'inexistent' });
+      if (p.off) return res.status(403).json({ error: 'dezactivat' });
+      if (String(req.query.pw || '') !== p.pw) return res.status(401).json({ error: 'parola gresita' });
+      const mine = (b.events || []).filter(function (e) { return e.pid === p.id; });
+      return res.status(200).json({ partner: { id: p.id, name: p.name, profile: p.profile }, events: mine });
+    }
+
+    // partenerul isi adauga un eveniment
+    if (req.method === 'POST' && req.query && req.query.addevent) {
+      const b = await bookRead();
+      const p = (b.partners || []).filter(function (x) { return x.id === String(req.query.id || ''); })[0];
+      if (!p) return res.status(404).json({ error: 'inexistent' });
+      if (p.off) return res.status(403).json({ error: 'dezactivat' });
+      if (String(req.query.pw || '') !== p.pw) return res.status(401).json({ error: 'parola gresita' });
+      const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
+      body.pid = p.id;
+      b.events = b.events || [];
+      b.events.push(body);
+      await bookWrite(b);
+      return res.status(200).json({ ok: true });
+    }
+
+    // registrul complet: cere cheia proprietarului
+    if (req.query && req.query.book) {
+      if (String(req.query.k || '') !== OWNER) return res.status(401).json({ error: 'cheie gresita' });
+      if (req.method === 'GET') return res.status(200).json(await bookRead());
+      if (req.method === 'PUT') {
+        const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
+        await bookWrite(body);
+        return res.status(200).json({ ok: true });
+      }
+      return res.status(405).json({ error: 'metoda nepermisa' });
+    }
+
     if (req.query && req.query.diag) {
       const seen = Object.keys(process.env).filter(function (k) {
         return /REDIS|KV_|UPSTASH|STORAGE/i.test(k);
