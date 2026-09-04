@@ -8,7 +8,7 @@
 # șterge cele două linii "Disallow" de mai jos și pune în loc "Allow: /".
 
 User-agent: *
-Disallow: /
+Allow: /
 
 # --- de activat după conectarea domeniului ---
 # User-agent: *
