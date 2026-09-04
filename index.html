@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>HelloHuman — scanezi un cod de pe masă, primești un loc și-o întrebare</title>
-<meta name="description" content="HelloHuman e un cod pe masă, în barul sau librăria unde ești deja. Îl scanezi și te așezi alături de alți oameni din aceeași încăpere, pentru o discuție scurtă. Fără cont, fără aplicație. Când timpul expiră, ești liber.">
+<title>HelloHuman — un cod QR, și lumea din jur se apropie</title>
+<meta name="description" content="HelloHuman e un cod QR pe masă, în barul sau librăria unde ești deja. Îl scanezi, spui ce ți se potrivește, și te așezi câteva minute cu alți oameni din local. Fără cont, fără aplicație.">
 <link rel="canonical" href="https://hellohuman.ro/">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta name="theme-color" content="#16302B">
@@ -12,8 +12,8 @@
 <meta property="og:locale" content="ro_RO">
 <meta property="og:site_name" content="HelloHuman">
 <meta property="og:url" content="https://hellohuman.ro/">
-<meta property="og:title" content="HelloHuman — scanezi un cod de pe masă, primești un loc și-o întrebare">
-<meta property="og:description" content="Scanezi un cod de pe masă, stai câteva minute cu oameni noi, apoi te întorci la ale tale.">
+<meta property="og:title" content="HelloHuman — un cod QR, și lumea din jur se apropie">
+<meta property="og:description" content="Scanezi codul de pe masă, spui ce ți se potrivește, și te așezi câteva minute cu alți oameni din local.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,9 +60,8 @@ body{background:#16302B;margin:0}
   <section class="hero">
     <div class="wrap">
       <div>
-        <p class="eyebrow" data-t="hEye">Se întâmplă în locul în care ești deja</p>
-        <h1 data-t="hH">Scanezi un cod de pe masă.<br>Primești un loc și-o întrebare.</h1>
-        <p class="lead" data-t="hP">Te așezi alături de alți oameni aflați în aceeași încăpere, pentru o discuție scurtă. Nu îți faci cont și nu alegi pe nimeni — sistemul te așază. Poți să participi sau doar să asculți, iar când timpul expiră, ești liber.<br><br><b style='color:var(--oat)'>Se întâmplă în baruri, librării, muzee și hoteluri. Nu online, nu într-o aplicație.</b></b></b></p>
+        <h1 data-t="hH">Un cod QR, și lumea<br>din jur se apropie.<br>Prietenia găsește o cale.</h1>
+        <p class="lead" data-t="hP">Scanezi. Zici ce ți se potrivește. Te bucuri.<br><br><b style='color:var(--oat)'>Se întâmplă în baruri, librării, muzee și hoteluri. Nu online, nu într-o aplicație.</b></b></b></b></b></p>
         <div class="cta">
           <a class="btn" href="#next" data-t="hB1">Unde ne întâlnim</a>
           <a class="btn ghost" href="#faq" data-t="hB2">Întrebări frecvente</a>
@@ -159,15 +158,14 @@ body{background:#16302B;margin:0}
 
 <section class="sc" id="sJoin">
   <p class="eyebrow" id="jEv">HelloHuman</p>
-  <h2 data-t="jH">Două lucruri<br>și ești înăuntru.</h2>
+  <h2 data-t="jH">Ce ți se potrivește?</h2>
   <label class="lb" for="nm" data-t="jName">Prenumele tău</label>
   <input type="text" class="big" id="nm" maxlength="30" autocomplete="given-name" placeholder="Andrei" data-tp="phName">
   <div id="depBox" style="display:none">
     <label class="lb" for="dp" data-t="jTeam">Echipa sau departamentul</label>
     <input type="text" id="dp" maxlength="30" placeholder="Operațiuni" data-tp="phTeam">
   </div>
-  <label class="lb" data-t="jPick">Alege una</label>
-  <div class="opts" id="cats"></div>
+  <div class="opts" id="cats" style="margin-top:24px"></div>
   <p class="msg2" id="mJoin"></p>
   <div class="push">
     <button class="btn wide" id="bIn" data-t="jIn">Sunt în sală</button>
@@ -239,6 +237,14 @@ body{background:#16302B;margin:0}
   <p class="eyebrow" data-t="eEye">S-a terminat</p>
   <h2 id="eH">Le-ai plăcut mai mult<br>decât crezi.</h2>
   <p class="sub2" style="margin-top:12px" data-t="eP">Te anunțăm unde și când mai facem.</p>
+
+  <div id="askBox">
+    <label class="lb" for="askTxt" data-t="askQ">Dacă i-ai povesti mâine unui prieten ce ai făcut acum, ce i-ai spune?</label>
+    <textarea id="askTxt" rows="3" placeholder="o propoziție, în cuvintele tale" data-tp="askPh"></textarea>
+    <button class="btn ghost small" id="bAsk" style="margin-top:9px" data-t="askSend">Trimite răspunsul</button>
+    <p class="msg2" id="mAsk"></p>
+  </div>
+
   <label class="lb" for="em" data-t="eMail">Email</label>
   <input type="email" id="em" autocomplete="email" placeholder="tu@email.com" enterkeyhint="done" data-tp="phMail">
   <label class="check" id="eConsBox"><input type="checkbox" id="eCons"><span data-t="eCons">Anunțați-mă când mai faceți. Mă pot dezabona din orice mesaj.</span></label>
@@ -348,11 +354,11 @@ body{background:#16302B;margin:0}
 var el=HH.el, esc=HH.esc, say=HH.say, go=HH.go, API=HH.API, P=HH.PROFILES;
 
 var T={
-ro:{nav1:'Cum funcționează',nav2:'Unde',nav3:'Întrebări',back:'Înapoi',next:'Continuă',leave:'Ies',done:'Gata',
+ro:{askPh:'o propoziție, în cuvintele tale',askSend:'Trimite răspunsul',askQ:'Dacă i-ai povesti mâine unui prieten ce ai făcut acum, ce i-ai spune?',nav1:'Cum funcționează',nav2:'Unde',nav3:'Întrebări',back:'Înapoi',next:'Continuă',leave:'Ies',done:'Gata',
  phMail:'tu@email.com',phCity:'Orașul tău',phName:'Andrei',phTeam:'Operațiuni',
  bMailT:'Anunță-mă',iEye:'Ce fel de seri te-ar interesa? Poți alege câte vrei.',
- jH:'Două lucruri<br>și ești înăuntru.',jName:'Prenumele tău',jTeam:'Echipa sau departamentul',
- jPick:'Alege una',jIn:'Sunt în sală',jPair:'Vin cu cineva',
+ jH:'Ce ți se potrivește?',jName:'Prenumele tău',jTeam:'Echipa sau departamentul',
+ jPick:'',jIn:'Sunt în sală',jPair:'Vin cu cineva',
  pEye:'Împreună',pH:'Aceeași masă,<br>voi doi.',pP:'Unul face un cod și îl spune cu voce tare. Celălalt îl tastează.',
  pCode:'Codul lui',pUse:'Folosește codul',pGen:'Fă-mi un cod',
  flH:'Când te îmbarci?',flP:'Te așezăm doar cu oameni a căror așteptare se suprapune cu a ta, iar terminăm înainte să ți se închidă poarta.',
@@ -378,11 +384,11 @@ ro:{nav1:'Cum funcționează',nav2:'Unde',nav3:'Întrebări',back:'Înapoi',next
  c7a:'Sau scrieți-le voi, una pe rând',cGen:'Gata, generează codul',
  cdH:'Trimiteți codul acesta.',cdP:'Nu e un link — e un cod pe care organizatorul îl introduce la el.',
  cdWa:'Trimite pe WhatsApp',cdMail:'Trimite pe email',cdCopy:'Copiază codul'},
-en:{nav1:'How it works',nav2:'Where',nav3:'Questions',back:'Back',next:'Continue',leave:'Leave',done:'Done',
+en:{askPh:'one sentence, in your own words',askSend:'Send it',askQ:'If you told a friend tomorrow what you just did, what would you say?',nav1:'How it works',nav2:'Where',nav3:'Questions',back:'Back',next:'Continue',leave:'Leave',done:'Done',
  phMail:'you@email.com',phCity:'Your city',phName:'Andrew',phTeam:'Operations',
  bMailT:'Keep me posted',iEye:'What kind of evenings would interest you? Pick as many as you like.',
- jH:'Two things<br>and you are in.',jName:'Your first name',jTeam:'Team or department',
- jPick:'Pick one',jIn:"I'm in the room",jPair:'I came with someone',
+ jH:'Which one fits?',jName:'Your first name',jTeam:'Team or department',
+ jPick:'',jIn:"I'm in the room",jPair:'I came with someone',
  pEye:'Together',pH:'Same table,<br>the two of you.',pP:'One of you makes a code and says it out loud. The other types it in.',
  pCode:'Their code',pUse:'Use the code',pGen:'Make me a code',
  flH:'When do you board?',flP:'We only seat you with people whose wait overlaps yours, and we finish before your gate closes.',
@@ -410,7 +416,7 @@ en:{nav1:'How it works',nav2:'Where',nav3:'Questions',back:'Back',next:'Continue
  cdWa:'Send on WhatsApp',cdMail:'Send by email',cdCopy:'Copy the code'}
 };
 var SITE={
-ro:{ hP:'Te așezi alături de alți oameni aflați în aceeași încăpere, pentru o discuție scurtă. Nu îți faci cont și nu alegi pe nimeni — sistemul te așază. Poți să participi sau doar să asculți, iar când timpul expiră, ești liber.<br><br><b style=\'color:var(--oat)\'>Se întâmplă în baruri, librării, muzee și hoteluri. Nu online, nu într-o aplicație.</b>',
+ro:{ hP:'Scanezi. Zici ce ți se potrivește. Te bucuri.<br><br><b style=\'color:var(--oat)\'>Se întâmplă în baruri, librării, muzee și hoteluri. Nu online, nu într-o aplicație.</b>',
  sP:'Partea grea nu e conversația, ci decizia de a aborda pe cineva. Aici, sistemul face logistica în locul tău.',
  s1h:'Scanezi codul de pe masă',s1p:'Îți scrii prenumele și alegi una din patru variante — inclusiv opțiunea că preferi doar să asculți. Totul din browser, fără cont și fără aplicație de instalat.',
  s2h:'Primești locul și subiectul',s2p:'Vezi pe ecran unde te muți, cine mai vine acolo și întrebarea de la care porniți.',
@@ -427,7 +433,7 @@ ro:{ hP:'Te așezi alături de alți oameni aflați în aceeași încăpere, pen
  q2:'Navetiștii puși să vorbească cu un străin s-au bucurat de drum mai mult decât cei lăsați singuri — exact opusul a ce preziseseră.',
  wEnd:'De ce ezităm, atunci? Din cauza a ceea ce am putea numi anxietatea de prognoză: frica se formează înainte de conversație, iar corectarea vine abia după ce s-a terminat. Distanța dintre ele e chiar spațiul în care HelloHuman lucrează.',
  hEye:'Se întâmplă în locul în care ești deja',
- hH:'Scanezi un cod de pe masă.<br>Primești un loc și-o întrebare.',
+ hH:'Un cod QR, și lumea<br>din jur se apropie.<br>Prietenia găsește o cale.',
  hB1:'Unde ne întâlnim',hB2:'Întrebări frecvente',cCap:'Asta primești pe telefon',
  cQv:'Găsiți trei lucruri<br>pe care le aveți în comun',
  sEye:'Ce se întâmplă, exact',sH:'Trei pași.<br>Zece secunde de înscriere.',
@@ -435,7 +441,7 @@ ro:{ hP:'Te așezi alături de alți oameni aflați în aceeași încăpere, pen
  fEye:'Ce trebuie să știi',fH:'Întrebări și răspunsuri.',
  wEye:'Psihologia conexiunii',wH:'Oamenii te plac mult mai mult<br>decât crezi.',
  ftS:'Pe scurt',ftT:'Seri în care oameni care nu se cunosc stau câteva minute la aceeași masă, în locuri unde sunt deja prezenți.'},
-en:{ hP:'You sit down with other people who are already in the same room, for a short conversation. No account, and you choose nobody — the system seats you. You can take part or just listen, and when the time is up, you are free.<br><br><b style=\'color:var(--oat)\'>It happens in bars, bookshops, museums and hotels. Not online, not in an app.</b>',
+en:{ hP:'Scan. Bring your vibe. Enjoy.<br><br><b style=\'color:var(--oat)\'>It happens in bars, bookshops, museums and hotels. Not online, not in an app.</b>',
  sP:'The hard part is not the conversation, it is deciding to approach someone. Here, the system does the logistics for you.',
  s1h:'You scan the code on the table',s1p:'You type your first name and pick one of four options — including the one that says you would rather just listen. All in the browser, no account and no app to install.',
  s2h:'You get the seat and the subject',s2p:'You see on screen where you move, who else is coming and the question you start from.',
@@ -452,7 +458,7 @@ en:{ hP:'You sit down with other people who are already in the same room, for a 
  q2:'Commuters asked to talk to a stranger enjoyed the journey more than those left alone — the opposite of what they had predicted.',
  wEnd:'So why do we hesitate? Because of what we might call forecast anxiety: the fear forms before the conversation, and the correction only arrives once it is over. The gap between the two is exactly where HelloHuman works.',
  hEye:'It happens in the place you are already in',
- hH:'You scan a code on the table.<br>You get a seat and a question.',
+ hH:'A QR code, and the<br>room opens up.<br>Friendship finds its way.',
  hB1:'Where we meet',hB2:'Common questions',cCap:'This is what lands on your phone',
  cQv:'Find three things<br>you all have in common',
  sEye:'What happens, exactly',sH:'Three steps.<br>Ten seconds to join.',
@@ -670,7 +676,8 @@ function arataFinal(devreme){
   if(poll){clearInterval(poll);poll=null}
   var p=P[(cfg&&cfg.profile)||'bar']||P.bar;
   el('eH').innerHTML=(p.end&&p.end[lang])||p.end.ro;
-  el('em').value=''; el('eCons').checked=false; say('mEnd','');
+  el('em').value=''; el('eCons').checked=false; say('mEnd',''); say('mAsk','');
+  el('askTxt').value=''; el('askBox').style.display=''; el('bAsk').disabled=false;
   go('sEnd');
 }
 el('eCons').onchange=function(){ el('bSend').style.opacity=el('eCons').checked?'1':'.55' };
@@ -682,6 +689,16 @@ el('bSend').onclick=async function(){
   el('bSend').disabled=true;
   try{ await API.op(eid,'lead',{email:v,name:me.name,ts:Date.now()}); go('sBye') }
   catch(e){ el('bSend').disabled=false; say('mEnd',e.message,'err') }
+};
+el('bAsk').onclick=async function(){
+  var t=el('askTxt').value.trim();
+  if(!t)return say('mAsk',lang==='en'?'Write a sentence, whatever comes to mind.':'Scrie o propoziție, cum îți vine.','err');
+  el('bAsk').disabled=true;
+  try{
+    await API.op(eid,'lead',{email:'', name:me.name, say:t, ts:Date.now()});
+    el('askBox').style.display='none';
+    say('mEnd',lang==='en'?'Thank you. That helps more than you think.':'Mulțumim. Ne ajută mai mult decât crezi.','ok');
+  }catch(e){ el('bAsk').disabled=false; say('mAsk',e.message,'err') }
 };
 el('bNo').onclick=function(){ go('sBye') };
 el('bTell').onclick=function(){
