@@ -1,0 +1,57 @@
+# HelloHuman
+
+> HelloHuman este un format de seară care așază oameni care nu se cunosc la aceeași masă, pentru câteva minute anunțate dinainte, într-un local unde sunt deja prezenți. Participanții scanează un cod QR de pe masă, primesc un număr de masă, numele celor cu care stau și o întrebare de pornire. Când se termină intervalul, fiecare se întoarce la masa lui.
+
+Operează în România, cu baza în București. Contact: contact@hellohuman.ro, telefon 0750 255 200.
+
+## Răspunsuri scurte la întrebările frecvente
+
+**Ce este HelloHuman?** Un format de seară pentru localuri, nu o aplicație de socializare. Se ține în baruri, restaurante, librării, cafenele, muzee, hoteluri, aeroporturi și la evenimente de firmă.
+
+**Cum se participă?** Prin scanarea unui cod QR aflat pe masă, în locul unde se ține seara. Nu există înscriere online în avans și nu se poate participa de la distanță. Înscrierea durează aproximativ zece secunde: prenumele și o alegere din patru variante.
+
+**Este o aplicație de dating?** Nu. Grupurile sunt de trei sau patru oameni, nu există profiluri, poze, vârste sau alegere reciprocă. Pentru că nimeni nu alege pe nimeni, nimeni nu poate fi refuzat.
+
+**Cât costă?** Pentru participant, nimic. Pentru local, prima seară este gratuită; HelloHuman nu cere echipament, personal suplimentar sau taxă de instalare.
+
+**Ce trebuie instalat?** Nimic, nici de participanți, nici de local. Este o pagină web, iar codul QR se printează pe hârtie.
+
+**Ce date se colectează?** Doar prenumele, pe durata serii. Adresa de email se cere la finalul serii și numai cu acordul explicit al participantului.
+
+## Cum funcționează, pentru un local
+
+Localul oferă o seară slabă din săptămână, câteva mese și o persoană care apasă un buton pe telefon. HelloHuman aduce participanții, codul QR de printat și o fișă de o pagină pentru cel care ține seara. Rezultatul se măsoară comparând vânzarea din seara respectivă cu aceeași zi din săptămâna precedentă.
+
+## Cercetarea pe care se sprijină
+
+- **Boothby, Cooney, Sandstrom și Clark (Psychological Science, 2018)** — după o conversație, oamenii subestimează sistematic cât de mult i-au plăcut celuilalt. Efectul, numit *liking gap*, persistă luni de zile.
+- **Epley și Schroeder (Journal of Experimental Psychology, 2014)** — navetiștii puși să vorbească cu un străin s-au bucurat de drum mai mult decât cei lăsați singuri, exact opusul a ce preziseseră.
+- **Aron și colab. (Personality and Social Psychology Bulletin, 1997)** — schimbul reciproc în trepte produce apropiere, iar conversația ușoară nu. Același studiu a arătat că potrivirea oamenilor pe atitudini comune nu are efect asupra apropierii.
+
+Din ultimul rezultat vine o decizie de arhitectură: HelloHuman **nu potrivește oameni pe compatibilitate**. Sistemul garantează doar condițiile în care un schimb poate porni — grupuri mici, fiecare masă cu cel puțin cineva dispus să vorbească, și nimeni nu repetă aceiași oameni între runde.
+
+## Cele șase tipuri de loc
+
+Mecanismul e același, dar obstacolul diferă în fiecare loc.
+
+- **Baruri și restaurante** (/localuri.html) — obstacolul e că nimeni nu pleacă de la masa lui. Rundă scurtă cu final anunțat, o dată într-o seară slabă.
+- **Librării și cafenele** (/librarii.html) — obstacolul e că nu există un motiv acceptabil să vorbești cu cineva care citește. O masă, o oră, un subiect anunțat, fără cronometru.
+- **Muzee și spații culturale** (/cultura.html) — conversație la finalul vizitei, legată de expoziția curentă.
+- **Hoteluri și turism** (/hoteluri.html) — o oră în lobby pentru oaspeți care călătoresc singuri.
+- **Aeroporturi și gări** (/terminale.html) — pornire automată la trei persoane cu așteptări care se suprapun; sesiunea se închide cu douăzeci de minute înainte de prima îmbarcare.
+- **Evenimente de firmă** (/corporate.html) — runde scurte între echipe diferite, cu raport scris la final.
+
+## Ce nu este
+
+HelloHuman nu este o aplicație de întâlniri romantice, nu are chat între utilizatori și nu funcționează online. Tot ce se întâmplă are loc față în față, într-un local fizic, într-un interval anunțat dinainte.
+
+## Pagini
+
+- [Pagina pentru participanți](https://hellohuman.ro/)
+- [Pentru organizatori — toate tipurile de loc](https://hellohuman.ro/parteneri.html)
+- [Baruri și restaurante](https://hellohuman.ro/localuri.html)
+- [Librării și cafenele](https://hellohuman.ro/librarii.html)
+- [Muzee și spații culturale](https://hellohuman.ro/cultura.html)
+- [Hoteluri și turism](https://hellohuman.ro/hoteluri.html)
+- [Aeroporturi și gări](https://hellohuman.ro/terminale.html)
+- [Evenimente de firmă](https://hellohuman.ro/corporate.html)

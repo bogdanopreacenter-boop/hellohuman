@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Vrei o seară HelloHuman la tine? — cerere în două minute</title>
+<meta name="description" content="Completează cinci lucruri despre locul tău și îți răspundem în două zile lucrătoare. Prima seară e gratuită, fără echipament și fără personal suplimentar.">
+<link rel="canonical" href="https://hellohuman.ro/alatura-te.html">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#16302B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Karla:wght@400;500;700&display=swap&subset=latin,latin-ext" rel="stylesheet">
+<link rel="stylesheet" href="/site.css?v=4">
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="/">Hello<span>Human</span></a>
+    <nav class="barnav">
+      <a href="/parteneri.html" class="hidem">Toate locurile</a>
+      <a class="lang" href="tel:+40750255200">+40 750 255 200</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="padding-bottom:30px">
+    <div class="wrap" style="grid-template-columns:1fr;max-width:720px">
+      <div>
+        <a class="back" href="/parteneri.html">← Înapoi</a>
+        <p class="eyebrow">Cinci lucruri, un minut</p>
+        <h1 style="font-size:clamp(34px,6vw,58px)">Spune-ne unde<br>și ce speri.</h1>
+        <p class="lead" style="margin-top:18px">Îți răspundem în două zile lucrătoare, cu o propunere concretă pentru locul tău. Prima seară e gratuită oriunde.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="paper" style="padding-top:40px">
+    <div class="wrap" style="max-width:720px">
+
+      <label class="lb" for="rName">Cum se numește locul</label>
+      <input type="text" id="rName" maxlength="60" placeholder="Barul Vechi">
+
+      <label class="lb" for="rCity">În ce oraș</label>
+      <input type="text" id="rCity" maxlength="40" placeholder="București">
+
+      <label class="lb">Ce fel de loc e</label>
+      <div class="opts" id="rKind"></div>
+
+      <label class="lb">Cum ai dat de noi</label>
+      <div class="opts" id="rFound"></div>
+
+      <label class="lb" for="rWant">Ce speri să obții</label>
+      <p class="sub2" style="margin:-4px 0 8px">O propoziție, în cuvintele tale. De aici începem discuția.</p>
+      <textarea id="rWant" rows="3" maxlength="400" placeholder="vreau să umplu marțea seara"></textarea>
+
+      <label class="lb" for="rMail">Emailul tău</label>
+      <input type="email" id="rMail" maxlength="80" placeholder="tu@email.com" autocomplete="email" enterkeyhint="done">
+
+      <label class="lb" for="rPhone">Telefon, dacă preferi să te sunăm</label>
+      <input type="text" id="rPhone" maxlength="30" placeholder="opțional" autocomplete="tel" enterkeyhint="done">
+
+      <label class="check" id="rConsBox" style="justify-content:flex-start;margin-top:22px">
+        <input type="checkbox" id="rCons">
+        <span>Sunt de acord să fiu contactat despre această cerere. Datele le folosim doar pentru asta, nu le dăm nimănui, iar la cerere le ștergem. contact@hellohuman.ro</span>
+      </label>
+
+      <button class="btn wide" id="rSend" style="margin-top:20px">Trimite cererea</button>
+      <p class="msg2" id="rMsg" style="text-align:center"></p>
+
+      <div id="rDone" style="display:none;text-align:center;padding:20px 0">
+        <p class="eyebrow" style="color:var(--rust)">Am primit-o</p>
+        <h2 style="margin-bottom:14px">Îți scriem în două<br>zile lucrătoare.</h2>
+        <p class="lead">Un om se uită peste ce ai scris și îți răspunde cu o propunere pentru locul tău. Dacă e urgent, sună la <a href="tel:+40750255200" style="color:var(--rust);font-weight:700">+40 750 255 200</a>.</p>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>
+      <p class="logo" style="font-size:24px">Hello<span>Human</span></p>
+      <p class="sm" style="margin-top:10px;max-width:36ch">HelloHuman organizează seri în care oameni care nu se cunosc stau câteva minute la aceeași masă.</p>
+    </div>
+    <div class="col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:contact@hellohuman.ro">contact@hellohuman.ro</a></li>
+        <li><a href="tel:+40750255200">+40 750 255 200</a></li>
+        <li style="margin-top:14px"><a href="/">Pagina pentru participanți</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="/core.js"></script>
+<script>
+var el=HH.el, esc=HH.esc, say=HH.say;
+
+var KIND=[['bar','Bar sau restaurant'],['book','Librărie sau cafenea'],['cult','Muzeu sau spațiu cultural'],
+          ['hotel','Hotel sau pensiune'],['term','Aeroport, gară, terminal'],['agency','Agenție de evenimente'],
+          ['other','Altceva']];
+var FOUND=[['rec','Mi-a recomandat cineva'],['google','Am căutat pe Google'],['linkedin','LinkedIn'],
+           ['fb','Facebook sau Instagram'],['event','Am fost la o seară'],['press','Presă sau podcast'],
+           ['other','Altfel']];
+var kind='', found='';
+
+function paint(box,list,sel){
+  el(box).innerHTML=list.map(function(x){
+    return '<button class="opt'+(x[0]===sel?' sel':'')+'" data-v="'+x[0]+'">'+esc(x[1])+'</button>' }).join('');
+}
+paint('rKind',KIND,kind);
+paint('rFound',FOUND,found);
+el('rKind').onclick=function(e){var b=e.target.closest('.opt');if(!b)return;kind=b.dataset.v;
+  [].slice.call(el('rKind').children).forEach(function(x){x.classList.toggle('sel',x.dataset.v===kind)})};
+el('rFound').onclick=function(e){var b=e.target.closest('.opt');if(!b)return;found=b.dataset.v;
+  [].slice.call(el('rFound').children).forEach(function(x){x.classList.toggle('sel',x.dataset.v===found)})};
+
+function nume(list,v){ var f=list.filter(function(x){return x[0]===v})[0]; return f?f[1]:'' }
+
+function nu(msg,camp){
+  say('rMsg',msg,'err');
+  if(camp){camp.style.borderColor='var(--rust)';camp.focus();
+    setTimeout(function(){camp.style.borderColor=''},2500)}
+  el('rMsg').scrollIntoView({block:'center',behavior:'smooth'});
+}
+el('rMail').onkeydown=el('rPhone').onkeydown=function(e){ if(e.key==='Enter'){e.preventDefault();el('rSend').click()} };
+
+el('rSend').onclick=async function(){
+  var b=el('rSend');
+  var n=el('rName').value.trim(), c=el('rCity').value.trim();
+  var m=el('rMail').value.trim(), p=el('rPhone').value.trim(), w=el('rWant').value.trim();
+  if(!n)return nu('Scrie numele locului.',el('rName'));
+  if(!c)return nu('În ce oraș ești?',el('rCity'));
+  if(!kind)return nu('Alege ce fel de loc e.');
+  if(!found)return nu('Spune-ne cum ai dat de noi — chiar contează pentru noi.');
+  if(!m||m.indexOf('@')<1||m.indexOf('.')<0)return nu('Emailul nu pare corect.',el('rMail'));
+  if(!el('rCons').checked){
+    var box=el('rConsBox');
+    box.style.background='rgba(196,85,47,.14)';box.style.borderRadius='3px';box.style.padding='8px';
+    setTimeout(function(){box.style.background='';box.style.padding=''},2600);
+    return nu('Bifează căsuța, ca să avem voie să-ți răspundem.');
+  }
+  b.disabled=true; b.textContent='Se trimite…'; say('rMsg','');
+  try{
+    await HH.API.request({name:n,city:c,kind:nume(KIND,kind),found:nume(FOUND,found),want:w,email:m,phone:p});
+    document.querySelectorAll('.lb, .opts, input, textarea, .check, #rSend').forEach(function(x){x.style.display='none'});
+    el('rDone').style.display='block';
+    el('rDone').scrollIntoView({block:'center',behavior:'smooth'});
+  }catch(e){
+    b.disabled=false; b.textContent='Trimite cererea';
+    nu('Nu am putut trimite: '+e.message+'. Scrie-ne la contact@hellohuman.ro.');
+  }
+};
+</script>
+</body>
+</html>
