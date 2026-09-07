@@ -293,3 +293,41 @@ input.big:focus{border-bottom-color:var(--gold)}
 .bif{width:22px;height:22px;border:2px solid var(--line);border-radius:3px;flex-shrink:0;margin-top:2px;display:inline-block}
 .bif.on{background:var(--gold);border-color:var(--gold);position:relative}
 .bif.on::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid var(--ink);border-width:0 2px 2px 0;transform:rotate(45deg)}
+
+/* ============================================================
+   Respirație. Un site pare scump când are spațiu gol.
+   ============================================================ */
+section{ padding: clamp(90px,14vw,180px) 0 }
+.hero{ padding: clamp(70px,10vw,120px) 0 clamp(90px,12vw,150px) }
+
+/* fundal unic — alternarea verde-crem ieftinește pagina */
+.paper{ background:var(--pine); color:var(--oat) }
+.paper h2, .paper h3{ color:var(--oat) }
+.paper p, .paper .lead{ color:var(--mist) }
+.paper .eyebrow{ color:var(--gold) }
+.paper .ctxrow{ border-color:var(--line) }
+.paper .step h3{ color:var(--oat) }
+.paper .step p{ color:var(--mist) }
+.paper .note{ background:var(--pine2); border-color:var(--line) }
+.paper .note b{ color:var(--oat) }
+.paper input, .paper textarea, .paper select{ background:var(--pine2); border-color:var(--line); color:var(--oat) }
+
+/* titlurile au nevoie de aer sub ele */
+h1{ margin-bottom:clamp(24px,4vw,40px) }
+h2{ margin-bottom:clamp(18px,3vw,32px) }
+.eyebrow{ margin-bottom:clamp(14px,2vw,22px) }
+.lead{ max-width:46ch }
+
+/* pașii, mai depărtați unul de altul */
+.steps{ gap:clamp(40px,6vw,72px); margin-top:clamp(50px,8vw,90px) }
+.ctx{ gap:clamp(30px,4vw,48px); margin-top:clamp(40px,6vw,64px) }
+.ctxrow{ padding-bottom:clamp(28px,4vw,40px) }
+
+/* fotografiile ocupă tot ecranul, nu stau în cutii */
+figure.plin{ margin:0; width:100% }
+figure.plin img{ width:100%; height:clamp(340px,58vh,620px); object-fit:cover; display:block }
+figure.plin figcaption{ padding:clamp(20px,3vw,32px) 20px 0 }
+
+/* formularul respiră și el */
+.sig{ margin-top:clamp(40px,6vw,64px) }
+.chips{ margin-top:clamp(16px,2vw,22px) }
