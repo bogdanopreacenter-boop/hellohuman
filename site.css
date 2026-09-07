@@ -385,3 +385,25 @@ figure.plin figcaption{ padding:clamp(20px,3vw,32px) 20px 0 }
 
 /* între secțiuni, aerul de sub o fotografie e deja suficient */
 figure.plin + *, section:has(figure.plin) + section{ padding-top:clamp(48px,7vw,80px) }
+
+/* ---------- ultimele corecturi de așezare ---------- */
+
+/* titlul se rupea urât pe telefon — nu mai despărțim cuvintele */
+h1{ hyphens:none; word-break:normal; overflow-wrap:normal }
+@media(max-width:700px){ h1{ font-size:clamp(30px,8.5vw,44px); line-height:1.08 } }
+
+/* prima fotografie rămăsese mică; o aducem la fel ca a doua */
+.hero figure img{ height:clamp(220px,38vh,360px) }
+
+/* legendele se rup pe două rânduri centrate — mai bine pe unul */
+.cardcap{ letter-spacing:.06em; line-height:1.5; max-width:52ch; margin-left:auto; margin-right:auto }
+
+/* golul de dinaintea logoului din subsol era cât un ecran */
+.foot{ padding-top:clamp(48px,7vw,80px) }
+@media(max-width:700px){
+  .foot{ padding-top:40px }
+  section{ padding:56px 0 }
+}
+
+/* logoul din subsol era prea mare pe telefon */
+.foot img{ max-width:220px }
