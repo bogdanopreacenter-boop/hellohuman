@@ -371,3 +371,17 @@ figure.plin figcaption{ padding:clamp(20px,3vw,32px) 20px 0 }
   .ctx{ gap:28px; margin-top:32px }
   figure.plin img{ height:300px }
 }
+
+/* butoanele de interese aveau text de fundal deschis — ilizibile pe verde */
+.chip{ color:#B8CCC4; border-color:var(--line); font-size:15px; padding:11px 16px }
+.chip:hover{ border-color:var(--gold); color:var(--oat) }
+.chip.on{ background:var(--gold); border-color:var(--gold); color:var(--ink); font-weight:700 }
+
+/* prima fotografie ocupă și ea toată lățimea, ca a doua */
+.hero figure img{ height:clamp(260px,44vh,420px); object-fit:cover }
+
+/* legendele erau prea mari și cu spațiere largă — devin discrete */
+.cardcap{ font-size:12px; letter-spacing:.08em; color:var(--dim) }
+
+/* între secțiuni, aerul de sub o fotografie e deja suficient */
+figure.plin + *, section:has(figure.plin) + section{ padding-top:clamp(48px,7vw,80px) }
