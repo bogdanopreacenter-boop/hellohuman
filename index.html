@@ -447,6 +447,52 @@ body{background:#16302B;margin:0}
   <button class="btn ghost wide" id="bQMail" data-t="cdMail">Trimite pe email</button>
   <button class="btn ghost wide" id="bQCp" data-t="cdCopy">Copiază codul</button>
 </section>
+    <section class="sc" id="sCorp">
+      <p class="eyebrow" data-t="aEye"></p>
+      <h2 data-t="aH"></h2>
+      <p class="sub2" style="margin-top:10px" data-t="aP"></p>
+      
+      <label class="lb" for="aEv" data-t="c1a"></label>
+      <input type="text" class="big" id="aEv" maxlength="46" placeholder="Kickoff 2026">
+      <label class="lb" for="aCl" data-t="c1b" style="margin-top:16px"></label>
+      <input type="text" class="big" id="aCl" maxlength="40" placeholder="Compania X">
+
+      <label class="lb" style="margin-top:24px" data-t="c2h"></label>
+      <div class="opts" id="aPeople"></div>
+
+      <label class="lb" for="aT" style="margin-top:24px" data-t="c3h"></label>
+      <input type="text" class="big" id="aT" maxlength="4" inputmode="numeric" placeholder="15">
+      <p class="note" id="aHint"></p>
+
+      <label class="lb" style="margin-top:24px" data-t="c4h"></label>
+      <div class="opts" id="aMin"></div>
+
+      <label class="lb" style="margin-top:24px" data-t="c5h"></label>
+      <div class="opts" id="aGoal"></div>
+      <label class="check"><input type="checkbox" id="aHier"><span data-t="c5chk"></span></label>
+
+      <label class="lb" style="margin-top:24px" data-t="c6h"></label>
+      <div id="aSets"></div>
+
+      <label class="lb" style="margin-top:24px" data-t="c7h"></label>
+      <div id="aQSets"></div>
+      <label class="lb" for="aQ" data-t="c7a"></label>
+      <textarea id="aQ" rows="5"></textarea>
+
+      <p class="msg2" id="mCorp"></p>
+      <div class="push"><button class="btn wide" id="bCorpGen" data-t="cGen"></button></div>
+    </section>
+
+    <section class="sc" id="sLogin">
+      <p class="eyebrow" data-t="lEye"></p>
+      <h2 data-t="lH"></h2>
+      <p class="sub2" style="margin-top:10px" data-t="lP"></p>
+      <label class="lb" for="lPass" data-t="lPassLb"></label>
+      <input type="password" class="big" id="lPass" placeholder="••••••••">
+      <p class="msg2" id="mLog"></p>
+      <div class="push"><button class="btn wide" id="bLog" data-t="lIn"></button></div>
+    </section>
+    
 
 </div>
 
@@ -489,7 +535,8 @@ ro:{frQ:'Ai chema un prieten data viitoare?',wAccept:'Merge și în doi sau trei
  c7h:'Despre ce să vorbească?',c7p:'Întrebarea apare pe telefonul fiecăruia, la masă.',
  c7a:'Sau scrieți-le voi, una pe rând',cGen:'Gata, generează codul',
  cdH:'Trimiteți codul acesta.',cdP:'Nu e un link — e un cod pe care organizatorul îl introduce la el.',
- cdWa:'Trimite pe WhatsApp',cdMail:'Trimite pe email',cdCopy:'Copiază codul'},
+ cdWa:'Trimite pe WhatsApp',cdMail:'Trimite pe email',cdCopy:'Copiază codul',
+ aEye:'Configurare rapidă',aH:'Datele evenimentului',aP:'Completați detaliile discutate cu clientul pentru a genera codul.',lEye:'Acces panou',lH:'HelloHuman',lP:'Acesta este spațiul dedicat companiei dumneavoastră. Introduceți parola primită de la agenția organizatoare pentru a accesa datele.',lPassLb:'Parola',lIn:'Intră',},
 en:{frQ:'Would you bring a friend next time?',wAccept:"Two or three is fine, I'm not waiting for four",cap1:'The card sits on the table. That is all you need to see.',cap2:'Four people who had never met, at table 7.',askPh:'one sentence, in your own words',askSend:'Send it',askQ:'If you told a friend tomorrow what you just did, what would you say?',nav1:'How it works',nav2:'Where',nav3:'Questions',back:'Back',next:'Continue',leave:'Leave',done:'Done',
  phMail:'you@email.com',phCity:'Your city',phName:'Andrew',phTeam:'Operations',
  bMailT:'Keep me posted',iEye:'What would interest you? Pick as many as you like.',
@@ -582,6 +629,7 @@ function applyLang(){
   document.querySelectorAll('[data-t]').forEach(function(n){ var v=L(n.dataset.t); if(v)n.innerHTML=v });
   document.querySelectorAll('[data-tp]').forEach(function(n){ var v=L(n.dataset.tp); if(v)n.setAttribute('placeholder',v) });
   paintInts(); if(cfg.cats)paintCats(); paintQuiz();
+  if(typeof paintQuizA==="function")paintQuizA();
   try{localStorage.setItem('hh_l',lang)}catch(e){}
 }
 el('bLang').onclick=function(){ lang=(lang==='ro'?'en':'ro'); applyLang() };
@@ -637,7 +685,7 @@ el('bMail').onclick=async function(){
 
 /* ---------- participantul într-o seară ---------- */
 var ECR=['sJoin','sPair','sFlight','sWait','sTab','sMid','sEnd','sBye',
-         'sC1','sC2','sC3','sC4','sC5','sC6','sC7','sCDone'];
+         'sC1','sC2','sC3','sC4','sC5','sC6','sC7','sCDone','sCorp','sLogin'];
 var eid='', cfg={}, doc={}, me={id:'',name:'',dep:'',cat:'',pair:'',board:0};
 var poll=null, clkT=null, midShown=false, myTable=null, busy=false;
 
@@ -971,12 +1019,95 @@ el('bQMail').onclick=function(){
   try{ var s=localStorage.getItem('hh_l'); if(s)lang=s;
     else if((navigator.language||'').toLowerCase().indexOf('ro')!==0)lang='en' }catch(e){}
   applyLang();
+  
+    function paintQuizA(){
+      if(!el('aPeople'))return;
+      function lst(box,list,val){ el(box).innerHTML=list.map(function(x){
+        return '<button class="opt'+(x[0]===val?' sel':'')+'" data-v="'+x[0]+'">'+esc(x[1])+'</button>' }).join('') }
+      lst('aPeople',OPT.people[lang],QA.people);
+      lst('aMin',OPT.min[lang],QA.minutes);
+      lst('aGoal',OPT.goal[lang],QA.mix);
+      el('aSets').innerHTML=CS.map(function(p,i){
+        return '<button class="opt" data-cs="'+i+'" style="display:block"><b style="color:var(--gold)">'+esc(p.t[lang])+'</b><br><span style="font-size:14px;color:var(--mist)">'+esc(p.v[lang].join(' · '))+'</span></button>' }).join('');
+      el('aQSets').innerHTML=QS.map(function(p,i){
+        return '<button class="opt" data-qq="'+i+'" style="display:block"><b style="color:var(--gold)">'+esc(p[lang])+'</b><br><span style="font-size:14px;color:var(--mist)">'+esc(p.q[lang].split('\n')[0])+'…</span></button>' }).join('');
+    }
+    function hintA(){
+      var t=parseInt(el('aT').value,10), en=lang==='en';
+      if(isNaN(t)||t<1){ el('aHint').innerHTML='<b>'+(en?'What this gives':'Ce iese din asta')+'</b>'+
+        (en?'Type the number of tables to see how people would be split.':'Scrie numărul de mese ca să vezi cum se împart oamenii.'); return }
+      var s=Math.max(2,Math.min(6,Math.round(QA.people/t)));
+      el('aHint').innerHTML='<b>'+(en?'What this gives':'Ce iese din asta')+'</b>'+
+        (en?('About '+QA.people+' people at '+t+' tables gives groups of '+s+'. Three or four works best.')
+           :('Cu aproximativ '+QA.people+' de oameni la '+t+' mese ies grupuri de câte '+s+'. Trei sau patru funcționează cel mai bine.'));
+    }
+    if(el('aT')) el('aT').oninput=hintA;
+
+    if(el('aPeople')) el('aPeople').onclick=function(e){ var b=e.target.closest('[data-v]'); if(!b)return;
+      QA.people=+b.dataset.v; pick('aPeople',QA.people,function(){hintA()}) };
+    if(el('aMin')) el('aMin').onclick=function(e){ var b=e.target.closest('[data-v]'); if(!b)return;
+      QA.minutes=+b.dataset.v; pick('aMin',QA.minutes) };
+    if(el('aGoal')) el('aGoal').onclick=function(e){ var b=e.target.closest('[data-v]'); if(!b)return;
+      QA.mix=b.dataset.v; pick('aGoal',QA.mix) };
+    if(el('aSets')) el('aSets').onclick=function(e){ var b=e.target.closest('[data-cs]'); if(!b)return;
+      QA.cats=CS[+b.dataset.cs].v[lang].slice();
+      [].slice.call(el('aSets').children).forEach(function(x){x.classList.toggle('sel',x===b)}) };
+    if(el('aQSets')) el('aQSets').onclick=function(e){ var b=e.target.closest('[data-qq]'); if(!b)return;
+      el('aQ').value=QS[+b.dataset.qq].q[lang];
+      [].slice.call(el('aQSets').children).forEach(function(x){x.classList.toggle('sel',x===b)}) };
+
+    if(el('bCorpGen')) el('bCorpGen').onclick=async function(){
+      QA.ev = el('aEv').value.trim();
+      QA.client = el('aCl').value.trim();
+      var t = parseInt(el('aT').value, 10);
+      var q = el('aQ').value.split('\n').map(function(x){return x.trim()}).filter(Boolean);
+      var en = lang === 'en';
+
+      if(!QA.ev) return say('mCorp', en?'Give the event a name.':'Scrieți numele evenimentului.', 'err');
+      if(isNaN(t)||t<1) return say('mCorp', en?'How many tables?':'Scrieți câte mese are sala.', 'err');
+      if(!q.length) return say('mCorp', en?'Pick a set or write at least one question.':'Alegeți un set sau scrieți cel puțin o întrebare.', 'err');
+
+      QA.tables = t;
+      QA.hier = el('aHier').checked;
+      if(!QA.cats) QA.cats = P.corp.cats[lang].slice();
+
+      var tl=[]; for(var i=1;i<=QA.tables;i++) tl.push(i);
+      var seats=Math.max(2,Math.min(6,Math.round(QA.people/Math.max(1,QA.tables))));
+
+      el('bCorpGen').disabled=true; say('mCorp', en?'Preparing the code…':'Se pregătește codul…');
+      try{
+        var id=await API.create({quiz:{ev:QA.ev,client:QA.client,tables:tl,seats:seats,minutes:QA.minutes,
+          cats:QA.cats,mix:QA.mix,hier:QA.hier,qs:q.join('\n')}});
+        el('qOut').textContent=id; say('mCorp',''); go('sCDone');
+      }catch(e){ say('mCorp',e.message,'err') }
+      el('bCorpGen').disabled=false;
+    };
+
+    if(el('bLog')) el('bLog').onclick=function(){
+       var p = el('lPass').value.trim();
+       if(!p) return say('mLog', lang==='en'?'Please enter the password.':'Te rugăm să introduci parola.', 'err');
+       say('mLog', lang==='en'?'Connecting...':'Se conectează...', 'ok');
+       setTimeout(function(){ say('mLog', lang==='en'?'Invalid password.':'Parolă incorectă.', 'err'); }, 1000);
+    };
+    
   var h=location.hash||'';
+
+      if(h.indexOf('#a')===0){
+          el('site').style.display='none'; el('app').classList.add('on');
+          paintQuizA(); hintA(); HH.initNav(ECR,'sCorp',function(){}); return;
+      }
+      if(h.indexOf('#login')===0 || h.indexOf('#p')===0){
+          el('site').style.display='none'; el('app').classList.add('on');
+          HH.initNav(ECR,'sLogin',function(){}); return;
+      }
+    
+
   if(h.indexOf('#e=')===0){ intraInSeara(h.slice(3)).catch(function(e){
     el('site').style.display=''; el('app').classList.remove('on'); alert(e.message) }); return }
   if(h.indexOf('#c')===0){
     el('site').style.display='none'; el('app').classList.add('on');
-    paintQuiz(); hint(); HH.initNav(ECR,'sC1',function(){}); return;
+    paintQuiz();
+  if(typeof paintQuizA==="function")paintQuizA(); hint(); HH.initNav(ECR,'sC1',function(){}); return;
   }
 })();
 </script>
