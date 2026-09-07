@@ -208,6 +208,7 @@ body.appbody .sc.on{display:block}
     <label class="lb" for="cS">Oameni la o masă</label>
     <input type="text" id="cS" maxlength="2" inputmode="numeric" placeholder="3">
     <label class="lb" for="cM">Minute pe rundă</label>
+    <div class="opts" id="cMOpt" style="margin-bottom:8px"></div>
     <input type="text" id="cM" maxlength="3" inputmode="numeric" placeholder="15">
     <label class="lb">Ce alege participantul</label>
     <input type="text" id="cC0" maxlength="46" placeholder="—">
@@ -758,6 +759,18 @@ function paintCProf(){
   for(var i=0;i<4;i++)el('cC'+i).value=p.cats.ro[i]||'';
   el('cQ').value=p.qs.ro.join('\n');
 }
+
+function paintDurate(cheie){
+  var p=P[cheie]||P.bar, d=p.durate||[];
+  if(!d.length){ el('cMOpt').innerHTML=''; return }
+  el('cMOpt').innerHTML=d.map(function(x){
+    return '<button class="opt'+(String(x)===el('cM').value?' sel':'')+'" data-m="'+x+'">'+x+' minute</button>' }).join('');
+}
+el('cMOpt').onclick=function(e){
+  var b=e.target.closest('[data-m]'); if(!b)return;
+  el('cM').value=b.dataset.m;
+  [].slice.call(el('cMOpt').children).forEach(function(x){x.classList.toggle('sel',x.dataset.m===b.dataset.m)});
+};
 el('cProf').onclick=function(e){ var b=e.target.closest('.opt'); if(!b)return; cProf=b.dataset.p; paintCProf() };
 el('bCAdv').onclick=function(){
   var d=el('cAdv').style.display!=='none';

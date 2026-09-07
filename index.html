@@ -295,10 +295,18 @@ body{background:#16302B;margin:0}
 
 <section class="sc" id="sWait">
   <p class="eyebrow" data-t="wEyeA">Ești pe listă</p>
+  <h2 id="wLipsa">—</h2>
+  <p class="sub2" id="wS" style="margin-top:14px" data-t="wP">Îți vibrează telefonul când începe. Poți să-l lași în buzunar.</p>
+
+  <label class="check" id="wAccBox" style="margin-top:22px">
+    <input type="checkbox" id="wAcc"><span data-t="wAccept">Merge și în doi sau trei, nu aștept să fim patru</span>
+  </label>
+
   <div class="stats" style="margin-top:20px">
-    <div class="st" style="grid-column:span 3"><div class="n" id="wN">1</div><div class="t" data-t="wPeople">oameni până acum</div></div>
+    <div class="st" style="grid-column:span 3"><div class="n" id="wN">1</div><div class="t" data-t="wPeople">au scanat până acum</div></div>
   </div>
-  <p class="sub2" id="wS" style="margin-top:18px" data-t="wP">Gazda pornește runda când sala e pregătită. Ține telefonul la îndemână.</p>
+
+  <p class="note" id="wOre" style="display:none"></p>
   <div class="push"><button class="btn ghost wide" id="bW0" data-t="leave">Ies</button></div>
 </section>
 
@@ -339,6 +347,9 @@ body{background:#16302B;margin:0}
     <textarea id="askTxt" rows="3" placeholder="o propoziție, în cuvintele tale" data-tp="askPh"></textarea>
     <button class="btn ghost small" id="bAsk" style="margin-top:9px" data-t="askSend">Trimite răspunsul</button>
     <p class="msg2" id="mAsk"></p>
+
+    <label class="lb" style="margin-top:22px" data-t="frQ">Ai chema un prieten data viitoare?</label>
+    <div class="opts" id="frBox"></div>
   </div>
 
   <label class="lb" for="em" data-t="eMail">Email</label>
@@ -450,7 +461,7 @@ body{background:#16302B;margin:0}
 var el=HH.el, esc=HH.esc, say=HH.say, go=HH.go, API=HH.API, P=HH.PROFILES;
 
 var T={
-ro:{cap1:'Cartonașul stă pe masă. Atât trebuie să vezi.',cap2:'Patru oameni care nu se cunoșteau, la masa 7.',askPh:'o propoziție, în cuvintele tale',askSend:'Trimite răspunsul',askQ:'Dacă i-ai povesti mâine unui prieten ce ai făcut acum, ce i-ai spune?',nav1:'Cum funcționează',nav2:'Unde',nav3:'Întrebări',back:'Înapoi',next:'Continuă',leave:'Ies',done:'Gata',
+ro:{frQ:'Ai chema un prieten data viitoare?',wAccept:'Merge și în doi sau trei, nu aștept să fim patru',cap1:'Cartonașul stă pe masă. Atât trebuie să vezi.',cap2:'Patru oameni care nu se cunoșteau, la masa 7.',askPh:'o propoziție, în cuvintele tale',askSend:'Trimite răspunsul',askQ:'Dacă i-ai povesti mâine unui prieten ce ai făcut acum, ce i-ai spune?',nav1:'Cum funcționează',nav2:'Unde',nav3:'Întrebări',back:'Înapoi',next:'Continuă',leave:'Ies',done:'Gata',
  phMail:'tu@email.com',phCity:'Orașul tău',phName:'Andrei',phTeam:'Operațiuni',
  bMailT:'Anunță-mă',iEye:'Ce te-ar interesa? Poți alege câte vrei.',
  jH:'Ce ți se potrivește?',jName:'Prenumele tău',jTeam:'Echipa sau departamentul',
@@ -458,7 +469,7 @@ ro:{cap1:'Cartonașul stă pe masă. Atât trebuie să vezi.',cap2:'Patru oameni
  pEye:'Împreună',pH:'Aceeași masă,<br>voi doi.',pP:'Unul face un cod și îl spune cu voce tare. Celălalt îl tastează.',
  pCode:'Codul primit',pUse:'Folosește codul',pGen:'Fă-mi un cod',
  flH:'Când te îmbarci?',flP:'Te așezăm doar cu oameni a căror așteptare se suprapune cu a ta, iar terminăm înainte să ți se închidă poarta.',
- wEyeA:'Ești pe listă',wPeople:'oameni până acum',wP:'Gazda pornește runda când sala e pregătită. Ține telefonul la îndemână.',
+ wEyeA:'Ești pe listă',wPeople:'au scanat până acum',wP:'Îți vibrează telefonul când începe. Poți să-l lași în buzunar.',
  tEye:'Runda a început',tDone:'Am terminat',cK:'Masa ta',cW:'Cu tine',cQ:'Întrebarea voastră',
  mEye:'Aproape gata',mH:'Ce facem?',mP:'Doar tu vezi asta.',
  mStay:'Rămânem aici',mMove:'Vreau altă masă',mBack:'Gata pentru mine',
@@ -480,7 +491,7 @@ ro:{cap1:'Cartonașul stă pe masă. Atât trebuie să vezi.',cap2:'Patru oameni
  c7a:'Sau scrieți-le voi, una pe rând',cGen:'Gata, generează codul',
  cdH:'Trimiteți codul acesta.',cdP:'Nu e un link — e un cod pe care organizatorul îl introduce la el.',
  cdWa:'Trimite pe WhatsApp',cdMail:'Trimite pe email',cdCopy:'Copiază codul'},
-en:{cap1:'The card sits on the table. That is all you need to see.',cap2:'Four people who had never met, at table 7.',askPh:'one sentence, in your own words',askSend:'Send it',askQ:'If you told a friend tomorrow what you just did, what would you say?',nav1:'How it works',nav2:'Where',nav3:'Questions',back:'Back',next:'Continue',leave:'Leave',done:'Done',
+en:{frQ:'Would you bring a friend next time?',wAccept:"Two or three is fine, I'm not waiting for four",cap1:'The card sits on the table. That is all you need to see.',cap2:'Four people who had never met, at table 7.',askPh:'one sentence, in your own words',askSend:'Send it',askQ:'If you told a friend tomorrow what you just did, what would you say?',nav1:'How it works',nav2:'Where',nav3:'Questions',back:'Back',next:'Continue',leave:'Leave',done:'Done',
  phMail:'you@email.com',phCity:'Your city',phName:'Andrew',phTeam:'Operations',
  bMailT:'Keep me posted',iEye:'What would interest you? Pick as many as you like.',
  jH:'Which one fits?',jName:'Your first name',jTeam:'Team or department',
@@ -488,7 +499,7 @@ en:{cap1:'The card sits on the table. That is all you need to see.',cap2:'Four p
  pEye:'Together',pH:'Same table,<br>the two of you.',pP:'One of you makes a code and says it out loud. The other types it in.',
  pCode:'The code you got',pUse:'Use the code',pGen:'Make me a code',
  flH:'When do you board?',flP:'We only seat you with people whose wait overlaps yours, and we finish before your gate closes.',
- wEyeA:'You are on the list',wPeople:'people so far',wP:'The host starts the round when the room is ready. Keep your phone handy.',
+ wEyeA:'You are on the list',wPeople:'have scanned so far',wP:"Your phone will buzz when it starts. You can put it away.",
  tEye:'The round has started',tDone:'We are done',cK:'Your table',cW:'With you',cQ:'Your question',
  mEye:'Almost time',mH:'What now?',mP:'Only you see this.',
  mStay:'We stay here',mMove:'I want another table',mBack:'That is it for me',
@@ -688,6 +699,11 @@ async function inscrie(){
   }catch(e){ say('mJoin',e.message,'err') }
   busy=false;
 }
+el('wAcc').onchange=async function(){
+  me.accept = el('wAcc').checked;
+  try{ await API.op(eid,'join',{id:me.id,name:me.name,dep:me.dep,cat:me.cat,ts:Date.now(),miss:0,pair:me.pair||'',accept:me.accept?1:0}) }catch(e){}
+  tick();
+};
 el('bW0').onclick=async function(){
   try{ await API.op(eid,'leave',{id:me.id}) }catch(e){}
   if(poll){clearInterval(poll);poll=null}
@@ -702,7 +718,24 @@ async function tick(){
   doc=d; cfg=d.cfg||cfg;
   var s=d.state||{}, r=s.round;
   var inCoada=(s.wait||[]).some(function(w){return w.id===me.id});
-  el('wN').textContent=(s.wait||[]).length||1;
+  var nCoada=(s.wait||[]).length;
+  el('wN').textContent=nCoada||1;
+
+  // cati mai lipsesc pana la masa completa
+  var tinta = me.accept ? 3 : (cfg.seats||4);
+  var lipsa = Math.max(0, tinta - nCoada);
+  el('wLipsa').innerHTML = lipsa===0
+    ? (lang==='en'?'Ready. Starting any moment.':'Gata. Începe din clipă în clipă.')
+    : (lang==='en'
+        ? (lipsa===1?'One more person':'Just '+lipsa+' more people')
+        : (lipsa===1?'Mai lipsește un om':'Mai lipsesc '+lipsa+' oameni'));
+
+  // orele fixe, ca sa stie cand sa revina daca nu iese acum
+  if(cfg.ore){
+    el('wOre').style.display='';
+    el('wOre').innerHTML='<b>'+(lang==='en'?'Fixed times here':'Aici se pornește sigur')+'</b>'+esc(cfg.ore);
+  }
+
   var mi=(s.wait||[]).filter(function(w){return w.id===me.id})[0];
   if(mi&&mi.miss>0)el('wS').textContent=lang==='en'
     ?'That round filled up. You are first in line for the next.'
@@ -729,8 +762,11 @@ async function tick(){
   else { el('clk').style.display=''; porneșteCeasul(r.start,r.dur) }
 }
 async function incearcaAuto(s){
-  var need=cfg.threshold||3, acum=Date.now();
+  var acum=Date.now();
   var vii=(s.wait||[]).filter(function(w){return !w.board||w.board-acum>20*60000});
+  // pragul: patru, sau trei daca toti cei prezenti au bifat ca merge si asa
+  var totiAccepta = vii.length>0 && vii.every(function(w){return w.accept});
+  var need = cfg.threshold || (totiAccepta ? 3 : (cfg.seats||4));
   if(vii.length<need)return;
   var grp=vii.slice().sort(function(a,b){return (a.board||0)-(b.board||0)})
     .slice(0,Math.max(need,Math.min(cfg.seats||3,vii.length)));
@@ -773,7 +809,7 @@ function arataFinal(devreme){
   var p=P[(cfg&&cfg.profile)||'bar']||P.bar;
   el('eH').innerHTML=(p.end&&p.end[lang])||p.end.ro;
   el('em').value=''; el('eCons').checked=false; say('mEnd',''); say('mAsk','');
-  el('askTxt').value=''; el('askBox').style.display=''; el('bAsk').disabled=false;
+  el('askTxt').value=''; el('askBox').style.display=''; el('bAsk').disabled=false; paintFr('');
   go('sEnd');
 }
 el('eCons').onchange=function(){ el('bSend').style.opacity=el('eCons').checked?'1':'.55' };
@@ -795,6 +831,17 @@ el('bAsk').onclick=async function(){
     el('askBox').style.display='none';
     say('mEnd',lang==='en'?'Thank you. That helps more than you think.':'Mulțumim. Ne ajută mai mult decât crezi.','ok');
   }catch(e){ el('bAsk').disabled=false; say('mAsk',e.message,'err') }
+};
+var FR={ro:[['da','Da'],['poate','Poate'],['nu','Nu cred']],
+        en:[['da','Yes'],['poate','Maybe'],['nu',"I don't think so"]]};
+function paintFr(v){
+  el('frBox').innerHTML=FR[lang].map(function(x){
+    return '<button class="opt'+(x[0]===v?' sel':'')+'" data-fr="'+x[0]+'">'+esc(x[1])+'</button>' }).join('');
+}
+el('frBox').onclick=async function(e){
+  var b=e.target.closest('[data-fr]'); if(!b)return;
+  paintFr(b.dataset.fr);
+  try{ await API.op(eid,'lead',{email:'',name:me.name,friend:b.dataset.fr,ts:Date.now()}) }catch(err){}
 };
 el('bNo').onclick=function(){ go('sBye') };
 el('bTell').onclick=function(){

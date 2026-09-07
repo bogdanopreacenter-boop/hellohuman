@@ -81,6 +81,7 @@ body.appbody .sc.on{display:block}
     <label class="lb" for="cS">Oameni la o masă</label>
     <input type="text" id="cS" maxlength="2" inputmode="numeric">
     <label class="lb" for="cM">Minute pe rundă</label>
+    <div class="opts" id="cMOpt" style="margin-bottom:8px"></div>
     <input type="text" id="cM" maxlength="3" inputmode="numeric">
     <label class="lb">Ce aleg oamenii la înscriere</label>
     <input type="text" id="cC0" maxlength="46">
@@ -248,6 +249,18 @@ el('bNew').onclick=function(){
   el('cEv').value=''; el('cT').value='1, 2, 3, 4, 5, 6';
   el('cPw').value=String(Math.floor(1000+Math.random()*9000));
   paintCfg(); say('mCfg',''); go('sCfg');
+};
+
+function paintDurate(cheie){
+  var p=P[cheie]||P.bar, d=p.durate||[];
+  if(!d.length){ el('cMOpt').innerHTML=''; return }
+  el('cMOpt').innerHTML=d.map(function(x){
+    return '<button class="opt'+(String(x)===el('cM').value?' sel':'')+'" data-m="'+x+'">'+x+' minute</button>' }).join('');
+}
+el('cMOpt').onclick=function(e){
+  var b=e.target.closest('[data-m]'); if(!b)return;
+  el('cM').value=b.dataset.m;
+  [].slice.call(el('cMOpt').children).forEach(function(x){x.classList.toggle('sel',x.dataset.m===b.dataset.m)});
 };
 el('bCB').onclick=function(e){ e.preventDefault(); HH.back() };
 el('bAdv').onclick=function(){

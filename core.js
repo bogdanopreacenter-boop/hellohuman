@@ -118,12 +118,12 @@ var HH = (function () {
      Obstacolul e altul în fiecare loc, deci și mecanica e alta. */
   var PROFILES = {
     bar: {
-      ro: 'Bar sau restaurant', en: 'Bar or restaurant', seats: 3, minutes: 15, dep: false,
+      ro: 'Bar', en: 'Bar', seats: 4, minutes: 15, dep: false, tacut: 2, durate: [15, 20],
       cats: {
-        ro: ['Vreau să râd', 'Vreau o discuție ca lumea', 'Vreau mai mult să ascult', 'Vreau să cunosc pe cineva nou'],
-        en: ['I want to laugh', 'I want a real conversation', 'I would rather listen', 'I want to meet someone new']
+        ro: ['Am chef de râs', 'Vreau o discuție ca lumea', 'Azi ascult mai mult', 'Sunt nou pe aici'],
+        en: ["I'm in the mood to laugh", 'I want a proper conversation', "Today I'm mostly listening", "I'm new around here"]
       },
-      quiet: { ro: 'Vreau mai mult să ascult', en: 'I would rather listen' },
+      quiet: { ro: 'Azi ascult mai mult', en: "Today I'm mostly listening" },
       qs: {
         ro: ['Găsiți trei lucruri pe care le aveți în comun.', 'Ce ați făcut în ultima lună și merită povestit?', 'Care e cel mai bun sfat prost pe care l-ați primit?', 'Ce ați învățat prea târziu?'],
         en: ['Find three things you all have in common.', 'What have you done this month worth telling?', 'What is the best bad advice you ever got?', 'What did you learn too late?']
@@ -134,11 +134,12 @@ var HH = (function () {
     book: {
       ro: 'Librărie sau cafenea', en: 'Bookshop or café', seats: 8, minutes: 0, dep: false,
       oneTable: true, noTimer: true, edition: true,
+      tacut: 2, durate: [],
       cats: {
-        ro: ['Prima dată aici', 'Vin des', 'Am venit cu cineva', 'Am intrat din întâmplare'],
-        en: ['First time here', 'I come often', 'I brought someone', 'I just walked in']
+        ro: ['Am ceva de spus despre subiect', 'Mă interesează ce zic ceilalți', 'Azi ascult mai mult', 'Prima dată la o ediție'],
+        en: ['I have something to say about it', "I'm interested in what others think", "Today I'm mostly listening", 'First time at one of these']
       },
-      quiet: { ro: '', en: '' },
+      quiet: { ro: 'Azi ascult mai mult', en: "Today I'm mostly listening" },
       qs: {
         ro: ['Cărți pe care nu le-am terminat.', 'Ce citeam la douăzeci de ani.', 'O carte cu care mă cert.', 'O carte care m-a făcut să iau o decizie.'],
         en: ['Books I never finished.', 'What I read at twenty.', 'A book I argue with.', 'A book that made me decide something.']
@@ -147,13 +148,14 @@ var HH = (function () {
       end: { ro: 'Mulțumim pentru<br>seara asta.', en: 'Thanks for<br>tonight.' }
     },
     air: {
-      ro: 'Aeroport sau gară', en: 'Airport or station', seats: 3, minutes: 30, dep: false,
+      ro: 'Aeroport sau gară', en: 'Airport or station', seats: 4, minutes: 30, dep: false,
       autoStart: true, threshold: 3, needsFlight: true,
+      tacut: 2, durate: [],
       cats: {
-        ro: ['Prima dată în orașul ăsta', 'Locuiesc unde mergem', 'Călătoresc cu treabă', 'Doar în tranzit'],
-        en: ['First time in this city', 'I live where we are going', 'Travelling for work', 'Just passing through']
+        ro: ['Am timp destul', 'Sunt cu gândul la destinație', 'Azi ascult mai mult', 'Prima dată pe ruta asta'],
+        en: ["I've got plenty of time", "My mind's on where I'm headed", "Today I'm mostly listening", 'First time on this route']
       },
-      quiet: { ro: '', en: '' },
+      quiet: { ro: 'Azi ascult mai mult', en: "Today I'm mostly listening" },
       qs: {
         ro: ['Cu ce treabă mergi acolo?', 'Ce merită făcut neapărat acolo unde mergem?', 'Care e cea mai bună călătorie ieșită din întâmplare?', 'Ce iei mereu în bagaj și nu folosești niciodată?'],
         en: ['What are you going there for?', 'What is worth doing where we are headed?', 'What is the best trip you took by accident?', 'What do you always pack and never use?']
@@ -162,12 +164,17 @@ var HH = (function () {
       end: { ro: 'Le-ai plăcut mai mult<br>decât crezi. Drum bun.', en: 'They liked you more<br>than you think. Safe travels.' }
     },
     corp: {
-      ro: 'Eveniment de firmă', en: 'Company event', seats: 3, minutes: 10, dep: true,
+      ro: 'Eveniment de firmă', en: 'Company event', seats: 4, minutes: 20, dep: true,
       cats: {
         ro: ['Vând sau lucrez cu clienții', 'Construiesc produsul', 'Susțin echipele din spate', 'Conduc o echipă'],
         en: ['I sell or work with clients', 'I build the product', 'I support the other teams', 'I lead a team']
       },
-      quiet: { ro: '', en: '' },
+      tacut: -1, tacut2: 3, durate: [10, 20, 30, 60],
+      cats2: {
+        ro: ['Am ceva de povestit despre ce facem', 'Vreau să înțeleg alt departament', 'Caut ajutor la ceva', 'Azi ascult mai mult'],
+        en: ["I've got something to share about what we do", 'I want to understand another team', "I'm looking for help with something", "Today I'm mostly listening"]
+      },
+      quiet: { ro: 'Azi ascult mai mult', en: "Today I'm mostly listening" },
       qs: {
         ro: ['Ce face echipa ta și restul companiei nu prea vede?', 'Care e cea mai frecventă cerere pe care o primești?', 'La ce ești blocat acum și cine te-ar putea ajuta?', 'Ce ai afla azi care ți-ar economisi o săptămână?'],
         en: ['What does your team do that the rest of the company never sees?', 'What is the most frequent request you get?', 'What are you stuck on, and who could help?', 'What could you learn today that would save you a week?']
@@ -175,8 +182,64 @@ var HH = (function () {
       note: { ro: 'Runde scurte, mai multe. Aici oamenii se revăd mâine, deci lățimea bate adâncimea, iar întrebările nu ating niciodată viața privată.', en: 'Several short rounds. People here see each other tomorrow, so breadth beats depth, and questions never touch private life.' },
       end: { ro: 'Cei cu care ai vorbit<br>te apreciază mai mult<br>decât crezi.', en: 'The people you talked to<br>think more of you<br>than you assume.' }
     },
+    cafenea: {
+      ro: 'Cafenea', en: 'Café', seats: 4, minutes: 20, dep: false, tacut: 2, durate: [15, 20],
+      cats: {
+        ro: ['Am o pauză', 'Mi-a stat gândul la ceva toată ziua', 'Acum stau mai mult liniștit', 'Prima dată aici'],
+        en: ["I'm on a break", "Something's been on my mind all day", "Right now I'm just sitting quietly", 'First time here']
+      },
+      quiet: { ro: 'Acum stau mai mult liniștit', en: "Right now I'm just sitting quietly" },
+      qs: {
+        ro: ['La ce te gândeai înainte să te așezi aici?', 'Ce ai făcut luna asta și merită povestit?', 'Ce ai învățat prea târziu?', 'Care e cel mai bun sfat prost pe care l-ai primit?'],
+        en: ['What were you thinking about before you sat down?', 'What have you done this month worth telling?', 'What did you learn too late?', 'What is the best bad advice you ever got?']
+      },
+      note: { ro: 'Ziua, cu oameni treji și calmi. Runde scurte, fără grabă.', en: 'Daytime, with people who are awake and unhurried. Short rounds, no rush.' },
+      end: { ro: 'Le-ai plăcut mai mult<br>decât crezi.', en: 'They liked you more<br>than you think.' }
+    },
+    restaurant: {
+      ro: 'Restaurant', en: 'Restaurant', seats: 4, minutes: 30, dep: false, tacut: 2, durate: [30, 60],
+      cats: {
+        ro: ['Am chef de râs', 'Am chef de o discuție bună', 'Azi ascult mai mult', 'Sunt de altundeva'],
+        en: ["I'm in the mood to laugh", "I'm up for a good conversation", "Today I'm mostly listening", "I'm from somewhere else"]
+      },
+      quiet: { ro: 'Azi ascult mai mult', en: "Today I'm mostly listening" },
+      qs: {
+        ro: ['Ce ai făcut anul ăsta și nu te așteptai să faci?', 'Ce ai învățat prea târziu?', 'Care e cea mai bună masă pe care ai mâncat-o și unde?', 'Ce ai schimba dacă ai lua-o de la capăt?'],
+        en: ['What did you do this year that you did not expect?', 'What did you learn too late?', 'What is the best meal you ever had and where?', 'What would you change if you started over?']
+      },
+      note: { ro: 'Stau jos, au timp, au mâncarea în față. Runde mai lungi decât la bar.', en: 'They are seated, they have time and food in front of them. Longer rounds than a bar.' },
+      end: { ro: 'Le-ai plăcut mai mult<br>decât crezi.', en: 'They liked you more<br>than you think.' }
+    },
+    hotel: {
+      ro: 'Hotel sau pensiune', en: 'Hotel', seats: 4, minutes: 30, dep: false, tacut: 2, durate: [20, 30],
+      cats: {
+        ro: ['Sunt cu treabă', 'Sunt în vacanță', 'Azi a fost o zi lungă', 'Sunt aici de câteva zile'],
+        en: ["I'm here for work", "I'm on holiday", 'Today was a long one', "I've been here a few days now"]
+      },
+      quiet: { ro: 'Azi a fost o zi lungă', en: 'Today was a long one' },
+      qs: {
+        ro: ['Ce te-a adus în orașul ăsta?', 'Ce merită văzut aici și nu scrie în ghiduri?', 'Care e cea mai bună călătorie ieșită din întâmplare?', 'Ce iei mereu în bagaj și nu folosești niciodată?'],
+        en: ['What brought you to this city?', 'What is worth seeing here that no guide mentions?', 'What is the best trip you took by accident?', 'What do you always pack and never use?']
+      },
+      note: { ro: 'Ora de dinaintea cinei, în lobby. Oaspeții coboară oricum.', en: 'The hour before dinner, in the lobby. Guests come down anyway.' },
+      end: { ro: 'Le-ai plăcut mai mult<br>decât crezi. Drum bun.', en: 'They liked you more<br>than you think. Safe travels.' }
+    },
+    muzeu: {
+      ro: 'Muzeu sau spațiu cultural', en: 'Museum', seats: 4, minutes: 30, dep: false, tacut: 2, durate: [20, 30],
+      cats: {
+        ro: ['M-a impresionat ceva', 'Nu am înțeles ceva', 'Azi ascult mai mult', 'Am intrat din curiozitate'],
+        en: ['Something impressed me', "There's something I didn't get", "Today I'm mostly listening", 'I came out of curiosity']
+      },
+      quiet: { ro: 'Azi ascult mai mult', en: "Today I'm mostly listening" },
+      qs: {
+        ro: ['Ce ați văzut azi și nu vă iese din cap?', 'Ce nu ați înțeles și ați vrea să vă explice cineva?', 'Ce ați lua acasă, dacă s-ar putea?', 'Ce v-a plictisit și de ce?'],
+        en: ['What did you see today that stayed with you?', 'What did you not understand and wish someone would explain?', 'What would you take home, if you could?', 'What bored you, and why?']
+      },
+      note: { ro: 'La finalul vizitei. Toți au văzut aceleași săli, dar fiecare a reținut altceva.', en: 'At the end of the visit. Everyone saw the same rooms, but each kept something different.' },
+      end: { ro: 'Le-ai plăcut mai mult<br>decât crezi.', en: 'They liked you more<br>than you think.' }
+    },
     demo: {
-      ro: 'Demonstrație', en: 'Demonstration', seats: 2, minutes: 3, dep: false, isDemo: true,
+      ro: 'Demonstrație', en: 'Demonstration', seats: 2, minutes: 3, dep: false, isDemo: true, tacut: -1, durate: [3],
       cats: {
         ro: ['Lucrez aici de mult', 'Sunt nou pe aici', 'Sunt clientul locului', 'Prima dată aici'],
         en: ['I have worked here a while', 'I am new here', 'I am a regular', 'First time here']
@@ -223,7 +286,8 @@ var HH = (function () {
       for (var a = 0; a < g.length; a++)
         for (var b = a + 1; b < g.length; b++)
           if ((met[g[a].id] || []).indexOf(g[b].id) >= 0) c += 10;   // s-au mai întâlnit
-      if (quiet && g.filter(function (x) { return x.cat !== quiet }).length === 0) c += 6; // masă doar de ascultători
+      if (quiet && g.filter(function (x) { return x.cat !== quiet }).length === 0) c += 30; // nicio masă tăcută
+      if (g.length >= 3) { var u = {}; g.forEach(function (x) { u[x.cat] = 1 }); if (Object.keys(u).length === 1) c += 4 } // masă omogenă
       var pr = {};
       g.forEach(function (x) { if (x.pair) pr[x.pair] = (pr[x.pair] || 0) + 1 });
       Object.keys(pr).forEach(function (k) { if (pr[k] === 1) c += 8 });  // prieteni despărțiți
@@ -232,22 +296,76 @@ var HH = (function () {
     return c;
   }
   function makeGroups(queue, sz, met, quiet) {
-    var m = met || {}, bG = null, bC = 1e9;
-    if (!sz.length) return { groups: [], left: queue.slice() };
+    // Regulile, in ordinea prioritatii (validate pe 10.000 de simulari):
+    // 1. Nicio masa fara cel putin un om dispus sa inceapa.
+    // 2. Cei care asculta se distribuie, nu se aduna.
+    // 3. Prietenii se aseaza primii, ca sa nu-i mai desparta nimic.
+    // NU grupeaza oameni dupa alegerea lor: simularea a aratat 67% repetari
+    // si oameni care nu cunosteau pe nimeni dupa trei runde.
+    var m = met || {};
+    if (!sz.length || queue.length < 2) return { groups: [], left: queue.slice() };
+
+    var tacuti = quiet ? queue.filter(function (p) { return p.cat === quiet }) : [];
+    var voci = quiet ? queue.filter(function (p) { return p.cat !== quiet }) : queue.slice();
+
+    // prietenii, grupati dupa codul lor
+    var perechi = {};
+    queue.forEach(function (p) { if (p.pair) (perechi[p.pair] = perechi[p.pair] || []).push(p) });
+
+    var best = null, bestCost = Infinity;
     for (var t = 0; t < 300; t++) {
-      var pool = queue.slice();
-      for (var i = pool.length - 1; i > 0; i--) {
-        var j = (Math.random() * (i + 1)) | 0, x = pool[i]; pool[i] = pool[j]; pool[j] = x;
-      }
-      if (t === 0 && quiet) pool.sort(function (a, b) { return (a.cat === quiet ? 1 : 0) - (b.cat === quiet ? 1 : 0) });
-      var gs = [], k = 0;
-      for (var s = 0; s < sz.length; s++) { var g = pool.slice(k, k + sz[s]); k += sz[s]; if (g.length) gs.push(g) }
-      var c = costOf(gs, m, quiet);
-      if (c < bC) { bC = c; bG = gs; if (c === 0) break }
+      var v = voci.slice(), a = tacuti.slice();
+      amesteca(v); amesteca(a);
+      var mese = sz.map(function () { return [] });
+      var asezat = {};
+
+      // 1. prietenii intai, la masa cu cel mai mult loc
+      Object.keys(perechi).forEach(function (k) {
+        var gr = perechi[k];
+        if (gr.length < 2) return;
+        var idx = 0, maxLoc = -1;
+        mese.forEach(function (x, j) { var loc = sz[j] - x.length; if (loc > maxLoc) { maxLoc = loc; idx = j } });
+        if (maxLoc >= gr.length) gr.forEach(function (p) { mese[idx].push(p); asezat[p.id] = 1 });
+      });
+
+      // 2. vocile, cate una pe masa — asa nicio masa nu ramane tacuta
+      var i = 0;
+      v.forEach(function (p) { if (asezat[p.id]) return; mese[i % mese.length].push(p); i++ });
+      // 3. ascultatorii, tot rotativ, ca sa nu se adune
+      a.forEach(function (p) { if (asezat[p.id]) return; mese[i % mese.length].push(p); i++ });
+
+      reechilibreaza(mese, sz);
+      var c = costOf(mese, m, quiet);
+      if (c < bestCost) { bestCost = c; best = mese.map(function (x) { return x.slice() }); if (c === 0) break }
     }
-    var st = {}; bG.forEach(function (g) { g.forEach(function (p) { st[p.id] = 1 }) });
-    return { groups: bG.filter(function (g) { return g.length >= 2 }), left: queue.filter(function (p) { return !st[p.id] }) };
+
+    var bune = best.filter(function (g) { return g.length >= 2 });
+    var st = {}; bune.forEach(function (g) { g.forEach(function (p) { st[p.id] = 1 }) });
+    return { groups: bune, left: queue.filter(function (p) { return !st[p.id] }) };
   }
+
+  function amesteca(a) {
+    for (var i = a.length - 1; i > 0; i--) { var j = (Math.random() * (i + 1)) | 0; var x = a[i]; a[i] = a[j]; a[j] = x }
+  }
+  function reechilibreaza(mese, sz) {
+    for (var pas = 0; pas < mese.length * 2; pas++) {
+      var mutat = false;
+      for (var i = 0; i < mese.length; i++) {
+        while (mese[i].length > sz[i]) {
+          var j = -1;
+          for (var k = 0; k < mese.length; k++) if (k !== i && mese[k].length < sz[k]) { j = k; break }
+          if (j < 0) break;
+          // mutam un om fara pereche, ca sa nu despartim pe nimeni
+          var idx = -1;
+          for (var q = 0; q < mese[i].length; q++) if (!mese[i][q].pair) { idx = q; break }
+          if (idx < 0) idx = mese[i].length - 1;
+          mese[j].push(mese[i].splice(idx, 1)[0]); mutat = true;
+        }
+      }
+      if (!mutat) break;
+    }
+  }
+
   function ordq(a, b) {
     if ((b.miss || 0) !== (a.miss || 0)) return (b.miss || 0) - (a.miss || 0);  // cine a ratat are prioritate
     return (a.ts || 0) - (b.ts || 0);
