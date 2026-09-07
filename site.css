@@ -331,3 +331,43 @@ figure.plin figcaption{ padding:clamp(20px,3vw,32px) 20px 0 }
 /* formularul respiră și el */
 .sig{ margin-top:clamp(40px,6vw,64px) }
 .chips{ margin-top:clamp(16px,2vw,22px) }
+
+/* ---------- corecturi după trecerea la fundal unic ---------- */
+
+/* pașii stăteau pe crem cu text deschis — ilizibil. Îi aducem pe verde. */
+.steps{ background:transparent; gap:clamp(36px,5vw,64px) }
+.step{ background:transparent; padding:0 }
+.step .n{ color:var(--gold); font-size:clamp(44px,6vw,64px) }
+.step h3{ color:var(--oat); margin:14px 0 10px }
+.step p{ color:var(--mist) }
+.steps.dark{ background:transparent }
+.steps.dark .step{ background:transparent }
+
+/* întrebările: titlurile cărămizii sunt prea închise pe verde */
+.ctxrow h3{ color:var(--gold) }
+.ctxrow p{ color:var(--mist) }
+
+/* pe verde, textul secundar are nevoie de mai mult contrast */
+.paper p, .paper .lead, .paper .ctxrow p, .paper .step p{ color:#B8CCC4 }
+.lead{ color:#B8CCC4 }
+
+/* subsolul are logoul desenat — cel scris devine de prisos */
+.foot .logo{ display:none }
+.foot img{ margin-bottom:clamp(14px,2vw,20px) }
+
+/* regulile vechi presupuneau fundal crem — le anulăm explicit */
+.paper .ctxrow h3{ color:var(--gold) }
+.paper .ctxrow p{ color:#B8CCC4 }
+.paper .step p{ color:#B8CCC4 }
+.paper .step .n{ color:var(--gold) }
+.paper .step h3{ color:var(--oat) }
+.paper .ctxrow{ border-color:var(--line) }
+
+/* pe telefon, 180px de spațiu gol e prea mult */
+@media(max-width:700px){
+  section{ padding: 64px 0 }
+  .hero{ padding: 40px 0 64px }
+  .steps{ gap:44px; margin-top:40px }
+  .ctx{ gap:28px; margin-top:32px }
+  figure.plin img{ height:300px }
+}
