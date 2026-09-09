@@ -108,12 +108,11 @@ body.appbody .sc.on{display:block}
     <div class="st"><div class="n" id="hLeft">—</div><div class="t">rămas</div></div>
   </div>
   <button class="btn ghost small" id="bHQr" style="margin-top:14px">Arată codul</button>
-  <label class="lb">Mesele libere acum</label>
-  <div id="hChips" style="display:flex;flex-wrap:wrap;gap:7px"></div>
+  <p class="note" id="hAuto" style="margin-top:16px"></p>
   <div class="list" id="hList" style="max-height:none"></div>
   <p class="msg2" id="mHost"></p>
   <div class="push">
-    <button class="btn wide" id="bStart">Pornește runda</button>
+    <button class="btn ghost wide" id="bStart">Pornește acum, fără să mai aștept</button>
     <button class="btn ghost wide" id="bStop">Oprește runda</button>
   </div>
 </section>
@@ -142,7 +141,8 @@ body.appbody .sc.on{display:block}
    partener.html — panoul celui care ține seara.
    Doua intrari: #p=ID pentru partener, #m=ID pentru gazda.
    ============================================================ */
-var el=HH.el, esc=HH.esc, say=HH.say, go=HH.go, API=HH.API, P=HH.PROFILES;
+var el=HH.el, esc=HH.esc, say=HH.say, go=HH.go, API=HH.API;
+var P=HH.PROFILES;
 var TT={never:'niciodata',now:'chiar acum',min:'acum {n} min',hour:'acum {n} h'};
 var when=function(ts){return HH.fmtWhen(ts,TT)};
 var ECR=['sLog','sPanel','sCfg','sHost','sQR'];
@@ -165,6 +165,7 @@ el('bLog').onclick=async function(){
     try{
       var d=await API.partner(id,v);
       partner=d.partner; events=d.events||[]; pw=v; HH.keep('hh_pp',v);
+      if(d.formate){ HH.addFormate(d.formate); P=HH.toateFormatele() }
       say('mLog',''); go('sPanel'); paintPanel(); porneste();
     }catch(e){
       say('mLog', e.message==='parola gresita'?'Parola gresita.'
@@ -203,7 +204,7 @@ function porneste(){ opreste(); citesteLive().then(function(){ mod==='p'?paintPa
   timer=setInterval(function(){
     if(el('sCfg').classList.contains('on'))return;
     citesteLive().then(function(){ if(el('sPanel').classList.contains('on'))paintPanel();
-      if(el('sHost').classList.contains('on'))paintHost() });
+      if(el('sHost').classList.contains('on')){ paintHost(); incearcaAuto() } });
   }, mod==='m'?3000:8000);
 }
 function opreste(){ if(timer){clearInterval(timer);timer=null} }
@@ -309,14 +310,37 @@ el('bCGo').onclick=async function(){
   busy=false; b.disabled=false; b.textContent='Creeaza seara';
 };
 
+
+/* ---------- pornire automată ----------
+   Nimeni nu apasă nimic. Când se adună destui, runda începe.
+   Butonul rămâne doar pentru cazul în care gazda vrea mai devreme. */
+var autoBusy=false;
+async function incearcaAuto(){
+  if(autoBusy || busy || !eid) return;
+  var s=(doc&&doc.state)||{};
+  if(s.round) return;                                   // deja rulează
+  if(cfg.oneTable) return;                              // librăria are gazdă, nu prag
+  var q=(s.wait||[]).slice().sort(HH.ordq);
+  var prag=cfg.seats||4;
+  // dacă toți cei prezenți au bifat că merge și mai puțini, coborâm pragul
+  var totiAccepta = q.length>0 && q.every(function(w){return w.accept});
+  if(totiAccepta) prag=Math.min(prag,3);
+  if(q.length < prag) return;
+  autoBusy=true;
+  try{ await porneste(q) }catch(e){}
+  autoBusy=false;
+}
+
 /* ---------- panoul gazdei ---------- */
 function paintHost(){
   var s=(doc&&doc.state)||{}, r=s.round;
   el('hWait').textContent=(s.wait||[]).length;
   el('hTab').textContent=r?r.tables.length:0;
   el('hLeft').textContent=(r&&r.dur)?HH.fmtLeft(r.start+r.dur-Date.now()):'—';
-  el('hChips').innerHTML=(cfg.tables||[]).map(function(n){
-    return '<button class="chip'+(freeT.indexOf(n)>=0?' on':'')+'" data-t="'+n+'">'+n+'</button>' }).join('');
+  var q0=(s.wait||[]).length, prag=cfg.seats||4;
+  el('hAuto').innerHTML = r
+    ? '<b>Rundă în curs</b>Se oprește singură când expiră timpul.'
+    : '<b>Pornește singur</b>Când se adună '+prag+' oameni, runda începe fără să faci nimic. Acum sunt '+q0+'.';
   el('bStop').style.display=r?'':'none';
   el('bStart').textContent=cfg.oneTable?'Deschide masa':(r?'Runda urmatoare':'Porneste runda');
   var q=(s.wait||[]).slice().sort(HH.ordq);
@@ -325,12 +349,7 @@ function paintHost(){
     : (q.length?q.map(function(w){return '<div class="li"><span>'+esc(w.name)+(w.dep?(' · '+esc(w.dep)):'')+'</span><b>'+(w.miss?'a ratat o runda':'')+'</b></div>'}).join('')
        :'<p class="sub2" style="padding:14px 0">Inca nimeni nu a scanat.</p>');
 }
-el('hChips').onclick=function(e){
-  var b=e.target.closest('[data-t]'); if(!b)return;
-  var n=+b.dataset.t, i=freeT.indexOf(n);
-  if(i>=0)freeT.splice(i,1); else freeT.push(n);
-  paintHost();
-};
+
 el('bHB').onclick=function(e){ e.preventDefault(); if(mod==='p')HH.back(); };
 el('bHQr').onclick=function(){ aratQR(cfg.ev||'Seara', HH.base()+'#e='+eid, cfg.pwHost, eid) };
 el('bStop').onclick=async function(){
@@ -342,49 +361,52 @@ el('bStop').onclick=async function(){
 el('bStart').onclick=async function(){
   if(busy)return;
   try{ doc=await API.get(eid); cfg=doc.cfg||cfg }catch(e){ return say('mHost',e.message,'err') }
-  var st=doc.state, q=(st.wait||[]).slice().sort(HH.ordq);
-  if(q.length<2)return say('mHost','Ai nevoie de cel putin doi oameni.','err');
+  var q=(doc.state.wait||[]).slice().sort(HH.ordq);
+  if(q.length<2)return say('mHost','Ai nevoie de cel puțin doi oameni.','err');
   busy=true; say('mHost','');
-  try{
-    var qq=(cfg.qs||'').split('\n').map(function(x){return x.trim()}).filter(Boolean);
-    if(cfg.oneTable){
-      var ed=Math.max(1,(st.rounds||0)+1);
-      await API.op(eid,'round',{round:{id:'r'+Date.now(),start:Date.now(),dur:0,tables:[
-        {n:(freeT[0]||(cfg.tables||[1])[0]),q:qq[Math.min(ed-1,qq.length-1)],
-         people:q.map(function(p){return{id:p.id,name:p.name,dep:p.dep}})}]},
-        seated:q.map(function(p){return p.id}), left:[], met:{}});
-    } else {
-      if(!freeT.length)throw new Error('Bifeaza mai intai mesele libere.');
-      var keep={},rest=[];
-      q.forEach(function(p){ if(p.stay){(keep[p.stay]=keep[p.stay]||[]).push(p)} else rest.push(p) });
-      var kept=[],used=[];
-      Object.keys(keep).forEach(function(k){
-        if(keep[k].length>=2){ var n=parseInt(k.slice(1),10);
-          if(freeT.indexOf(n)>=0){kept.push({n:n,people:keep[k]});used.push(n)}
-          else kept.push({n:freeT.filter(function(x){return used.indexOf(x)<0})[0]||n,people:keep[k]});
-        } else keep[k].forEach(function(p){rest.push(p)});
-      });
-      var fl=freeT.filter(function(x){return used.indexOf(x)<0});
-      var b=HH.makeGroups(rest, HH.sizes(rest.length,fl.length,cfg.seats||3), st.met||{}, cfg.quiet||'');
-      if(!b.groups.length&&!kept.length)throw new Error('Nu se poate forma nicio masa.');
-      var off=(st.rounds||0)*(cfg.tables||[]).length;
-      var tables=kept.map(function(t,i){return{n:t.n,q:qq[(off+i)%qq.length]||qq[0],
-        people:t.people.map(function(p){return{id:p.id,name:p.name,dep:p.dep}})}});
-      b.groups.forEach(function(g,i){ tables.push({n:fl[i],q:qq[(off+kept.length+i)%qq.length]||qq[0],
-        people:g.map(function(p){return{id:p.id,name:p.name,dep:p.dep}})}) });
-      var metAdd={};
-      tables.forEach(function(t){t.people.forEach(function(a){t.people.forEach(function(x){
-        if(a.id!==x.id){ metAdd[a.id]=metAdd[a.id]||((st.met||{})[a.id]||[]).slice();
-          if(metAdd[a.id].indexOf(x.id)<0)metAdd[a.id].push(x.id) }})})});
-      var seated=[]; tables.forEach(function(t){t.people.forEach(function(p){seated.push(p.id)})});
-      var left=b.left.map(function(p){return{id:p.id,name:p.name,dep:p.dep,cat:p.cat,ts:p.ts,miss:(p.miss||0)+1,pair:p.pair||'',stay:''}});
-      await API.op(eid,'round',{round:{id:'r'+Date.now(),start:Date.now(),dur:(cfg.minutes||10)*60000,tables:tables},
-        seated:seated, left:left, met:metAdd});
-    }
-    doc=await API.get(eid); paintHost(); HH.vibrate([40,60,40]);
-  }catch(e){ say('mHost',e.message,'err') }
+  try{ await porneste(q) }catch(e){ say('mHost',e.message,'err') }
   busy=false;
 };
+
+async function porneste(q){
+  var st=doc.state;
+  var qq=(cfg.qs||'').split('\n').map(function(x){return x.trim()}).filter(Boolean);
+  if(cfg.oneTable){
+    var ed=Math.max(1,(st.rounds||0)+1);
+    await API.op(eid,'round',{round:{id:'r'+Date.now(),start:Date.now(),dur:0,tables:[
+      {n:(cfg.tables||[1])[0], q:qq[Math.min(ed-1,qq.length-1)],
+       people:q.map(function(p){return{id:p.id,name:p.name,dep:p.dep}})}]},
+      seated:q.map(function(p){return p.id}), left:[], met:{}});
+  } else {
+    var mese=(cfg.tables||[]).slice();
+    var keep={},rest=[];
+    q.forEach(function(p){ if(p.stay){(keep[p.stay]=keep[p.stay]||[]).push(p)} else rest.push(p) });
+    var kept=[],used=[];
+    Object.keys(keep).forEach(function(k){
+      if(keep[k].length>=2){ var n=parseInt(k.slice(1),10);
+        if(mese.indexOf(n)>=0){kept.push({n:n,people:keep[k]});used.push(n)}
+        else kept.push({n:mese.filter(function(x){return used.indexOf(x)<0})[0]||n,people:keep[k]});
+      } else keep[k].forEach(function(p){rest.push(p)});
+    });
+    var fl=mese.filter(function(x){return used.indexOf(x)<0});
+    var b=HH.makeGroups(rest, HH.sizes(rest.length,fl.length,cfg.seats||4), st.met||{}, cfg.quiet||'');
+    if(!b.groups.length && !kept.length) throw new Error('Nu se poate forma nicio masă.');
+    var off=(st.rounds||0)*mese.length;
+    var tables=kept.map(function(t,i){return{n:t.n,q:qq[(off+i)%qq.length]||qq[0],
+      people:t.people.map(function(p){return{id:p.id,name:p.name,dep:p.dep}})}});
+    b.groups.forEach(function(g,i){ tables.push({n:fl[i],q:qq[(off+kept.length+i)%qq.length]||qq[0],
+      people:g.map(function(p){return{id:p.id,name:p.name,dep:p.dep}})}) });
+    var metAdd={};
+    tables.forEach(function(t){t.people.forEach(function(a){t.people.forEach(function(x){
+      if(a.id!==x.id){ metAdd[a.id]=metAdd[a.id]||((st.met||{})[a.id]||[]).slice();
+        if(metAdd[a.id].indexOf(x.id)<0)metAdd[a.id].push(x.id) }})})});
+    var seated=[]; tables.forEach(function(t){t.people.forEach(function(p){seated.push(p.id)})});
+    var left=b.left.map(function(p){return{id:p.id,name:p.name,dep:p.dep,cat:p.cat,ts:p.ts,miss:(p.miss||0)+1,pair:p.pair||'',stay:''}});
+    await API.op(eid,'round',{round:{id:'r'+Date.now(),start:Date.now(),dur:(cfg.minutes||20)*60000,tables:tables},
+      seated:seated, left:left, met:metAdd});
+  }
+  doc=await API.get(eid); paintHost(); HH.vibrate([40,60,40]);
+}
 
 /* ---------- codul QR ---------- */
 var qu='';
