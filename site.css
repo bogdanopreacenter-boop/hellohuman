@@ -407,3 +407,10 @@ h1{ hyphens:none; word-break:normal; overflow-wrap:normal }
 
 /* logoul din subsol era prea mare pe telefon */
 .foot img{ max-width:220px }
+
+/* butonul Business nu trebuie să arate ca un al doilea comutator de limbă */
+.bizlink{ font-family:var(--sans); font-size:14px; font-weight:500; color:var(--mist);
+  text-decoration:none; padding:9px 0; margin-right:18px; border-bottom:1px solid transparent;
+  transition:color .15s, border-color .15s }
+.bizlink:hover{ color:var(--oat); border-bottom-color:var(--gold) }
+@media(max-width:520px){ .bizlink{ font-size:13px; margin-right:12px } }
