@@ -465,3 +465,7 @@ figure.plin figcaption{ padding:clamp(16px,2.4vw,26px) 20px 0 }
   .door span{ grid-column:1; grid-row:auto; margin-top:10px; display:block }
   .door h3{ font-size:20px }
 }
+
+/* cele patru locuri, la finalul secțiunii despre unde */
+.patru{ margin:clamp(26px,4vw,42px) 0 clamp(22px,3vw,34px) }
+.patru img{ width:100%; height:auto; display:block; border-radius:2px }
