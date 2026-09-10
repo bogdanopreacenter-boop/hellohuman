@@ -396,41 +396,72 @@ figure.plin figcaption{ padding:clamp(16px,2.4vw,26px) 20px 0 }
 
 
 /* ============================================================
-   DIPTIC — două momente, legate de un arc. Nimic nu se suprapune.
+   DIPTIC — o secvență, citită din numerotare. Fără săgeți.
    ============================================================ */
 .diptic{
-  display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
-  gap:clamp(14px,2.4vw,28px);
-  margin:0 0 clamp(30px,4.5vw,48px);
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:clamp(18px,3vw,40px);
+  margin:0 0 clamp(34px,5vw,56px);
 }
 .diptic figure{ margin:0 }
 .diptic img{
-  width:100%; height:clamp(200px,28vh,290px); object-fit:cover;
-  border-radius:3px; display:block;
+  width:100%; height:clamp(210px,29vh,300px); object-fit:cover;
+  display:block; border-radius:2px;
 }
 .diptic figcaption{
-  margin:12px 0 0; font-family:var(--sans); font-size:12px;
-  font-weight:500; letter-spacing:.02em; line-height:1.45;
-  color:var(--mist); text-align:left; text-transform:none;
+  display:flex; align-items:baseline; gap:12px;
+  margin:16px 0 0; padding-top:14px;
+  border-top:1px solid var(--line);
+  font-family:var(--sans); font-size:12.5px; font-weight:500;
+  letter-spacing:.01em; line-height:1.5; color:var(--mist);
 }
-.sageata{
-  display:flex; align-items:center; justify-content:center;
-  color:var(--gold); align-self:center;
-  margin-bottom:26px;            /* urcă la mijlocul imaginii, nu al blocului */
+.diptic .nr{
+  font-family:var(--disp); font-size:13px; font-weight:800;
+  letter-spacing:.06em; color:var(--gold); flex-shrink:0;
 }
-.sageata svg{ width:34px; height:20px }
 
 @media(max-width:640px){
-  .diptic{
-    grid-template-columns:1fr;
-    gap:14px;                     /* arcul respiră între fotografii */
-    justify-items:stretch;
-  }
-  .diptic img{ height:210px }
-  .diptic figcaption{ margin-top:10px; font-size:11.5px }
-  .sageata{
-    margin:0; padding:2px 0;
-    transform:rotate(90deg);
-  }
-  .sageata svg{ width:26px; height:16px }
+  .diptic{ grid-template-columns:1fr; gap:26px }
+  .diptic img{ height:220px }
+  .diptic figcaption{ margin-top:14px; padding-top:12px; font-size:12px; gap:10px }
+}
+
+/* ============================================================
+   CELE ȘASE TIPURI DE LOC — cuprins, nu cutii.
+   Separarea o face linia, nu chenarul.
+   ============================================================ */
+.doors{
+  display:block; background:transparent; gap:0;
+  margin-top:clamp(30px,4vw,48px);
+  border-top:1px solid var(--line);
+}
+.door{
+  background:transparent; color:inherit; text-decoration:none;
+  display:grid; grid-template-columns:1fr auto; align-items:baseline;
+  gap:clamp(14px,3vw,40px);
+  padding:clamp(20px,2.6vw,30px) 0;
+  border-bottom:1px solid var(--line);
+  transition:padding-left .18s ease;
+}
+.door:hover{ background:transparent; padding-left:10px }
+.door h3{
+  color:var(--oat); margin:0; font-size:clamp(20px,2.4vw,27px);
+  line-height:1.2; grid-column:1;
+}
+.door p{
+  color:var(--mist); font-size:14px; margin:7px 0 0;
+  grid-column:1; max-width:46ch; line-height:1.5;
+}
+.door span{
+  grid-column:2; grid-row:1 / span 2; align-self:center;
+  color:var(--gold); font-family:var(--sans); font-size:13px; font-weight:600;
+  border:0; padding:0; white-space:nowrap; opacity:.75; transition:opacity .18s;
+}
+.door:hover span{ opacity:1 }
+
+@media(max-width:560px){
+  .doors{ grid-template-columns:1fr }
+  .door{ grid-template-columns:1fr; gap:0; padding:20px 0 }
+  .door span{ grid-column:1; grid-row:auto; margin-top:10px; display:block }
+  .door h3{ font-size:20px }
 }
