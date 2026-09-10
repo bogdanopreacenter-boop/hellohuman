@@ -426,3 +426,42 @@ h1{ hyphens:none; word-break:normal; overflow-wrap:normal }
   .heroimg img{ height:240px }
   .heroimg{ margin-bottom:26px }
 }
+
+/* ---------- corecturi de așezare, după verificarea pe telefon ---------- */
+
+/* titlul se rupea urât în engleză: "next to / you / get names" */
+h1{ text-wrap:balance; hyphens:none; word-break:normal; overflow-wrap:break-word }
+@media(max-width:700px){ h1{ font-size:clamp(28px,7.6vw,40px); line-height:1.1 } }
+
+/* "For participants" se rupea pe două rânduri în bară */
+.bizlink{ white-space:nowrap }
+@media(max-width:560px){
+  .bizlink{ font-size:12px; margin-right:8px }
+  .logo{ font-size:19px }
+  .lang{ padding:8px 12px; font-size:13px }
+}
+
+/* legendele stăteau lipite de textul de deasupra */
+.cardcap{ margin-top:clamp(26px,4vw,40px)!important; margin-bottom:clamp(14px,2vw,20px) }
+figure + .cardcap, .cardcap:first-child{ margin-top:14px!important }
+
+/* golurile de un ecran între secțiuni, pe telefon */
+@media(max-width:700px){
+  section{ padding:48px 0 }
+  .hero{ padding:24px 0 48px }
+  .steps{ gap:38px; margin-top:34px }
+  .ctx{ gap:24px; margin-top:28px }
+  .sig{ margin-top:34px }
+}
+
+/* subsolul avea logoul prea sus și legăturile prea rare */
+.foot ul li{ margin-bottom:10px }
+.foot img{ max-width:200px; margin-bottom:18px }
+
+/* spațierile a două secțiuni vecine se adunau — un ecran gol între ele */
+section + section{ padding-top:0 }
+section + section > .wrap{ padding-top:clamp(48px,7vw,90px) }
+@media(max-width:700px){ section + section > .wrap{ padding-top:44px } }
+
+/* iar formularul se termina cu textul juridic lipit de marginea de jos */
+.signote2{ margin-bottom:clamp(10px,2vw,18px) }
