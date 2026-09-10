@@ -191,16 +191,17 @@ async function reqsWrite(list) {
 async function bookRead() {
   if (!ready()) throw new Error('registrul are nevoie de Upstash; adauga-l in Vercel');
   const [b, l] = await pipe([['GET', BOOK], ['LRANGE', LEADS, '0', '-1']]);
-  const book = parse(b, { partners: [], events: [] });
+  const book = parse(b, { partners: [], events: [], formate: [] });
   book.partners = book.partners || [];
   book.events = book.events || [];
+  book.formate = book.formate || [];
   book.leads = (l || []).map(function (x) { return parse(x, null) }).filter(Boolean);
   book.requests = await reqsRead();
   return book;
 }
 async function bookWrite(data) {
   if (!ready()) throw new Error('registrul are nevoie de Upstash');
-  const copy = { partners: data.partners || [], events: data.events || [] };
+  const copy = { partners: data.partners || [], events: data.events || [], formate: data.formate || [] };
   await cmd(['SET', BOOK, JSON.stringify(copy)]);
   return true;
 }
@@ -289,7 +290,8 @@ export default async function handler(req, res) {
       if (String(q.pw || '') !== p.pw) return res.status(401).json({ error: 'parola gresita' });
       return res.status(200).json({
         partner: { id: p.id, name: p.name, profile: p.profile },
-        events: (b.events || []).filter(function (e) { return e.pid === p.id })
+        events: (b.events || []).filter(function (e) { return e.pid === p.id }),
+        formate: b.formate || []
       });
     }
     if (req.method === 'POST' && (q.addevent || q.delevent)) {
