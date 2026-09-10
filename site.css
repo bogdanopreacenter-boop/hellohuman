@@ -465,3 +465,20 @@ section + section > .wrap{ padding-top:clamp(48px,7vw,90px) }
 
 /* iar formularul se termina cu textul juridic lipit de marginea de jos */
 .signote2{ margin-bottom:clamp(10px,2vw,18px) }
+
+/* ---------- dipticul: de la cartonaș la masă ---------- */
+.diptic{ display:grid; grid-template-columns:1fr auto 1fr; align-items:start;
+  gap:clamp(12px,2.5vw,26px); margin:0 0 clamp(30px,5vw,52px) }
+.diptic figure{ margin:0 }
+.diptic img{ width:100%; height:clamp(180px,30vh,300px); object-fit:cover;
+  border-radius:2px; display:block }
+.diptic .cardcap{ margin-top:14px!important; font-size:12px; letter-spacing:.05em;
+  text-align:left; max-width:none }
+.sageata{ color:var(--gold); align-self:center; margin-top:-24px; flex-shrink:0 }
+
+@media(max-width:640px){
+  .diptic{ grid-template-columns:1fr; gap:8px }
+  .diptic img{ height:190px }
+  .sageata{ transform:rotate(90deg); margin:2px auto; align-self:center }
+  .diptic .cardcap{ margin-top:10px!important; margin-bottom:6px }
+}

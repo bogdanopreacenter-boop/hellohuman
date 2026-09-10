@@ -144,12 +144,24 @@ body{background:#16302B;margin:0}
 <main id="top">
   <section class="hero">
     <div class="wrap">
-      <figure class="heroimg">
-        <img src="/conversatie-masa-librarie.jpg" width="1408" height="768"
-             alt="Patru oameni care nu se cunosc, la aceeași masă într-o librărie, în conversație"
-             fetchpriority="high" decoding="async">
-      <figcaption class="cardcap" data-t="cap2">Patru oameni care nu se cunoșteau, la masa 7.</figcaption>
-      </figure>
+      <div class="diptic">
+        <figure>
+          <img src="/cartonas-cod-qr-masa-bar.jpg" width="1408" height="768"
+               alt="Cartonaș HelloHuman cu cod QR pe o masă, lângă mâna cuiva care tocmai l-a scanat cu telefonul"
+               fetchpriority="high" decoding="async">
+          <figcaption class="cardcap" data-t="dp1">Scanezi cartonașul de pe masă.</figcaption>
+        </figure>
+        <div class="sageata" aria-hidden="true">
+          <svg viewBox="0 0 40 24" width="40" height="24"><path d="M2 12h32M27 5l7 7-7 7"
+            fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <figure>
+          <img src="/conversatie-masa-librarie.jpg" width="1408" height="768"
+               alt="Patru oameni care nu se cunosc, la aceeași masă, în conversație"
+               loading="lazy" decoding="async">
+          <figcaption class="cardcap" data-t="dp2">Te așezi cu trei oameni pe care nu îi cunoști.</figcaption>
+        </figure>
+      </div>
       <h1 data-t="hH">Oamenii de lângă tine<br>capătă nume.</h1>
       <p class="lead" data-t="hP">Fără profiluri. Fără alegeri.<br>Doar oamenii care erau deja acolo.</p>
       <div class="cta">
@@ -430,7 +442,7 @@ body{background:#16302B;margin:0}
 var el=HH.el, esc=HH.esc, say=HH.say, go=HH.go, API=HH.API, P=HH.PROFILES;
 
 var T={
-ro:{ftBiz:'Ai un local? Vezi cum funcționează',navBiz:'Business',aEye:'Pentru clientul agenției',aH:'Șapte lucruri despre evenimentul vostru',aP:'Completați o dată, primiți un cod. Îl trimiteți agenției și ei se ocupă de rest.',frQ:'Ai chema un prieten data viitoare?',wAccept:'Merge și în doi sau trei, nu aștept să fim patru',cap1:'Cartonașul stă pe masă. Atât trebuie să vezi.',cap2:'Patru oameni care nu se cunoșteau, la masa 7.',askPh:'o propoziție, în cuvintele tale',askSend:'Trimite răspunsul',askQ:'Dacă i-ai povesti mâine unui prieten ce ai făcut acum, ce i-ai spune?',nav1:'Cum funcționează',nav2:'Unde',nav3:'Întrebări',back:'Înapoi',next:'Continuă',leave:'Ies',done:'Gata',
+ro:{dp1:'Scanezi cartonașul de pe masă.',dp2:'Te așezi cu trei oameni pe care nu îi cunoști.',ftBiz:'Ai un local? Vezi cum funcționează',navBiz:'Business',aEye:'Pentru clientul agenției',aH:'Șapte lucruri despre evenimentul vostru',aP:'Completați o dată, primiți un cod. Îl trimiteți agenției și ei se ocupă de rest.',frQ:'Ai chema un prieten data viitoare?',wAccept:'Merge și în doi sau trei, nu aștept să fim patru',cap1:'Cartonașul stă pe masă. Atât trebuie să vezi.',cap2:'Patru oameni care nu se cunoșteau, la masa 7.',askPh:'o propoziție, în cuvintele tale',askSend:'Trimite răspunsul',askQ:'Dacă i-ai povesti mâine unui prieten ce ai făcut acum, ce i-ai spune?',nav1:'Cum funcționează',nav2:'Unde',nav3:'Întrebări',back:'Înapoi',next:'Continuă',leave:'Ies',done:'Gata',
  phMail:'tu@email.com',phCity:'Orașul tău',phName:'Andrei',phTeam:'Operațiuni',
  bMailT:'Anunță-mă',iEye:'Ce te-ar interesa? Poți alege câte vrei.',
  jH:'Ce ți se potrivește?',jName:'Prenumele tău',jTeam:'Echipa sau departamentul',
@@ -460,7 +472,7 @@ ro:{ftBiz:'Ai un local? Vezi cum funcționează',navBiz:'Business',aEye:'Pentru 
  c7a:'Sau scrieți-le voi, una pe rând',cGen:'Gata, generează codul',
  cdH:'Trimiteți codul acesta.',cdP:'Nu e un link — e un cod pe care organizatorul îl introduce la el.',
  cdWa:'Trimite pe WhatsApp',cdMail:'Trimite pe email',cdCopy:'Copiază codul'},
-en:{ftBiz:'Got a venue? See how it works',navBiz:'Business',aEye:'For the agency client',aH:'Seven things about your event',aP:'Fill it once, get a code. Send it to the agency and they handle the rest.',frQ:'Would you bring a friend next time?',wAccept:"Two or three is fine, I'm not waiting for four",cap1:'The card sits on the table. That is all you need to see.',cap2:'Four people who had never met, at table 7.',askPh:'one sentence, in your own words',askSend:'Send it',askQ:'If you told a friend tomorrow what you just did, what would you say?',nav1:'How it works',nav2:'Where',nav3:'Questions',back:'Back',next:'Continue',leave:'Leave',done:'Done',
+en:{dp1:'You scan the card on the table.',dp2:'You sit down with three people you do not know.',ftBiz:'Got a venue? See how it works',navBiz:'Business',aEye:'For the agency client',aH:'Seven things about your event',aP:'Fill it once, get a code. Send it to the agency and they handle the rest.',frQ:'Would you bring a friend next time?',wAccept:"Two or three is fine, I'm not waiting for four",cap1:'The card sits on the table. That is all you need to see.',cap2:'Four people who had never met, at table 7.',askPh:'one sentence, in your own words',askSend:'Send it',askQ:'If you told a friend tomorrow what you just did, what would you say?',nav1:'How it works',nav2:'Where',nav3:'Questions',back:'Back',next:'Continue',leave:'Leave',done:'Done',
  phMail:'you@email.com',phCity:'Your city',phName:'Andrew',phTeam:'Operations',
  bMailT:'Keep me posted',iEye:'What would interest you? Pick as many as you like.',
  jH:'Which one fits?',jName:'Your first name',jTeam:'Team or department',
