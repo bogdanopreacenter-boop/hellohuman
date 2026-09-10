@@ -22,32 +22,33 @@ body.appbody .sc.on{display:block}
 <body class="appbody">
 <div class="app">
 
+<button class="lang" id="bLang" style="position:fixed;top:14px;right:14px;z-index:50">EN</button>
 <section class="sc on" id="sLog">
-  <p class="eyebrow">HelloHuman</p>
+  <p class="eyebrow" style="margin-top:24px">HelloHuman</p>
   <h2 id="lTitle">Parola</h2>
   <p class="sub2" id="lSub" style="margin-top:8px"></p>
-  <label class="lb" for="pw">Parola</label>
+  <label class="lb" for="pw"data-t="pass">Parola</label>
   <input type="password" id="pw" autocomplete="current-password" enterkeyhint="go" placeholder="••••••">
   <p class="msg2" id="mLog"></p>
-  <div class="push"><button class="btn wide" id="bLog">Intră</button></div>
+  <div class="push"><button class="btn wide" id="bLog"data-t="enter">Intră</button></div>
 </section>
 
 <!-- panoul partenerului -->
 <section class="sc" id="sPanel">
-  <p class="eyebrow">Panoul tău</p>
+  <p class="eyebrow"data-t="panel">Panoul tău</p>
   <h2 id="pName">—</h2>
   <p class="sub2" id="pKind" style="margin-top:6px"></p>
 
   <div id="pCorp" style="display:none">
-    <div class="note" style="margin-top:18px"><b>Pregătești o seară de firmă</b>Completezi cele șapte întrebări după ce vorbești cu clientul. Dacă preferă să scrie el, îi trimiți linkul de mai jos și îți dă un cod.</div>
+    <div class="note" style="margin-top:18px"><bdata-t="corpH">Pregătești o seară de firmă</b>Completezi cele șapte întrebări după ce vorbești cu clientul. Dacă preferă să scrie el, îi trimiți linkul de mai jos și îți dă un cod.</div>
     <div class="link" id="qLink" style="margin-top:10px"></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
-      <button class="btn ghost small" id="bQSend">Trimite clientului</button>
-      <button class="btn ghost small" id="bQCopy">Copiază linkul</button>
+      <button class="btn ghost small" id="bQSend"data-t="corpSend">Trimite clientului</button>
+      <button class="btn ghost small" id="bQCopy"data-t="corpCopy">Copiază linkul</button>
     </div>
-    <label class="lb" for="pCode">Codul primit de la client</label>
+    <label class="lb" for="pCode"data-t="corpCode">Codul primit de la client</label>
     <input type="text" id="pCode" placeholder="u_ab12cd34">
-    <button class="btn ghost small" id="bCode" style="margin-top:9px">Încarcă din cod</button>
+    <button class="btn ghost small" id="bCode" style="margin-top:9px"data-t="corpLoad">Încarcă din cod</button>
   </div>
 
   <div class="stats" style="margin-top:20px">
@@ -59,76 +60,84 @@ body.appbody .sc.on{display:block}
   <div class="list" id="lEv" style="max-height:none"></div>
   <p class="msg2" id="mPanel"></p>
   <div class="push">
-    <button class="btn wide" id="bNew">Pregătește o seară</button>
-    <button class="btn ghost wide" id="bOut">Ieși din cont</button>
+    <button class="btn wide" id="bNew"data-t="newEv">Pregătește o seară</button>
+    <button class="btn ghost wide" id="bOut"data-t="out">Ieși din cont</button>
   </div>
 </section>
 
 <!-- configurarea serii -->
 <section class="sc" id="sCfg">
-  <a class="back" href="#" id="bCB">← Înapoi</a>
+  <a class="back" href="#" id="bCB"data-t="back">← Înapoi</a>
   <p class="eyebrow">Pregătește o seară</p>
-  <h2 id="cTitle">Seara ta</h2>
-  <label class="lb" for="cEv">Numele serii</label>
+  <h2 id="cTitle"data-t="cfgH">Seara ta</h2>
+  <label class="lb" for="cEv"data-t="cName">Numele serii</label>
   <input type="text" id="cEv" maxlength="46" placeholder="Joi seara">
-  <label class="lb" for="cT">Numerele meselor din sală</label>
+  <label class="lb" for="cT"data-t="cTab">Numerele meselor din sală</label>
   <input type="text" id="cT" placeholder="1, 2, 3, 4, 5, 6">
-  <p class="sub2" style="margin-top:6px">Scrie-le exact cum apar pe mese. Oamenii sunt trimiși doar acolo.</p>
+  <p class="sub2" style="margin-top:6px"data-t="cTabS">Scrie-le exact cum apar pe mese. Oamenii sunt trimiși doar acolo.</p>
 
-  <button class="btn ghost small" id="bAdv" style="margin-top:22px">Ajustează detaliile</button>
+  <button class="btn ghost small" id="bAdv" style="margin-top:22px"data-t="cAdv">Ajustează detaliile</button>
   <p class="note" id="cNote"></p>
   <div id="cAdv" style="display:none">
-    <label class="lb" for="cS">Oameni la o masă</label>
+    <label class="lb" for="cS"data-t="cSeats">Oameni la o masă</label>
     <input type="text" id="cS" maxlength="2" inputmode="numeric">
-    <label class="lb" for="cM">Minute pe rundă</label>
+    <label class="lb" for="cM"data-t="cMin">Minute pe rundă</label>
     <div class="opts" id="cMOpt" style="margin-bottom:8px"></div>
     <input type="text" id="cM" maxlength="3" inputmode="numeric">
-    <label class="lb">Ce aleg oamenii la înscriere</label>
+    <label class="lb"data-t="cCats">Ce aleg oamenii la înscriere</label>
     <input type="text" id="cC0" maxlength="46">
     <input type="text" id="cC1" maxlength="46" style="margin-top:6px">
     <input type="text" id="cC2" maxlength="46" style="margin-top:6px">
     <input type="text" id="cC3" maxlength="46" style="margin-top:6px">
-    <label class="lb" for="cQ">Întrebările de la mese, una pe rând</label>
+    <label class="lb" for="cQ"data-t="cQs">Întrebările de la mese, una pe rând</label>
     <textarea id="cQ" rows="5"></textarea>
   </div>
-  <label class="lb" for="cPw">Parola pentru cine pornește runda</label>
+  <label class="lb"data-t="cAutoL">Cum pornesc rundele</label>
+  <div class="opts" id="cAuto"></div>
+  <div id="cPragBox" style="display:none">
+    <label class="lb" for="cPrag"data-t="cPragL">Pornește când s-au adunat</label>
+    <input type="text" id="cPrag" maxlength="2" inputmode="numeric" placeholder="8">
+    <p class="sub2" style="margin-top:6px"data-t="cPragS">Cu cât aștepți mai mulți, cu atât mesele ies mai bine. Sub opt oameni, algoritmul nu are ce echilibra.</p>
+  </div>
+
+  <label class="lb" for="cPw"data-t="cPwL">Parola pentru cine pornește runda</label>
   <input type="text" id="cPw" maxlength="24">
   <p class="msg2" id="mCfg"></p>
-  <div class="push"><button class="btn wide" id="bCGo">Creează seara</button></div>
+  <div class="push"><button class="btn wide" id="bCGo"data-t="cGo">Creează seara</button></div>
 </section>
 
 <!-- panoul gazdei -->
 <section class="sc" id="sHost">
   <a class="back" href="#" id="bHB">← Înapoi</a>
-  <p class="eyebrow">Gazdă</p>
+  <p class="eyebrow"data-t="hostH">Gazdă</p>
   <h2 id="hName">Seara</h2>
   <div class="stats" style="margin-top:18px">
     <div class="st"><div class="n" id="hWait">0</div><div class="t">așteaptă</div></div>
     <div class="st"><div class="n" id="hTab">0</div><div class="t">mese</div></div>
     <div class="st"><div class="n" id="hLeft">—</div><div class="t">rămas</div></div>
   </div>
-  <button class="btn ghost small" id="bHQr" style="margin-top:14px">Arată codul</button>
+  <button class="btn ghost small" id="bHQr" style="margin-top:14px"data-t="showQr">Arată codul</button>
   <p class="note" id="hAuto" style="margin-top:16px"></p>
   <div class="list" id="hList" style="max-height:none"></div>
   <p class="msg2" id="mHost"></p>
   <div class="push">
-    <button class="btn ghost wide" id="bStart">Pornește acum, fără să mai aștept</button>
-    <button class="btn ghost wide" id="bStop">Oprește runda</button>
+    <button class="btn ghost wide" id="bStart"data-t="startNow">Pornește acum, fără să mai aștept</button>
+    <button class="btn ghost wide" id="bStop"data-t="stopR">Oprește runda</button>
   </div>
 </section>
 
 <!-- codul QR -->
 <section class="sc" id="sQR">
   <a class="back" href="#" id="bQB">← Înapoi</a>
-  <p class="eyebrow">Codul pentru oameni</p>
+  <p class="eyebrow"data-t="qrH">Codul pentru oameni</p>
   <h2 id="qName">—</h2>
-  <p class="sub2" style="margin-top:8px">Printează pagina și pune-o pe mese, sau arată codul de pe telefon.</p>
+  <p class="sub2" style="margin-top:8px"data-t="qrP">Printează pagina și pune-o pe mese, sau arată codul de pe telefon.</p>
   <div id="qBox" style="background:#fff;padding:18px;border-radius:3px;margin-top:18px;display:flex;justify-content:center"></div>
   <div class="link" id="qUrl" style="margin-top:12px"></div>
   <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
-    <button class="btn ghost small" id="bQPrint">Printează</button>
+    <button class="btn ghost small" id="bQPrint"data-t="prnt">Printează</button>
     <button class="btn ghost small" id="bQCp">Copiază linkul</button>
-    <button class="btn ghost small" id="bQSh">Trimite</button>
+    <button class="btn ghost small" id="bQSh"data-t="send">Trimite</button>
   </div>
   <div class="note" id="qHost" style="margin-top:20px"></div>
 </section>
@@ -137,6 +146,143 @@ body.appbody .sc.on{display:block}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="/core.js"></script>
 <script>
+var lang='ro';
+var L={
+ ro:{
+  ttl:"HelloHuman — panoul serii",
+  pass:"Parola",
+  enter:"Intră",
+  panel:"Panoul tău",
+  corpH:"Pregătești o seară de firmă",
+  corpSend:"Trimite clientului",
+  corpCopy:"Copiază linkul",
+  corpCode:"Codul primit de la client",
+  corpLoad:"Încarcă din cod",
+  nEv:"seri",
+  nPe:"oameni",
+  nNow:"acum",
+  newEv:"Pregătește o seară",
+  out:"Ieși din cont",
+  back:"← Înapoi",
+  cfgH:"Seara ta",
+  cName:"Numele serii",
+  cTab:"Numerele meselor din sală",
+  cTabS:"Scrie-le exact cum apar pe mese. Oamenii sunt trimiși doar acolo.",
+  cAdv:"Ajustează detaliile",
+  cSeats:"Oameni la o masă",
+  cMin:"Minute pe rundă",
+  cCats:"Ce aleg oamenii la înscriere",
+  cQs:"Întrebările de la mese, una pe rând",
+  cAutoL:"Cum pornesc rundele",
+  cPragL:"Pornește când s-au adunat",
+  cPragS:"Cu cât aștepți mai mulți, cu atât mesele ies mai bine. Sub opt oameni, algoritmul nu are ce echilibra.",
+  cPwL:"Parola pentru cine pornește runda",
+  cGo:"Creează seara",
+  hostH:"Gazdă",
+  evL:"Seara",
+  wait:"așteaptă",
+  tabs:"mese",
+  left:"rămas",
+  showQr:"Arată codul",
+  startNow:"Pornește acum, fără să mai aștept",
+  stopR:"Oprește runda",
+  qrH:"Codul pentru oameni",
+  qrP:"Printează pagina și pune-o pe mese, sau arată codul de pe telefon.",
+  prnt:"Printează",
+  send:"Trimite",
+  noEv:"Nicio seară încă.",
+  rest:"Restul e deja setat",
+  open:"deschide →",
+  hostLink:"Pentru cine pornește runda",
+  noScan:"Încă nimeni nu a scanat.",
+  useLink:"Folosește linkul de mai jos.",
+  inRound:"Rundă în curs",
+  inRoundP:"Se oprește singură când expiră timpul.",
+  autoH:"Pornește singur",
+  manH:"Tu pornești",
+  manP:"Cu cât aștepți mai mulți, cu atât mesele ies mai bune.",
+  aMan:"Pornesc eu, când e momentul",
+  aAuto:"Pornește singur, la un număr de oameni",
+  min:"minute",
+  tbl:"masa",
+  missed:"a ratat o rundă",
+  pW:"Parola",
+  evName:"Seară"
+ },
+ en:{
+  ttl:"HelloHuman — evening panel",
+  pass:"Password",
+  enter:"Enter",
+  panel:"Your panel",
+  corpH:"Setting up a company evening",
+  corpSend:"Send to the client",
+  corpCopy:"Copy the link",
+  corpCode:"The code from the client",
+  corpLoad:"Load from code",
+  nEv:"evenings",
+  nPe:"people",
+  nNow:"now",
+  newEv:"Set up an evening",
+  out:"Sign out",
+  back:"← Back",
+  cfgH:"Your evening",
+  cName:"Name of the evening",
+  cTab:"Table numbers in the room",
+  cTabS:"Write them exactly as they appear on the tables. People are only sent there.",
+  cAdv:"Adjust the details",
+  cSeats:"People per table",
+  cMin:"Minutes per round",
+  cCats:"What people choose when they join",
+  cQs:"Table questions, one per line",
+  cAutoL:"How rounds start",
+  cPragL:"Start when this many have gathered",
+  cPragS:"The more you wait for, the better the tables come out. Under eight people, the algorithm has nothing to balance.",
+  cPwL:"Password for whoever starts the round",
+  cGo:"Create the evening",
+  hostH:"Host",
+  evL:"Evening",
+  wait:"waiting",
+  tabs:"tables",
+  left:"left",
+  showQr:"Show the code",
+  startNow:"Start now, without waiting",
+  stopR:"Stop the round",
+  qrH:"The code for people",
+  qrP:"Print the page and put it on the tables, or show the code from your phone.",
+  prnt:"Print",
+  send:"Send",
+  noEv:"No evenings yet.",
+  rest:"The rest is already set",
+  open:"open →",
+  hostLink:"For whoever starts the round",
+  noScan:"Nobody has scanned yet.",
+  useLink:"Use the link below.",
+  inRound:"Round in progress",
+  inRoundP:"It stops on its own when the time runs out.",
+  autoH:"Starts on its own",
+  manH:"You start it",
+  manP:"The more you wait for, the better the tables come out.",
+  aMan:"I start it, when the time is right",
+  aAuto:"Starts on its own, at a number of people",
+  min:"minutes",
+  tbl:"table",
+  missed:"missed a round",
+  pW:"Password",
+  evName:"Evening"
+ }
+};
+function T(k){ return (L[lang]||L.ro)[k] || (L.ro[k]||'') }
+function setLang(v){ lang=v; try{localStorage.setItem('hh_l',v)}catch(e){} applyLang() }
+function applyLang(){
+  document.documentElement.lang=lang;
+  document.title=T('ttl');
+  [].slice.call(document.querySelectorAll('[data-t]')).forEach(function(n){
+    var v=T(n.getAttribute('data-t')); if(v)n.innerHTML=v });
+  [].slice.call(document.querySelectorAll('[data-tp]')).forEach(function(n){
+    var v=T(n.getAttribute('data-tp')); if(v)n.setAttribute('placeholder',v) });
+  var b=document.getElementById('bLang'); if(b)b.textContent=(lang==='ro'?'EN':'RO');
+}
+
 /* ============================================================
    partener.html — panoul celui care ține seara.
    Doua intrari: #p=ID pentru partener, #m=ID pentru gazda.
@@ -249,7 +395,7 @@ function paintCfg(){
 el('bNew').onclick=function(){
   el('cEv').value=''; el('cT').value='1, 2, 3, 4, 5, 6';
   el('cPw').value=String(Math.floor(1000+Math.random()*9000));
-  paintCfg(); say('mCfg',''); go('sCfg');
+  paintCfg(); cAutoMod='manual'; el('cPrag').value='8'; paintAuto(); say('mCfg',''); go('sCfg');
 };
 
 function paintDurate(cheie){
@@ -263,6 +409,22 @@ el('cMOpt').onclick=function(e){
   el('cM').value=b.dataset.m;
   [].slice.call(el('cMOpt').children).forEach(function(x){x.classList.toggle('sel',x.dataset.m===b.dataset.m)});
 };
+
+/* ---------- cum pornesc rundele ---------- */
+var cAutoMod='manual';
+function paintAuto(){
+  var v=[['manual','Pornesc eu, când e momentul'],['auto','Pornește singur, la un număr de oameni']];
+  el('cAuto').innerHTML=v.map(function(x){
+    return '<button class="opt'+(x[0]===cAutoMod?' sel':'')+'" data-a="'+x[0]+'">'+x[1]+'</button>' }).join('');
+  el('cPragBox').style.display = cAutoMod==='auto' ? '' : 'none';
+}
+el('cAuto').onclick=function(e){
+  var b=e.target.closest('[data-a]'); if(!b)return;
+  cAutoMod=b.dataset.a;
+  if(cAutoMod==='auto' && !el('cPrag').value) el('cPrag').value='8';
+  paintAuto();
+};
+
 el('bCB').onclick=function(e){ e.preventDefault(); HH.back() };
 el('bAdv').onclick=function(){
   var d=el('cAdv').style.display!=='none';
@@ -297,7 +459,7 @@ el('bCGo').onclick=async function(){
   busy=true; b.disabled=true; b.textContent='...'; say('mCfg','');
   var conf={ev:nume,client:partner.name,profile:partner.profile,tables:t,
     seats:parseInt(el('cS').value,10)||p.seats, minutes:parseInt(el('cM').value,10)||p.minutes,
-    cats:c.length?c:p.cats.ro, qs:q.join('\n'), pwHost:hpw, dep:!!p.dep, quiet:p.quiet.ro||'',
+    cats:c.length?c:p.cats.ro, qs:q.join('\n'), pwHost:hpw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8, dep:!!p.dep, quiet:p.quiet.ro||'',
     oneTable:!!p.oneTable, noTimer:!!p.noTimer, autoStart:!!p.autoStart,
     threshold:p.threshold||0, needsFlight:!!p.needsFlight, edition:!!p.edition};
   try{
@@ -317,14 +479,14 @@ el('bCGo').onclick=async function(){
 var autoBusy=false;
 async function incearcaAuto(){
   if(autoBusy || busy || !eid) return;
+  if(!cfg.auto) return;                                 // partenerul a ales să pornească el
   var s=(doc&&doc.state)||{};
   if(s.round) return;                                   // deja rulează
   if(cfg.oneTable) return;                              // librăria are gazdă, nu prag
   var q=(s.wait||[]).slice().sort(HH.ordq);
-  var prag=cfg.seats||4;
-  // dacă toți cei prezenți au bifat că merge și mai puțini, coborâm pragul
-  var totiAccepta = q.length>0 && q.every(function(w){return w.accept});
-  if(totiAccepta) prag=Math.min(prag,3);
+  // pragul e cel ales de partener, nu mărimea unei mese.
+  // Cu prag mic, se formează o singură masă mereu, iar algoritmul nu are ce echilibra.
+  var prag=cfg.prag || 8;
   if(q.length < prag) return;
   autoBusy=true;
   try{ await porneste(q) }catch(e){}
@@ -340,7 +502,9 @@ function paintHost(){
   var q0=(s.wait||[]).length, prag=cfg.seats||4;
   el('hAuto').innerHTML = r
     ? '<b>Rundă în curs</b>Se oprește singură când expiră timpul.'
-    : '<b>Pornește singur</b>Când se adună '+prag+' oameni, runda începe fără să faci nimic. Acum sunt '+q0+'.';
+    : (cfg.auto
+        ? '<b>Pornește singur</b>Când se adună '+(cfg.prag||8)+' de oameni, runda începe fără să faci nimic. Acum sunt '+q0+'.'
+        : '<b>Tu pornești</b>Sunt '+q0+' oameni în așteptare. Cu cât aștepți mai mulți, cu atât mesele ies mai bune.');
   el('bStop').style.display=r?'':'none';
   el('bStart').textContent=cfg.oneTable?'Deschide masa':(r?'Runda urmatoare':'Porneste runda');
   var q=(s.wait||[]).slice().sort(HH.ordq);
@@ -429,6 +593,13 @@ HH.initNav(ECR,'sLog',function(){ HH.go(mod==='p'&&partner?'sPanel':(mod==='m'&&
 (function(){
   if(mod==='p'){ var k=HH.recall('hh_pp'); if(k){ el('pw').value=k; el('bLog').click() } }
   if(mod==='m'){ var k2=HH.recall('hh_hp'); if(k2){ el('pw').value=k2; el('bLog').click() } }
+})();
+(function(){
+  try{ var s=localStorage.getItem('hh_l'); if(s)lang=s;
+    else if((navigator.language||'').toLowerCase().indexOf('ro')!==0)lang='en' }catch(e){}
+  applyLang();
+  var b=document.getElementById('bLang');
+  if(b)b.onclick=function(){ setLang(lang==='ro'?'en':'ro') };
 })();
 </script>
 </body>

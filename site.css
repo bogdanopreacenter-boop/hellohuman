@@ -414,3 +414,15 @@ h1{ hyphens:none; word-break:normal; overflow-wrap:normal }
   transition:color .15s, border-color .15s }
 .bizlink:hover{ color:var(--oat); border-bottom-color:var(--gold) }
 @media(max-width:520px){ .bizlink{ font-size:13px; margin-right:12px } }
+
+/* fotografia deschide pagina — explică ce niciun titlu nu poate */
+.hero .wrap{ display:block; text-align:left }
+.heroimg{ margin:0 0 clamp(30px,5vw,52px); width:100% }
+.heroimg img{ width:100%; height:clamp(280px,46vh,480px); object-fit:cover;
+  border-radius:2px; display:block }
+.hero h1{ max-width:16ch }
+.hero .lead{ max-width:40ch }
+@media(max-width:700px){
+  .heroimg img{ height:240px }
+  .heroimg{ margin-bottom:26px }
+}
