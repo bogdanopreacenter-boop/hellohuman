@@ -134,7 +134,7 @@ var HH = (function () {
     book: {
       ro: 'Librărie sau cafenea', en: 'Bookshop or café', seats: 8, minutes: 0, dep: false,
       oneTable: true, noTimer: true, edition: true,
-      tacut: 2, durate: [],
+      tacut: 2, durate: [60, 90],
       cats: {
         ro: ['Am ceva de spus despre subiect', 'Mă interesează ce zic ceilalți', 'Azi ascult mai mult', 'Prima dată la o ediție'],
         en: ['I have something to say about it', "I'm interested in what others think", "Today I'm mostly listening", 'First time at one of these']
@@ -148,10 +148,8 @@ var HH = (function () {
       end: { ro: 'Mulțumim pentru<br>seara asta.', en: 'Thanks for<br>tonight.' }
     },
     air: {
-      ro: 'Aeroport sau gară', en: 'Airport or station', seats: 4, minutes: 30, dep: false,
-      autoStart: true, threshold: 3, needsFlight: true,
-      tacut: 2, durate: [],
-      cats: {
+      ro: 'Aeroport sau gară', en: 'Airport or station', seats: 4, minutes: 30, dep: false, durate: [20, 30], autoStart: true, threshold: 3, needsFlight: true,
+      tacut: 2, cats: {
         ro: ['Am timp destul', 'Sunt cu gândul la destinație', 'Azi ascult mai mult', 'Prima dată pe ruta asta'],
         en: ["I've got plenty of time", "My mind's on where I'm headed", "Today I'm mostly listening", 'First time on this route']
       },
