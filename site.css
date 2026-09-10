@@ -402,3 +402,25 @@ figure.plin figcaption{ padding:clamp(16px,2.4vw,26px) 20px 0 }
   }
   .sageata svg{ width:20px; height:14px }
 }
+
+/* bara de sus: butonul de limbă ieșea din ecran pe telefon */
+.bar .wrap, header .wrap{ display:flex; align-items:center; justify-content:space-between; gap:10px }
+.barnav{ display:flex; align-items:center; gap:0; flex-shrink:0; margin-left:auto }
+.lang{ flex-shrink:0 }
+@media(max-width:640px){
+  .barnav .hidem{ display:none }
+  .bizlink{ font-size:12px; margin-right:10px; max-width:38vw; overflow:hidden;
+    text-overflow:ellipsis; white-space:nowrap }
+  .logo{ font-size:18px; flex-shrink:0 }
+  .lang{ padding:7px 11px; font-size:12px }
+}
+@media(max-width:400px){
+  .bizlink{ max-width:30vw }
+  .logo{ font-size:16px }
+}
+
+/* legenda de sus intra sub cercul cu săgeata */
+@media(max-width:640px){
+  .diptic figure:first-child figcaption{ padding-right:64px }
+  .diptic figure:last-child figcaption{ padding-right:14px }
+}
