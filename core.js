@@ -371,7 +371,35 @@ var HH = (function () {
     return (a.ts || 0) - (b.ts || 0);
   }
 
+  /* ---------- formate proprii, create din panou ----------
+     Se adauga peste cele de baza. Nu le modifica niciodata. */
+  var PROPRII = {};
+  function addFormate(lista) {
+    PROPRII = {};
+    (lista || []).forEach(function (f) {
+      if (!f || !f.id || PROFILES[f.id]) return;   // niciodata peste unul de baza
+      PROPRII[f.id] = {
+        ro: f.nume, en: f.nume, seats: f.seats || 4, minutes: f.minutes || 20,
+        dep: false, tacut: (f.tacut === undefined ? 2 : f.tacut),
+        durate: f.durate || [], propriu: true,
+        cats: { ro: f.cats, en: f.catsEn && f.catsEn.length === 4 ? f.catsEn : f.cats },
+        quiet: { ro: f.cats[f.tacut === undefined ? 2 : f.tacut] || '',
+                 en: (f.catsEn && f.catsEn[f.tacut === undefined ? 2 : f.tacut]) || f.cats[f.tacut === undefined ? 2 : f.tacut] || '' },
+        qs: { ro: (f.qs || '').split('\n').filter(Boolean), en: (f.qs || '').split('\n').filter(Boolean) },
+        note: { ro: f.note || '', en: f.note || '' },
+        end: { ro: 'Le-ai plăcut mai mult<br>decât crezi.', en: 'They liked you more<br>than you think.' }
+      };
+    });
+  }
+  function toateFormatele() {
+    var out = {};
+    Object.keys(PROFILES).forEach(function (k) { out[k] = PROFILES[k] });
+    Object.keys(PROPRII).forEach(function (k) { out[k] = PROPRII[k] });
+    return out;
+  }
+
   return {
+    addFormate: addFormate, toateFormatele: toateFormatele,
     el: el, esc: esc, say: say, copy: copy, shareTxt: shareTxt, vibrate: vibrate,
     setLang: setLang, getLang: getLang, fmtDate: fmtDate, fmtLeft: fmtLeft, fmtWhen: fmtWhen,
     initNav: initNav, go: go, back: back, show: show, current: current,

@@ -75,6 +75,8 @@ body.appbody .sc.on{display:block}
   <div id="tPt" style="display:none">
     <div class="list" id="lPt" style="max-height:none;margin-top:14px"></div>
     <button class="btn wide" id="bNewPt" style="margin-top:16px">Adaugă un partener</button>
+    <button class="btn ghost wide" id="bFmt" style="margin-top:9px">Formate proprii</button>
+    <div class="list" id="lFmt" style="max-height:none"></div>
   </div>
 
   <div id="tLo" style="display:none">
@@ -144,6 +146,47 @@ body.appbody .sc.on{display:block}
   <div class="list" id="eMails" style="max-height:none"></div>
   <p class="msg2" id="mEv"></p>
   <div class="push"><button class="btn ghost wide" id="bEDel" style="border-color:rgba(196,85,47,.5);color:#E89078">Șterge seara</button></div>
+</section>
+
+
+<!-- format propriu -->
+<section class="sc" id="sFmt">
+  <a class="back" href="#" id="bFB">← Înapoi</a>
+  <p class="eyebrow">Proprietar</p>
+  <h2 id="fTitle">Un format nou</h2>
+  <p class="sub2" style="margin-top:8px">Pentru un tip de loc pe care nu îl acoperă cele nouă de bază. Board games, coworking, orice.</p>
+
+  <label class="lb" for="fNume">Cum se numește</label>
+  <input type="text" id="fNume" maxlength="40" placeholder="Seară de board games">
+
+  <label class="lb" for="fSeats">Câți oameni la o masă</label>
+  <input type="text" id="fSeats" maxlength="2" inputmode="numeric" placeholder="4">
+
+  <label class="lb" for="fDurate">Ce durate poate alege partenerul</label>
+  <input type="text" id="fDurate" maxlength="30" placeholder="45, 60, 90">
+  <p class="sub2" style="margin-top:6px">Minute, separate prin virgulă. Lasă gol dacă nu are cronometru.</p>
+
+  <label class="lb">Cele patru variante de la înscriere</label>
+  <input type="text" id="fC0" maxlength="50" placeholder="prima variantă">
+  <input type="text" id="fC1" maxlength="50" placeholder="a doua" style="margin-top:6px">
+  <input type="text" id="fC2" maxlength="50" placeholder="a treia" style="margin-top:6px">
+  <input type="text" id="fC3" maxlength="50" placeholder="a patra" style="margin-top:6px">
+
+  <label class="lb">Care dintre ele înseamnă „prefer să ascult"</label>
+  <div class="opts" id="fTacut"></div>
+  <p class="note"><b>De ce contează</b>Algoritmul o folosește ca să nu pună trei oameni tăcuți la aceeași masă. Fără ea, mesele pot rămâne fără nimeni care să înceapă.</p>
+
+  <label class="lb" for="fQs">Întrebările de la mese, una pe rând</label>
+  <textarea id="fQs" rows="4" placeholder="Ce joc v-a plăcut cel mai mult și de ce?"></textarea>
+
+  <label class="lb" for="fNote">O propoziție despre format</label>
+  <input type="text" id="fNote" maxlength="120" placeholder="Grupuri mai mari, pentru jocuri.">
+
+  <p class="msg2" id="mFmt"></p>
+  <div class="push">
+    <button class="btn wide" id="bFSave">Salvează formatul</button>
+    <button class="btn ghost wide" id="bFDel" style="display:none;border-color:rgba(196,85,47,.5);color:#E89078">Șterge formatul</button>
+  </div>
 </section>
 
 <!-- partener nou -->
@@ -218,6 +261,14 @@ body.appbody .sc.on{display:block}
     <label class="lb" for="cQ">Întrebările de la mese, una pe rând</label>
     <textarea id="cQ" rows="5"></textarea>
   </div>
+  <label class="lb">Cum pornesc rundele</label>
+  <div class="opts" id="cAuto"></div>
+  <div id="cPragBox" style="display:none">
+    <label class="lb" for="cPrag">Pornește când s-au adunat</label>
+    <input type="text" id="cPrag" maxlength="2" inputmode="numeric" placeholder="8">
+    <p class="sub2" style="margin-top:6px">Cu cât aștepți mai mulți, cu atât mesele ies mai bine. Sub opt oameni, algoritmul nu are ce echilibra.</p>
+  </div>
+
   <label class="lb" for="cPw">Parola gazdei</label>
   <input type="text" id="cPw" maxlength="24" placeholder="4821">
   <p class="msg2" id="mCfg"></p>
@@ -260,17 +311,19 @@ body.appbody .sc.on{display:block}
    crm.html — panoul proprietarului. Nimeni altcineva nu ajunge aici.
    Adresa nu apare nicăieri pe site și pagina e marcată neindexabilă.
    ============================================================ */
-var el=HH.el, esc=HH.esc, say=HH.say, go=HH.go, API=HH.API, P=HH.PROFILES;
+var el=HH.el, esc=HH.esc, say=HH.say, go=HH.go, API=HH.API;
+var P=HH.PROFILES;
 var TT={never:'niciodată',now:'chiar acum',min:'acum {n} min',hour:'acum {n} h'};
 var when=function(ts){return HH.fmtWhen(ts,TT)};
 var key='', book={partners:[],events:[],leads:[],requests:[]}, live={}, timer=null;
-var ECR=['sLog','sMain','sPart','sEv','sNew','sDemo','sCfg','sQR'];
+var ECR=['sLog','sMain','sPart','sEv','sNew','sDemo','sCfg','sQR','sFmt'];
 
 /* ---------- intrare ---------- */
 async function intra(k){
   key=k; book=await API.book(k);
   book.partners=book.partners||[]; book.events=book.events||[];
-  book.leads=book.leads||[]; book.requests=book.requests||[];
+  book.leads=book.leads||[]; book.requests=book.requests||[]; book.formate=book.formate||[];
+  HH.addFormate(book.formate); P=HH.toateFormatele();
   HH.keep('hh_k',k);
 }
 el('pw').onkeydown=function(e){ if(e.key==='Enter'){e.preventDefault();el('bLog').click()} };
@@ -288,7 +341,7 @@ async function salveaza(mut){
   book=await API.book(key);
   book.partners=book.partners||[]; book.events=book.events||[]; book.leads=book.leads||[]; book.requests=book.requests||[];
   mut(book);
-  await API.bookSave(key,{partners:book.partners,events:book.events});
+  await API.bookSave(key,{partners:book.partners,events:book.events,formate:book.formate||[]});
 }
 
 /* ---------- starea reală a serilor ---------- */
@@ -386,6 +439,7 @@ function paintMain(){
     }).join(''):'<p class="sub2" style="padding:16px 0">Niciun partener încă.</p>';
   }
 
+  if(fila==='Pt')paintFmtLista();
   if(fila==='Lo')paintLeads();
   if(fila==='Rq')paintReqs();
 }
@@ -523,6 +577,81 @@ function ghiceste(k){
   if(k.indexOf('agenți')>=0)return 'corp';
   return 'bar';
 }
+/* ---------- formate proprii ---------- */
+var fmtId='', fTacut=2;
+function formate(){ return (book && book.formate) || [] }
+function paintFTacut(){
+  el('fTacut').innerHTML=[0,1,2,3].map(function(i){
+    var t=el('fC'+i).value.trim()||('varianta '+(i+1));
+    return '<button class="opt'+(i===fTacut?' sel':'')+'" data-t="'+i+'">'+esc(t)+'</button>' }).join('');
+}
+[0,1,2,3].forEach(function(i){ el('fC'+i).oninput=paintFTacut });
+el('fTacut').onclick=function(e){ var b=e.target.closest('[data-t]'); if(!b)return; fTacut=+b.dataset.t; paintFTacut() };
+
+function paintFmtLista(){
+  var f=formate();
+  el('lFmt').innerHTML=f.length?f.map(function(x){
+    return '<div class="prow tap" data-fmt="'+x.id+'"><div><div class="nm">'+esc(x.nume)+'</div>'
+      +'<div class="sub">'+x.seats+' la masă'+(x.durate&&x.durate.length?(' · '+x.durate.join('/')+' min'):'')+'</div></div>'
+      +'<div><div class="numt" style="color:var(--gold)">deschide →</div></div></div>' }).join(''):'';
+}
+el('lFmt').onclick=function(e){
+  var r=e.target.closest('[data-fmt]'); if(!r)return;
+  var f=formate().filter(function(x){return x.id===r.dataset.fmt})[0]; if(!f)return;
+  fmtId=f.id; el('fTitle').textContent=f.nume;
+  el('fNume').value=f.nume; el('fSeats').value=f.seats; el('fDurate').value=(f.durate||[]).join(', ');
+  for(var i=0;i<4;i++)el('fC'+i).value=(f.cats||[])[i]||'';
+  fTacut=f.tacut===undefined?2:f.tacut; paintFTacut();
+  el('fQs').value=f.qs||''; el('fNote').value=f.note||'';
+  el('bFDel').style.display=''; say('mFmt',''); go('sFmt');
+};
+el('bFmt').onclick=function(){
+  fmtId=''; el('fTitle').textContent='Un format nou';
+  el('fNume').value=''; el('fSeats').value='4'; el('fDurate').value='';
+  for(var i=0;i<4;i++)el('fC'+i).value='';
+  fTacut=2; paintFTacut();
+  el('fQs').value=''; el('fNote').value='';
+  el('bFDel').style.display='none'; say('mFmt',''); go('sFmt');
+};
+el('bFB').onclick=function(e){ e.preventDefault(); HH.back() };
+el('bFSave').onclick=async function(){
+  var n=el('fNume').value.trim();
+  if(!n)return say('mFmt','Pune-i un nume.','err');
+  var cats=[]; for(var i=0;i<4;i++){ var v=el('fC'+i).value.trim(); if(v)cats.push(v) }
+  if(cats.length!==4)return say('mFmt','Toate patru variantele sunt obligatorii.','err');
+  if(new Set(cats).size!==4)return say('mFmt','Cele patru variante trebuie să fie diferite.','err');
+  var s=parseInt(el('fSeats').value,10);
+  if(isNaN(s)||s<2||s>10)return say('mFmt','Între 2 și 10 oameni la masă.','err');
+  var d=el('fDurate').value.split(',').map(function(x){return parseInt(x.trim(),10)}).filter(function(x){return !isNaN(x)&&x>0});
+  var id=fmtId||('f'+Date.now().toString(36));
+  if(!fmtId && P[id])return say('mFmt','Numele ăsta e deja folosit.','err');
+  var rec={id:id,nume:n,seats:s,durate:d,cats:cats,tacut:fTacut,
+           qs:el('fQs').value.trim(),note:el('fNote').value.trim(),ts:Date.now()};
+  say('mFmt','Se salvează…');
+  try{
+    await salveaza(function(b){
+      b.formate=b.formate||[];
+      var i=b.formate.findIndex(function(x){return x.id===id});
+      if(i>=0)b.formate[i]=rec; else b.formate.push(rec);
+    });
+    HH.addFormate(book.formate); P=HH.toateFormatele();
+    fmtId=id; el('bFDel').style.display='';
+    say('mFmt','Salvat. Apare acum în lista de formate.','ok');
+    paintFmtLista();
+  }catch(e){ say('mFmt',e.message,'err') }
+};
+el('bFDel').onclick=async function(){
+  var f=formate().filter(function(x){return x.id===fmtId})[0]; if(!f)return;
+  var folosit=(book.events||[]).some(function(e){return e.profile===fmtId});
+  if(folosit)return say('mFmt','E folosit de o seară din registru. Nu îl pot șterge.','err');
+  if(!confirm('Ștergi formatul "'+f.nume+'"?'))return;
+  try{
+    await salveaza(function(b){ b.formate=(b.formate||[]).filter(function(x){return x.id!==fmtId}) });
+    HH.addFormate(book.formate); P=HH.toateFormatele();
+    paintFmtLista(); HH.back();
+  }catch(e){ say('mFmt',e.message,'err') }
+};
+
 /* ---------- fișa partenerului ---------- */
 var ptId='';
 function deschidePt(id){
@@ -670,7 +799,7 @@ el('bDGo').onclick=async function(){
   var qs=P.demo.qs.ro.slice(dQ).concat(P.demo.qs.ro.slice(0,dQ));  // pornim de la cea aleasă
   var pw=String(Math.floor(1000+Math.random()*9000));
   var cfg={ev:'Demonstrație',client:'',profile:'demo',tables:t,seats:2,minutes:3,
-           cats:P.demo.cats.ro,qs:qs.join('\n'),pwHost:pw,dep:false,quiet:'',demo:true};
+           cats:P.demo.cats.ro,qs:qs.join('\n'),pwHost:pw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8,dep:false,quiet:'',demo:true};
   try{
     var id=await API.create({cfg:cfg,state:{wait:[],round:null,rounds:0,votes:{},met:{}}});
     await salveaza(function(bk){ bk.events=bk.events||[];
@@ -783,9 +912,25 @@ el('bNewEv').onclick=function(){
   el('cCl').innerHTML='<option value="">— eu, direct —</option>'+
     (book.partners||[]).filter(function(p){return !p.off}).map(function(p){
       return '<option value="'+p.id+'">'+esc(p.name)+(p.city?(' · '+esc(p.city)):'')+'</option>' }).join('');
-  say('mCfg',''); go('sCfg');
+  cAutoMod='manual'; el('cPrag').value='8'; paintAuto(); say('mCfg',''); go('sCfg');
 };
 el('bCB').onclick=function(e){ e.preventDefault(); HH.back() };
+
+/* ---------- cum pornesc rundele ---------- */
+var cAutoMod='manual';
+function paintAuto(){
+  var v=[['manual','Pornesc eu, când e momentul'],['auto','Pornește singur, la un număr de oameni']];
+  el('cAuto').innerHTML=v.map(function(x){
+    return '<button class="opt'+(x[0]===cAutoMod?' sel':'')+'" data-a="'+x[0]+'">'+x[1]+'</button>' }).join('');
+  el('cPragBox').style.display = cAutoMod==='auto' ? '' : 'none';
+}
+el('cAuto').onclick=function(e){
+  var b=e.target.closest('[data-a]'); if(!b)return;
+  cAutoMod=b.dataset.a;
+  if(cAutoMod==='auto' && !el('cPrag').value) el('cPrag').value='8';
+  paintAuto();
+};
+
 el('bCGo').onclick=async function(){
   var b=el('bCGo');
   var t=el('cT').value.split(',').map(function(x){return parseInt(x.trim(),10)}).filter(function(x){return !isNaN(x)&&x>0});
@@ -799,7 +944,7 @@ el('bCGo').onclick=async function(){
   b.disabled=true; b.textContent='…'; say('mCfg','');
   var cfg={ev:nume,client:part?part.name:'',profile:cProf,tables:t,
     seats:parseInt(el('cS').value,10)||p.seats, minutes:parseInt(el('cM').value,10)||p.minutes,
-    cats:c.length?c:p.cats.ro, qs:q.join('\n'), pwHost:pw, dep:!!p.dep, quiet:p.quiet.ro||'',
+    cats:c.length?c:p.cats.ro, qs:q.join('\n'), pwHost:pw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8, dep:!!p.dep, quiet:p.quiet.ro||'',
     oneTable:!!p.oneTable, noTimer:!!p.noTimer, autoStart:!!p.autoStart,
     threshold:p.threshold||0, needsFlight:!!p.needsFlight, edition:!!p.edition};
   try{
