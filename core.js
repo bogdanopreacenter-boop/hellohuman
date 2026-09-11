@@ -106,6 +106,7 @@ var HH = (function () {
     lead: function (o) { return api('POST', '?lead=1', o) },
     request: function (o) { return api('POST', '?request=1', o) },
     book: function (k) { return api('GET', '?book=1&k=' + encodeURIComponent(k)) },
+    partnerSave: function (pw, date) { return api('POST', '?partnersave=1&pw=' + encodeURIComponent(pw), date) },
     bookSave: function (k, b) { return api('PUT', '?book=1&k=' + encodeURIComponent(k), b) },
     reqStatus: function (k, id, s) { return api('POST', '?reqstatus=1&k=' + encodeURIComponent(k) + '&id=' + encodeURIComponent(id) + '&s=' + encodeURIComponent(s)) },
     partner: function (id, pw) { return api('GET', '?partner=1&id=' + encodeURIComponent(id) + '&pw=' + encodeURIComponent(pw)) },
@@ -132,7 +133,7 @@ var HH = (function () {
       end: { ro: 'Le-ai plăcut mai mult<br>decât crezi.', en: 'They liked you more<br>than you think.' }
     },
     book: {
-      ro: 'Librărie sau cafenea', en: 'Bookshop or café', seats: 8, minutes: 0, dep: false,
+      ro: 'Librărie', en: 'Bookshop', seats: 8, minutes: 0, dep: false,
       oneTable: true, noTimer: true, edition: true,
       tacut: 2, durate: [60, 90],
       cats: {

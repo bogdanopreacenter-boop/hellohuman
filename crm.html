@@ -199,6 +199,10 @@ body.appbody .sc.on{display:block}
   <input type="text" id="nName" maxlength="60" placeholder="Barul Vechi">
   <label class="lb" for="nCity">În ce oraș</label>
   <input type="text" id="nCity" maxlength="40" placeholder="București">
+  <label class="lb" for="nMail">Emailul lui</label>
+  <input type="email" id="nMail" maxlength="80" placeholder="contact@barulvechi.ro" autocomplete="off">
+  <p class="sub2" style="margin-top:6px">Aici îi trimiți linkul și raportul de după seri. Dacă îl lași gol, folosim adresa ta.</p>
+
   <label class="lb">Ce fel de loc</label>
   <div class="opts" id="nProf"></div>
   <p class="note" id="nNote"></p>
@@ -246,7 +250,15 @@ body.appbody .sc.on{display:block}
   <select id="cCl"></select>
   <label class="lb" for="cT">Numerele meselor</label>
   <input type="text" id="cT" placeholder="1, 2, 3, 4, 5, 6">
-  <button class="btn ghost small" id="bCAdv" style="margin-top:22px">Ajustează detaliile</button>
+    <label class="lb" for="cQ">Întrebările de la mese, una pe rând</label>
+    <textarea id="cQ" rows="5"></textarea>
+  <p class="sub2" style="margin-top:6px">Fiecare masă primește una, pe rând. Poți schimba oricare.</p>
+
+  <label class="lb" for="cOfera">Ce oferă localul, dacă oferă ceva</label>
+  <input type="text" id="cOfera" maxlength="80" placeholder="o cafea din partea casei">
+  <p class="sub2" style="margin-top:6px">Apare pe telefonul oamenilor, după ce se așază. Lasă gol dacă nu e nimic.</p>
+
+<button class="btn ghost small" id="bCAdv" style="margin-top:22px">Ajustează detaliile</button>
   <div id="cAdv" style="display:none">
     <label class="lb" for="cS">Oameni la o masă</label>
     <input type="text" id="cS" maxlength="2" inputmode="numeric" placeholder="3">
@@ -258,8 +270,7 @@ body.appbody .sc.on{display:block}
     <input type="text" id="cC1" maxlength="46" placeholder="—" style="margin-top:6px">
     <input type="text" id="cC2" maxlength="46" placeholder="—" style="margin-top:6px">
     <input type="text" id="cC3" maxlength="46" placeholder="—" style="margin-top:6px">
-    <label class="lb" for="cQ">Întrebările de la mese, una pe rând</label>
-    <textarea id="cQ" rows="5"></textarea>
+    
   </div>
   <label class="lb">Cum pornesc rundele</label>
   <div class="opts" id="cAuto"></div>
@@ -733,7 +744,7 @@ async function reciteste(id){
 }
 el('bEB').onclick=function(e){ e.preventDefault(); HH.back() };
 el('bEQr').onclick=function(){ var e=(book.events||[]).filter(function(x){return x.id===evId})[0];
-  if(e)aratQR(e.name, HH.base()+'#e='+e.id, e.pw, e.id) };
+  if(e)aratQR(e.name, HH.base()+'?e='+e.id, e.pw, e.id) };
 el('bEHost').onclick=function(){ var e=(book.events||[]).filter(function(x){return x.id===evId})[0];
   if(e)HH.copy(HH.base()+'partener.html#m='+e.id+'\nParola: '+(e.pw||''), el('bEHost')) };
 el('bEStop').onclick=async function(){
@@ -756,7 +767,7 @@ function paintNProf(){
 el('nProf').onclick=function(e){ var b=e.target.closest('.opt'); if(!b)return; nProf=b.dataset.p; paintNProf() };
 el('bNewPt').onclick=function(){
   nProf='bar'; dinCerere=''; el('nTitle').textContent='Un partener nou';
-  el('nName').value=''; el('nCity').value=''; el('nPw').value=String(Math.floor(1000+Math.random()*9000));
+  el('nName').value=''; el('nCity').value=''; el('nMail').value=''; el('nPw').value=String(Math.floor(1000+Math.random()*9000));
   el('nOut').style.display='none'; say('mNew',''); paintNProf(); go('sNew');
 };
 el('bNB').onclick=function(e){ e.preventDefault(); HH.back() };
@@ -769,7 +780,7 @@ el('bNSave').onclick=async function(){
   say('mNew','Se salvează…');
   try{
     await salveaza(function(b){ b.partners=b.partners||[];
-      b.partners.push({id:id,name:n,city:c,profile:nProf,pw:pw,off:false,notes:'',ts:Date.now()}) });
+      b.partners.push({id:id,name:n,city:c,profile:nProf,pw:pw,email:el('nMail').value.trim(),off:false,notes:'',ts:Date.now()}) });
     if(dinCerere){ try{ await API.reqStatus(key,dinCerere,'acceptat') }catch(e){}
       (book.requests||[]).forEach(function(r){ if(r.id===dinCerere)r.status='acceptat' }); }
     el('nLink').textContent=HH.base()+'partener.html#p='+id;
@@ -799,13 +810,13 @@ el('bDGo').onclick=async function(){
   var qs=P.demo.qs.ro.slice(dQ).concat(P.demo.qs.ro.slice(0,dQ));  // pornim de la cea aleasă
   var pw=String(Math.floor(1000+Math.random()*9000));
   var cfg={ev:'Demonstrație',client:'',profile:'demo',tables:t,seats:2,minutes:3,
-           cats:P.demo.cats.ro,qs:qs.join('\n'),pwHost:pw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8,dep:false,quiet:'',demo:true};
+           cats:P.demo.cats.ro,ofera:(el('cOfera')?el('cOfera').value.trim():''), qs:qs.join('\n'),pwHost:pw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8,dep:false,quiet:'',demo:true};
   try{
     var id=await API.create({cfg:cfg,state:{wait:[],round:null,rounds:0,votes:{},met:{}}});
     await salveaza(function(bk){ bk.events=bk.events||[];
       bk.events.push({id:id,name:'Demonstrație',pid:'',profile:'demo',pw:pw,ts:Date.now(),people:0,demo:true}) });
     paintMain();
-    aratQR('Demonstrație', HH.base()+'#e='+id, pw, id);
+    aratQR('Demonstrație', HH.base()+'?e='+id, pw, id);
     demoPornit(id);
   }catch(e){ say('mDemo',e.message,'err') }
   b.disabled=false; b.textContent='Pornește demonstrația';
@@ -886,7 +897,7 @@ function paintCProf(){
   var p=P[cProf];
   el('cS').value=p.seats; el('cM').value=p.minutes;
   for(var i=0;i<4;i++)el('cC'+i).value=p.cats.ro[i]||'';
-  el('cQ').value=p.qs.ro.join('\n');
+  el('cQ').value=p.qs.ro.join('\n'); if(el('cOfera'))el('cOfera').value='';
 }
 
 function paintDurate(cheie){
@@ -944,7 +955,7 @@ el('bCGo').onclick=async function(){
   b.disabled=true; b.textContent='…'; say('mCfg','');
   var cfg={ev:nume,client:part?part.name:'',profile:cProf,tables:t,
     seats:parseInt(el('cS').value,10)||p.seats, minutes:parseInt(el('cM').value,10)||p.minutes,
-    cats:c.length?c:p.cats.ro, qs:q.join('\n'), pwHost:pw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8, dep:!!p.dep, quiet:p.quiet.ro||'',
+    cats:c.length?c:p.cats.ro, ofera:(el('cOfera')?el('cOfera').value.trim():''), qs:q.join('\n'), pwHost:pw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8, dep:!!p.dep, quiet:p.quiet.ro||'',
     oneTable:!!p.oneTable, noTimer:!!p.noTimer, autoStart:!!p.autoStart,
     threshold:p.threshold||0, needsFlight:!!p.needsFlight, edition:!!p.edition};
   try{
@@ -952,7 +963,7 @@ el('bCGo').onclick=async function(){
     await salveaza(function(bk){ bk.events=bk.events||[];
       bk.events.push({id:id,name:nume,pid:pid||'',profile:cProf,pw:pw,ts:Date.now(),people:0}) });
     paintMain();
-    aratQR(nume, HH.base()+'#e='+id, pw, id);
+    aratQR(nume, HH.base()+'?e='+id, pw, id);
   }catch(e){ say('mCfg',e.message,'err') }
   b.disabled=false; b.textContent='Creează seara';
 };

@@ -59,7 +59,16 @@ body.appbody .sc.on{display:block}
 
   <div class="list" id="lEv" style="max-height:none"></div>
   <p class="msg2" id="mPanel"></p>
-  <div class="push">
+    <div class="note" id="pMailBox" style="margin-top:18px">
+    <b data-t="mailT">Emailul tău</b>
+    <input type="email" id="pMail" maxlength="80" placeholder="contact@localultau.ro"
+           style="margin-top:8px" autocomplete="off">
+    <p class="sub2" style="margin-top:6px" data-t="mailS">Aici primești raportul de după fiecare seară.</p>
+    <button class="btn ghost small" id="bMailSave" style="margin-top:8px" data-t="mailB">Salvează</button>
+    <p class="msg2" id="mMail"></p>
+  </div>
+
+<div class="push">
     <button class="btn wide" id="bNew"data-t="newEv">Pregătește o seară</button>
     <button class="btn ghost wide" id="bOut"data-t="out">Ieși din cont</button>
   </div>
@@ -78,7 +87,15 @@ body.appbody .sc.on{display:block}
 
   <button class="btn ghost small" id="bAdv" style="margin-top:22px"data-t="cAdv">Ajustează detaliile</button>
   <p class="note" id="cNote"></p>
-  <div id="cAdv" style="display:none">
+    <label class="lb" for="cQ"data-t="cQs">Întrebările de la mese, una pe rând</label>
+    <textarea id="cQ" rows="5"></textarea>
+  <p class="sub2" style="margin-top:6px" data-t="cQsS">Fiecare masă primește una, pe rând. Poți schimba oricare.</p>
+
+  <label class="lb" for="cOfera" data-t="cOf">Ce oferă localul, dacă oferă ceva</label>
+  <input type="text" id="cOfera" maxlength="80" placeholder="o cafea din partea casei">
+  <p class="sub2" style="margin-top:6px" data-t="cOfS">Apare pe telefonul oamenilor, după ce se așază. Lasă gol dacă nu e nimic.</p>
+
+<div id="cAdv" style="display:none">
     <label class="lb" for="cS"data-t="cSeats">Oameni la o masă</label>
     <input type="text" id="cS" maxlength="2" inputmode="numeric">
     <label class="lb" for="cM"data-t="cMin">Minute pe rundă</label>
@@ -89,8 +106,7 @@ body.appbody .sc.on{display:block}
     <input type="text" id="cC1" maxlength="46" style="margin-top:6px">
     <input type="text" id="cC2" maxlength="46" style="margin-top:6px">
     <input type="text" id="cC3" maxlength="46" style="margin-top:6px">
-    <label class="lb" for="cQ"data-t="cQs">Întrebările de la mese, una pe rând</label>
-    <textarea id="cQ" rows="5"></textarea>
+    
   </div>
   <label class="lb"data-t="cAutoL">Cum pornesc rundele</label>
   <div class="opts" id="cAuto"></div>
@@ -173,6 +189,9 @@ var L={
   cMin:"Minute pe rundă",
   cCats:"Ce aleg oamenii la înscriere",
   cQs:"Întrebările de la mese, una pe rând",
+  cQsS:"Fiecare masă primește una, pe rând. Poți schimba oricare.",
+  cOf:"Ce oferă localul, dacă oferă ceva",
+  cOfS:"Apare pe telefonul oamenilor, după ce se așază. Lasă gol dacă nu e nimic.",
   cAutoL:"Cum pornesc rundele",
   cPragL:"Pornește când s-au adunat",
   cPragS:"Cu cât aștepți mai mulți, cu atât mesele ies mai bine. Sub opt oameni, algoritmul nu are ce echilibra.",
@@ -207,6 +226,12 @@ var L={
   tbl:"masa",
   missed:"a ratat o rundă",
   pW:"Parola",
+  mailT:"Emailul tău",
+  mailS:"Aici primești raportul de după fiecare seară.",
+  mailB:"Salvează",
+  mailOk:"Salvat.",
+  mailWait:"Se salvează…",
+  mailErr:"Adresa nu pare validă.",
   evName:"Seară"
  },
  en:{
@@ -234,6 +259,9 @@ var L={
   cMin:"Minutes per round",
   cCats:"What people choose when they join",
   cQs:"Table questions, one per line",
+  cQsS:"Each table gets one, in turn. You can change any of them.",
+  cOf:"What the venue offers, if anything",
+  cOfS:"It shows on their phone once they sit down. Leave empty if there is nothing.",
   cAutoL:"How rounds start",
   cPragL:"Start when this many have gathered",
   cPragS:"The more you wait for, the better the tables come out. Under eight people, the algorithm has nothing to balance.",
@@ -268,6 +296,12 @@ var L={
   tbl:"table",
   missed:"missed a round",
   pW:"Password",
+  mailT:"Your email",
+  mailS:"This is where you get the report after each evening.",
+  mailB:"Save",
+  mailOk:"Saved.",
+  mailWait:"Saving…",
+  mailErr:"That address does not look right.",
   evName:"Evening"
  }
 };
@@ -312,6 +346,7 @@ el('bLog').onclick=async function(){
       var d=await API.partner(id,v);
       partner=d.partner; events=d.events||[]; pw=v; HH.keep('hh_pp',v);
       if(d.formate){ HH.addFormate(d.formate); P=HH.toateFormatele() }
+      if(el('pMail')) el('pMail').value = (partner && partner.email) || '';
       say('mLog',''); go('sPanel'); paintPanel(); porneste();
     }catch(e){
       say('mLog', e.message==='parola gresita'?'Parola gresita.'
@@ -390,7 +425,7 @@ function paintCfg(){
   el('cNote').innerHTML='<b>Restul e deja setat</b>'+esc(p.note.ro);
   el('cS').value=p.seats; el('cM').value=p.minutes;
   for(var i=0;i<4;i++)el('cC'+i).value=p.cats.ro[i]||'';
-  el('cQ').value=p.qs.ro.join('\n');
+  el('cQ').value=p.qs.ro.join('\n'); if(el('cOfera'))el('cOfera').value='';
 }
 el('bNew').onclick=function(){
   el('cEv').value=''; el('cT').value='1, 2, 3, 4, 5, 6';
@@ -459,7 +494,7 @@ el('bCGo').onclick=async function(){
   busy=true; b.disabled=true; b.textContent='...'; say('mCfg','');
   var conf={ev:nume,client:partner.name,profile:partner.profile,tables:t,
     seats:parseInt(el('cS').value,10)||p.seats, minutes:parseInt(el('cM').value,10)||p.minutes,
-    cats:c.length?c:p.cats.ro, qs:q.join('\n'), pwHost:hpw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8, dep:!!p.dep, quiet:p.quiet.ro||'',
+    cats:c.length?c:p.cats.ro, ofera:(el('cOfera')?el('cOfera').value.trim():''), qs:q.join('\n'), pwHost:hpw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8, dep:!!p.dep, quiet:p.quiet.ro||'',
     oneTable:!!p.oneTable, noTimer:!!p.noTimer, autoStart:!!p.autoStart,
     threshold:p.threshold||0, needsFlight:!!p.needsFlight, edition:!!p.edition};
   try{
@@ -467,7 +502,7 @@ el('bCGo').onclick=async function(){
     await API.addEvent(partner.id,pw,{id:nid,name:nume,profile:partner.profile,pw:hpw,ts:Date.now(),people:0});
     events.push({id:nid,name:nume,pw:hpw,ts:Date.now(),people:0});
     eid=nid; cfg=conf; freeT=t.slice(); el('hName').textContent=nume;
-    aratQR(nume, HH.base()+'#e='+nid, hpw, nid);
+    aratQR(nume, HH.base()+'?e='+nid, hpw, nid);
   }catch(e){ say('mCfg',e.message,'err') }
   busy=false; b.disabled=false; b.textContent='Creeaza seara';
 };
@@ -507,6 +542,19 @@ async function incearcaAuto(){
   autoBusy=false;
 }
 
+
+/* ---------- emailul partenerului ---------- */
+el('bMailSave').onclick=async function(){
+  var v=el('pMail').value.trim();
+  if(v && v.indexOf('@')<0) return say('mMail', T('mailErr'), 'err');
+  say('mMail', T('mailWait'));
+  try{
+    await API.partnerSave(pw, {email:v});
+    if(partner) partner.email=v;
+    say('mMail', T('mailOk'), 'ok');
+  }catch(e){ say('mMail', e.message, 'err') }
+};
+
 /* ---------- panoul gazdei ---------- */
 function paintHost(){
   var s=(doc&&doc.state)||{}, r=s.round;
@@ -529,7 +577,7 @@ function paintHost(){
 }
 
 el('bHB').onclick=function(e){ e.preventDefault(); if(mod==='p')HH.back(); };
-el('bHQr').onclick=function(){ aratQR(cfg.ev||'Seara', HH.base()+'#e='+eid, cfg.pwHost, eid) };
+el('bHQr').onclick=function(){ aratQR(cfg.ev||'Seara', HH.base()+'?e='+eid, cfg.pwHost, eid) };
 el('bStop').onclick=async function(){
   if(busy)return; busy=true;
   try{ await API.op(eid,'stop'); doc=await API.get(eid); paintHost(); say('mHost','') }

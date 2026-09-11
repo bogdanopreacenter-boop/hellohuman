@@ -312,6 +312,7 @@ body{background:#16302B;margin:0}
     <div class="rule"></div>
     <div class="row"><span data-t="cW">Cu tine</span><b id="tWho">—</b></div>
     <div class="row"><span data-t="cQ">Întrebarea voastră</span><b id="tQ">—</b></div>
+<div class="row" id="tOfRow" style="display:none"><span data-t="cOf">Din partea casei</span><b id="tOf">—</b></div>
     <p class="tick" id="clk">—</p>
   </div>
   <div class="push"><button class="btn ghost wide" id="bDone" data-t="tDone">Am terminat</button></div>
@@ -427,7 +428,7 @@ body{background:#16302B;margin:0}
 var el=HH.el, esc=HH.esc, say=HH.say, go=HH.go, API=HH.API, P=HH.PROFILES;
 
 var T={
-ro:{dp1:'Scanezi cartonașul de pe masă.',dp2:'Te așezi cu trei oameni pe care nu îi cunoști.',ftBiz:'Ai un local? Vezi cum funcționează',navBiz:'Business',aEye:'Pentru clientul agenției',aH:'Șapte lucruri despre evenimentul vostru',aP:'Completați o dată, primiți un cod. Îl trimiteți agenției și ei se ocupă de rest.',frQ:'Ai chema un prieten data viitoare?',wAccept:'Merge și în doi sau trei, nu aștept să fim patru',cap1:'Cartonașul stă pe masă. Atât trebuie să vezi.',cap2:'Patru oameni care nu se cunoșteau, la masa 7.',askPh:'o propoziție, în cuvintele tale',askSend:'Trimite răspunsul',askQ:'Dacă i-ai povesti mâine unui prieten ce ai făcut acum, ce i-ai spune?',nav1:'Cum funcționează',nav2:'Unde',nav3:'Întrebări',back:'Înapoi',next:'Continuă',leave:'Ies',done:'Gata',
+ro:{cOf:'Din partea casei',dp1:'Scanezi cartonașul de pe masă.',dp2:'Te așezi cu trei oameni pe care nu îi cunoști.',ftBiz:'Ai un local? Vezi cum funcționează',navBiz:'Business',aEye:'Pentru clientul agenției',aH:'Șapte lucruri despre evenimentul vostru',aP:'Completați o dată, primiți un cod. Îl trimiteți agenției și ei se ocupă de rest.',frQ:'Ai chema un prieten data viitoare?',wAccept:'Merge și în doi sau trei, nu aștept să fim patru',cap1:'Cartonașul stă pe masă. Atât trebuie să vezi.',cap2:'Patru oameni care nu se cunoșteau, la masa 7.',askPh:'o propoziție, în cuvintele tale',askSend:'Trimite răspunsul',askQ:'Dacă i-ai povesti mâine unui prieten ce ai făcut acum, ce i-ai spune?',nav1:'Cum funcționează',nav2:'Unde',nav3:'Întrebări',back:'Înapoi',next:'Continuă',leave:'Ies',done:'Gata',
  phMail:'tu@email.com',phCity:'Orașul tău',phName:'Andrei',phTeam:'Operațiuni',
  bMailT:'Anunță-mă',iEye:'Ce te-ar interesa? Poți alege câte vrei.',
  jH:'Ce ți se potrivește?',jName:'Prenumele tău',jTeam:'Echipa sau departamentul',
@@ -457,7 +458,7 @@ ro:{dp1:'Scanezi cartonașul de pe masă.',dp2:'Te așezi cu trei oameni pe care
  c7a:'Sau scrieți-le voi, una pe rând',cGen:'Gata, generează codul',
  cdH:'Trimiteți codul acesta.',cdP:'Nu e un link — e un cod pe care organizatorul îl introduce la el.',
  cdWa:'Trimite pe WhatsApp',cdMail:'Trimite pe email',cdCopy:'Copiază codul'},
-en:{dp1:'You scan the card on the table.',dp2:'You sit down with three people you do not know.',ftBiz:'Got a venue? See how it works',navBiz:'Business',aEye:'For the agency client',aH:'Seven things about your event',aP:'Fill it once, get a code. Send it to the agency and they handle the rest.',frQ:'Would you bring a friend next time?',wAccept:"Two or three is fine, I'm not waiting for four",cap1:'The card sits on the table. That is all you need to see.',cap2:'Four people who had never met, at table 7.',askPh:'one sentence, in your own words',askSend:'Send it',askQ:'If you told a friend tomorrow what you just did, what would you say?',nav1:'How it works',nav2:'Where',nav3:'Questions',back:'Back',next:'Continue',leave:'Leave',done:'Done',
+en:{cOf:'On the house',dp1:'You scan the card on the table.',dp2:'You sit down with three people you do not know.',ftBiz:'Got a venue? See how it works',navBiz:'Business',aEye:'For the agency client',aH:'Seven things about your event',aP:'Fill it once, get a code. Send it to the agency and they handle the rest.',frQ:'Would you bring a friend next time?',wAccept:"Two or three is fine, I'm not waiting for four",cap1:'The card sits on the table. That is all you need to see.',cap2:'Four people who had never met, at table 7.',askPh:'one sentence, in your own words',askSend:'Send it',askQ:'If you told a friend tomorrow what you just did, what would you say?',nav1:'How it works',nav2:'Where',nav3:'Questions',back:'Back',next:'Continue',leave:'Leave',done:'Done',
  phMail:'you@email.com',phCity:'Your city',phName:'Andrew',phTeam:'Operations',
  bMailT:'Keep me posted',iEye:'What would interest you? Pick as many as you like.',
  jH:'Which one fits?',jName:'Your first name',jTeam:'Team or department',
@@ -737,6 +738,7 @@ async function tick(){
   el('tWho').textContent=t.people.filter(function(p){return p.id!==me.id})
     .map(function(p){return p.name+(p.dep?(' · '+p.dep):'')}).join(', ')||'—';
   el('tQ').innerHTML=esc(t.q||'—');
+  if(cfg.ofera){ el('tOfRow').style.display=''; el('tOf').textContent=cfg.ofera } else el('tOfRow').style.display='none';
   HH.vibrate([60,80,60]);
   go('sTab');
   if(cfg.noTimer||!r.dur){ el('clk').style.display='none' }
@@ -945,6 +947,15 @@ el('bQMail').onclick=function(){
     else if((navigator.language||'').toLowerCase().indexOf('ro')!==0)lang='en' }catch(e){}
   applyLang();
   var h=location.hash||'';
+
+  // Adresa poate veni ca ?e=ID (nou) sau #e=ID (coduri vechi, deja printate).
+  // Fragmentul cu diez se pierde in unele aplicatii de mesagerie, de aia
+  // codurile noi folosesc ?e= — dar cele vechi trebuie sa functioneze in continuare.
+  var qsId = '';
+  try { qsId = new URLSearchParams(location.search).get('e') || '' } catch(e){}
+  if(qsId){ intraInSeara(qsId).catch(function(e){
+    el('site').style.display=''; el('app').classList.remove('on'); alert(e.message) }); return }
+
   if(h.indexOf('#e=')===0){ intraInSeara(h.slice(3)).catch(function(e){
     el('site').style.display=''; el('app').classList.remove('on'); alert(e.message) }); return }
   if(h.indexOf('#c')===0){

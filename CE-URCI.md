@@ -1,62 +1,61 @@
-# Ce urci
+# Ce urci — 11 septembrie
 
-Cinci fișiere, toate în rădăcina depozitului.
+Șase fișiere în rădăcină, plus unul în `api/`.
 
 | Fișier | Ce s-a schimbat |
 |---|---|
-| `core.js` | **două erori de algoritm, reparate** |
-| `partener.html` | bifa participantului, care nu făcea nimic |
-| `index.html` | titlul nou, fotografia, două corecturi de text |
-| `site.css` | spațierea, logoul din subsol |
-| `locuri-hellohuman.jpg` | **fișier nou** — grila cu cele patru locuri |
-
-Dacă `locuri-hellohuman.jpg` nu e urcat, imaginea din secțiunea „unde se organizează" nu apare.
-
----
-
-## Erorile de algoritm, reparate
-
-**Prietenii se despărțeau.** Se așezau în ordinea sosirii, nu după mărime — iar un grup de trei ajungea la o masă cu două locuri libere.
-
-Acum grupurile mari se așază primele. Zero despărțiri, pe cinci mii de simulări.
-
-**Mărimile meselor erau greșite.** La șase oameni ieșeau două mese de trei în loc de una de șase; la zece, mese inegale fără motiv.
-
-Acum: 6 → 3+3, 10 → 4+3+3, 12 → 4+4+4.
+| `core.js` | erori de algoritm + rută nouă |
+| `index.html` | adresa codului QR, oferta localului, titlul |
+| `crm.html` | email partener, întrebări la vedere, ofertă |
+| `partener.html` | emailul lui, întrebări la vedere, ofertă |
+| `site.css` | spațierea |
+| `locuri-hellohuman.jpg` | **fișier nou** |
+| `api/store.js` | rută pentru salvarea emailului |
 
 ---
 
-## Bifa participantului
+## 1. Codul QR nu mai duce înapoi pe site
 
-*Merge și în doi sau trei* se trimitea la server, dar **nimeni nu o citea.**
+**Cauza:** adresa era `hellohuman.ro/#e=ID`. Fragmentul de după diez se pierde în unele aplicații de mesagerie — WhatsApp și Facebook îl taie uneori.
 
-Acum, dacă **toți** cei care așteaptă au bifat, pragul coboară la doi. Nu unul — toți.
+**Acum:** `hellohuman.ro/?e=ID`.
 
-Iar dacă cineva așteaptă de peste douăsprezece minute **și** sunt cel puțin trei, pornește oricum.
-
-**Cu un singur om nu pornește niciodată**, indiferent de bife sau de cât așteaptă. Nu ai cu cine forma o masă.
+**Codurile vechi, deja printate, funcționează în continuare.** Pagina prinde ambele forme.
 
 ---
 
-## Titlul
+## 2. Librăria nu mai e „Librărie sau cafenea"
 
-> **Cunoști oameni noi. Chiar acolo unde ești.**
-> *Meet new people. Right where you are.*
-
-Iar dipticul cu două fotografii a ieșit — o singură fotografie sus, cea cu cartonașul.
+Erau profiluri separate în cod, dar numele te făcea să alegi greșit.
 
 ---
 
-## Corecturi mici
+## 3. Întrebările se văd la creare
 
-Acordul la un singur om: „1 a scanat", nu „1 au scanat".
+Erau ascunse sub „Ajustează detaliile", iar ți se cerea să alegi fără să le vezi.
 
-Iar după zece minute fără nimeni: *N-a ieșit de data asta. Poți să ne lași adresa.*
+Acum sunt sus, editabile, cu explicația: *fiecare masă primește una, pe rând.*
 
 ---
 
-## Verificat
+## 4. Partenerul are email
 
-Toate cele unsprezece pagini: sintaxă, HTML valid, elemente, duplicate.
+**La creare:** un câmp nou. Dacă îl lași gol, se folosește adresa ta.
 
-Algoritmul, pe nouăsprezece mii de mese simulate: zero mese tăcute evitabile, zero oameni pe dinafară, zero prieteni despărțiți.
+**În panoul lui:** și-l poate schimba singur. Serverul îi permite să modifice doar emailul, nimic altceva.
+
+---
+
+## 5. Ce oferă localul
+
+Un câmp nou la crearea serii: *o cafea din partea casei*, *a doua bere la jumătate*, orice.
+
+Apare pe telefonul participantului, pe ecranul mesei, sub întrebare. Dacă e gol, nu apare nimic.
+
+---
+
+## Algoritmul
+
+**Neatins azi.** Verificat pe 20.000 de simulări: zero oameni pe dinafară, zero prieteni despărțiți.
+
+O masă tăcută la fiecare 4.260 formate — adică o dată la ~850 de seri. E sub pragul la care merită complexitate în plus.
