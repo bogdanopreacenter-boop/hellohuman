@@ -37,6 +37,14 @@ var HH = (function () {
     else copy(txt);
   }
 
+  /* Cand trimiti un link, adresa trebuie sa plece ca adresa, nu ca text.
+     Aplicatiile de mesagerie fac legatura doar din campul url. */
+  function shareLink(url, txt) {
+    if (navigator.share) {
+      navigator.share({ title: 'HelloHuman', text: txt || '', url: url }).catch(function () {});
+    } else copy(url);
+  }
+
   /* ---------- timp, scris omenește ---------- */
   var LANG = 'ro';
   function setLang(l) { LANG = l }
@@ -405,7 +413,7 @@ var HH = (function () {
 
   return {
     addFormate: addFormate, toateFormatele: toateFormatele,
-    el: el, esc: esc, say: say, copy: copy, shareTxt: shareTxt, vibrate: vibrate,
+    el: el, esc: esc, say: say, copy: copy, shareTxt: shareTxt, shareLink: shareLink, vibrate: vibrate,
     setLang: setLang, getLang: getLang, fmtDate: fmtDate, fmtLeft: fmtLeft, fmtWhen: fmtWhen,
     initNav: initNav, go: go, back: back, show: show, current: current,
     keep: keep, recall: recall, drop: drop,

@@ -83,19 +83,18 @@ body.appbody .sc.on{display:block}
   <input type="text" id="cEv" maxlength="46" placeholder="Joi seara">
   <label class="lb" for="cT"data-t="cTab">Numerele meselor din sală</label>
   <input type="text" id="cT" placeholder="1, 2, 3, 4, 5, 6">
-  <p class="sub2" style="margin-top:6px"data-t="cTabS">Scrie-le exact cum apar pe mese. Oamenii sunt trimiși doar acolo.</p>
 
   <button class="btn ghost small" id="bAdv" style="margin-top:22px"data-t="cAdv">Ajustează detaliile</button>
   <p class="note" id="cNote"></p>
-    <label class="lb" for="cQ"data-t="cQs">Întrebările de la mese, una pe rând</label>
-    <textarea id="cQ" rows="5"></textarea>
-  <p class="sub2" style="margin-top:6px" data-t="cQsS">Fiecare masă primește una, pe rând. Poți schimba oricare.</p>
+    
 
-  <label class="lb" for="cOfera" data-t="cOf">Ce oferă localul, dacă oferă ceva</label>
-  <input type="text" id="cOfera" maxlength="80" placeholder="o cafea din partea casei">
-  <p class="sub2" style="margin-top:6px" data-t="cOfS">Apare pe telefonul oamenilor, după ce se așază. Lasă gol dacă nu e nimic.</p>
+  
 
 <div id="cAdv" style="display:none">
+    <label class="lb" for="cOfera" data-t="cOf">Ce oferă localul, dacă oferă ceva</label>
+  <input type="text" id="cOfera" maxlength="80" placeholder="o cafea din partea casei">
+    <label class="lb" for="cQ"data-t="cQs">Întrebările de la mese, una pe rând</label>
+    <textarea id="cQ" rows="5"></textarea>
     <label class="lb" for="cS"data-t="cSeats">Oameni la o masă</label>
     <input type="text" id="cS" maxlength="2" inputmode="numeric">
     <label class="lb" for="cM"data-t="cMin">Minute pe rundă</label>
@@ -113,7 +112,6 @@ body.appbody .sc.on{display:block}
   <div id="cPragBox" style="display:none">
     <label class="lb" for="cPrag"data-t="cPragL">Pornește când s-au adunat</label>
     <input type="text" id="cPrag" maxlength="2" inputmode="numeric" placeholder="8">
-    <p class="sub2" style="margin-top:6px"data-t="cPragS">Cu cât aștepți mai mulți, cu atât mesele ies mai bine. Sub opt oameni, algoritmul nu are ce echilibra.</p>
   </div>
 
   <label class="lb" for="cPw"data-t="cPwL">Parola pentru cine pornește runda</label>
@@ -645,9 +643,9 @@ function aratQR(nume,url,hpw,evid){
 }
 el('bQB').onclick=function(e){ e.preventDefault(); HH.back() };
 el('bQCp').onclick=function(){ HH.copy(qu, el('bQCp')) };
-el('bQSh').onclick=function(){ HH.shareTxt('Scaneaza codul de pe masa: '+qu) };
+el('bQSh').onclick=function(){ HH.shareLink(qu, 'Scanează codul de pe masă') };
 el('bQPrint').onclick=function(){ window.print() };
-el('bQSend').onclick=function(){ HH.shareTxt('Sapte intrebari scurte, ca sa putem pregati evenimentul. La final primiti un cod - trimiteti-ni-l inapoi.\n\n'+el('qLink').textContent) };
+el('bQSend').onclick=function(){ HH.shareLink(el('qLink').textContent) };
 el('bQCopy').onclick=function(){ HH.copy(el('qLink').textContent, el('bQCopy')) };
 
 /* ---------- pornire ---------- */
