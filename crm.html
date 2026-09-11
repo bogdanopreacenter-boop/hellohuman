@@ -41,7 +41,7 @@ body.appbody .sc.on{display:block}
 
   <div class="stats" style="margin-top:16px">
     <div class="st"><div class="n" id="kPart">0</div><div class="t">parteneri</div></div>
-    <div class="st"><div class="n" id="kEv">0</div><div class="t">seri</div></div>
+    <div class="st"><div class="n" id="kEv">0</div><div class="t">runde</div></div>
     <div class="st"><div class="n" id="kLead">0</div><div class="t">contacte</div></div>
   </div>
   <div class="stats" style="margin-top:2px">
@@ -49,7 +49,7 @@ body.appbody .sc.on{display:block}
   </div>
 
   <div class="tabs" id="tabs">
-    <button class="tab on" data-tab="Ev">Seri</button>
+    <button class="tab on" data-tab="Ev">Runde</button>
     <button class="tab" data-tab="Pt">Parteneri</button>
     <button class="tab" data-tab="Lo">Contacte</button>
     <button class="tab" data-tab="Rq">Cereri <span id="rqDot"></span></button>
@@ -69,7 +69,7 @@ body.appbody .sc.on{display:block}
       <button class="btn ghost small" id="bMarkSel" style="display:none">Marchează ca probă</button>
     </div>
     <div class="list" id="lEv" style="max-height:none"></div>
-    <button class="btn wide" id="bNewEv" style="margin-top:16px">Pregătește o seară</button>
+    <button class="btn wide" id="bNewEv" style="margin-top:16px">Pregătește o rundă</button>
   </div>
 
   <div id="tPt" style="display:none">
@@ -104,7 +104,7 @@ body.appbody .sc.on{display:block}
   <h2 id="pName">—</h2>
   <p class="sub2" id="pWhere" style="margin-top:6px"></p>
   <div class="stats" style="margin-top:18px">
-    <div class="st"><div class="n" id="pEv">0</div><div class="t">seri</div></div>
+    <div class="st"><div class="n" id="pEv">0</div><div class="t">runde</div></div>
     <div class="st"><div class="n" id="pPe">0</div><div class="t">oameni</div></div>
     <div class="st"><div class="n" id="pMa">0</div><div class="t">contacte</div></div>
   </div>
@@ -118,7 +118,7 @@ body.appbody .sc.on{display:block}
   <label class="lb" for="pNote">Notițele tale</label>
   <textarea id="pNote" rows="4" placeholder="cu cine ai vorbit, ce ați stabilit, când reveniți"></textarea>
   <button class="btn ghost small" id="bPNote" style="margin-top:9px">Salvează notițele</button>
-  <label class="lb">Serile lui</label>
+  <label class="lb">Rundele lui</label>
   <div class="list" id="pList" style="max-height:none"></div>
   <p class="msg2" id="mPart"></p>
   <div class="push">
@@ -127,9 +127,9 @@ body.appbody .sc.on{display:block}
   </div>
 </section>
 
-<!-- fișa serii -->
+<!-- fișa rundei -->
 <section class="sc" id="sEv">
-  <a class="back" href="#" id="bEB">← Seri</a>
+  <a class="back" href="#" id="bEB">← Runde</a>
   <p class="eyebrow" id="eWho">—</p>
   <h2 id="eName">—</h2>
   <p class="sub2" id="eWhen" style="margin-top:6px"></p>
@@ -145,7 +145,7 @@ body.appbody .sc.on{display:block}
   <label class="lb">Emailuri lăsate aici</label>
   <div class="list" id="eMails" style="max-height:none"></div>
   <p class="msg2" id="mEv"></p>
-  <div class="push"><button class="btn ghost wide" id="bEDel" style="border-color:rgba(196,85,47,.5);color:#E89078">Șterge seara</button></div>
+  <div class="push"><button class="btn ghost wide" id="bEDel" style="border-color:rgba(196,85,47,.5);color:#E89078">Șterge runda</button></div>
 </section>
 
 
@@ -167,10 +167,11 @@ body.appbody .sc.on{display:block}
   <p class="sub2" style="margin-top:6px">Minute, separate prin virgulă. Lasă gol dacă nu are cronometru.</p>
 
   <label class="lb">Cele patru variante de la înscriere</label>
-  <input type="text" id="fC0" maxlength="50" placeholder="prima variantă">
-  <input type="text" id="fC1" maxlength="50" placeholder="a doua" style="margin-top:6px">
-  <input type="text" id="fC2" maxlength="50" placeholder="a treia" style="margin-top:6px">
-  <input type="text" id="fC3" maxlength="50" placeholder="a patra" style="margin-top:6px">
+  <button class="btn ghost small" id="bFEx" style="margin-bottom:10px">Completează un exemplu</button>
+  <input type="text" id="fC0" maxlength="50" placeholder="Am jucat multe, explic eu regulile">
+  <input type="text" id="fC1" maxlength="50" placeholder="Știu câteva jocuri" style="margin-top:6px">
+  <input type="text" id="fC2" maxlength="50" placeholder="Azi ascult mai mult" style="margin-top:6px">
+  <input type="text" id="fC3" maxlength="50" placeholder="Sunt la prima rundă" style="margin-top:6px">
 
   <label class="lb">Care dintre ele înseamnă „prefer să ascult"</label>
   <div class="opts" id="fTacut"></div>
@@ -234,35 +235,40 @@ body.appbody .sc.on{display:block}
   <div class="push"><button class="btn wide" id="bDGo">Pornește demonstrația</button></div>
 </section>
 
-<!-- configurarea unei seri -->
+<!-- configurarea unei runde -->
 <section class="sc" id="sCfg">
-  <a class="back" href="#" id="bCB">← Seri</a>
+  <a class="back" href="#" id="bCB">← Runde</a>
   <p class="eyebrow">Proprietar</p>
-  <h2>Pregătește o seară</h2>
+  <h2>Pregătește o rundă</h2>
   <label class="lb">Unde se întâmplă</label>
   <div class="opts" id="cProf"></div>
   <p class="note" id="cNote"></p>
-  <label class="lb" for="cEv">Numele serii</label>
-  <input type="text" id="cEv" maxlength="46" placeholder="Joi la Barul Vechi">
-  <label class="lb" for="cCl">Partenerul</label>
-  <select id="cCl"></select>
+  
+  
   <label class="lb" for="cT">Numerele meselor</label>
   <input type="text" id="cT" placeholder="1, 2, 3, 4, 5, 6">
     
 
   
 
-<button class="btn ghost small" id="bCAdv" style="margin-top:22px">Ajustează detaliile</button>
+  <label class="lb" for="cS">Oameni la o masă</label>
+    <input type="text" id="cS" maxlength="2" inputmode="numeric" placeholder="3">
+  <label class="lb" for="cM">Minute pe rundă</label>
+    <div class="opts" id="cMOpt" style="margin-bottom:8px"></div>
+    <input type="text" id="cM" maxlength="3" inputmode="numeric" placeholder="15">
+
+  <button class="btn ghost small" id="bCAdv" style="margin-top:22px">Ajustează detaliile</button>
   <div id="cAdv" style="display:none">
+    <label class="lb" for="cCl">Partenerul</label>
+  <select id="cCl"></select>
+    <label class="lb" for="cEv">Numele rundei</label>
+  <input type="text" id="cEv" maxlength="46" placeholder="Joi la Barul Vechi">
     <label class="lb" for="cOfera">Ce oferă localul, dacă oferă ceva</label>
   <input type="text" id="cOfera" maxlength="80" placeholder="o cafea din partea casei">
     <label class="lb" for="cQ">Întrebările de la mese, una pe rând</label>
     <textarea id="cQ" rows="5"></textarea>
-    <label class="lb" for="cS">Oameni la o masă</label>
-    <input type="text" id="cS" maxlength="2" inputmode="numeric" placeholder="3">
-    <label class="lb" for="cM">Minute pe rundă</label>
-    <div class="opts" id="cMOpt" style="margin-bottom:8px"></div>
-    <input type="text" id="cM" maxlength="3" inputmode="numeric" placeholder="15">
+    
+    
     <label class="lb">Ce alege participantul</label>
     <input type="text" id="cC0" maxlength="46" placeholder="—">
     <input type="text" id="cC1" maxlength="46" placeholder="—" style="margin-top:6px">
@@ -280,7 +286,7 @@ body.appbody .sc.on{display:block}
   <label class="lb" for="cPw">Parola gazdei</label>
   <input type="text" id="cPw" maxlength="24" placeholder="4821">
   <p class="msg2" id="mCfg"></p>
-  <div class="push"><button class="btn wide" id="bCGo">Creează seara</button></div>
+  <div class="push"><button class="btn wide" id="bCGo">Creează runda</button></div>
 </section>
 
 <!-- codul QR -->
@@ -352,7 +358,7 @@ async function salveaza(mut){
   await API.bookSave(key,{partners:book.partners,events:book.events,formate:book.formate||[]});
 }
 
-/* ---------- starea reală a serilor ---------- */
+/* ---------- starea reală a rundelor ---------- */
 async function citesteLive(){
   var prag=Date.now()-3*86400000;
   var recente=(book.events||[]).filter(function(e){return (e.ts||0)>prag}).slice(-12);
@@ -430,7 +436,7 @@ function paintMain(){
         +'<div><div class="num">'+((s&&s.people)||e.people||0)+'</div><div class="numt">oameni</div>'
         +(selMod?'':'<div class="numt" style="margin-top:6px;color:var(--gold)">deschide →</div>')+'</div></div>';
     }).join(''):'<p class="sub2" style="padding:16px 0">'+
-      (filtru==='live'?'Nicio rundă acum.':(filtru==='test'?'Nicio probă.':(filtru==='real'?'Nicio seară reală încă.':'Nicio seară încă.')))+'</p>';
+      (filtru==='live'?'Nicio rundă acum.':(filtru==='test'?'Nicio probă.':(filtru==='real'?'Nicio rundă reală încă.':'Nicio rundă încă.')))+'</p>';
     if(selMod){ el('bDelSel').textContent='Șterge selectate'+(nrSel()?(' ('+nrSel()+')'):'') }
   }
 
@@ -442,7 +448,7 @@ function paintMain(){
       return '<div class="prow tap'+(p.off?' off':'')+'" data-pt="'+p.id+'">'
         +'<div><div class="nm">'+esc(p.name)+(p.off?' <span style="color:var(--rust);font-size:12px">(oprit)</span>':'')+'</div>'
         +'<div class="sub">'+esc((P[p.profile]||P.bar).ro)+(p.city?(' · '+esc(p.city)):'')+'</div>'
-        +'<div class="sub" style="margin-top:4px">'+ale.length+' seri · '+oameni+' oameni · ultima '+when(ult)+'</div></div>'
+        +'<div class="sub" style="margin-top:4px">'+ale.length+' runde · '+oameni+' oameni · ultima '+when(ult)+'</div></div>'
         +'<div><div class="numt" style="color:var(--gold)">deschide →</div></div></div>';
     }).join(''):'<p class="sub2" style="padding:16px 0">Niciun partener încă.</p>';
   }
@@ -484,7 +490,7 @@ function nrSel(){ return Object.keys(sel).filter(function(k){return sel[k]}).len
 el('bDelSel').onclick=async function(){
   var ids=Object.keys(sel).filter(function(k){return sel[k]});
   if(!ids.length)return say('mMain','Nu ai bifat nimic.','err');
-  if(!confirm('Ștergi '+ids.length+' '+(ids.length===1?'seară':'seri')+' din registru? Nu se mai poate reveni.'))return;
+  if(!confirm('Ștergi '+ids.length+' '+(ids.length===1?'rundă':'runde')+' din registru? Nu se mai poate reveni.'))return;
   var b=el('bDelSel'); b.disabled=true; b.textContent='…';
   try{
     await salveaza(function(bk){ bk.events=(bk.events||[]).filter(function(e){return ids.indexOf(e.id)<0}) });
@@ -517,7 +523,7 @@ el('bEMark').onclick=async function(){
 function sursa(s){
   if(!s||s==='site')return 'de pe site';
   var e=(book.events||[]).filter(function(x){return x.id===s})[0];
-  return e?('de la '+e.name):'de la o seară';
+  return e?('de la '+e.name):'de la o rundă';
 }
 function paintLeads(){
   var lo=book.leads||[], q=(el('loQ').value||'').toLowerCase(), orase={};
@@ -622,6 +628,21 @@ el('bFmt').onclick=function(){
   el('bFDel').style.display='none'; say('mFmt',''); go('sFmt');
 };
 el('bFB').onclick=function(e){ e.preventDefault(); HH.back() };
+
+el('bFEx').onclick=function(){
+  el('fNume').value='Seară de board games';
+  el('fSeats').value='5';
+  el('fDurate').value='45, 60, 90';
+  el('fC0').value='Am jucat multe, explic eu regulile';
+  el('fC1').value='Știu câteva jocuri';
+  el('fC2').value='Azi ascult mai mult';
+  el('fC3').value='Sunt la prima rundă';
+  el('fQs').value='Ce joc v-a plăcut cel mai mult și de ce?\nCe joc ați abandonat la jumătate?\nCu cine jucați de obicei?';
+  el('fNote').value='Grupuri mai mari, pentru jocuri de masă.';
+  fTacut=2; paintFTacut();
+  say('mFmt','Schimbă ce vrei, apoi salvează.','ok');
+};
+
 el('bFSave').onclick=async function(){
   var n=el('fNume').value.trim();
   if(!n)return say('mFmt','Pune-i un nume.','err');
@@ -651,7 +672,7 @@ el('bFSave').onclick=async function(){
 el('bFDel').onclick=async function(){
   var f=formate().filter(function(x){return x.id===fmtId})[0]; if(!f)return;
   var folosit=(book.events||[]).some(function(e){return e.profile===fmtId});
-  if(folosit)return say('mFmt','E folosit de o seară din registru. Nu îl pot șterge.','err');
+  if(folosit)return say('mFmt','E folosit de o rundă din registru. Nu îl pot șterge.','err');
   if(!confirm('Ștergi formatul "'+f.nume+'"?'))return;
   try{
     await salveaza(function(b){ b.formate=(b.formate||[]).filter(function(x){return x.id!==fmtId}) });
@@ -679,7 +700,7 @@ function deschidePt(id){
   el('pList').innerHTML=ale.length?ale.slice().reverse().map(function(e){
     return '<div class="li tap" data-ev="'+e.id+'"><span>'+esc(e.name)+'<br><span style="color:var(--dim);font-size:13px">'+when(e.ts)+'</span></span>'
       +'<b>'+((live[e.id]&&live[e.id].people)||e.people||0)+'</b></div>' }).join('')
-    :'<p class="sub2" style="padding:14px 0">Nicio seară încă.</p>';
+    :'<p class="sub2" style="padding:14px 0">Nicio rundă încă.</p>';
   say('mPart',''); go('sPart');
 }
 el('pList').onclick=function(e){ var r=e.target.closest('[data-ev]'); if(r)deschideEv(r.dataset.ev) };
@@ -699,12 +720,12 @@ el('bPOff').onclick=async function(){
 el('bPDel').onclick=async function(){
   var p=(book.partners||[]).filter(function(x){return x.id===ptId})[0]; if(!p)return;
   var n=(book.events||[]).filter(function(e){return e.pid===ptId}).length;
-  if(!confirm('Ștergi "'+p.name+'"? Accesul lui nu mai funcționează din acest moment. Cele '+n+' seri rămân în registru.'))return;
+  if(!confirm('Ștergi "'+p.name+'"? Accesul lui nu mai funcționează din acest moment. Cele '+n+' runde rămân în registru.'))return;
   try{ await salveaza(function(b){ b.partners=(b.partners||[]).filter(function(x){return x.id!==ptId}) });
     paintMain(); HH.back() }catch(e){ say('mPart',e.message,'err') }
 };
 
-/* ---------- fișa serii ---------- */
+/* ---------- fișa rundei ---------- */
 var evId='';
 function deschideEv(id){
   var e=(book.events||[]).filter(function(x){return x.id===id})[0]; if(!e)return;
@@ -885,7 +906,7 @@ el('qStop2').onclick=async function(){
   try{ await API.op(demoId,'stop'); demoTick() }catch(e){ say('qMsg',e.message,'err') }
 };
 
-/* ---------- pregătirea unei seri ---------- */
+/* ---------- pregătirea unei runde ---------- */
 var cProf='bar';
 function paintCProf(){
   el('cProf').innerHTML=Object.keys(P).filter(function(k){return k!=='demo'}).map(function(k){
@@ -895,6 +916,7 @@ function paintCProf(){
   el('cS').value=p.seats; el('cM').value=p.minutes;
   for(var i=0;i<4;i++)el('cC'+i).value=p.cats.ro[i]||'';
   el('cQ').value=p.qs.ro.join('\n'); if(el('cOfera'))el('cOfera').value='';
+  paintDurate(cProf);
 }
 
 function paintDurate(cheie){
@@ -962,7 +984,7 @@ el('bCGo').onclick=async function(){
     paintMain();
     aratQR(nume, HH.base()+'?e='+id, pw, id);
   }catch(e){ say('mCfg',e.message,'err') }
-  b.disabled=false; b.textContent='Creează seara';
+  b.disabled=false; b.textContent='Creează runda';
 };
 
 /* ---------- codul QR ---------- */

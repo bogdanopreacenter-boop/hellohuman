@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>HelloHuman — panoul serii</title>
+<title>HelloHuman — panoul rundei</title>
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#16302B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,7 +40,7 @@ body.appbody .sc.on{display:block}
   <p class="sub2" id="pKind" style="margin-top:6px"></p>
 
   <div id="pCorp" style="display:none">
-    <div class="note" style="margin-top:18px"><bdata-t="corpH">Pregătești o seară de firmă</b>Completezi cele șapte întrebări după ce vorbești cu clientul. Dacă preferă să scrie el, îi trimiți linkul de mai jos și îți dă un cod.</div>
+    <div class="note" style="margin-top:18px"><bdata-t="corpH">Pregătești o rundă de firmă</b>Completezi cele șapte întrebări după ce vorbești cu clientul. Dacă preferă să scrie el, îi trimiți linkul de mai jos și îți dă un cod.</div>
     <div class="link" id="qLink" style="margin-top:10px"></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
       <button class="btn ghost small" id="bQSend"data-t="corpSend">Trimite clientului</button>
@@ -52,7 +52,7 @@ body.appbody .sc.on{display:block}
   </div>
 
   <div class="stats" style="margin-top:20px">
-    <div class="st"><div class="n" id="kEv">0</div><div class="t">seri</div></div>
+    <div class="st"><div class="n" id="kEv">0</div><div class="t">runde</div></div>
     <div class="st"><div class="n" id="kPe">0</div><div class="t">oameni</div></div>
     <div class="st"><div class="n" id="kLive">0</div><div class="t">acum</div></div>
   </div>
@@ -63,24 +63,24 @@ body.appbody .sc.on{display:block}
     <b data-t="mailT">Emailul tău</b>
     <input type="email" id="pMail" maxlength="80" placeholder="contact@localultau.ro"
            style="margin-top:8px" autocomplete="off">
-    <p class="sub2" style="margin-top:6px" data-t="mailS">Aici primești raportul de după fiecare seară.</p>
+    <p class="sub2" style="margin-top:6px" data-t="mailS">Aici primești raportul de după fiecare rundă.</p>
     <button class="btn ghost small" id="bMailSave" style="margin-top:8px" data-t="mailB">Salvează</button>
     <p class="msg2" id="mMail"></p>
   </div>
 
 <div class="push">
-    <button class="btn wide" id="bNew"data-t="newEv">Pregătește o seară</button>
+    <button class="btn wide" id="bNew"data-t="newEv">Pregătește o rundă</button>
     <button class="btn ghost wide" id="bOut"data-t="out">Ieși din cont</button>
   </div>
 </section>
 
-<!-- configurarea serii -->
+<!-- configurarea rundei -->
 <section class="sc" id="sCfg">
   <a class="back" href="#" id="bCB"data-t="back">← Înapoi</a>
-  <p class="eyebrow" data-t="newEv">Pregătește o seară</p>
-  <h2 id="cTitle"data-t="cfgH">Seara ta</h2>
-  <label class="lb" for="cEv"data-t="cName">Numele serii</label>
-  <input type="text" id="cEv" maxlength="46" placeholder="Joi seara">
+  <p class="eyebrow" data-t="newEv">Pregătește o rundă</p>
+  <h2 id="cTitle"data-t="cfgH">Runda ta</h2>
+  <label class="lb" for="cEv"data-t="cName">Numele rundei</label>
+  <input type="text" id="cEv" maxlength="46" placeholder="Joi runda">
   <label class="lb" for="cT"data-t="cTab">Numerele meselor din sală</label>
   <input type="text" id="cT" placeholder="1, 2, 3, 4, 5, 6">
 
@@ -117,14 +117,14 @@ body.appbody .sc.on{display:block}
   <label class="lb" for="cPw"data-t="cPwL">Parola pentru cine pornește runda</label>
   <input type="text" id="cPw" maxlength="24">
   <p class="msg2" id="mCfg"></p>
-  <div class="push"><button class="btn wide" id="bCGo"data-t="cGo">Creează seara</button></div>
+  <div class="push"><button class="btn wide" id="bCGo"data-t="cGo">Creează runda</button></div>
 </section>
 
 <!-- panoul gazdei -->
 <section class="sc" id="sHost">
   <a class="back" href="#" id="bHB">← Înapoi</a>
   <p class="eyebrow"data-t="hostH">Gazdă</p>
-  <h2 id="hName">Seara</h2>
+  <h2 id="hName">Runda</h2>
   <div class="stats" style="margin-top:18px">
     <div class="st"><div class="n" id="hWait">0</div><div class="t">așteaptă</div></div>
     <div class="st"><div class="n" id="hTab">0</div><div class="t">mese</div></div>
@@ -133,6 +133,7 @@ body.appbody .sc.on{display:block}
   <button class="btn ghost small" id="bHQr" style="margin-top:14px"data-t="showQr">Arată codul</button>
   <p class="note" id="hAuto" style="margin-top:16px"></p>
   <div class="list" id="hList" style="max-height:none"></div>
+  <div class="note" id="hRap" style="display:none;margin-top:16px"></div>
   <p class="msg2" id="mHost"></p>
   <div class="push">
     <button class="btn ghost wide" id="bStart"data-t="startNow">Pornește acum, fără să mai aștept</button>
@@ -163,23 +164,23 @@ body.appbody .sc.on{display:block}
 var lang='ro';
 var L={
  ro:{
-  ttl:"HelloHuman — panoul serii",
+  ttl:"HelloHuman — panoul rundei",
   pass:"Parola",
   enter:"Intră",
   panel:"Panoul tău",
-  corpH:"Pregătești o seară de firmă",
+  corpH:"Pregătești o rundă de firmă",
   corpSend:"Trimite clientului",
   corpCopy:"Copiază linkul",
   corpCode:"Codul primit de la client",
   corpLoad:"Încarcă din cod",
-  nEv:"seri",
+  nEv:"runde",
   nPe:"oameni",
   nNow:"acum",
-  newEv:"Pregătește o seară",
+  newEv:"Pregătește o rundă",
   out:"Ieși din cont",
   back:"← Înapoi",
-  cfgH:"Seara ta",
-  cName:"Numele serii",
+  cfgH:"Runda ta",
+  cName:"Numele rundei",
   cTab:"Numerele meselor din sală",
   cTabS:"Scrie-le exact cum apar pe mese. Oamenii sunt trimiși doar acolo.",
   cAdv:"Ajustează detaliile",
@@ -194,9 +195,9 @@ var L={
   cPragL:"Pornește când s-au adunat",
   cPragS:"Cu cât aștepți mai mulți, cu atât mesele ies mai bine. Sub opt oameni, algoritmul nu are ce echilibra.",
   cPwL:"Parola pentru cine pornește runda",
-  cGo:"Creează seara",
+  cGo:"Creează runda",
   hostH:"Gazdă",
-  evL:"Seara",
+  evL:"Runda",
   wait:"așteaptă",
   tabs:"mese",
   left:"rămas",
@@ -207,7 +208,7 @@ var L={
   qrP:"Printează pagina și pune-o pe mese, sau arată codul de pe telefon.",
   prnt:"Printează",
   send:"Trimite",
-  noEv:"Nicio seară încă.",
+  noEv:"Nicio rundă încă.",
   rest:"Restul e deja setat",
   open:"deschide →",
   hostLink:"Pentru cine pornește runda",
@@ -225,12 +226,18 @@ var L={
   missed:"a ratat o rundă",
   pW:"Parola",
   mailT:"Emailul tău",
-  mailS:"Aici primești raportul de după fiecare seară.",
+  rapT:"Ce s-a întâmplat azi",
+  rapP:"oameni",
+  rapM:"mese",
+  rapTot:"În total:",
+  rapR1:"rundă",
+  rapRn:"runde",
+  mailS:"Aici primești raportul de după fiecare rundă.",
   mailB:"Salvează",
   mailOk:"Salvat.",
   mailWait:"Se salvează…",
   mailErr:"Adresa nu pare validă.",
-  evName:"Seară"
+  evName:"Rundă"
  },
  en:{
   ttl:"HelloHuman — evening panel",
@@ -295,6 +302,12 @@ var L={
   missed:"missed a round",
   pW:"Password",
   mailT:"Your email",
+  rapT:"What happened today",
+  rapP:"people",
+  rapM:"tables",
+  rapTot:"In total:",
+  rapR1:"round",
+  rapRn:"rounds",
   mailS:"This is where you get the report after each evening.",
   mailB:"Save",
   mailOk:"Saved.",
@@ -316,7 +329,7 @@ function applyLang(){
 }
 
 /* ============================================================
-   partener.html — panoul celui care ține seara.
+   partener.html — panoul celui care ține runda.
    Doua intrari: #p=ID pentru partener, #m=ID pentru gazda.
    ============================================================ */
 var el=HH.el, esc=HH.esc, say=HH.say, go=HH.go, API=HH.API;
@@ -331,7 +344,7 @@ var eid='', cfg={}, doc={}, freeT=[], busy=false;
 (function(){
   var hs=location.hash||'';
   if(hs.indexOf('#p=')===0){ mod='p'; id=hs.slice(3); el('lSub').textContent='Panoul tau de partener.' }
-  else if(hs.indexOf('#m=')===0){ mod='m'; id=hs.slice(3); el('lSub').textContent='Parola pe care ai primit-o pentru seara asta.' }
+  else if(hs.indexOf('#m=')===0){ mod='m'; id=hs.slice(3); el('lSub').textContent='Parola pe care ai primit-o pentru runda asta.' }
   else { el('lTitle').textContent='Link lipsa'; el('lSub').innerHTML='Deschide linkul primit de la organizator. Daca l-ai pierdut, scrie la <a href="mailto:contact@hellohuman.ro" style="color:var(--gold)">contact@hellohuman.ro</a>.'; el('pw').style.display='none'; el('bLog').style.display='none' }
 })();
 
@@ -359,7 +372,7 @@ el('bLog').onclick=async function(){
     if(!cfg.pwHost||v!==cfg.pwHost)return say('mLog','Parola gresita.','err');
     pw=v; HH.keep('hh_hp',v);
     freeT=(cfg.tables||[]).slice();
-    el('hName').textContent=cfg.ev||'Seara';
+    el('hName').textContent=cfg.ev||'Runda';
     say('mLog',''); go('sHost'); paintHost(); porneste();
   }catch(e){ say('mLog',e.message,'err') }
 };
@@ -406,7 +419,7 @@ function paintPanel(){
       +'<div class="sub" style="margin-top:4px">'+stare+'</div></div>'
       +'<div><div class="num">'+((s&&s.people)||e.people||0)+'</div><div class="numt">oameni</div>'
       +'<div class="numt" style="margin-top:6px;color:var(--gold)">deschide →</div></div></div>';
-  }).join(''):'<p class="sub2" style="padding:16px 0">Nicio seara inca.</p>';
+  }).join(''):'<p class="sub2" style="padding:16px 0">Nicio runda inca.</p>';
 }
 el('lEv').onclick=function(e){
   var r=e.target.closest('[data-ev]'); if(!r)return;
@@ -477,7 +490,7 @@ el('bCode').onclick=async function(){
     for(var i=0;i<4;i++)el('cC'+i).value=(o.cats||[])[i]||'';
     el('cQ').value=o.qs||'';
     say('mPanel',''); go('sCfg');
-    say('mCfg','Raspunsurile clientului au fost incarcate. Verifica si creeaza seara.','ok');
+    say('mCfg','Raspunsurile clientului au fost incarcate. Verifica si creeaza runda.','ok');
   }catch(e){ say('mPanel','Codul nu a fost gasit. '+e.message,'err') }
 };
 el('bCGo').onclick=async function(){
@@ -502,7 +515,7 @@ el('bCGo').onclick=async function(){
     eid=nid; cfg=conf; freeT=t.slice(); el('hName').textContent=nume;
     aratQR(nume, HH.base()+'?e='+nid, hpw, nid);
   }catch(e){ say('mCfg',e.message,'err') }
-  busy=false; b.disabled=false; b.textContent='Creeaza seara';
+  busy=false; b.disabled=false; b.textContent='Creeaza runda';
 };
 
 
@@ -565,6 +578,21 @@ function paintHost(){
     : (cfg.auto
         ? '<b>Pornește singur</b>Când se adună '+(cfg.prag||8)+' de oameni, runda începe fără să faci nimic. Acum sunt '+q0+'.'
         : '<b>Tu pornești</b>Sunt '+q0+' oameni în așteptare. Cu cât aștepți mai mulți, cu atât mesele ies mai bune.');
+
+  // raportul rundelor de azi — ce s-a intamplat, cu ora
+  var azi=(s&&s.istoric)||[];
+  if(azi.length){
+    var tot=azi.reduce(function(a,x){return a+(x.oameni||0)},0);
+    el('hRap').style.display='';
+    el('hRap').innerHTML='<b>'+T('rapT')+'</b>'+
+      azi.slice().reverse().map(function(x){
+        var d=new Date(x.ts||Date.now());
+        var ora=('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);
+        return ora+' — '+x.oameni+' '+T('rapP')+', '+x.mese+' '+T('rapM');
+      }).join('<br>')+
+      '<br><br>'+T('rapTot')+' '+tot+' '+T('rapP')+' in '+azi.length+' '+(azi.length===1?T('rapR1'):T('rapRn'));
+  } else el('hRap').style.display='none';
+
   el('bStop').style.display=r?'':'none';
   el('bStart').textContent=cfg.oneTable?'Deschide masa':(r?'Runda urmatoare':'Porneste runda');
   var q=(s.wait||[]).slice().sort(HH.ordq);
@@ -575,7 +603,7 @@ function paintHost(){
 }
 
 el('bHB').onclick=function(e){ e.preventDefault(); if(mod==='p')HH.back(); };
-el('bHQr').onclick=function(){ aratQR(cfg.ev||'Seara', HH.base()+'?e='+eid, cfg.pwHost, eid) };
+el('bHQr').onclick=function(){ aratQR(cfg.ev||'Runda', HH.base()+'?e='+eid, cfg.pwHost, eid) };
 el('bStop').onclick=async function(){
   if(busy)return; busy=true;
   try{ await API.op(eid,'stop'); doc=await API.get(eid); paintHost(); say('mHost','') }
