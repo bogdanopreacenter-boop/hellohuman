@@ -144,22 +144,13 @@ body{background:#16302B;margin:0}
 <main id="top">
   <section class="hero">
     <div class="wrap">
-      <div class="diptic">
-        <figure>
-          <img src="/cartonas-cod-qr-masa-bar.jpg" width="1408" height="768"
-               alt="Cartonaș HelloHuman cu cod QR pe o masă, lângă mâna cuiva care tocmai l-a scanat cu telefonul"
-               fetchpriority="high" decoding="async">
-          <figcaption><span class="nr">01</span><span data-t="dp1">Scanezi cartonașul de pe masă.</span></figcaption>
-        </figure>
-        <figure>
-          <img src="/conversatie-masa-librarie.jpg" width="1408" height="768"
-               alt="Patru oameni care nu se cunosc, la aceeași masă, în conversație"
-               loading="lazy" decoding="async">
-          <figcaption><span class="nr">02</span><span data-t="dp2">Te așezi cu trei oameni pe care nu îi cunoști.</span></figcaption>
-        </figure>
-      </div>
-      <h1 data-t="hH">Oamenii de lângă tine<br>capătă nume.</h1>
-      <p class="lead" data-t="hP">Fără profiluri. Fără alegeri.<br>Doar oamenii care erau deja acolo.</p>
+      <figure class="heroimg">
+        <img src="/cartonas-cod-qr-masa-bar.jpg" width="1408" height="768"
+             alt="Cartonaș HelloHuman cu cod QR pe o masă, lângă mâna cuiva care tocmai l-a scanat cu telefonul"
+             fetchpriority="high" decoding="async">
+      </figure>
+      <h1 data-t="hH">Cunoști oameni noi.<br>Chiar acolo unde ești.</h1>
+      <p class="lead" data-t="hP">Fără dating, fără aplicații, fără profiluri.<br><br><b>Scanezi codul de pe masă, alegi cum vrei să participi, iar noi te așezăm la o masă cu oameni care vor să discute.</b></p>
       <div class="cta">
         <a class="btn" href="#how" data-t="hB1">Vezi cum funcționează</a>
         <a class="btn ghost" href="#faq" data-t="hB2">Întrebări frecvente</a>
@@ -498,7 +489,7 @@ en:{dp1:'You scan the card on the table.',dp2:'You sit down with three people yo
  cdWa:'Send on WhatsApp',cdMail:'Send by email',cdCopy:'Copy the code'}
 };
 var SITE={
- ro:{ hP:'Fără profiluri. Fără alegeri.<br data-t="f4q">Doar oamenii care erau deja acolo.',
+ ro:{ hP:'Fără dating, fără aplicații, fără profiluri.<br><br><b>Scanezi codul de pe masă, alegi cum vrei să participi, iar noi te așezăm la o masă cu oameni care vor să discute.</b>',
  sP:'Nu trebuie să abordezi pe nimeni. Sistemul face totul pentru tine.',
  s1h:'Scanezi codul',s1p:'Găsești un cod pe masă. Îl scanezi cu camera telefonului și scrii prenumele tău.',
  s2h:'Alegi cum vrei să participi',s2p:'Vrei să vorbești? Preferi să asculți? Cauți idei noi? Alege o opțiune, iar noi îți spunem imediat la ce masă să te așezi.',
@@ -515,7 +506,7 @@ var SITE={
  q2:'Comunicarea spontană cu un străin poate aduce o stare de bine neașteptată.',
  wEnd:'De ce amânăm atunci? Pentru că ne e teamă de ce va crede celălalt. HelloHuman elimină presiunea: tu doar te așezi la masă.',
  hEye:'Oameni noi, acolo unde ești deja',
- hH:'Oamenii de lângă tine<br data-t="cCap">capătă nume.',
+ hH:'Cunoști oameni noi.<br>Chiar acolo unde ești.',
  hB1:'Vezi cum funcționează',hB2:'Întrebări frecvente',cCap:'Acesta este ecranul pe care îl vei vedea',
  cQv:'Descoperiți trei lucruri<br>pe care le aveți în comun',
  sEye:'Cum funcționează?',sH:'Trei pași.<br>Zece secunde.',
@@ -523,7 +514,7 @@ var SITE={
  fEye:'Întrebări frecvente',fH:'Ai întrebări?<br>Iată răspunsurile.',
  wEye:'De ce funcționează',wH:'Știința din spatele<br>conexiunilor umane.',
  ftS:'Pe scurt',ftT:'Oameni care nu se cunosc ajung să împartă o conversație autentică, în locurile în care se află deja.'},
- en:{ hP:'No profiles. No choosing.<br>Just the people who were already there.',
+ en:{ hP:'No dating, no apps, no profiles.<br><br><b>Scan the code on the table, choose how you want to join, and we\'ll seat you at a table with people who want to talk.</b>',
  sP:'You do not have to approach anyone. The system does it all for you.',
  s1h:'You scan the code',s1p:'There is a code on the table. Scan it with your phone camera and write your first name.',
  s2h:'You choose how to join',s2p:'Want to talk? Rather listen? Looking for new ideas? Pick one, and we tell you straight away which table to sit at.',
@@ -540,7 +531,7 @@ var SITE={
  q2:'Spontaneous communication with a stranger can bring unexpected well-being.',
  wEnd:'Why do we postpone then? Because we fear what the other person will think. HelloHuman removes the pressure: you just sit down at the table.',
  hEye:'New people, where you already are',
- hH:'The people next to you<br>get names.',
+ hH:'Meet new people.<br>Right where you are.',
  hB1:'See how it works',hB2:'FAQ',cCap:'This is the screen you will see',
  cQv:'Discover three things<br>you all have in common',
  sEye:'How does it work?',sH:'Three steps.<br>Ten seconds.',
@@ -694,6 +685,10 @@ async function tick(){
   var inCoada=(s.wait||[]).some(function(w){return w.id===me.id});
   var nCoada=(s.wait||[]).length;
   el('wN').textContent=nCoada||1;
+  var nT=document.querySelector('#sWait .st .t');
+  if(nT) nT.textContent = (nCoada||1)===1
+    ? (lang==='en'?'has scanned so far':'a scanat până acum')
+    : (lang==='en'?'have scanned so far':'au scanat până acum');
 
   // cati mai lipsesc pana la masa completa
   var tinta = me.accept ? 3 : (cfg.seats||4);
@@ -703,6 +698,18 @@ async function tick(){
     : (lang==='en'
         ? (lipsa===1?'One more person':'Just '+lipsa+' more people')
         : (lipsa===1?'Mai lipsește un om':'Mai lipsesc '+lipsa+' oameni'));
+
+  // dupa 10 minute de asteptare, ii spunem sincer ca nu s-a adunat
+  var deCand = mi ? (Date.now()-(mi.ts||Date.now())) : 0;
+  if(!s.round && deCand > 10*60000){
+    el('wLipsa').innerHTML = lang==='en'
+      ? "It hasn't come together this time."
+      : 'N-a ieșit de data asta.';
+    el('wS').innerHTML = lang==='en'
+      ? 'Nobody else has scanned. You can leave your email below and we will let you know next time.'
+      : 'Nu a mai scanat nimeni. Poți să ne lași adresa mai jos și te anunțăm data viitoare.';
+    el('wAccBox').style.display='none';
+  } else { el('wAccBox').style.display='' }
 
   // orele fixe, ca sa stie cand sa revina daca nu iese acum
   if(cfg.ore){
