@@ -72,14 +72,16 @@ const K = (id) => ({
   m:   'hh:e:' + id + ':m',    // hash: cine cu cine s-a intalnit
   v:   'hh:e:' + id + ':v',    // hash: voturi
   l:   'hh:e:' + id + ':l',    // lista: emailuri
-  n:   'hh:e:' + id + ':n'     // numar de runde
+  n:   'hh:e:' + id + ':n',    // numar de runde
+  h:   'hh:e:' + id + ':h'     // lista: istoricul rundelor
 });
 
 async function evRead(id) {
   const k = K(id);
-  const [cfg, w, r, m, v, l, n] = await pipe([
+  const [cfg, w, r, m, v, l, n, hist] = await pipe([
     ['GET', k.cfg], ['HGETALL', k.w], ['GET', k.r],
-    ['HGETALL', k.m], ['HGETALL', k.v], ['LRANGE', k.l, '0', '-1'], ['GET', k.n]
+    ['HGETALL', k.m], ['HGETALL', k.v], ['LRANGE', k.l, '0', '-1'], ['GET', k.n],
+    ['LRANGE', k.h, '0', '-1']
   ]);
   if (cfg === null || cfg === undefined) throw new Error('evenimentul nu exista');
   const wait = Object.values(toObj(w)).map(function (x) { return parse(x, null) }).filter(Boolean);
@@ -92,6 +94,7 @@ async function evRead(id) {
     state: {
       wait: wait,
       round: parse(r, null),
+      istoric: (hist || []).map(function (x) { try { return JSON.parse(x) } catch (e) { return null } }).filter(Boolean),
       rounds: parseInt(n || '0', 10) || 0,
       met: met,
       votes: votes,
@@ -144,6 +147,12 @@ async function evLead(id, lead) {
 async function evRound(id, round, seatedIds, leftovers, metAdd) {
   const k = K(id);
   const cmds = [['SET', k.r, JSON.stringify(round), 'EX', TTL], ['INCR', k.n]];
+  // o linie in istoric, pentru raportul partenerului: ora, cati oameni, cate mese
+  cmds.push(['RPUSH', k.h, JSON.stringify({
+    ts: Date.now(),
+    oameni: (seatedIds || []).length,
+    mese: ((round || {}).tables || []).length
+  })], ['EXPIRE', k.h, String(TTL)]);
   seatedIds.forEach(function (pid) { cmds.push(['HDEL', k.w, pid]) });
   leftovers.forEach(function (p) { cmds.push(['HSET', k.w, p.id, JSON.stringify(p)]) });
   Object.keys(metAdd || {}).forEach(function (pid) {
