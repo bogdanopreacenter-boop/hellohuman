@@ -294,6 +294,16 @@ export default async function handler(req, res) {
         formate: b.formate || []
       });
     }
+    // Partenerul isi poate schimba doar emailul. Nimic altceva.
+    if (req.method === 'POST' && q.partnersave) {
+      const b = await bookRead();
+      const p = (b.partners || []).filter(function (x) { return x.pw === q.pw })[0];
+      if (!p) return res.status(401).json({ error: 'parola gresita' });
+      const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
+      if (typeof body.email === 'string') p.email = body.email.slice(0, 80);
+      await bookWrite(b);
+      return res.status(200).json({ ok: true });
+    }
     if (req.method === 'POST' && (q.addevent || q.delevent)) {
       const b = await bookRead();
       const p = (b.partners || []).filter(function (x) { return x.id === String(q.id || '') })[0];
