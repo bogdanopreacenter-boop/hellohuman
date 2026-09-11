@@ -267,15 +267,12 @@ var HH = (function () {
      nu produce apropiere. Caută doar condițiile în care schimbul poate porni. */
   function sizes(p, tb, se) {
     if (p < 2 || tb < 1) return [];
-    var g = Math.max(1, Math.min(Math.floor(p / se), tb)), out;
-    while (true) {
-      out = [];
-      var bazaN = Math.floor(p / g), rest = p % g;
-      for (var i = 0; i < g; i++) out.push(Math.min(se + 1, bazaN + (i < rest ? 1 : 0)));
-      var s = out.reduce(function (a, b) { return a + b }, 0);
-      if (s >= p || g >= tb) break;
-      g++;
-    }
+    // cate mese pot fi umplute aproape de marimea tinta
+    var g = Math.max(1, Math.min(Math.round(p / se), tb));
+    // nicio masa sub 2 oameni
+    while (g > 1 && p / g < 2) g--;
+    var out = [], bazaN = Math.floor(p / g), rest = p % g;
+    for (var i = 0; i < g; i++) out.push(bazaN + (i < rest ? 1 : 0));
     return out;
   }
   function costOf(gs, met, quiet) {
@@ -318,13 +315,22 @@ var HH = (function () {
       var asezat = {};
 
       // 1. prietenii intai, la masa cu cel mai mult loc
-      Object.keys(perechi).forEach(function (k) {
-        var gr = perechi[k];
-        if (gr.length < 2) return;
-        var idx = 0, maxLoc = -1;
-        mese.forEach(function (x, j) { var loc = sz[j] - x.length; if (loc > maxLoc) { maxLoc = loc; idx = j } });
-        if (maxLoc >= gr.length) gr.forEach(function (p) { mese[idx].push(p); asezat[p.id] = 1 });
-      });
+      // grupurile mai mari se aseaza primele — au nevoie de mai mult loc
+      Object.keys(perechi).sort(function (a, b) { return perechi[b].length - perechi[a].length })
+        .forEach(function (k) {
+          var gr = perechi[k];
+          if (gr.length < 2) return;
+          var idx = -1, maxLoc = -1;
+          mese.forEach(function (x, j) {
+            var loc = sz[j] - x.length;
+            if (loc >= gr.length && loc > maxLoc) { maxLoc = loc; idx = j }
+          });
+          // daca nicio masa nu are loc exact, o luam pe cea mai goala si o lasam sa creasca
+          if (idx < 0) {
+            mese.forEach(function (x, j) { var loc = sz[j] - x.length; if (loc > maxLoc) { maxLoc = loc; idx = j } });
+          }
+          if (idx >= 0) gr.forEach(function (p) { mese[idx].push(p); asezat[p.id] = 1 });
+        });
 
       // 2. vocile, cate una pe masa — asa nicio masa nu ramane tacuta
       var i = 0;

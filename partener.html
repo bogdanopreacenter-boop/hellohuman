@@ -484,9 +484,23 @@ async function incearcaAuto(){
   if(s.round) return;                                   // deja rulează
   if(cfg.oneTable) return;                              // librăria are gazdă, nu prag
   var q=(s.wait||[]).slice().sort(HH.ordq);
-  // pragul e cel ales de partener, nu mărimea unei mese.
-  // Cu prag mic, se formează o singură masă mereu, iar algoritmul nu are ce echilibra.
-  var prag=cfg.prag || 8;
+  if(!q.length) return;
+
+  // Pragul e cel ales de partener. Cu prag mic se formează o singură masă mereu,
+  // iar algoritmul nu are ce echilibra.
+  var prag = cfg.prag || 8;
+
+  // Dacă TOȚI cei care așteaptă au bifat că merge și mai puțini, coborâm la 2.
+  // Bifa spune "merge și în doi" — dacă pragul rămâne 3, bifa minte.
+  var totiAccepta = q.every(function(w){ return w.accept });
+  if (totiAccepta) prag = 2;
+
+  // Iar dacă cineva așteaptă de peste 12 minute și sunt cel puțin 3, pornim oricum.
+  // Mai bine o masă de trei decât trei oameni care pleacă.
+  var acum = Date.now();
+  var celMaiVechi = Math.min.apply(null, q.map(function(w){ return w.ts || acum }));
+  if (q.length >= 3 && (acum - celMaiVechi) > 12*60000) prag = 3;
+
   if(q.length < prag) return;
   autoBusy=true;
   try{ await porneste(q) }catch(e){}

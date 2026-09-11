@@ -445,3 +445,44 @@ figure.plin figcaption{ padding:clamp(16px,2.4vw,26px) 20px 0 }
 .heroimg img{ width:100%; height:clamp(240px,40vh,420px); object-fit:cover;
   border-radius:2px; display:block }
 @media(max-width:700px){ .heroimg img{ height:230px } }
+
+/* ============================================================
+   SPAȚIERE FINALĂ — mai strânsă. Ultima regulă câștigă.
+   ============================================================ */
+section{ padding:clamp(44px,6vw,76px) 0 }
+.hero{ padding:16px 0 clamp(40px,5vw,64px) }
+section + section{ padding-top:0 }
+section + section > .wrap{ padding-top:clamp(44px,6vw,76px) }
+
+.heroimg{ margin:0 0 clamp(20px,2.6vw,30px) }
+h1{ margin-bottom:clamp(14px,1.8vw,22px) }
+h2{ margin-bottom:clamp(12px,1.6vw,20px) }
+.eyebrow{ margin-bottom:clamp(9px,1.2vw,14px) }
+.lead{ margin:0 0 clamp(10px,1.4vw,16px) }
+.lead2{ margin:0 0 clamp(18px,2.4vw,28px); font-size:clamp(16px,1.9vw,19px);
+  line-height:1.55; color:var(--oat); max-width:46ch }
+.cta{ margin-top:clamp(18px,2.4vw,28px) }
+
+.steps{ gap:clamp(26px,3.4vw,40px); margin-top:clamp(26px,3.4vw,40px) }
+.ctx{ gap:clamp(18px,2.2vw,28px); margin-top:clamp(22px,2.8vw,34px) }
+.ctxrow{ padding-bottom:clamp(18px,2.2vw,26px) }
+.sig{ margin-top:clamp(24px,3vw,38px) }
+.patru{ margin:clamp(20px,2.6vw,30px) 0 clamp(16px,2vw,24px) }
+
+/* subsolul: logoul era cât un ecran */
+.foot{ padding-top:clamp(34px,4vw,52px) }
+.foot img{ max-width:150px; margin-bottom:14px }
+.foot ul li{ margin-bottom:8px }
+
+@media(max-width:700px){
+  section{ padding:36px 0 }
+  .hero{ padding:12px 0 34px }
+  section + section > .wrap{ padding-top:36px }
+  .heroimg{ margin-bottom:18px }
+  h1{ margin-bottom:14px }
+  .steps{ gap:24px; margin-top:24px }
+  .ctx{ gap:16px; margin-top:20px }
+  .sig{ margin-top:22px }
+  .foot{ padding-top:30px }
+  .foot img{ max-width:130px }
+}
