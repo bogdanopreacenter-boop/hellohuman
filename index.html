@@ -953,8 +953,25 @@ el('bQMail').onclick=function(){
   // codurile noi folosesc ?e= — dar cele vechi trebuie sa functioneze in continuare.
   var qsId = '';
   try { qsId = new URLSearchParams(location.search).get('e') || '' } catch(e){}
-  if(qsId){ intraInSeara(qsId).catch(function(e){
-    el('site').style.display=''; el('app').classList.remove('on'); alert(e.message) }); return }
+
+  // Diagnostic vizibil: daca ceva nu merge, se vede in pagina, nu intr-o alerta
+  // pe care browserul o poate ascunde. Sus, o bara galbena cu motivul.
+  function diag(txt){
+    var d=document.createElement('div');
+    d.style.cssText='position:fixed;top:0;left:0;right:0;z-index:9999;background:#E8B33A;'+
+      'color:#0B1F1A;font:13px/1.4 system-ui;padding:10px 14px;text-align:left';
+    d.textContent='HH v11sep · '+txt;
+    document.body.appendChild(d);
+  }
+
+  if(qsId){
+    intraInSeara(qsId).catch(function(e){
+      el('site').style.display=''; el('app').classList.remove('on');
+      diag('nu am putut intra: '+(e && e.message ? e.message : 'motiv necunoscut'));
+    });
+    return;
+  }
+  if(location.search.indexOf('diag')>0) diag('fisier nou, fara ?e= in adresa');
 
   if(h.indexOf('#e=')===0){ intraInSeara(h.slice(3)).catch(function(e){
     el('site').style.display=''; el('app').classList.remove('on'); alert(e.message) }); return }
