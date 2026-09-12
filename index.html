@@ -981,5 +981,39 @@ el('bQMail').onclick=function(){
   }
 })();
 </script>
+
+<script>
+/* Rutarea, intr-un bloc propriu. Daca orice alt script cade, acesta ruleaza.
+   Asteapta ca intraInSeara sa fie gata, apoi intra in seara. */
+(function(){
+  function bara(txt, culoare){
+    var d=document.createElement('div');
+    d.style.cssText='position:fixed;top:0;left:0;right:0;z-index:99999;background:'+(culoare||'#E8B33A')+';'+
+      'color:#0B1F1A;font:13px/1.45 system-ui,sans-serif;padding:10px 14px';
+    d.textContent=txt;
+    document.body.appendChild(d);
+  }
+  var id='';
+  try{ id=new URLSearchParams(location.search).get('e')||'' }catch(e){}
+  if(!id && location.hash.indexOf('#e=')===0) id=location.hash.slice(3);
+  if(!id){
+    if(location.search.indexOf('diag')>0) bara('HH v2 · scriptul ruleaza, dar adresa nu are ?e=');
+    return;
+  }
+  var incercari=0;
+  (function asteapta(){
+    if(typeof intraInSeara==='function'){
+      try{
+        intraInSeara(id).catch(function(e){
+          bara('Nu am putut intra: '+((e&&e.message)||'motiv necunoscut'), '#E07A5F');
+        });
+      }catch(e){ bara('Eroare: '+e.message, '#E07A5F') }
+      return;
+    }
+    if(++incercari>60){ bara('Scriptul principal nu a pornit — intraInSeara lipseste', '#E07A5F'); return }
+    setTimeout(asteapta, 50);
+  })();
+})();
+</script>
 </body>
 </html>
