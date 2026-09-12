@@ -225,6 +225,19 @@ var L={
   tbl:"masa",
   missed:"a ratat o rundă",
   pW:"Parola",
+  hRun:"Rundă în curs",
+  hRunP:"Se oprește singură când expiră timpul.",
+  hAuto:"Pornește singur",
+  hAutoA:"Când se adună",
+  hAutoB:"de oameni, runda începe fără să faci nimic. Acum sunt",
+  hMan:"Tu pornești",
+  hManA:"Sunt",
+  hManB:"oameni în așteptare. Cu cât aștepți mai mulți, cu atât mesele ies mai bune.",
+  hOpen:"Deschide masa",
+  hNext:"Runda următoare",
+  hGo:"Pornește runda",
+  lSubP:"Panoul tău de partener.",
+  lSubH:"Parola pe care ai primit-o pentru runda asta.",
   mailT:"Emailul tău",
   rapT:"Ce s-a întâmplat azi",
   rapP:"oameni",
@@ -301,6 +314,19 @@ var L={
   tbl:"table",
   missed:"missed a round",
   pW:"Password",
+  hRun:"Round in progress",
+  hRunP:"It stops on its own when the time runs out.",
+  hAuto:"Starts on its own",
+  hAutoA:"When",
+  hAutoB:"people have gathered, the round begins without you doing anything. Right now there are",
+  hMan:"You start it",
+  hManA:"There are",
+  hManB:"people waiting. The more you wait for, the better the tables come out.",
+  hOpen:"Open the table",
+  hNext:"Next round",
+  hGo:"Start the round",
+  lSubP:"Your partner panel.",
+  lSubH:"The password you received for this round.",
   mailT:"Your email",
   rapT:"What happened today",
   rapP:"people",
@@ -317,7 +343,8 @@ var L={
  }
 };
 function T(k){ return (L[lang]||L.ro)[k] || (L.ro[k]||'') }
-function setLang(v){ lang=v; try{localStorage.setItem('hh_l',v)}catch(e){} applyLang() }
+function setLang(v){ lang=v; try{localStorage.setItem('hh_l',v)}catch(e){} applyLang();
+  try{ if(typeof paintHost==='function' && doc) paintHost() }catch(e){} }
 function applyLang(){
   document.documentElement.lang=lang;
   document.title=T('ttl');
@@ -343,8 +370,8 @@ var eid='', cfg={}, doc={}, freeT=[], busy=false;
 /* ---------- ce fel de intrare ---------- */
 (function(){
   var hs=location.hash||'';
-  if(hs.indexOf('#p=')===0){ mod='p'; id=hs.slice(3); el('lSub').textContent='Panoul tau de partener.' }
-  else if(hs.indexOf('#m=')===0){ mod='m'; id=hs.slice(3); el('lSub').textContent='Parola pe care ai primit-o pentru runda asta.' }
+  if(hs.indexOf('#p=')===0){ mod='p'; id=hs.slice(3); el('lSub').textContent=T('lSubP') }
+  else if(hs.indexOf('#m=')===0){ mod='m'; id=hs.slice(3); el('lSub').textContent=T('lSubH') }
   else { el('lTitle').textContent='Link lipsa'; el('lSub').innerHTML='Deschide linkul primit de la organizator. Daca l-ai pierdut, scrie la <a href="mailto:contact@hellohuman.ro" style="color:var(--gold)">contact@hellohuman.ro</a>.'; el('pw').style.display='none'; el('bLog').style.display='none' }
 })();
 
@@ -433,7 +460,7 @@ el('lEv').onclick=function(e){
 /* ---------- configurarea ---------- */
 function paintCfg(){
   var p=P[partner?(partner.profile||'bar'):'bar'];
-  el('cNote').innerHTML='<b>Restul e deja setat</b>'+esc(p.note.ro);
+  el('cNote').innerHTML='<b>'+T('rest')+'</b>'+esc(p.note.ro);
   el('cS').value=p.seats; el('cM').value=p.minutes;
   for(var i=0;i<4;i++)el('cC'+i).value=p.cats.ro[i]||'';
   el('cQ').value=p.qs.ro.join('\n'); if(el('cOfera'))el('cOfera').value='';
@@ -574,10 +601,10 @@ function paintHost(){
   el('hLeft').textContent=(r&&r.dur)?HH.fmtLeft(r.start+r.dur-Date.now()):'—';
   var q0=(s.wait||[]).length, prag=cfg.seats||4;
   el('hAuto').innerHTML = r
-    ? '<b>Rundă în curs</b>Se oprește singură când expiră timpul.'
+    ? '<b>'+T('hRun')+'</b>'+T('hRunP')
     : (cfg.auto
-        ? '<b>Pornește singur</b>Când se adună '+(cfg.prag||8)+' de oameni, runda începe fără să faci nimic. Acum sunt '+q0+'.'
-        : '<b>Tu pornești</b>Sunt '+q0+' oameni în așteptare. Cu cât aștepți mai mulți, cu atât mesele ies mai bune.');
+        ? '<b>'+T('hAuto')+'</b>'+T('hAutoA')+' '+(cfg.prag||8)+' '+T('hAutoB')+' '+q0+'.'
+        : '<b>'+T('hMan')+'</b>'+T('hManA')+' '+q0+' '+T('hManB'));
 
   // raportul rundelor de azi — ce s-a intamplat, cu ora
   var azi=(s&&s.istoric)||[];
@@ -594,7 +621,7 @@ function paintHost(){
   } else el('hRap').style.display='none';
 
   el('bStop').style.display=r?'':'none';
-  el('bStart').textContent=cfg.oneTable?'Deschide masa':(r?'Runda urmatoare':'Porneste runda');
+  el('bStart').textContent=cfg.oneTable?T('hOpen'):(r?T('hNext'):T('hGo'));
   var q=(s.wait||[]).slice().sort(HH.ordq);
   el('hList').innerHTML=r
     ? r.tables.map(function(t){return '<div class="li"><span>masa '+t.n+'</span><b>'+esc(t.people.map(function(p){return p.name}).join(', '))+'</b></div>'}).join('')
@@ -665,8 +692,8 @@ var qu='';
 function aratQR(nume,url,hpw,evid){
   qu=url; el('qName').textContent=nume; el('qUrl').textContent=url; el('qBox').innerHTML='';
   try{ new QRCode(el('qBox'),{text:url,width:230,height:230,correctLevel:QRCode.CorrectLevel.M}) }
-  catch(e){ el('qBox').innerHTML='<p style="color:#333;padding:20px">Foloseste linkul de mai jos.</p>' }
-  el('qHost').innerHTML='<b>Pentru cine porneste runda</b>'+esc(HH.base()+'partener.html#m='+evid)+'<br>Parola: '+esc(hpw||'');
+  catch(e){ el('qBox').innerHTML='<p style="color:#333;padding:20px">'+T('useLink')+'</p>' }
+  el('qHost').innerHTML='<b>'+T('hostLink')+'</b>'+esc(HH.base()+'partener.html#m='+evid)+'<br>Parola: '+esc(hpw||'');
   go('sQR');
 }
 el('bQB').onclick=function(e){ e.preventDefault(); HH.back() };

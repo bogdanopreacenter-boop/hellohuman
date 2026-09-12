@@ -364,6 +364,7 @@ body{background:#16302B;margin:0}
   <p class="sub2" style="margin-top:12px" data-t="byP">Gazda anunță runda următoare, dacă mai e una.</p>
   <div class="push">
     <button class="btn wide" id="bAgain" data-t="byAgain">Rămân pentru runda următoare</button>
+    <button class="btn ghost wide" id="bLeave" data-t="byLeave">Am plecat</button>
   </div>
 </section>
 
@@ -444,7 +445,7 @@ ro:{cOf:'Din partea casei',dp1:'Scanezi cartonașul de pe masă.',dp2:'Te așezi
  eCons:'Anunțați-mă când mai faceți. Mă pot dezabona din orice mesaj.',
  eSend:'Trimite',eTell:'Spune-i unui prieten',eNo:'Nu, mulțumesc',
  byEye:'Pe data viitoare',byH:'Mulțumim<br>că ai venit.',byP:'Gazda anunță runda următoare, dacă mai e una.',
- byAgain:'Rămân pentru runda următoare',
+ byAgain:'Rămân pentru runda următoare',byLeave:'Am plecat',
  q17:'Pasul 1 din 7',q27:'Pasul 2 din 7',q37:'Pasul 3 din 7',q47:'Pasul 4 din 7',q57:'Pasul 5 din 7',q67:'Pasul 6 din 7',q77:'Pasul 7 din 7',
  c1h:'Ce eveniment pregătiți?',c1p:'Șapte întrebări scurte. La final primiți un cod pe care îl trimiteți înapoi organizatorului.',
  c1a:'Numele evenimentului',c1b:'Compania',
@@ -474,7 +475,7 @@ en:{cOf:'On the house',dp1:'You scan the card on the table.',dp2:'You sit down w
  eCons:'Tell me when you do it again. I can unsubscribe from any message.',
  eSend:'Send',eTell:'Tell a friend',eNo:'No thanks',
  byEye:'Until next time',byH:'Thanks<br>for coming.',byP:'The host announces the next round, if there is one.',
- byAgain:'I stay for the next round',
+ byAgain:'I stay for the next round',byLeave:'I have left',
  q17:'Step 1 of 7',q27:'Step 2 of 7',q37:'Step 3 of 7',q47:'Step 4 of 7',q57:'Step 5 of 7',q67:'Step 6 of 7',q77:'Step 7 of 7',
  c1h:'What event are you preparing?',c1p:'Seven short questions. At the end you get a code to send back to the organiser.',
  c1a:'Event name',c1b:'Company',
@@ -832,6 +833,15 @@ el('bTell').onclick=function(){
     ?'I just met a few people at a table here. It is called HelloHuman: '+HH.base()
     :'Tocmai am cunoscut câțiva oameni la o masă aici. Se numește HelloHuman: '+HH.base());
 };
+
+el('bLeave').onclick=async function(){
+  try{ if(eid&&me.id) await API.op(eid,'leave',{id:me.id}) }catch(e){}
+  el('app').classList.remove('on');
+  el('site').style.display='';
+  try{ history.replaceState(null,'',location.pathname) }catch(e){}
+  window.scrollTo(0,0);
+};
+
 el('bAgain').onclick=async function(){
   try{ await API.op(eid,'join',{id:me.id,name:me.name,dep:me.dep,cat:me.cat,ts:Date.now(),miss:0,pair:''});
     midShown=false; myTable=null; go('sWait');
