@@ -1061,11 +1061,11 @@ function tiparesteCod(adresa){
     try{ if(cv) src=cv.toDataURL('image/png') }catch(e){}
     if(!src && im) src=im.src;
     tmp.remove();
-    if(!src){ alert('Codul nu s-a putut desena. Incearca din alt browser.'); return }
+    if(!src){ alert('Codul nu s-a putut desena. Încearcă din alt browser.'); return }
 
     var adr=adresa.replace(/^https?:\/\//,'');
     var w=window.open('', '_blank');
-    if(!w){ alert('Browserul a blocat fereastra de tipar. Permite ferestrele si incearca din nou.'); return }
+    if(!w){ alert('Browserul a blocat fereastra de tipar. Permite ferestrele și încearcă din nou.'); return }
     w.document.open();
     w.document.write(
       '<!doctype html><html><head><meta charset="utf-8"><title>HelloHuman</title><style>'+
@@ -1081,7 +1081,9 @@ function tiparesteCod(adresa){
       '</style></head><body><div class="pc">'+
       '<div class="t">HelloHuman</div>'+
       '<div class="q"><img src="'+src+'"></div>'+
-      '<div class="p">Scaneaza codul.<br>Alegi cum vrei sa participi.<br>Te asezi cu oameni care vor sa discute.</div>'+
+      '<div class="p">'+(cLimba==='en'
+  ? 'Scan the code.<br>Choose how you want to join.<br>You sit down with people who want to talk.'
+  : 'Scanează codul.<br>Alegi cum vrei să participi.<br>Te așezi cu oameni care vor să discute.')+'</div>'+
       '<div class="u">'+adr+'</div>'+
       '</div></body></html>');
     w.document.close();
@@ -1120,7 +1122,9 @@ function tiparesteCod(adresa){
       '</style></head><body><div class="pc">'+
       '<div class="t">HelloHuman</div>'+
       '<div class="q"><img src="'+src+'"></div>'+
-      '<div class="p">Scanează codul.<br>Alegi cum vrei să participi.<br>Te așezi cu oameni care vor să discute.</div>'+
+      '<div class="p">'+(cLimba==='en'
+  ? 'Scan the code.<br>Choose how you want to join.<br>You sit down with people who want to talk.'
+  : 'Scanează codul.<br>Alegi cum vrei să participi.<br>Te așezi cu oameni care vor să discute.')+'</div>'+
       '<div class="u">'+adr+'</div>'+
       '</div></body></html>');
     w.document.close();

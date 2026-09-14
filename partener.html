@@ -872,7 +872,9 @@ function tiparesteCod(adresa){
       '</style></head><body><div class="pc">'+
       '<div class="t">HelloHuman</div>'+
       '<div class="q"><img src="'+src+'"></div>'+
-      '<div class="p">Scanează codul.<br>Alegi cum vrei să participi.<br>Te așezi cu oameni care vor să discute.</div>'+
+      '<div class="p">'+(lang==='en'
+  ? 'Scan the code.<br>Choose how you want to join.<br>You sit down with people who want to talk.'
+  : 'Scanează codul.<br>Alegi cum vrei să participi.<br>Te așezi cu oameni care vor să discute.')+'</div>'+
       '<div class="u">'+adr+'</div>'+
       '</div></body></html>');
     w.document.close();
