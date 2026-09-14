@@ -129,10 +129,10 @@ var HH = (function () {
     bar: { mese: 6,
       ro: 'Bar', en: 'Bar', seats: 4, minutes: 15, dep: false, tacut: 2, durate: [15, 20],
       cats: {
-        ro: ['Am chef de râs', 'Vreau o discuție ca lumea', 'Azi ascult mai mult', 'Sunt nou pe aici'],
-        en: ["I'm in the mood to laugh", 'I want a proper conversation', "Today I'm mostly listening", "I'm new around here"]
+        ro: ['Am chef de râs', 'Vreau o discuție ca lumea', 'Sunt aici, las pe alții să înceapă', 'Sunt nou pe aici'],
+        en: ["I'm in the mood to laugh", 'I want a proper conversation', "I am in, someone else can start", "I'm new around here"]
       },
-      quiet: { ro: 'Azi ascult mai mult', en: "Today I'm mostly listening" },
+      quiet: { ro: 'Sunt aici, las pe alții să înceapă', en: "I am in, someone else can start" },
       qs: {
         ro: ['Găsiți trei lucruri pe care le aveți în comun.', 'Ce ați făcut în ultima lună și merită povestit?', 'Care e cel mai bun sfat prost pe care l-ați primit?', 'Ce ați învățat prea târziu?'],
         en: ['Find three things you all have in common.', 'What have you done this month that is worth telling?', 'What is the best bad advice you ever got?', 'What did you learn too late?']
@@ -145,10 +145,10 @@ var HH = (function () {
       oneTable: true, noTimer: true, edition: true,
       tacut: 2, durate: [60, 90],
       cats: {
-        ro: ['Am ceva de spus despre subiect', 'Mă interesează ce zic ceilalți', 'Azi ascult mai mult', 'Prima dată la o ediție'],
-        en: ['I have something to say about it', "I'm interested in what others think", "Today I'm mostly listening", 'First time at one of these']
+        ro: ['Am ceva de spus despre subiect', 'Mă interesează ce zic ceilalți', 'Sunt aici, las pe alții să înceapă', 'Prima dată la o ediție'],
+        en: ['I have something to say about it', "I'm interested in what others think", "I am in, someone else can start", 'First time at one of these']
       },
-      quiet: { ro: 'Azi ascult mai mult', en: "Today I'm mostly listening" },
+      quiet: { ro: 'Sunt aici, las pe alții să înceapă', en: "I am in, someone else can start" },
       qs: {
         ro: ['Cărți pe care nu le-am terminat.', 'Ce citeam la douăzeci de ani.', 'O carte cu care mă cert.', 'O carte care m-a făcut să iau o decizie.'],
         en: ['Books I never finished.', 'What I read at twenty.', 'A book I argue with.', 'A book that made me decide something.']
@@ -159,10 +159,10 @@ var HH = (function () {
     air: { mese: 3,
       ro: 'Aeroport sau gară', en: 'Airport or station', seats: 4, minutes: 30, dep: false, durate: [20, 30], autoStart: true, threshold: 3, needsFlight: true,
       tacut: 2, cats: {
-        ro: ['Am timp destul', 'Sunt cu gândul la destinație', 'Azi ascult mai mult', 'Prima dată pe ruta asta'],
-        en: ["I've got plenty of time", "My mind is already at the other end", "Today I'm mostly listening", 'First time on this route']
+        ro: ['Am timp destul', 'Sunt cu gândul la destinație', 'Sunt aici, las pe alții să înceapă', 'Prima dată pe ruta asta'],
+        en: ["I've got plenty of time", "My mind is already at the other end", "I am in, someone else can start", 'First time on this route']
       },
-      quiet: { ro: 'Azi ascult mai mult', en: "Today I'm mostly listening" },
+      quiet: { ro: 'Sunt aici, las pe alții să înceapă', en: "I am in, someone else can start" },
       qs: {
         ro: ['Cu ce treabă mergi acolo?', 'Ce merită făcut neapărat acolo unde mergem?', 'Care e cea mai bună călătorie ieșită din întâmplare?', 'Ce iei mereu în bagaj și nu folosești niciodată?'],
         en: ['What are you heading there for?', 'What is worth doing where we are headed?', 'What is the best trip you took by accident?', 'What do you always pack and never use?']
@@ -178,10 +178,10 @@ var HH = (function () {
       },
       tacut: -1, tacut2: 3, durate: [10, 20, 30, 60],
       cats2: {
-        ro: ['Am ceva de povestit despre ce facem', 'Vreau să înțeleg alt departament', 'Caut ajutor la ceva', 'Azi ascult mai mult'],
-        en: ["I've got something to share about what we do", 'I want to understand another team', "I'm looking for help with something", "Today I'm mostly listening"]
+        ro: ['Am ceva de povestit despre ce facem', 'Vreau să înțeleg alt departament', 'Caut ajutor la ceva', 'Sunt aici, las pe alții să înceapă'],
+        en: ["I've got something to share about what we do", 'I want to understand another team', "I'm looking for help with something", "I am in, someone else can start"]
       },
-      quiet: { ro: 'Azi ascult mai mult', en: "Today I'm mostly listening" },
+      quiet: { ro: 'Sunt aici, las pe alții să înceapă', en: "I am in, someone else can start" },
       qs: {
         ro: ['Ce face echipa ta și restul companiei nu prea vede?', 'Care e cea mai frecventă cerere pe care o primești?', 'La ce ești blocat acum și cine te-ar putea ajuta?', 'Ce ai afla azi care ți-ar economisi o săptămână?'],
         en: ['What does your team do that the rest of the company never sees?', 'What is the most frequent request you get?', 'What are you stuck on, and who could help?', 'What could you learn today that would save you a week?']
@@ -192,10 +192,10 @@ var HH = (function () {
     cafenea: { mese: 4,
       ro: 'Cafenea', en: 'Café', seats: 4, minutes: 20, dep: false, tacut: 2, durate: [15, 20],
       cats: {
-        ro: ['Am o pauză', 'Mi-a stat gândul la ceva toată ziua', 'Acum stau mai mult liniștit', 'Prima dată aici'],
-        en: ["I'm on a break", "Something's been on my mind all day", "Right now I'm just sitting quietly", 'First time here']
+        ro: ['Am o pauză', 'Mi-a stat gândul la ceva toată ziua', 'Sunt aici, las pe alții să înceapă', 'Prima dată aici'],
+        en: ["I'm on a break", "Something's been on my mind all day", "I am in, someone else can start", 'First time here']
       },
-      quiet: { ro: 'Acum stau mai mult liniștit', en: "Right now I'm just sitting quietly" },
+      quiet: { ro: 'Sunt aici, las pe alții să înceapă', en: "I am in, someone else can start" },
       qs: {
         ro: ['La ce te gândeai înainte să te așezi aici?', 'Ce ai făcut luna asta și merită povestit?', 'Ce ai învățat prea târziu?', 'Care e cel mai bun sfat prost pe care l-ai primit?'],
         en: ['What were you thinking about before you sat down?', 'What have you done this month that is worth telling?', 'What did you learn too late?', 'What is the best bad advice you ever got?']
@@ -206,10 +206,10 @@ var HH = (function () {
     restaurant: { mese: 4,
       ro: 'Restaurant', en: 'Restaurant', seats: 4, minutes: 30, dep: false, tacut: 2, durate: [30, 60],
       cats: {
-        ro: ['Am chef de râs', 'Am chef de o discuție bună', 'Azi ascult mai mult', 'Sunt de altundeva'],
-        en: ["I'm in the mood to laugh", "I'm up for a good conversation", "Today I'm mostly listening", "I'm from somewhere else"]
+        ro: ['Am chef de râs', 'Am chef de o discuție bună', 'Sunt aici, las pe alții să înceapă', 'Sunt de altundeva'],
+        en: ["I'm in the mood to laugh", "I'm up for a good conversation", "I am in, someone else can start", "I'm from somewhere else"]
       },
-      quiet: { ro: 'Azi ascult mai mult', en: "Today I'm mostly listening" },
+      quiet: { ro: 'Sunt aici, las pe alții să înceapă', en: "I am in, someone else can start" },
       qs: {
         ro: ['Ce ai făcut anul ăsta și nu te așteptai să faci?', 'Ce ai învățat prea târziu?', 'Care e cea mai bună masă pe care ai mâncat-o și unde?', 'Ce ai schimba dacă ai lua-o de la capăt?'],
         en: ['What did you do this year that you did not expect?', 'What did you learn too late?', 'What is the best meal you ever had and where?', 'What would you change if you started over?']
@@ -220,10 +220,10 @@ var HH = (function () {
     hotel: { mese: 3,
       ro: 'Hotel sau pensiune', en: 'Hotel', seats: 4, minutes: 30, dep: false, tacut: 2, durate: [20, 30],
       cats: {
-        ro: ['Sunt cu treabă', 'Sunt în vacanță', 'Azi a fost o zi lungă', 'Sunt aici de câteva zile'],
-        en: ["I'm here for work", "I'm on holiday", 'Today was a long one', "I've been here a few days now"]
+        ro: ['Sunt cu treabă', 'Sunt în vacanță', 'Sunt aici, las pe alții să înceapă', 'Sunt aici de câteva zile'],
+        en: ["I'm here for work", "I'm on holiday", 'I am in, someone else can start', "I've been here a few days now"]
       },
-      quiet: { ro: 'Azi a fost o zi lungă', en: 'Today was a long one' },
+      quiet: { ro: 'Sunt aici, las pe alții să înceapă', en: 'I am in, someone else can start' },
       qs: {
         ro: ['Ce te-a adus în orașul ăsta?', 'Ce merită văzut aici și nu scrie în ghiduri?', 'Care e cea mai bună călătorie ieșită din întâmplare?', 'Ce iei mereu în bagaj și nu folosești niciodată?'],
         en: ['What brought you to this city?', 'What is worth seeing here that no guide mentions?', 'What is the best trip you took by accident?', 'What do you always pack and never use?']
@@ -234,10 +234,10 @@ var HH = (function () {
     muzeu: { mese: 4,
       ro: 'Muzeu sau spațiu cultural', en: 'Museum', seats: 4, minutes: 30, dep: false, tacut: 2, durate: [20, 30],
       cats: {
-        ro: ['M-a impresionat ceva', 'Nu am înțeles ceva', 'Azi ascult mai mult', 'Am intrat din curiozitate'],
-        en: ['Something impressed me', "There's something I didn't get", "Today I'm mostly listening", 'I came out of curiosity']
+        ro: ['M-a impresionat ceva', 'Nu am înțeles ceva', 'Sunt aici, las pe alții să înceapă', 'Am intrat din curiozitate'],
+        en: ['Something impressed me', "There's something I didn't get", "I am in, someone else can start", 'I came out of curiosity']
       },
-      quiet: { ro: 'Azi ascult mai mult', en: "Today I'm mostly listening" },
+      quiet: { ro: 'Sunt aici, las pe alții să înceapă', en: "I am in, someone else can start" },
       qs: {
         ro: ['Ce ați văzut azi și nu vă iese din cap?', 'Ce nu ați înțeles și ați vrea să vă explice cineva?', 'Ce ați lua acasă, dacă s-ar putea?', 'Ce v-a plictisit și de ce?'],
         en: ['What did you see today that stayed with you?', 'What did you not get, that you wish someone would explain?', 'What would you take home, if you could?', 'What bored you, and why?']

@@ -244,6 +244,16 @@ body.appbody .sc.on{display:block}
   <label class="lb">Unde se întâmplă</label>
   <div class="opts" id="cProf"></div>
   
+  <div class="note" id="impBox" style="margin-bottom:18px">
+    <b>Ai un cod de la firma de evenimente?</b>
+    <p class="sub2" style="margin-top:6px">Îl introduci aici și se completează tot singur.</p>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <input type="text" id="impCod" maxlength="40" placeholder="u_..." style="flex:1;margin:0">
+      <button class="btn ghost small" id="bImp">Încarcă</button>
+    </div>
+    <p class="msg2" id="mImp"></p>
+  </div>
+
   <label class="lb">În ce limbă vorbesc oamenii de aici</label>
   <div class="opts" id="cLang" style="margin-bottom:6px">
     <button class="opt sel" data-l="ro">Română</button>
@@ -1002,6 +1012,37 @@ el('cAuto').onclick=function(e){
   cAutoMod=b.dataset.a;
   if(cAutoMod==='auto' && !el('cPrag').value) el('cPrag').value='8';
   paintAuto();
+};
+
+
+/* Cod de configurare de la o firma de evenimente.
+   Ei completeaza chestionarul in aplicatie, iti trimit codul, tu il incarci aici. */
+el('bImp').onclick=async function(){
+  var cod=el('impCod').value.trim();
+  if(!cod) return say('mImp','Scrie codul primit.','err');
+  say('mImp','Se încarcă…');
+  try{
+    var d=await API.get(cod);
+    var q=(d.cfg&&d.cfg.quiz)||d.quiz||null;
+    if(!q) return say('mImp','Codul nu conține o configurare.','err');
+
+    el('cEv').value = q.ev||'';
+    if(el('cCl')) el('cCl').value = q.client||'';
+    el('cT').value = (q.tables||[]).join(', ');
+    el('cS').value = q.seats||4;
+    el('cM').value = q.minutes||20;
+    if(q.qs) el('cQ').value = q.qs;
+    if(q.cats) for(var i=0;i<4;i++) if(el('cC'+i)) el('cC'+i).value = q.cats[i]||'';
+    cProf='corp'; paintCProf(); paintDurate('corp');
+    el('cEv').value = q.ev||'';
+    el('cT').value = (q.tables||[]).join(', ');
+    el('cS').value = q.seats||4;
+    el('cM').value = q.minutes||20;
+    if(q.qs) el('cQ').value = q.qs;
+
+    say('mImp','Gata. Verifică și creează runda.','ok');
+    el('impCod').value='';
+  }catch(e){ say('mImp', e.message==='evenimentul nu exista' ? 'Codul nu e valid sau a expirat.' : e.message, 'err') }
 };
 
 el('bCGo').onclick=async function(){

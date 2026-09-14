@@ -213,9 +213,9 @@ body{background:#16302B;margin:0}
       <p class="eyebrow" data-t="fEye">Întrebări frecvente</p>
       <h2 data-t="fH">Ai întrebări?<br>Iată răspunsurile.</h2>
       <div class="ctx">
-        <div class="ctxrow"><h3 data-t="f1q">Ce este HelloHuman?</h3><p data-t="f1a">Este un mod simplu de a cunoaște oameni noi, chiar acolo unde ești deja. Găsești un cod QR pe masă, îl scanezi, alegi cum vrei să participi, iar noi te așezăm la o masă cu 2-3 persoane care vor să discute.</p></div>
-        <div class="ctxrow"><h3 data-t="f2q">Este o aplicație de dating?</h3><p data-t="f2a">Nu. Nu există profiluri, poze sau vârste. Nu alegi pe nimeni. Sistemul formează grupuri de 3-4 persoane pentru conversații naturale, fără nicio presiune.</p></div>
-        <div class="ctxrow"><h3 data-t="f3q">Sunt introvertit. Este pentru mine?</h3><p data-t="f3a">Da. Poți alege opțiunea „prefer să ascult”. Sistemul se asigură că nu așază doar oameni timizi la aceeași masă, iar întrebarea de start sparge gheața imediat.</p></div>
+        <div class="ctxrow"><h3 data-t="f1q">Ce este HelloHuman?</h3><p data-t="f1a">Este un mod simplu de a cunoaște oameni noi, chiar acolo unde ești deja. Găsești un cod QR pe masă, îl scanezi, alegi cum vrei să participi, iar noi te așezăm la o masă cu alți doi sau trei oameni care vor să discute.</p></div>
+        <div class="ctxrow"><h3 data-t="f2q">Este o aplicație de dating?</h3><p data-t="f2a">Nu. Nu există profiluri, poze sau vârste. Nu alegi pe nimeni. Sistemul face mese de trei sau patru oameni, pentru conversații care curg de la sine.</p></div>
+        <div class="ctxrow"><h3 data-t="f3q">Sunt introvertit. Este pentru mine?</h3><p data-t="f3a">Da. La înscriere poți alege că azi preferi să asculți. Sistemul nu adună la aceeași masă doar oameni care ascultă, iar întrebarea de început sparge gheața fără să ceară nimic de la tine.</p></div>
         
       </div>
     </div>
@@ -228,7 +228,7 @@ body{background:#16302B;margin:0}
       <img src="/logo-hellohuman.png" width="821" height="317"
            alt="HelloHuman — trei oameni la o masă, desenați dintr-o singură linie"
            style="width:100%;max-width:280px;height:auto;opacity:.9" loading="lazy" decoding="async">
-      <p class="sm" style="margin-top:10px;max-width:34ch" data-t="ftT">Oameni care nu se cunosc ajung să împartă o conversație autentică, în locurile în care se află deja.</p>
+      <p class="sm" style="margin-top:10px;max-width:34ch" data-t="ftT">Oameni care nu se cunosc stau de vorbă câteva minute, chiar acolo unde se aflau oricum.</p>
       
     </div>
     <div class="col">
@@ -266,7 +266,7 @@ body{background:#16302B;margin:0}
   <div class="opts" id="cats" style="margin-top:24px"></div>
   <p class="msg2" id="mJoin"></p>
   <div class="push">
-    <button class="btn wide" id="bIn" data-t="jIn">Sunt în sală</button>
+    <button class="btn wide" id="bIn" data-t="jIn">Intru</button>
     <button class="btn ghost wide" id="bPair" data-t="jPair">Vin cu cineva</button>
   </div>
 </section>
@@ -274,13 +274,21 @@ body{background:#16302B;margin:0}
 <section class="sc" id="sPair">
   <p class="eyebrow" data-t="pEye">Împreună</p>
   <h2 data-t="pH">Aceeași masă,<br>voi doi.</h2>
-  <p class="sub2" style="margin-top:10px" data-t="pP">Unul face un cod și îl spune cu voce tare. Celălalt îl tastează.</p>
-  <label class="lb" for="pcode" data-t="pCode">Codul primit</label>
-  <input type="text" class="big" id="pcode" maxlength="3" inputmode="numeric" placeholder="000">
+  <p class="sub2" style="margin-top:10px" data-t="pP">Unul face un cod, celălalt îl scrie aici. Sau i-l trimiți direct.</p>
+  <button class="btn wide" id="bGen" style="margin-top:22px" data-t="pGen">Fă-mi un cod</button>
   <p class="msg2" id="mPair"></p>
+
+  <div id="pSendBox" style="display:none;margin-top:10px">
+    <button class="btn ghost wide" id="bPSendCode" data-t="pSend">Trimite-i codul</button>
+  </div>
+
+  <p class="sub2" style="margin-top:26px;text-align:center" data-t="pOr">— sau —</p>
+
+  <label class="lb" for="pcode" data-t="pCode">Codul de la prietenul tău</label>
+  <input type="text" class="big" id="pcode" maxlength="3" inputmode="numeric" placeholder="000">
+
   <div class="push">
-    <button class="btn wide" id="bUse" data-t="pUse">Folosește codul</button>
-    <button class="btn ghost wide" id="bGen" data-t="pGen">Fă-mi un cod</button>
+    <button class="btn wide" id="bUse" data-t="pUse">Gata</button>
     <button class="btn ghost wide" id="bP0" data-t="back">Înapoi</button>
   </div>
 </section>
@@ -288,31 +296,31 @@ body{background:#16302B;margin:0}
 <section class="sc" id="sFlight">
   <p class="eyebrow">HelloHuman</p>
   <h2 data-t="flH">Când te îmbarci?</h2>
-  <p class="sub2" style="margin-top:10px" data-t="flP">Te așezăm doar cu oameni a căror așteptare se suprapune cu a ta, iar terminăm înainte să ți se închidă poarta.</p>
+  <p class="sub2" style="margin-top:10px" data-t="flP">Te anunțăm din timp.</p>
   <label class="lb" for="ftime" data-t="flH">Când te îmbarci?</label>
   <input type="time" id="ftime">
   <p class="msg2" id="mFl"></p>
   <div class="push">
-    <button class="btn wide" id="bFl" data-t="jIn">Sunt în sală</button>
+    <button class="btn wide" id="bFl" data-t="jIn">Intru</button>
     <button class="btn ghost wide" id="bFl0" data-t="back">Înapoi</button>
   </div>
 </section>
 
 <section class="sc" id="sWait">
-  <p class="eyebrow" data-t="wEyeA">Ești pe listă</p>
+  <p class="eyebrow" data-t="wEyeA">Te-am înscris</p>
   <h2 id="wLipsa">—</h2>
-  <p class="sub2" id="wS" style="margin-top:14px" data-t="wP">Îți vibrează telefonul când începe. Poți să-l lași în buzunar.</p>
+  <p class="sub2" id="wS" style="margin-top:14px" data-t="wP">Bagă telefonul în buzunar. Îți vibrează când începe.</p>
 
   <label class="check" id="wAccBox" style="margin-top:22px">
     <input type="checkbox" id="wAcc"><span data-t="wAccept">Merge și în doi sau trei, nu aștept să fim patru</span>
   </label>
 
   <div class="stats" style="margin-top:20px">
-    <div class="st" style="grid-column:span 3"><div class="n" id="wN">1</div><div class="t" data-t="wPeople">au scanat până acum</div></div>
+    <div class="st" style="grid-column:span 3"><div class="n" id="wN">1</div><div class="t" data-t="wPeople">sunt deja înscriși</div></div>
   </div>
 
   <p class="note" id="wOre" style="display:none"></p>
-  <div class="push"><button class="btn ghost wide" id="bW0" data-t="leave">Ies</button></div>
+  <div class="push"><button class="btn ghost wide" id="bW0" data-t="leave">Nu mai aștept</button></div>
 </section>
 
 <section class="sc" id="sTab">
@@ -321,22 +329,22 @@ body{background:#16302B;margin:0}
     <p class="kk" data-t="cK">Masa ta</p>
     <p class="no" id="tNo">—</p>
     <div class="rule"></div>
-    <div class="row"><span data-t="cW">Cu tine</span><b id="tWho">—</b></div>
-    <div class="row"><span data-t="cQ">Întrebarea voastră</span><b id="tQ">—</b></div>
+    <div class="row"><span data-t="cW">La masă cu tine</span><b id="tWho">—</b></div>
+    <div class="row"><span data-t="cQ">De aici porniți</span><b id="tQ">—</b></div>
 <div class="row" id="tOfRow" style="display:none"><span data-t="cOf">Din partea casei</span><b id="tOf">—</b></div>
     <p class="tick" id="clk">—</p>
   </div>
-  <div class="push"><button class="btn ghost wide" id="bDone" data-t="tDone">Am terminat</button></div>
+  <div class="push"><button class="btn ghost wide" id="bDone" data-t="tDone">Termin mai devreme</button></div>
 </section>
 
 <section class="sc" id="sMid">
-  <p class="eyebrow" data-t="mEye">Aproape gata</p>
-  <h2 data-t="mH">Ce facem?</h2>
-  <p class="sub2" style="margin-top:10px" data-t="mP">Doar tu vezi asta.</p>
+  <p class="eyebrow" data-t="mEye">Se apropie finalul</p>
+  <h2 data-t="mH">Tu ce ai vrea?</h2>
+  <p class="sub2" style="margin-top:10px" data-t="mP">Nimeni de la masă nu vede ce alegi.</p>
   <div class="opts" style="margin-top:22px">
-    <button class="opt" data-v="stay" data-t="mStay">Rămânem aici</button>
-    <button class="opt" data-v="move" data-t="mMove">Vreau altă masă</button>
-    <button class="opt" data-v="back" data-t="mBack">Gata pentru mine</button>
+    <button class="opt" data-v="stay" data-t="mStay">Aș mai sta cu ei</button>
+    <button class="opt" data-v="move" data-t="mMove">Aș cunoaște pe altcineva</button>
+    <button class="opt" data-v="back" data-t="mBack">Eu am terminat</button>
   </div>
 </section>
 
@@ -344,9 +352,9 @@ body{background:#16302B;margin:0}
   <img src="/logo-hellohuman.png" width="821" height="317"
        alt="HelloHuman — trei oameni la o masă, desenați dintr-o singură linie"
        style="width:100%;max-width:300px;height:auto;opacity:.85;display:block;margin:0 auto 24px">
-  <p class="eyebrow" data-t="eEye">S-a terminat</p>
+  <p class="eyebrow" data-t="eEye">Gata pentru azi</p>
   <h2 id="eH">Le-ai plăcut mai mult<br>decât crezi.</h2>
-  <p class="sub2" style="margin-top:12px" data-t="eP">Te anunțăm unde și când mai facem.</p>
+  <p class="sub2" style="margin-top:12px" data-t="eP">Vrei să știi când mai facem?</p>
 
   <div id="askBox">
     <label class="lb" for="askTxt" data-t="askQ">Dacă i-ai povesti mâine unui prieten ce ai făcut acum, ce i-ai spune?</label>
@@ -360,7 +368,7 @@ body{background:#16302B;margin:0}
 
   <label class="lb" for="em" data-t="eMail">Email</label>
   <input type="email" id="em" autocomplete="email" placeholder="tu@email.com" enterkeyhint="done" data-tp="phMail">
-  <label class="check" id="eConsBox"><input type="checkbox" id="eCons"><span data-t="eCons">Anunțați-mă când mai faceți. Mă pot dezabona din orice mesaj.</span></label>
+  <label class="check" id="eConsBox"><input type="checkbox" id="eCons"><span data-t="eCons">Da, anunță-mă. Mă pot dezabona oricând.</span></label>
   <p class="msg2" id="mEnd"></p>
   <div class="push">
     <button class="btn wide" id="bSend" data-t="eSend">Trimite</button>
@@ -370,12 +378,12 @@ body{background:#16302B;margin:0}
 </section>
 
 <section class="sc" id="sBye">
-  <p class="eyebrow" data-t="byEye">Pe data viitoare</p>
+  <p class="eyebrow" data-t="byEye">Mulțumim</p>
   <h2 data-t="byH">Mulțumim<br>că ai venit.</h2>
-  <p class="sub2" style="margin-top:12px" data-t="byP">Gazda anunță runda următoare, dacă mai e una.</p>
+  <p class="sub2" style="margin-top:12px" data-t="byP">Dacă mai e o rundă, îți vibrează telefonul.</p>
   <div class="push">
-    <button class="btn wide" id="bAgain" data-t="byAgain">Rămân pentru runda următoare</button>
-    <button class="btn ghost wide" id="bLeave" data-t="byLeave">Am plecat</button>
+    <button class="btn wide" id="bAgain" data-t="byAgain">Rămân și pentru următoarea</button>
+    <button class="btn ghost wide" id="bLeave" data-t="byLeave">Gata, plec</button>
   </div>
 </section>
 
@@ -417,8 +425,8 @@ body{background:#16302B;margin:0}
 
 <section class="sc" id="sCDone">
   <p class="eyebrow" data-t="done">Gata</p>
-  <h2 data-t="cdH">Trimiteți codul acesta.</h2>
-  <p class="sub2" style="margin-top:10px" data-t="cdP">Nu e un link — e un cod pe care organizatorul îl introduce la el.</p>
+  <h2 data-t="cdH">Gata. Trimite-ne codul.</h2>
+  <p class="sub2" style="margin-top:10px" data-t="cdP">Îl încărcăm noi și primești linkurile pentru eveniment.</p>
   <div class="link" id="qOut" style="font-family:var(--disp);font-size:30px;font-weight:900;letter-spacing:.06em;text-align:center;padding:26px 15px;color:var(--gold)"></div>
   <button class="btn wide" id="bQSh" style="margin-top:12px" data-t="cdWa">Trimite pe WhatsApp</button>
   <button class="btn ghost wide" id="bQMail" data-t="cdMail">Trimite pe email</button>
@@ -440,53 +448,53 @@ body{background:#16302B;margin:0}
 var el=HH.el, esc=HH.esc, say=HH.say, go=HH.go, API=HH.API, P=HH.PROFILES;
 
 var T={
-ro:{cOf:'Din partea casei',dp1:'Scanezi cartonașul de pe masă.',dp2:'Te așezi cu trei oameni pe care nu îi cunoști.',ftBiz:'Ai un local? Vezi cum funcționează',navBiz:'Business',aEye:'Pentru clientul agenției',aH:'Șapte lucruri despre evenimentul vostru',aP:'Completați o dată, primiți un cod. Îl trimiteți agenției și ei se ocupă de rest.',frQ:'Ai chema un prieten data viitoare?',wAccept:'Merge și în doi sau trei, nu aștept să fim patru',cap1:'Cartonașul stă pe masă. Atât trebuie să vezi.',cap2:'Patru oameni care nu se cunoșteau, la masa 7.',askPh:'o propoziție, în cuvintele tale',askSend:'Trimite răspunsul',askQ:'Dacă i-ai povesti mâine unui prieten ce ai făcut acum, ce i-ai spune?',nav1:'Cum funcționează',nav2:'Unde',nav3:'Întrebări',back:'Înapoi',next:'Continuă',leave:'Ies',done:'Gata',
+ro:{cOf:'Din partea casei',dp1:'Scanezi cartonașul de pe masă.',dp2:'Te așezi cu trei oameni pe care nu îi cunoști.',ftBiz:'Ai un local? Vezi cum funcționează',navBiz:'Business',aEye:'Pentru firma de evenimente',aH:'Șapte lucruri despre eveniment',aP:'Completezi o dată, primești un cod. Ni-l trimiți și îți dăm linkurile.',frQ:'Ai chema un prieten data viitoare?',wAccept:'Merge și în doi sau trei, nu aștept să fim patru',cap1:'Cartonașul stă pe masă. Atât trebuie să vezi.',cap2:'Patru oameni care nu se cunoșteau, la masa 7.',askPh:'o propoziție, în cuvintele tale',askSend:'Trimite răspunsul',askQ:'Dacă i-ai povesti mâine unui prieten ce ai făcut acum, ce i-ai spune?',nav1:'Cum funcționează',nav2:'Unde',nav3:'Întrebări',back:'Înapoi',next:'Continuă',leave:'Nu mai aștept',done:'Gata',
  phMail:'tu@email.com',phCity:'Orașul tău',phName:'Andrei',phTeam:'Operațiuni',
  bMailT:'Anunță-mă',iEye:'Ce te-ar interesa? Poți alege câte vrei.',
  jH:'Ce ți se potrivește?',jName:'Prenumele tău',jTeam:'Echipa sau departamentul',
- jPick:'',jIn:'Sunt în sală',jPair:'Vin cu cineva',
- pEye:'Împreună',pH:'Aceeași masă,<br>voi doi.',pP:'Unul face un cod și îl spune cu voce tare. Celălalt îl tastează.',
- pCode:'Codul primit',pUse:'Folosește codul',pGen:'Fă-mi un cod',
- flH:'Când te îmbarci?',flP:'Te așezăm doar cu oameni a căror așteptare se suprapune cu a ta, iar terminăm înainte să ți se închidă poarta.',
- wEyeA:'Ești pe listă',wPeople:'au scanat până acum',wP:'Îți vibrează telefonul când începe. Poți să-l lași în buzunar.',
- tEye:'Runda a început',tDone:'Am terminat',cK:'Masa ta',cW:'Cu tine',cQ:'Întrebarea voastră',
- mEye:'Aproape gata',mH:'Ce facem?',mP:'Doar tu vezi asta.',
- mStay:'Rămânem aici',mMove:'Vreau altă masă',mBack:'Gata pentru mine',
- eEye:'S-a terminat',eP:'Te anunțăm unde și când mai facem.',eMail:'Email',
- eCons:'Anunțați-mă când mai faceți. Mă pot dezabona din orice mesaj.',
- eSend:'Trimite',eTell:'Spune-i unui prieten',eNo:'Nu, mulțumesc',
- byEye:'Pe data viitoare',byH:'Mulțumim<br>că ai venit.',byP:'Gazda anunță runda următoare, dacă mai e una.',
- byAgain:'Rămân pentru runda următoare',byLeave:'Am plecat',
+ jPick:'',jIn:'Intru',jPair:'Vin cu cineva',
+ pEye:'Împreună',pH:'Aceeași masă,<br>voi doi.',pP:'Unul face un cod, celălalt îl scrie aici. Sau i-l trimiți direct.',
+ pCode:'Codul de la prietenul tău',pUse:'Gata',pSendTxt:'Stăm la aceeași masă. Codul e',pSend:'Trimite-i codul',pOr:'— sau —',pGen:'Fă-mi un cod',
+ flH:'Când te îmbarci?',flP:'Te anunțăm din timp.',
+ wEyeA:'Te-am înscris',wPeople:'sunt deja înscriși',wP:'Bagă telefonul în buzunar. Îți vibrează când începe.',
+ tEye:'Runda a început',tDone:'Termin mai devreme',cK:'Masa ta',cW:'La masă cu tine',cQ:'De aici porniți',
+ mEye:'Se apropie finalul',mH:'Tu ce ai vrea?',mP:'Nimeni de la masă nu vede ce alegi.',
+ mStay:'Aș mai sta cu ei',mMove:'Aș cunoaște pe altcineva',mBack:'Eu am terminat',
+ eEye:'Gata pentru azi',eP:'Vrei să știi când mai facem?',eMail:'Email',
+ eCons:'Da, anunță-mă. Mă pot dezabona oricând.',
+ eSend:'Gata',eTell:'Spune-i unui prieten',eNo:'Nu, mulțumesc',
+ byEye:'Mulțumim',byH:'Mulțumim<br>că ai venit.',byP:'Dacă mai e o rundă, îți vibrează telefonul.',
+ byAgain:'Rămân și pentru următoarea',byLeave:'Gata, plec',
  q17:'Pasul 1 din 7',q27:'Pasul 2 din 7',q37:'Pasul 3 din 7',q47:'Pasul 4 din 7',q57:'Pasul 5 din 7',q67:'Pasul 6 din 7',q77:'Pasul 7 din 7',
  c1h:'Ce eveniment pregătiți?',c1p:'Șapte întrebări scurte. La final primiți un cod pe care îl trimiteți înapoi organizatorului.',
  c1a:'Numele evenimentului',c1b:'Compania',
- c2h:'Câți oameni vor fi în sală?',c2p:'O estimare e suficientă.',
+ c2h:'Câți oameni sunt în sală?',c2p:'O estimare e suficientă.',
  c3h:'Câte mese are sala?',c3p:'Numărul de mese la care se pot așeza oamenii.',c3a:'Număr de mese',
  c4h:'Cât durează o rundă?',c4p:'După atâtea minute, oamenii se mută la altă masă.',
- c5h:'Ce vreți să obțineți?',c5p:'De asta depinde cine cu cine se așază la masă.',
- c5chk:'În sală sunt și șefi împreună cu echipele lor. Evitați-i la aceeași masă.',
+ c5h:'Ce vrei să obții?',c5p:'De asta depinde cine cu cine se așază la masă.',
+ c5chk:'Sunt și șefi cu echipele lor. Nu-i pune la aceeași masă.',
  c6h:'Ce alege fiecare om?',c6p:'O singură atingere la înscriere. Din asta se formează mesele.',
  c7h:'Despre ce să vorbească?',c7p:'Întrebarea apare pe telefonul fiecăruia, la masă.',
- c7a:'Sau scrieți-le voi, una pe rând',cGen:'Gata, generează codul',
- cdH:'Trimiteți codul acesta.',cdP:'Nu e un link — e un cod pe care organizatorul îl introduce la el.',
+ c7a:'Sau scrie-le tu, una pe rând',cGen:'Generează codul',
+ cdH:'Gata. Trimite-ne codul.',cdP:'Îl încărcăm noi și primești linkurile pentru eveniment.',
  cdWa:'Trimite pe WhatsApp',cdMail:'Trimite pe email',cdCopy:'Copiază codul'},
-en:{cOf:'On the house',dp1:'You scan the card on the table.',dp2:'You sit down with three people you do not know.',ftBiz:'Got a venue? See how it works',navBiz:'Business',aEye:'For the agency client',aH:'Seven things about your event',aP:'Fill it once, get a code. Send it to the agency and they handle the rest.',frQ:'Would you bring a friend next time?',wAccept:"Two or three is fine, I'm not waiting for four",cap1:'The card sits on the table. That is all you need to see.',cap2:'Four people who had never met, at table 7.',askPh:'one sentence, in your own words',askSend:'Send it',askQ:'If you told a friend tomorrow what you just did, what would you say?',nav1:'How it works',nav2:'Where',nav3:'Questions',back:'Back',next:'Continue',leave:'Leave',done:'Done',
+en:{cOf:'On the house',dp1:'You scan the card on the table.',dp2:'You sit down with three people you do not know.',ftBiz:'Got a venue? See how it works',navBiz:'Business',aEye:'For the events company',aH:'Seven things about the event',aP:'Fill it once, get a code. Send it to the agency and they handle the rest.',frQ:'Would you bring a friend next time?',wAccept:"Two or three is fine, I'm not waiting for four",cap1:'The card sits on the table. That is all you need to see.',cap2:'Four people who had never met, at table 7.',askPh:'one sentence, in your own words',askSend:'Send it',askQ:'If you told a friend tomorrow what you just did, what would you say?',nav1:'How it works',nav2:'Where',nav3:'Questions',back:'Back',next:'Continue',leave:'I am not waiting',done:'Done',
  phMail:'you@email.com',phCity:'Your city',phName:'Andrew',phTeam:'Operations',
  bMailT:'Keep me posted',iEye:'What would interest you? Pick as many as you like.',
  jH:'Which one fits?',jName:'Your first name',jTeam:'Team or department',
- jPick:'',jIn:"I'm in the room",jPair:'I came with someone',
- pEye:'Together',pH:'Same table,<br>the two of you.',pP:'One of you makes a code and says it out loud. The other types it in.',
- pCode:'The code you got',pUse:'Use the code',pGen:'Make me a code',
- flH:'When do you board?',flP:'We only seat you with people whose wait overlaps yours, and we finish before your gate closes.',
- wEyeA:'You are on the list',wPeople:'have scanned so far',wP:"Your phone will buzz when it starts. You can put it away.",
- tEye:'The round has started',tDone:'I am done',cK:'Your table',cW:'With you',cQ:'Your question',
- mEye:'Almost time',mH:'What now?',mP:'Only you see this.',
- mStay:'We stay here',mMove:'I want another table',mBack:'That is it for me',
- eEye:'That was it',eP:'We will tell you where and when we do it again.',eMail:'Email',
- eCons:'Tell me when you do it again. I can unsubscribe from any message.',
- eSend:'Send',eTell:'Tell a friend',eNo:'No thanks',
- byEye:'Until next time',byH:'Thanks<br>for coming.',byP:'The host announces the next round, if there is one.',
- byAgain:'I am staying for the next round',byLeave:'I am leaving',
+ jPick:'',jIn:"I am in",jPair:'I came with someone',
+ pEye:'Together',pH:'Same table,<br>the two of you.',pP:'One makes a code, the other writes it here. Or you just send it over.',
+ pCode:'The code from your friend',pUse:'Done',pSendTxt:'We are sitting together. The code is',pSend:'Send them the code',pOr:'— or —',pGen:'Make me a code',
+ flH:'When do you board?',flP:'We will get you out in time.',
+ wEyeA:'You are in',wPeople:'are already in',wP:"Put your phone away. It will buzz when it starts.",
+ tEye:'The round has started',tDone:'Finish early',cK:'Your table',cW:'At your table',cQ:'Start here',
+ mEye:'Time is nearly up',mH:'What would you like?',mP:'Nobody at the table sees what you pick.',
+ mStay:'I would stay with them',mMove:'I would meet someone new',mBack:'I am done',
+ eEye:'Done for today',eP:'Want to know when we do it again?',eMail:'Email',
+ eCons:'Yes, let me know. I can unsubscribe anytime.',
+ eSend:'Done',eTell:'Tell a friend',eNo:'No thanks',
+ byEye:'Thank you',byH:'Thanks<br>for coming.',byP:'If there is another round, your phone will buzz.',
+ byAgain:'I am staying for the next one',byLeave:'That is it, I am off',
  q17:'Step 1 of 7',q27:'Step 2 of 7',q37:'Step 3 of 7',q47:'Step 4 of 7',q57:'Step 5 of 7',q67:'Step 6 of 7',q77:'Step 7 of 7',
  c1h:'What event are you preparing?',c1p:'Seven short questions. At the end you get a code to send back to the organiser.',
  c1a:'Event name',c1b:'Company',
@@ -498,7 +506,7 @@ en:{cOf:'On the house',dp1:'You scan the card on the table.',dp2:'You sit down w
  c6h:'What does each person pick?',c6p:'One tap when they join. This is what the tables are built from.',
  c7h:'What should they talk about?',c7p:"The question appears on everyone's phone at the table.",
  c7a:'Or write your own, one per line',cGen:'Done, generate the code',
- cdH:'Send this code.',cdP:'It is not a link — it is a code the organiser types in.',
+ cdH:'Done. Send us the code.',cdP:'We load it on our side and you get the links for the event.',
  cdWa:'Send on WhatsApp',cdMail:'Send by email',cdCopy:'Copy the code'}
 };
 var SITE={
@@ -510,9 +518,9 @@ var SITE={
  nP:'Nu te poți înscrie de aici. Participarea se face doar scanând codul de pe masă. Spune-ne orașul tău și te anunțăm când organizăm ceva acolo.',
  cons:'Sunt de acord să primesc notificări despre evenimentele din orașul meu.',
  gdpr:'Folosim emailul tău doar pentru a te anunța despre evenimente din orașul tău. Nu îl vindem sau distribuim. Te poți dezabona oricând. Operator: HelloHuman, România.',
- f1q:'Ce este HelloHuman?',f1a:'Este un mod simplu de a cunoaște oameni noi, chiar acolo unde ești deja. Găsești un cod QR pe masă, îl scanezi, alegi cum vrei să participi, iar noi te așezăm la o masă cu 2-3 persoane care vor să discute.',
- f2q:'Este o aplicație de dating?',f2a:'Nu. Nu există profiluri, poze sau vârste. Nu alegi pe nimeni. Sistemul formează grupuri de 3-4 persoane pentru conversații naturale, fără nicio presiune.',
- f3q:'Sunt introvertit. Este pentru mine?',f3a:'Da. Poți alege opțiunea „prefer să ascult”. Sistemul se asigură că nu așază doar oameni timizi la aceeași masă, iar întrebarea de start sparge gheața imediat.',
+ f1q:'Ce este HelloHuman?',f1a:'Este un mod simplu de a cunoaște oameni noi, chiar acolo unde ești deja. Găsești un cod QR pe masă, îl scanezi, alegi cum vrei să participi, iar noi te așezăm la o masă cu alți doi sau trei oameni care vor să discute.',
+ f2q:'Este o aplicație de dating?',f2a:'Nu. Nu există profiluri, poze sau vârste. Nu alegi pe nimeni. Sistemul face mese de trei sau patru oameni, pentru conversații care curg de la sine.',
+ f3q:'Sunt introvertit. Este pentru mine?',f3a:'Da. La înscriere poți alege că azi preferi să asculți. Sistemul nu adună la aceeași masă doar oameni care ascultă, iar întrebarea de început sparge gheața fără să ceară nimic de la tine.',
  f4q:'Pot veni cu un prieten?',f4a:'Da. Unul dintre voi generează un cod de 3 cifre, celălalt îl introduce, iar sistemul vă așază împreună.',
  f5q:'Ce se întâmplă cu datele mele?',f5a:'Folosim doar prenumele tău pe durata evenimentului. Emailul este opțional, doar pentru a te anunța despre viitoare evenimente.',
  q1:'După o conversație, oamenii subestimează cât de mult i-au plăcut celuilalt. Este un efect care durează luni de zile.',
@@ -526,7 +534,7 @@ var SITE={
  nEye:'Unde se organizează?',nH:'În locurile pe care<br>deja le frecventezi.',
  fEye:'Întrebări frecvente',fH:'Ai întrebări?<br>Iată răspunsurile.',
  wEye:'De ce funcționează',wH:'Știința din spatele<br>conexiunilor umane.',
- ftS:'Pe scurt',ftT:'Oameni care nu se cunosc ajung să împartă o conversație autentică, în locurile în care se află deja.'},
+ ftS:'Pe scurt',ftT:'Oameni care nu se cunosc stau de vorbă câteva minute, chiar acolo unde se aflau oricum.'},
  en:{ hP:'No dating, no apps, no profiles.',hP2:'Scan the code on the table, choose how you want to join, and we\'ll seat you at a table with people who want to talk.</b>',
  sP:'You do not have to approach anyone. The system does it all for you.',
  s1h:'You scan the code',s1p:'There is a code on the table. Scan it with your phone camera and write your first name.',
@@ -643,8 +651,16 @@ el('bP0').onclick=function(){ HH.back() };
 el('bGen').onclick=function(){
   me.pair=String(Math.floor(100+Math.random()*900));
   el('pcode').value=me.pair;
+  el('pSendBox').style.display='';
   say('mPair',(lang==='en'?'Say this out loud: ':'Spune cu voce tare: ')+me.pair,'ok');
 };
+
+el('bPSendCode').onclick=function(){
+  // linkul contine si evenimentul, si codul perechii — celalalt apasa o data si e gata
+  var u = HH.base()+'?e='+encodeURIComponent(eid)+'&p='+encodeURIComponent(me.pair||'');
+  HH.shareLink(u, T('pSendTxt')+' '+(me.pair||''));
+};
+
 el('bUse').onclick=function(){
   var v=el('pcode').value.trim();
   if(!/^\d{3}$/.test(v))return say('mPair',lang==='en'?'Three digits.':'Trei cifre.','err');
@@ -711,7 +727,7 @@ async function tick(){
   el('wN').textContent=nCoada||1;
   var nT=document.querySelector('#sWait .st .t');
   if(nT) nT.textContent = (nCoada||1)===1
-    ? (lang==='en'?'has scanned so far':'a scanat până acum')
+    ? (lang==='en'?'is already in':'e deja înscris')
     : (lang==='en'?'have scanned so far':'au scanat până acum');
 
   // cati mai lipsesc pana la masa completa
@@ -996,8 +1012,11 @@ el('bQMail').onclick=function(){
     document.body.appendChild(d);
   }
 
+  var pCodUrl=''; try{ pCodUrl=new URLSearchParams(location.search).get('p')||'' }catch(e){}
   if(qsId){
-    intraInSeara(qsId).catch(function(e){
+    intraInSeara(qsId).then(function(){
+      if(pCodUrl && /^[0-9]{3}$/.test(pCodUrl)){ me.pair=pCodUrl; if(el('pcode'))el('pcode').value=pCodUrl }
+    }).catch(function(e){
       el('site').style.display=''; el('app').classList.remove('on');
       diag('nu am putut intra: '+(e && e.message ? e.message : 'motiv necunoscut'));
     });
