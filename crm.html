@@ -1049,47 +1049,7 @@ el('bQCopy').onclick=function(){ HH.copy(qUrl, el('bQCopy')) };
 el('bQShare').onclick=function(){ HH.shareLink(qUrl, 'Scanează codul de pe masă') };
 /* Tiparul se face intr-o fereastra proprie, cu HTML curat.
    Asa nu se amesteca cu stilurile panoului, care au propriile reguli de tipar. */
-function tiparesteCod(adresa){
-  var tmp=document.createElement('div'); tmp.style.display='none';
-  document.body.appendChild(tmp);
-  var src='';
-  try{
-    new QRCode(tmp,{text:adresa,width:700,height:700,correctLevel:QRCode.CorrectLevel.M});
-  }catch(e){}
-  setTimeout(function(){
-    var cv=tmp.querySelector('canvas'), im=tmp.querySelector('img');
-    try{ if(cv) src=cv.toDataURL('image/png') }catch(e){}
-    if(!src && im) src=im.src;
-    tmp.remove();
-    if(!src){ alert('Codul nu s-a putut desena. Încearcă din alt browser.'); return }
 
-    var adr=adresa.replace(/^https?:\/\//,'');
-    var w=window.open('', '_blank');
-    if(!w){ alert('Browserul a blocat fereastra de tipar. Permite ferestrele și încearcă din nou.'); return }
-    w.document.open();
-    w.document.write(
-      '<!doctype html><html><head><meta charset="utf-8"><title>HelloHuman</title><style>'+
-      '*{margin:0;padding:0;box-sizing:border-box}'+
-      'body{background:#fff;color:#111;font-family:Georgia,"Times New Roman",serif;padding:10mm}'+
-      '.pc{width:88mm;height:125mm;margin:0 auto;padding:12mm 9mm;border:1px dashed #ccc;'+
-      'display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center}'+
-      '.t{font-size:15pt;font-weight:700;letter-spacing:.02em}'+
-      '.q img{width:48mm;height:48mm;display:block}'+
-      '.p{font-size:10pt;line-height:1.55}'+
-      '.u{font-size:8.5pt;color:#555;word-break:break-all;line-height:1.3}'+
-      '@page{margin:8mm}@media print{body{padding:0}.pc{border:0}}'+
-      '</style></head><body><div class="pc">'+
-      '<div class="t">HelloHuman</div>'+
-      '<div class="q"><img src="'+src+'"></div>'+
-      '<div class="p">'+(cLimba==='en'
-  ? 'Scan the code.<br>Choose how you want to join.<br>You sit down with people who want to talk.'
-  : 'Scanează codul.<br>Alegi cum vrei să participi.<br>Te așezi cu oameni care vor să discute.')+'</div>'+
-      '<div class="u">'+adr+'</div>'+
-      '</div></body></html>');
-    w.document.close();
-    setTimeout(function(){ try{ w.focus(); w.print() }catch(e){} }, 600);
-  }, 400);
-}
 function tiparesteCod(adresa){
   var tmp=document.createElement('div'); tmp.style.display='none';
   document.body.appendChild(tmp);
