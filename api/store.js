@@ -348,6 +348,17 @@ export default async function handler(req, res) {
       if (q.leave) { await evLeave(id, String(body.id || '')); return res.status(200).json({ ok: true }) }
       if (q.vote)  { await evVote(id, String(body.id || ''), body.v); return res.status(200).json({ ok: true }) }
       if (q.lead)  { await evLead(id, body); return res.status(200).json({ ok: true }) }
+      if (q.cfg) {
+        // Gazda poate adauga o masa in timpul rundei. Nimic altceva.
+        const k = K(id);
+        const [cv] = await pipe([['GET', k.cfg]]);
+        const vechi = parse(cv, null);
+        if (!vechi) return res.status(404).json({ error: 'evenimentul nu exista' });
+        const nou = body.cfg || {};
+        if (Array.isArray(nou.tables)) vechi.tables = nou.tables.slice(0, 40);
+        await pipe([['SET', k.cfg, JSON.stringify(vechi), 'EX', TTL]]);
+        return res.status(200).json({ ok: true });
+      }
       if (q.round) { await evRound(id, body.round, body.seated || [], body.left || [], body.met || {}); return res.status(200).json({ ok: true }) }
       if (q.stop)  { await evStop(id); return res.status(200).json({ ok: true }) }
       return res.status(400).json({ error: 'operatie necunoscuta' });
