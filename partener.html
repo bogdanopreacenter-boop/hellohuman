@@ -18,6 +18,7 @@ body.appbody .sc{display:none}
 body.appbody .sc.on{display:block}
 </style>
 
+
 </head>
 <body class="appbody">
 <div class="app">
@@ -81,6 +82,11 @@ body.appbody .sc.on{display:block}
   <h2 id="cTitle"data-t="cfgH">Runda ta</h2>
   <label class="lb" for="cEv"data-t="cName">Numele rundei</label>
   <input type="text" id="cEv" maxlength="46" placeholder="Joi runda">
+    <label class="lb" data-t="cLangL">În ce limbă vorbesc oamenii de aici</label>
+  <div class="opts" id="cLang" style="margin-bottom:6px">
+    <button class="opt sel" data-l="ro">Română</button>
+    <button class="opt" data-l="en">English</button>
+  </div>
   <label class="lb" for="cT"data-t="cTab">Numerele meselor din sală</label>
   <input type="text" id="cT" placeholder="1, 2, 3, 4, 5, 6">
 
@@ -133,6 +139,20 @@ body.appbody .sc.on{display:block}
   <button class="btn ghost small" id="bHQr" style="margin-top:14px"data-t="showQr">Arată codul</button>
   <p class="note" id="hAuto" style="margin-top:16px"></p>
   <div class="list" id="hList" style="max-height:none"></div>
+  <div class="note" id="capBox" style="display:none;margin-top:16px">
+    <b id="capT">—</b>
+    <p class="sub2" id="capS" style="margin-top:6px"></p>
+
+    <button class="btn wide" id="capAuto" style="margin-top:14px" data-t="capO3">Adaugă mese, să încapă toți</button>
+    <p class="sub2" style="margin-top:4px" data-t="capO3s">Sistemul calculează câte lipsesc.</p>
+
+    <button class="btn ghost wide" id="capAdd" style="margin-top:12px" data-t="capO2">Adaug eu o masă</button>
+    <p class="sub2" style="margin-top:4px" data-t="capO2s">Aleg numărul, dacă știu sala.</p>
+
+    <button class="btn ghost wide" id="capGo" style="margin-top:12px" data-t="capO1">Pornesc cu câți încap</button>
+    <p class="sub2" style="margin-top:4px" id="capO1s">—</p>
+  </div>
+
   <div class="note" id="hRap" style="display:none;margin-top:16px"></div>
   <p class="msg2" id="mHost"></p>
   <div class="push">
@@ -238,6 +258,21 @@ var L={
   hGo:"Pornește runda",
   lSubP:"Panoul tău de partener.",
   lSubH:"Parola pe care ai primit-o pentru runda asta.",
+  pcLine:"Scanează. Alegi cum vrei să participi.<br>Te așezi cu oameni care vor să discute.",
+  cLangL:"În ce limbă vorbesc oamenii de aici",
+  need2:"Ai nevoie de cel puțin doi oameni.",
+  capA:"Așteaptă",
+  capB:"Ai loc pentru",
+  capC:"ar rămâne pe dinafară.",
+  capD:"Apasă OK ca să pornești așa, sau Anulează ca să mai adaugi o masă.",
+  capE:"Ce număr are masa în plus?",
+  capOk:"Mese adăugate:",
+  capO3:"Adaugă mese, să încapă toți",
+  capO3s:"Sistemul calculează câte lipsesc.",
+  capO2:"Adaug eu o masă",
+  capO2s:"Aleg numărul, dacă știu sala.",
+  capO1:"Pornesc cu câți încap",
+  capO1s2:"rămân pentru runda următoare.",
   mailT:"Emailul tău",
   rapT:"Ce s-a întâmplat azi",
   rapP:"oameni",
@@ -327,6 +362,21 @@ var L={
   hGo:"Start the round",
   lSubP:"Your partner panel.",
   lSubH:"The password you received for this round.",
+  pcLine:"Scan it. Choose how you want to join.<br>You sit down with people who want to talk.",
+  cLangL:"What language do people here speak",
+  need2:"You need at least two people.",
+  capA:"Waiting:",
+  capB:"You have room for",
+  capC:"would be left out.",
+  capD:"Press OK to start anyway, or Cancel to add another table.",
+  capE:"What number is the extra table?",
+  capOk:"Tables added:",
+  capO3:"Add tables so everyone fits",
+  capO3s:"The system works out how many are missing.",
+  capO2:"I will add a table",
+  capO2s:"I pick the number, if I know the room.",
+  capO1:"Start with those who fit",
+  capO1s2:"stay for the next round.",
   mailT:"Your email",
   rapT:"What happened today",
   rapP:"people",
@@ -458,15 +508,45 @@ el('lEv').onclick=function(e){
 };
 
 /* ---------- configurarea ---------- */
+
+/* Limba rundei. Se alege la creare si nu se mai schimba —
+   toti de la aceeasi masa trebuie sa citeasca acelasi text. */
+
+/* Cate mese propunem. Sunt spatiu de manevra, nu obligatie:
+   daca vin putini, sistemul ii strange la mai putine mese. */
+function meseProp(cheie){
+  var p=(typeof P!=='undefined'&&P[cheie])||null;
+  if(!p) return '1, 2, 3, 4';
+  if(p.oneTable) return '1';
+  var n=p.mese||4, a=[];
+  for(var i=1;i<=n;i++) a.push(i);
+  return a.join(', ');
+}
+
+var cLimba='ro';
+function paintCLang(){
+  var b=el('cLang'); if(!b) return;
+  [].slice.call(b.querySelectorAll('.opt')).forEach(function(x){
+    x.classList.toggle('sel', x.dataset.l===cLimba);
+  });
+}
+if(el('cLang')) el('cLang').onclick=function(e){
+  var b=e.target.closest('.opt'); if(!b) return;
+  cLimba=b.dataset.l; paintCLang();
+  if(typeof incarcaProfil==='function') incarcaProfil();
+};
+
 function paintCfg(){
   var p=P[partner?(partner.profile||'bar'):'bar'];
   el('cNote').innerHTML='<b>'+T('rest')+'</b>'+esc(p.note.ro);
   el('cS').value=p.seats; el('cM').value=p.minutes;
-  for(var i=0;i<4;i++)el('cC'+i).value=p.cats.ro[i]||'';
-  el('cQ').value=p.qs.ro.join('\n'); if(el('cOfera'))el('cOfera').value='';
+  if(el('cT')) el('cT').value=meseProp(cProf);
+  var LL=(cLimba==='en'&&p.cats.en)?p.cats.en:p.cats.ro;
+  for(var i=0;i<4;i++)el('cC'+i).value=LL[i]||'';
+  el('cQ').value=((cLimba==='en'&&p.qs.en)?p.qs.en:p.qs.ro).join('\n'); if(el('cOfera'))el('cOfera').value='';
 }
 el('bNew').onclick=function(){
-  el('cEv').value=''; el('cT').value='1, 2, 3, 4, 5, 6';
+  el('cEv').value=''; el('cT').value=meseProp(cProf);
   el('cPw').value=String(Math.floor(1000+Math.random()*9000));
   paintCfg(); cAutoMod='manual'; el('cPrag').value='8'; paintAuto(); say('mCfg',''); go('sCfg');
 };
@@ -532,7 +612,7 @@ el('bCGo').onclick=async function(){
   busy=true; b.disabled=true; b.textContent='...'; say('mCfg','');
   var conf={ev:nume,client:partner.name,profile:partner.profile,tables:t,
     seats:parseInt(el('cS').value,10)||p.seats, minutes:parseInt(el('cM').value,10)||p.minutes,
-    cats:c.length?c:p.cats.ro, ofera:(el('cOfera')?el('cOfera').value.trim():''), qs:q.join('\n'), pwHost:hpw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8, dep:!!p.dep, quiet:p.quiet.ro||'',
+    cats:c.length?c:p.cats.ro, ofera:(el('cOfera')?el('cOfera').value.trim():''), qs:q.join('\n'), pwHost:hpw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8, dep:!!p.dep, quiet:((cLimba==='en'&&p.quiet.en)?p.quiet.en:p.quiet.ro)||'',lang:cLimba,
     oneTable:!!p.oneTable, noTimer:!!p.noTimer, autoStart:!!p.autoStart,
     threshold:p.threshold||0, needsFlight:!!p.needsFlight, edition:!!p.edition};
   try{
@@ -637,11 +717,74 @@ el('bStop').onclick=async function(){
   catch(e){ say('mHost',e.message,'err') }
   busy=false;
 };
+
+/* Cand nu incap toti. Gazda alege o data, iar daca vrea, nu o mai intrebam.
+   Psihologia: un om ocupat nu vrea o decizie, vrea sa mearga treaba. */
+var capMod = '';
+try{ capMod = localStorage.getItem('hh_cap') || '' }catch(e){}
+
+function capIntreaba(cati, locuri){
+  var raman = cati - locuri;
+  el('capT').textContent = T('capA')+' '+cati+'. '+T('capB')+' '+locuri+'.';
+  el('capS').textContent = raman+' '+T('capC');
+  el('capO1s').textContent = raman+' '+T('capO1s2');
+  el('capBox').style.display='';
+  el('capBox').scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function capTine(mod){
+  // Tinem minte alegerea. Un om ocupat nu vrea sa raspunda de doua ori.
+  try{ localStorage.setItem('hh_cap', mod) }catch(e){}
+  capMod = mod;
+  el('capBox').style.display='none';
+}
+
+async function capAdauga(cati, locuri){
+  // adaugam exact cate mese lipsesc, numerotate dupa ultima
+  var lista = (cfg.tables||[1]).map(String);
+  var nr = lista.map(Number).filter(function(x){ return !isNaN(x) });
+  var urm = nr.length ? Math.max.apply(null, nr) : lista.length;
+  var pePerMasa = (cfg.seats||4)+1;
+  var nevoie = Math.ceil((cati - locuri) / pePerMasa);
+  for(var i=0;i<nevoie;i++) lista.push(String(urm + 1 + i));
+  cfg.tables = lista;
+  try{ await API.op(eid,'cfg',{cfg:cfg}); say('mHost', T('capOk')+' '+nevoie, 'ok') }
+  catch(e){ say('mHost', e.message, 'err') }
+}
+
+if(el('capGo')) el('capGo').onclick=async function(){
+  capTine('go'); el('bStart').click();
+};
+if(el('capAdd')) el('capAdd').onclick=async function(){
+  capTine('add');
+  var s=(doc&&doc.state)||{}, q=(s.wait||[]).length;
+  var mese=(cfg.tables||[1]).length, locuri=mese*((cfg.seats||4)+1);
+  await capAdauga(q, locuri);
+  el('bStart').click();
+};
+if(el('capAuto')) el('capAuto').onclick=async function(){
+  capTine('auto');
+  var s=(doc&&doc.state)||{}, q=(s.wait||[]).length;
+  var mese=(cfg.tables||[1]).length, locuri=mese*((cfg.seats||4)+1);
+  await capAdauga(q, locuri);
+  el('bStart').click();
+};
+
 el('bStart').onclick=async function(){
   if(busy)return;
   try{ doc=await API.get(eid); cfg=doc.cfg||cfg }catch(e){ return say('mHost',e.message,'err') }
   var q=(doc.state.wait||[]).slice().sort(HH.ordq);
-  if(q.length<2)return say('mHost','Ai nevoie de cel puțin doi oameni.','err');
+  if(q.length<2)return say('mHost',T('need2'),'err');
+
+  // Daca nu incap toti, gazda alege. Ea vede sala, noi nu.
+  // Iar daca nu are timp, sistemul decide in locul ei.
+  var mese=(cfg.tables||[1]).length, locuri=mese*((cfg.seats||4)+1);
+  if(q.length>locuri && !cfg.oneTable && capMod!=='go'){
+    if(capMod==='auto'){ await capAdauga(q.length, locuri); }
+    else if(capMod==='add'){ await capAdauga(q.length, locuri); }
+    else { return capIntreaba(q.length, locuri) }
+  }
+
   busy=true; say('mHost','');
   try{ await porneste(q) }catch(e){ say('mHost',e.message,'err') }
   busy=false;
@@ -699,7 +842,48 @@ function aratQR(nume,url,hpw,evid){
 el('bQB').onclick=function(e){ e.preventDefault(); HH.back() };
 el('bQCp').onclick=function(){ HH.copy(qu, el('bQCp')) };
 el('bQSh').onclick=function(){ HH.shareLink(qu, 'Scanează codul de pe masă') };
-el('bQPrint').onclick=function(){ window.print() };
+/* Tiparul se face intr-o fereastra proprie, cu HTML curat.
+   Asa nu se amesteca cu stilurile panoului, care au propriile reguli de tipar. */
+function tiparesteCod(adresa){
+  var tmp=document.createElement('div'); tmp.style.display='none';
+  document.body.appendChild(tmp);
+  var src='';
+  try{
+    new QRCode(tmp,{text:adresa,width:700,height:700,correctLevel:QRCode.CorrectLevel.M});
+  }catch(e){}
+  setTimeout(function(){
+    var cv=tmp.querySelector('canvas'), im=tmp.querySelector('img');
+    try{ if(cv) src=cv.toDataURL('image/png') }catch(e){}
+    if(!src && im) src=im.src;
+    tmp.remove();
+    if(!src){ alert('Codul nu s-a putut desena. Încearcă din alt browser.'); return }
+
+    var adr=adresa.replace(/^https?:\/\//,'');
+    var w=window.open('', '_blank');
+    if(!w){ alert('Browserul a blocat fereastra de tipar. Permite ferestrele și încearcă din nou.'); return }
+    w.document.open();
+    w.document.write(
+      '<!doctype html><html><head><meta charset="utf-8"><title>HelloHuman</title><style>'+
+      '*{margin:0;padding:0;box-sizing:border-box}'+
+      'body{background:#fff;color:#111;font-family:Georgia,"Times New Roman",serif;padding:10mm}'+
+      '.pc{width:88mm;height:125mm;margin:0 auto;padding:12mm 9mm;border:1px dashed #ccc;'+
+      'display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center}'+
+      '.t{font-size:15pt;font-weight:700;letter-spacing:.02em}'+
+      '.q img{width:48mm;height:48mm;display:block}'+
+      '.p{font-size:10pt;line-height:1.55}'+
+      '.u{font-size:8.5pt;color:#555;word-break:break-all;line-height:1.3}'+
+      '@page{margin:8mm}@media print{body{padding:0}.pc{border:0}}'+
+      '</style></head><body><div class="pc">'+
+      '<div class="t">HelloHuman</div>'+
+      '<div class="q"><img src="'+src+'"></div>'+
+      '<div class="p">Scanează codul.<br>Alegi cum vrei să participi.<br>Te așezi cu oameni care vor să discute.</div>'+
+      '<div class="u">'+adr+'</div>'+
+      '</div></body></html>');
+    w.document.close();
+    setTimeout(function(){ try{ w.focus(); w.print() }catch(e){} }, 600);
+  }, 400);
+}
+el('bQPrint').onclick=function(){ tiparesteCod(qu) };
 el('bQSend').onclick=function(){ HH.shareLink(el('qLink').textContent) };
 el('bQCopy').onclick=function(){ HH.copy(el('qLink').textContent, el('bQCopy')) };
 
@@ -717,5 +901,6 @@ HH.initNav(ECR,'sLog',function(){ HH.go(mod==='p'&&partner?'sPanel':(mod==='m'&&
   if(b)b.onclick=function(){ setLang(lang==='ro'?'en':'ro') };
 })();
 </script>
+
 </body>
 </html>

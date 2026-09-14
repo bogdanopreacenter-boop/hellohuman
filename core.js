@@ -126,7 +126,7 @@ var HH = (function () {
   /* ---------- profilurile de context ----------
      Obstacolul e altul în fiecare loc, deci și mecanica e alta. */
   var PROFILES = {
-    bar: {
+    bar: { mese: 6,
       ro: 'Bar', en: 'Bar', seats: 4, minutes: 15, dep: false, tacut: 2, durate: [15, 20],
       cats: {
         ro: ['Am chef de râs', 'Vreau o discuție ca lumea', 'Azi ascult mai mult', 'Sunt nou pe aici'],
@@ -156,7 +156,7 @@ var HH = (function () {
       note: { ro: 'O masă, o gazdă, fără cronometru. Aceeași zi și oră în fiecare săptămână — ritmul face obișnuiții.', en: 'One table, one host, no timer. Same day and hour every week — the rhythm is what brings people back.' },
       end: { ro: 'Mulțumim pentru<br>seara asta.', en: 'Thanks for<br>tonight.' }
     },
-    air: {
+    air: { mese: 3,
       ro: 'Aeroport sau gară', en: 'Airport or station', seats: 4, minutes: 30, dep: false, durate: [20, 30], autoStart: true, threshold: 3, needsFlight: true,
       tacut: 2, cats: {
         ro: ['Am timp destul', 'Sunt cu gândul la destinație', 'Azi ascult mai mult', 'Prima dată pe ruta asta'],
@@ -170,7 +170,7 @@ var HH = (function () {
       note: { ro: 'Fără gazdă și fără runde. Pornește singur când sunt trei oameni cu așteptări care se suprapun și se închide cu douăzeci de minute înainte de prima îmbarcare.', en: 'No host and no rounds. It starts on its own when three people with overlapping waits are in, and closes twenty minutes before the earliest boarding.' },
       end: { ro: 'Le-ai plăcut mai mult<br>decât crezi. Drum bun.', en: 'They liked you more<br>than you think. Safe travels.' }
     },
-    corp: {
+    corp: { mese: 8,
       ro: 'Eveniment de firmă', en: 'Company event', seats: 4, minutes: 20, dep: true,
       cats: {
         ro: ['Vând sau lucrez cu clienții', 'Construiesc produsul', 'Susțin echipele din spate', 'Conduc o echipă'],
@@ -189,7 +189,7 @@ var HH = (function () {
       note: { ro: 'Runde scurte, mai multe. Aici oamenii se revăd mâine, deci lățimea bate adâncimea, iar întrebările nu ating niciodată viața privată.', en: 'Several short rounds. People here see each other tomorrow, so breadth beats depth, and questions never touch private life.' },
       end: { ro: 'Cei cu care ai vorbit<br>te apreciază mai mult<br>decât crezi.', en: 'The people you talked to<br>think more of you<br>than you assume.' }
     },
-    cafenea: {
+    cafenea: { mese: 4,
       ro: 'Cafenea', en: 'Café', seats: 4, minutes: 20, dep: false, tacut: 2, durate: [15, 20],
       cats: {
         ro: ['Am o pauză', 'Mi-a stat gândul la ceva toată ziua', 'Acum stau mai mult liniștit', 'Prima dată aici'],
@@ -203,7 +203,7 @@ var HH = (function () {
       note: { ro: 'Ziua, cu oameni treji și calmi. Runde scurte, fără grabă.', en: 'Daytime, with people who are awake and unhurried. Short rounds, no rush.' },
       end: { ro: 'Le-ai plăcut mai mult<br>decât crezi.', en: 'They liked you more<br>than you think.' }
     },
-    restaurant: {
+    restaurant: { mese: 4,
       ro: 'Restaurant', en: 'Restaurant', seats: 4, minutes: 30, dep: false, tacut: 2, durate: [30, 60],
       cats: {
         ro: ['Am chef de râs', 'Am chef de o discuție bună', 'Azi ascult mai mult', 'Sunt de altundeva'],
@@ -217,7 +217,7 @@ var HH = (function () {
       note: { ro: 'Stau jos, au timp, au mâncarea în față. Runde mai lungi decât la bar.', en: 'They are seated, they have time and food in front of them. Longer rounds than a bar.' },
       end: { ro: 'Le-ai plăcut mai mult<br>decât crezi.', en: 'They liked you more<br>than you think.' }
     },
-    hotel: {
+    hotel: { mese: 3,
       ro: 'Hotel sau pensiune', en: 'Hotel', seats: 4, minutes: 30, dep: false, tacut: 2, durate: [20, 30],
       cats: {
         ro: ['Sunt cu treabă', 'Sunt în vacanță', 'Azi a fost o zi lungă', 'Sunt aici de câteva zile'],
@@ -231,7 +231,7 @@ var HH = (function () {
       note: { ro: 'Ora de dinaintea cinei, în lobby. Oaspeții coboară oricum.', en: 'The hour before dinner, in the lobby. Guests come down anyway.' },
       end: { ro: 'Le-ai plăcut mai mult<br>decât crezi. Drum bun.', en: 'They liked you more<br>than you think. Safe travels.' }
     },
-    muzeu: {
+    muzeu: { mese: 4,
       ro: 'Muzeu sau spațiu cultural', en: 'Museum', seats: 4, minutes: 30, dep: false, tacut: 2, durate: [20, 30],
       cats: {
         ro: ['M-a impresionat ceva', 'Nu am înțeles ceva', 'Azi ascult mai mult', 'Am intrat din curiozitate'],
@@ -276,11 +276,15 @@ var HH = (function () {
      nu produce apropiere. Caută doar condițiile în care schimbul poate porni. */
   function sizes(p, tb, se) {
     if (p < 2 || tb < 1) return [];
-    // cate mese pot fi umplute aproape de marimea tinta
-    var g = Math.max(1, Math.min(Math.round(p / se), tb));
-    // nicio masa sub 2 oameni
-    while (g > 1 && p / g < 2) g--;
-    var out = [], bazaN = Math.floor(p / g), rest = p % g;
+    var maxLoc = se + 1;              // o masa poate lua cel mult cu unul peste tinta
+    var cap = tb * maxLoc;            // cati incap in total, in mesele disponibile
+    var n = Math.min(p, cap);         // restul asteapta runda urmatoare
+
+    var g = Math.max(1, Math.min(Math.round(n / se), tb));
+    while (g > 1 && n / g < 2) g--;                    // nicio masa sub 2
+    while (g < tb && Math.ceil(n / g) > maxLoc) g++;    // nicio masa peste limita
+
+    var out = [], bazaN = Math.floor(n / g), rest = n % g;
     for (var i = 0; i < g; i++) out.push(bazaN + (i < rest ? 1 : 0));
     return out;
   }
@@ -350,6 +354,55 @@ var HH = (function () {
       reechilibreaza(mese, sz);
       var c = costOf(mese, m, quiet);
       if (c < bestCost) { bestCost = c; best = mese.map(function (x) { return x.slice() }); if (c === 0) break }
+    }
+
+    // Nicio masa peste marimea ceruta. Cine nu incape asteapta runda urmatoare —
+    // mai bine o masa buna si doi care asteapta, decat sase inghesuiti.
+    var totalLoc = sz.reduce(function (a, b) { return a + b }, 0);
+    if (best && best.length) {
+      var pusi = 0;
+      best = best.map(function (g, i) {
+        var lim = sz[i] || sz[sz.length - 1] || g.length;
+        if (g.length <= lim) { pusi += g.length; return g }
+
+        // Cine iese: intai cei veniti singuri, apoi cei care asculta.
+        // Perechile raman intregi — cine a venit cu cineva nu se desparte.
+        var gr = {};
+        g.forEach(function (p) { if (p.pair) gr[p.pair] = (gr[p.pair] || 0) + 1 });
+        var singuri = g.filter(function (p) { return !p.pair });
+        var perechi = g.filter(function (p) { return p.pair });
+
+        // ordonam singurii: cei care asculta ies primii, ca masa sa ramana vie
+        singuri.sort(function (a, b) {
+          var ta = (quiet && a.cat === quiet) ? 1 : 0, tb2 = (quiet && b.cat === quiet) ? 1 : 0;
+          if (ta !== tb2) return tb2 - ta;
+          return (b.ts || 0) - (a.ts || 0);
+        });
+
+        // perechile intra intregi sau deloc — cea mai mare prima
+        var peGr = {};
+        perechi.forEach(function (p) { (peGr[p.pair] = peGr[p.pair] || []).push(p) });
+        var liste = Object.keys(peGr).map(function (k2) { return peGr[k2] })
+          .sort(function (a, b) { return b.length - a.length });
+
+        var t = [];
+        liste.forEach(function (gr2) { if (t.length + gr2.length <= lim) t = t.concat(gr2) });
+
+        // completam cu singuri; cei care vorbesc intra primii
+        for (var k = singuri.length - 1; k >= 0 && t.length < lim; k--) t.push(singuri[k]);
+
+        // daca masa a ramas fara nicio voce, schimbam un tacut cu o voce scoasa
+        if (quiet && t.length && !t.some(function (p) { return p.cat !== quiet })) {
+          var vocea = g.filter(function (p) {
+            return p.cat !== quiet && !p.pair && t.indexOf(p) < 0;
+          })[0];
+          var tacut = t.filter(function (p) { return !p.pair })[0];
+          if (vocea && tacut) { t[t.indexOf(tacut)] = vocea }
+        }
+        pusi += t.length;
+        return t;
+      });
+      void totalLoc; void pusi;
     }
 
     var bune = best.filter(function (g) { return g.length >= 2 });
