@@ -123,6 +123,16 @@ body{background:#16302B;margin:0}
  ]
 }
 </script>
+
+<style>
+/* limba, in aplicatie: discret, ca sa nu concureze cu ce are de facut omul */
+#aLang{ position:fixed; top:10px; right:12px; z-index:50;
+  background:rgba(255,255,255,.08); color:var(--mist); border:1px solid rgba(255,255,255,.16);
+  border-radius:2px; padding:5px 10px; font:600 12px/1 var(--ui); letter-spacing:.06em;
+  cursor:pointer; -webkit-tap-highlight-color:transparent }
+#aLang:active{ background:rgba(255,255,255,.16) }
+#app:not(.on) #aLang{ display:none }
+</style>
 </head>
 <body>
 
@@ -242,6 +252,7 @@ body{background:#16302B;margin:0}
 </div>
 
 <div id="app">
+<button id="aLang" type="button" aria-label="Language">EN</button>
 
 <section class="sc" id="sJoin">
   <p class="eyebrow" id="jEv">HelloHuman</p>
@@ -545,6 +556,7 @@ var SITE={
 var lang='ro';
 function L(k){ return (T[lang]&&T[lang][k]) || (SITE[lang]&&SITE[lang][k]) || '' }
 function applyLang(){
+  if(el('aLang')) el('aLang').textContent = (lang==='en') ? 'RO' : 'EN';
   HH.setLang(lang);
   document.documentElement.lang=lang;
   el('bLang').textContent=(lang==='ro'?'EN':'RO');
@@ -650,6 +662,16 @@ el('bFl').onclick=function(){
     return say('mFl',lang==='en'?'Too close to boarding. Enjoy the flight.':'Prea aproape de îmbarcare. Zbor plăcut.','err');
   say('mFl',''); inscrie();
 };
+
+el('aLang').onclick=function(){
+  lang = (lang==='en') ? 'ro' : 'en';
+  try{ localStorage.setItem('hh_l', lang) }catch(e){}
+  applyLang();
+  // ecranele deja desenate se refac, ca sa nu ramana text vechi
+  try{ if(cfg && cfg.cats) paintCats() }catch(e){}
+  try{ if(typeof deseneaza==='function') deseneaza() }catch(e){}
+};
+
 el('bIn').onclick=function(){
   var n=el('nm').value.trim();
   if(!n||!me.cat)return say('mJoin',lang==='en'?'Name and one choice.':'Numele și o variantă.','err');
