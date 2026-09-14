@@ -135,7 +135,7 @@ var HH = (function () {
       quiet: { ro: 'Azi ascult mai mult', en: "Today I'm mostly listening" },
       qs: {
         ro: ['Găsiți trei lucruri pe care le aveți în comun.', 'Ce ați făcut în ultima lună și merită povestit?', 'Care e cel mai bun sfat prost pe care l-ați primit?', 'Ce ați învățat prea târziu?'],
-        en: ['Find three things you all have in common.', 'What have you done this month worth telling?', 'What is the best bad advice you ever got?', 'What did you learn too late?']
+        en: ['Find three things you all have in common.', 'What have you done this month that is worth telling?', 'What is the best bad advice you ever got?', 'What did you learn too late?']
       },
       note: { ro: 'O rundă scurtă, o dată în seară. Clienții își păstrează masa lor și se întorc la ea.', en: 'One short round, once in the evening. Guests keep their own table and go back to it.' },
       end: { ro: 'Le-ai plăcut mai mult<br>decât crezi.', en: 'They liked you more<br>than you think.' }
@@ -160,12 +160,12 @@ var HH = (function () {
       ro: 'Aeroport sau gară', en: 'Airport or station', seats: 4, minutes: 30, dep: false, durate: [20, 30], autoStart: true, threshold: 3, needsFlight: true,
       tacut: 2, cats: {
         ro: ['Am timp destul', 'Sunt cu gândul la destinație', 'Azi ascult mai mult', 'Prima dată pe ruta asta'],
-        en: ["I've got plenty of time", "My mind's on where I'm headed", "Today I'm mostly listening", 'First time on this route']
+        en: ["I've got plenty of time", "My mind is already at the other end", "Today I'm mostly listening", 'First time on this route']
       },
       quiet: { ro: 'Azi ascult mai mult', en: "Today I'm mostly listening" },
       qs: {
         ro: ['Cu ce treabă mergi acolo?', 'Ce merită făcut neapărat acolo unde mergem?', 'Care e cea mai bună călătorie ieșită din întâmplare?', 'Ce iei mereu în bagaj și nu folosești niciodată?'],
-        en: ['What are you going there for?', 'What is worth doing where we are headed?', 'What is the best trip you took by accident?', 'What do you always pack and never use?']
+        en: ['What are you heading there for?', 'What is worth doing where we are headed?', 'What is the best trip you took by accident?', 'What do you always pack and never use?']
       },
       note: { ro: 'Fără gazdă și fără runde. Pornește singur când sunt trei oameni cu așteptări care se suprapun și se închide cu douăzeci de minute înainte de prima îmbarcare.', en: 'No host and no rounds. It starts on its own when three people with overlapping waits are in, and closes twenty minutes before the earliest boarding.' },
       end: { ro: 'Le-ai plăcut mai mult<br>decât crezi. Drum bun.', en: 'They liked you more<br>than you think. Safe travels.' }
@@ -198,7 +198,7 @@ var HH = (function () {
       quiet: { ro: 'Acum stau mai mult liniștit', en: "Right now I'm just sitting quietly" },
       qs: {
         ro: ['La ce te gândeai înainte să te așezi aici?', 'Ce ai făcut luna asta și merită povestit?', 'Ce ai învățat prea târziu?', 'Care e cel mai bun sfat prost pe care l-ai primit?'],
-        en: ['What were you thinking about before you sat down?', 'What have you done this month worth telling?', 'What did you learn too late?', 'What is the best bad advice you ever got?']
+        en: ['What were you thinking about before you sat down?', 'What have you done this month that is worth telling?', 'What did you learn too late?', 'What is the best bad advice you ever got?']
       },
       note: { ro: 'Ziua, cu oameni treji și calmi. Runde scurte, fără grabă.', en: 'Daytime, with people who are awake and unhurried. Short rounds, no rush.' },
       end: { ro: 'Le-ai plăcut mai mult<br>decât crezi.', en: 'They liked you more<br>than you think.' }
@@ -240,7 +240,7 @@ var HH = (function () {
       quiet: { ro: 'Azi ascult mai mult', en: "Today I'm mostly listening" },
       qs: {
         ro: ['Ce ați văzut azi și nu vă iese din cap?', 'Ce nu ați înțeles și ați vrea să vă explice cineva?', 'Ce ați lua acasă, dacă s-ar putea?', 'Ce v-a plictisit și de ce?'],
-        en: ['What did you see today that stayed with you?', 'What did you not understand and wish someone would explain?', 'What would you take home, if you could?', 'What bored you, and why?']
+        en: ['What did you see today that stayed with you?', 'What did you not get, that you wish someone would explain?', 'What would you take home, if you could?', 'What bored you, and why?']
       },
       note: { ro: 'La finalul vizitei. Toți au văzut aceleași săli, dar fiecare a reținut altceva.', en: 'At the end of the visit. Everyone saw the same rooms, but each kept something different.' },
       end: { ro: 'Le-ai plăcut mai mult<br>decât crezi.', en: 'They liked you more<br>than you think.' }
