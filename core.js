@@ -246,12 +246,12 @@ var HH = (function () {
       end: { ro: 'Le-ai plăcut mai mult<br>decât crezi.', en: 'They liked you more<br>than you think.' }
     },
     demo: {
-      ro: 'Demonstrație', en: 'Demonstration', seats: 2, minutes: 3, dep: false, isDemo: true, tacut: -1, durate: [3],
+      ro: 'Demonstrație', en: 'Demonstration', seats: 3, minutes: 3, dep: false, isDemo: true, tacut: -1, durate: [3],
       cats: {
-        ro: ['Lucrez aici de mult', 'Sunt nou pe aici', 'Sunt clientul locului', 'Prima dată aici'],
-        en: ['I have worked here a while', 'I am new here', 'I am a regular', 'First time here']
+        ro: ['Lucrez aici de mult', 'Sunt nou pe aici', 'Sunt aici, las pe alții să înceapă', 'Prima dată aici'],
+        en: ['I have worked here a while', 'I am new here', 'I am in, someone else can start', 'First time here']
       },
-      quiet: { ro: '', en: '' },
+      quiet: { ro: 'Sunt aici, las pe alții să înceapă', en: 'I am in, someone else can start' },
       qs: {
         ro: [
           'Ce nu știi despre omul din fața ta, deși lucrați împreună?',

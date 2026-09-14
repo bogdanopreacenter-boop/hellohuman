@@ -683,6 +683,14 @@ el('aLang').onclick=function(){
   lang = (lang==='en') ? 'ro' : 'en';
   try{ localStorage.setItem('hh_l', lang) }catch(e){}
   applyLang();
+  // intrebarea de la masa urmeaza si ea limba, daca avem perechea
+  try{
+    var n=el('tQ');
+    if(n && n.dataset && n.dataset.q){
+      var q1=n.dataset.q, q2=n.dataset.q2;
+      n.innerHTML = esc((q2 && cfg.lang && lang !== cfg.lang) ? q2 : q1);
+    }
+  }catch(e){}
   // ecranele deja desenate se refac, ca sa nu ramana text vechi
   try{ if(cfg && cfg.cats) paintCats() }catch(e){}
   try{ if(typeof deseneaza==='function') deseneaza() }catch(e){}
@@ -776,7 +784,13 @@ async function tick(){
   el('tNo').textContent=t.n;
   el('tWho').textContent=t.people.filter(function(p){return p.id!==me.id})
     .map(function(p){return p.name+(p.dep?(' · '+p.dep):'')}).join(', ')||'—';
-  el('tQ').innerHTML=esc(t.q||'—');
+  // Intrebarea in limba omului. E aceeasi intrebare, doar tradusa —
+  // deci masa nu se rupe, chiar daca fiecare o citeste altfel.
+  var intrebare = t.q || '—';
+  if(t.q2 && cfg.lang && lang !== cfg.lang) intrebare = t.q2;
+  el('tQ').innerHTML=esc(intrebare);
+  el('tQ').dataset.q = t.q || '';
+  el('tQ').dataset.q2 = t.q2 || '';
   if(cfg.ofera){ el('tOfRow').style.display=''; el('tOf').textContent=cfg.ofera } else el('tOfRow').style.display='none';
   HH.vibrate([60,80,60]);
   go('sTab');

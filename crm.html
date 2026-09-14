@@ -225,9 +225,9 @@ body.appbody .sc.on{display:block}
 <!-- demonstrație: un singur ecran, totul precompletat -->
 <section class="sc" id="sDemo">
   <a class="back" href="#" id="bDB">← Înapoi</a>
-  <p class="eyebrow">Cinci secunde</p>
+  <p class="eyebrow">Șase minute</p>
   <h2>Demonstrație<br>pe loc.</h2>
-  <p class="sub2" style="margin-top:10px">Două mese de câte doi, trei minute. La runda a doua se schimbă între ei — ăsta e momentul în care patronul înțelege.</p>
+  <p class="sub2" style="margin-top:10px">Două mese de câte trei, trei minute. La runda a doua se schimbă între ei — ăsta e momentul în care patronul înțelege.</p>
   <label class="lb">Despre ce vorbesc</label>
   <div class="opts" id="dQ"></div>
   <label class="lb" for="dT">Ce mese folosim</label>
@@ -838,7 +838,8 @@ el('bNCopy').onclick=function(){ HH.copy(nMsg(), el('bNCopy')) };
 /* ---------- demonstrația: un ecran, totul precompletat ---------- */
 var dQ=0;
 function paintDQ(){
-  el('dQ').innerHTML=P.demo.qs.ro.map(function(q,i){
+  var dqs=(cLimba==='en'&&P.demo.qs.en)?P.demo.qs.en:P.demo.qs.ro;
+  el('dQ').innerHTML=dqs.map(function(q,i){
     return '<button class="opt'+(i===dQ?' sel':'')+'" data-q="'+i+'">'+esc(q)+'</button>' }).join('');
 }
 el('dQ').onclick=function(e){ var b=e.target.closest('.opt'); if(!b)return; dQ=+b.dataset.q; paintDQ() };
@@ -848,10 +849,10 @@ el('bDGo').onclick=async function(){
   var b=el('bDGo'); b.disabled=true; b.textContent='…';
   var t=el('dT').value.split(',').map(function(x){return parseInt(x.trim(),10)}).filter(function(x){return !isNaN(x)&&x>0});
   if(t.length<2)t=[1,2];
-  var qs=P.demo.qs.ro.slice(dQ).concat(P.demo.qs.ro.slice(0,dQ));  // pornim de la cea aleasă
+  var qs=((cLimba==='en'&&P.demo.qs.en)?P.demo.qs.en:P.demo.qs.ro).slice(dQ).concat(((cLimba==='en'&&P.demo.qs.en)?P.demo.qs.en:P.demo.qs.ro).slice(0,dQ));  // pornim de la cea aleasă
   var pw=String(Math.floor(1000+Math.random()*9000));
-  var cfg={ev:'Demonstrație',client:'',profile:'demo',tables:t,seats:2,minutes:3,
-           cats:P.demo.cats.ro,ofera:(el('cOfera')?el('cOfera').value.trim():''), qs:qs.join('\n'),pwHost:pw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8,dep:false,quiet:'',demo:true};
+  var cfg={ev:'Demonstrație',client:'',profile:'demo',tables:t,seats:3,minutes:3,
+           cats:((cLimba==='en'&&P.demo.cats.en)?P.demo.cats.en:P.demo.cats.ro),ofera:(el('cOfera')?el('cOfera').value.trim():''), qs:qs.join('\n'), qs2:altaLimba(qs),pwHost:pw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8,dep:false,quiet:'',demo:true};
   try{
     var id=await API.create({cfg:cfg,state:{wait:[],round:null,rounds:0,votes:{},met:{}}});
     await salveaza(function(bk){ bk.events=bk.events||[];
@@ -959,6 +960,21 @@ function meseProp(cheie){
   return a.join(', ');
 }
 
+
+/* Perechea intrebarilor in cealalta limba.
+   Se salveaza o data, la creare. Fiecare om vede intrebarea in limba lui,
+   dar ramane aceeasi intrebare — doar tradusa. */
+function altaLimba(lista){
+  var p = P[cProf] || P.bar;
+  var a = (cLimba==='en') ? (p.qs.en||[]) : (p.qs.ro||[]);
+  var b = (cLimba==='en') ? (p.qs.ro||[]) : (p.qs.en||[]);
+  var out = lista.map(function(q){
+    var i = a.indexOf(q);
+    return (i>=0 && b[i]) ? b[i] : q;   // daca a fost scrisa de om, ramane cum e
+  });
+  return out.join('\n');
+}
+
 function paintCProf(){
   el('cProf').innerHTML=Object.keys(P).filter(function(k){return k!=='demo'}).map(function(k){
     return '<button class="opt'+(k===cProf?' sel':'')+'" data-p="'+k+'">'+esc(P[k].ro)+'</button>' }).join('');
@@ -1058,7 +1074,7 @@ el('bCGo').onclick=async function(){
   b.disabled=true; b.textContent='…'; say('mCfg','');
   var cfg={ev:nume,client:part?part.name:'',profile:cProf,tables:t,
     seats:parseInt(el('cS').value,10)||p.seats, minutes:parseInt(el('cM').value,10)||p.minutes,
-    cats:c.length?c:p.cats.ro, ofera:(el('cOfera')?el('cOfera').value.trim():''), qs:q.join('\n'), pwHost:pw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8, dep:!!p.dep, quiet:((cLimba==='en'&&p.quiet.en)?p.quiet.en:p.quiet.ro)||'',lang:cLimba,
+    cats:c.length?c:p.cats.ro, ofera:(el('cOfera')?el('cOfera').value.trim():''), qs:q.join('\n'), qs2:altaLimba(q), pwHost:pw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8, dep:!!p.dep, quiet:((cLimba==='en'&&p.quiet.en)?p.quiet.en:p.quiet.ro)||'',lang:cLimba,
     oneTable:!!p.oneTable, noTimer:!!p.noTimer, autoStart:!!p.autoStart,
     threshold:p.threshold||0, needsFlight:!!p.needsFlight, edition:!!p.edition};
   try{

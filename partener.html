@@ -519,6 +519,21 @@ function meseProp(cheie){
   return a.join(', ');
 }
 
+
+/* Perechea intrebarilor in cealalta limba.
+   Se salveaza o data, la creare. Fiecare om vede intrebarea in limba lui,
+   dar ramane aceeasi intrebare — doar tradusa. */
+function altaLimba(lista){
+  var p = P[cProf] || P.bar;
+  var a = (cLimba==='en') ? (p.qs.en||[]) : (p.qs.ro||[]);
+  var b = (cLimba==='en') ? (p.qs.ro||[]) : (p.qs.en||[]);
+  var out = lista.map(function(q){
+    var i = a.indexOf(q);
+    return (i>=0 && b[i]) ? b[i] : q;   // daca a fost scrisa de om, ramane cum e
+  });
+  return out.join('\n');
+}
+
 var cLimba='ro';
 function paintCLang(){
   var b=el('cLang'); if(!b) return;
@@ -608,7 +623,7 @@ el('bCGo').onclick=async function(){
   busy=true; b.disabled=true; b.textContent='...'; say('mCfg','');
   var conf={ev:nume,client:partner.name,profile:partner.profile,tables:t,
     seats:parseInt(el('cS').value,10)||p.seats, minutes:parseInt(el('cM').value,10)||p.minutes,
-    cats:c.length?c:p.cats.ro, ofera:(el('cOfera')?el('cOfera').value.trim():''), qs:q.join('\n'), pwHost:hpw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8, dep:!!p.dep, quiet:((cLimba==='en'&&p.quiet.en)?p.quiet.en:p.quiet.ro)||'',lang:cLimba,
+    cats:c.length?c:p.cats.ro, ofera:(el('cOfera')?el('cOfera').value.trim():''), qs:q.join('\n'), qs2:altaLimba(q), pwHost:hpw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8, dep:!!p.dep, quiet:((cLimba==='en'&&p.quiet.en)?p.quiet.en:p.quiet.ro)||'',lang:cLimba,
     oneTable:!!p.oneTable, noTimer:!!p.noTimer, autoStart:!!p.autoStart,
     threshold:p.threshold||0, needsFlight:!!p.needsFlight, edition:!!p.edition};
   try{
@@ -789,10 +804,11 @@ el('bStart').onclick=async function(){
 async function porneste(q){
   var st=doc.state;
   var qq=(cfg.qs||'').split('\n').map(function(x){return x.trim()}).filter(Boolean);
+  var qq2=(cfg.qs2||'').split('\n').map(function(x){return x.trim()}).filter(Boolean);
   if(cfg.oneTable){
     var ed=Math.max(1,(st.rounds||0)+1);
     await API.op(eid,'round',{round:{id:'r'+Date.now(),start:Date.now(),dur:0,tables:[
-      {n:(cfg.tables||[1])[0], q:qq[Math.min(ed-1,qq.length-1)],
+      {n:(cfg.tables||[1])[0], q:qq[Math.min(ed-1,qq.length-1)], q2:(qq2[Math.min(ed-1,qq2.length-1)]||''),
        people:q.map(function(p){return{id:p.id,name:p.name,dep:p.dep}})}]},
       seated:q.map(function(p){return p.id}), left:[], met:{}});
   } else {
@@ -810,9 +826,9 @@ async function porneste(q){
     var b=HH.makeGroups(rest, HH.sizes(rest.length,fl.length,cfg.seats||4), st.met||{}, cfg.quiet||'');
     if(!b.groups.length && !kept.length) throw new Error('Nu se poate forma nicio masă.');
     var off=(st.rounds||0)*mese.length;
-    var tables=kept.map(function(t,i){return{n:t.n,q:qq[(off+i)%qq.length]||qq[0],
+    var tables=kept.map(function(t,i){return{n:t.n,q:qq[(off+i)%qq.length], q2:(qq2.length?qq2[(off+i)%qq2.length]:'')||qq[0],
       people:t.people.map(function(p){return{id:p.id,name:p.name,dep:p.dep}})}});
-    b.groups.forEach(function(g,i){ tables.push({n:fl[i],q:qq[(off+kept.length+i)%qq.length]||qq[0],
+    b.groups.forEach(function(g,i){ tables.push({n:fl[i],q:qq[(off+kept.length+i)%qq.length], q2:(qq2.length?qq2[(off+kept.length+i)%qq2.length]:'')||qq[0],
       people:g.map(function(p){return{id:p.id,name:p.name,dep:p.dep}})}) });
     var metAdd={};
     tables.forEach(function(t){t.people.forEach(function(a){t.people.forEach(function(x){
