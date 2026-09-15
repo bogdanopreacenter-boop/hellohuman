@@ -366,6 +366,13 @@ body{background:#16302B;margin:0}
     <div class="opts" id="frBox"></div>
   </div>
 
+  <div id="chBox" style="display:none;margin-top:26px">
+    <p class="kk" data-t="chQ">Cu cine ai vorbit cel mai ușor?</p>
+    <div class="opts" id="chOpts" style="margin-top:12px"></div>
+    <p class="sub2" style="margin-top:8px" data-t="chP">Nu vede nimeni răspunsul.</p>
+    <button class="btn ghost small" id="bChSkip" style="margin-top:10px" data-t="chSkip">Sari peste</button>
+  </div>
+
   <label class="lb" for="em" data-t="eMail">Email</label>
   <input type="email" id="em" autocomplete="email" placeholder="tu@email.com" enterkeyhint="done" data-tp="phMail">
   <label class="check" id="eConsBox"><input type="checkbox" id="eCons"><span data-t="eCons">Da, anunță-mă. Mă pot dezabona oricând.</span></label>
@@ -448,7 +455,7 @@ body{background:#16302B;margin:0}
 var el=HH.el, esc=HH.esc, say=HH.say, go=HH.go, API=HH.API, P=HH.PROFILES;
 
 var T={
-ro:{cOf:'Din partea casei',dp1:'Scanezi cartonașul de pe masă.',dp2:'Te așezi cu trei oameni pe care nu îi cunoști.',ftBiz:'Ai un local? Vezi cum funcționează',navBiz:'Business',aEye:'Pentru firma de evenimente',aH:'Șapte lucruri despre eveniment',aP:'Completezi o dată, primești un cod. Ni-l trimiți și îți dăm linkurile.',frQ:'Ai chema un prieten data viitoare?',wAccept:'Merge și în doi sau trei, nu aștept să fim patru',cap1:'Cartonașul stă pe masă. Atât trebuie să vezi.',cap2:'Patru oameni care nu se cunoșteau, la masa 7.',askPh:'o propoziție, în cuvintele tale',askSend:'Trimite răspunsul',askQ:'Dacă i-ai povesti mâine unui prieten ce ai făcut acum, ce i-ai spune?',nav1:'Cum funcționează',nav2:'Unde',nav3:'Întrebări',back:'Înapoi',next:'Continuă',leave:'Nu mai aștept',done:'Gata',
+ro:{cOf:'Din partea casei',dp1:'Scanezi cartonașul de pe masă.',dp2:'Te așezi cu trei oameni pe care nu îi cunoști.',ftBiz:'Ai un local? Vezi cum funcționează',navBiz:'Business',aEye:'Pentru firma de evenimente',aH:'Șapte lucruri despre eveniment',aP:'Completezi o dată, primești un cod. Ni-l trimiți și îți dăm linkurile.',chQ:'Cu cine ai vorbit cel mai ușor?',chP:'Nu vede nimeni răspunsul.',chSkip:'Sari peste',frQ:'Ai chema un prieten data viitoare?',wAccept:'Merge și în doi sau trei, nu aștept să fim patru',cap1:'Cartonașul stă pe masă. Atât trebuie să vezi.',cap2:'Patru oameni care nu se cunoșteau, la masa 7.',askPh:'o propoziție, în cuvintele tale',askSend:'Trimite răspunsul',askQ:'Dacă i-ai povesti mâine unui prieten ce ai făcut acum, ce i-ai spune?',nav1:'Cum funcționează',nav2:'Unde',nav3:'Întrebări',back:'Înapoi',next:'Continuă',leave:'Nu mai aștept',done:'Gata',
  phMail:'tu@email.com',phCity:'Orașul tău',phName:'Andrei',phTeam:'Operațiuni',
  bMailT:'Anunță-mă',iEye:'Ce te-ar interesa? Poți alege câte vrei.',
  jH:'Ce ți se potrivește?',jName:'Prenumele tău',jTeam:'Echipa sau departamentul',
@@ -478,7 +485,7 @@ ro:{cOf:'Din partea casei',dp1:'Scanezi cartonașul de pe masă.',dp2:'Te așezi
  c7a:'Sau scrie-le tu, una pe rând',cGen:'Generează codul',
  cdH:'Gata. Trimite-ne codul.',cdP:'Îl încărcăm noi și primești linkurile pentru eveniment.',
  cdWa:'Trimite pe WhatsApp',cdMail:'Trimite pe email',cdCopy:'Copiază codul'},
-en:{cOf:'On the house',dp1:'You scan the card on the table.',dp2:'You sit down with three people you do not know.',ftBiz:'Got a venue? See how it works',navBiz:'Business',aEye:'For the events company',aH:'Seven things about the event',aP:'Fill it once, get a code. Send it to the agency and they handle the rest.',frQ:'Would you bring a friend next time?',wAccept:"Two or three is fine, I'm not waiting for four",cap1:'The card sits on the table. That is all you need to see.',cap2:'Four people who had never met, at table 7.',askPh:'one sentence, in your own words',askSend:'Send it',askQ:'If you told a friend tomorrow what you just did, what would you say?',nav1:'How it works',nav2:'Where',nav3:'Questions',back:'Back',next:'Continue',leave:'I am not waiting',done:'Done',
+en:{cOf:'On the house',dp1:'You scan the card on the table.',dp2:'You sit down with three people you do not know.',ftBiz:'Got a venue? See how it works',navBiz:'Business',aEye:'For the events company',aH:'Seven things about the event',aP:'Fill it once, get a code. Send it to the agency and they handle the rest.',chQ:'Who did you talk to most easily?',chP:'Nobody sees your answer.',chSkip:'Skip',frQ:'Would you bring a friend next time?',wAccept:"Two or three is fine, I'm not waiting for four",cap1:'The card sits on the table. That is all you need to see.',cap2:'Four people who had never met, at table 7.',askPh:'one sentence, in your own words',askSend:'Send it',askQ:'If you told a friend tomorrow what you just did, what would you say?',nav1:'How it works',nav2:'Where',nav3:'Questions',back:'Back',next:'Continue',leave:'I am not waiting',done:'Done',
  phMail:'you@email.com',phCity:'Your city',phName:'Andrew',phTeam:'Operations',
  bMailT:'Keep me posted',iEye:'What would interest you? Pick as many as you like.',
  jH:'Which one fits?',jName:'Your first name',jTeam:'Team or department',
@@ -841,6 +848,7 @@ document.querySelector('#sMid .opts').onclick=async function(e){
   go('sTab');
 };
 function arataFinal(devreme){
+  paintCh();
   if(poll){clearInterval(poll);poll=null}
   var p=P[(cfg&&cfg.profile)||'bar']||P.bar;
   el('eH').innerHTML=(p.end&&p.end[lang])||p.end.ro;
@@ -893,6 +901,34 @@ el('bLeave').onclick=async function(){
   try{ history.replaceState(null,'',location.pathname) }catch(e){}
   window.scrollTo(0,0);
 };
+
+
+/* Cine cu cine a functionat. Nu cere date despre om —
+   cere ceva frumos despre altcineva. De aia raspunde. */
+function paintCh(){
+  try{
+    if(!doc || !doc.state || !doc.state.round) return;
+    var t=null;
+    (doc.state.round.tables||[]).forEach(function(x){
+      if((x.people||[]).some(function(p){return p.id===me.id})) t=x;
+    });
+    if(!t) return;
+    var altii=(t.people||[]).filter(function(p){return p.id!==me.id});
+    if(altii.length<2) return;
+    el('chOpts').innerHTML=altii.map(function(p){
+      return '<button class="opt" data-c="'+esc(p.id)+'">'+esc(p.name||'—')+'</button>';
+    }).join('');
+    el('chBox').style.display='';
+  }catch(e){}
+}
+el('chOpts').onclick=async function(e){
+  var b=e.target.closest('.opt'); if(!b) return;
+  [].slice.call(el('chOpts').querySelectorAll('.opt')).forEach(function(x){ x.classList.remove('sel') });
+  b.classList.add('sel');
+  try{ await API.op(eid,'vote',{id:me.id, v:'ch:'+b.dataset.c}) }catch(err){}
+  setTimeout(function(){ el('chBox').style.display='none' }, 700);
+};
+el('bChSkip').onclick=function(){ el('chBox').style.display='none' };
 
 el('bAgain').onclick=async function(){
   try{ await API.op(eid,'join',{id:me.id,name:me.name,dep:me.dep,cat:me.cat,ts:Date.now(),miss:0,pair:''});

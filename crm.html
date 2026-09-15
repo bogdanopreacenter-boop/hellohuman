@@ -147,6 +147,10 @@ body.appbody .sc.on{display:block}
   <div class="list" id="eMails" style="max-height:none"></div>
   <p class="msg2" id="mEv"></p>
   <div class="push"><button class="btn ghost wide" id="bEDel" style="border-color:rgba(196,85,47,.5);color:#E89078">Șterge runda</button></div>
+
+  <p class="kk" style="margin-top:26px">Perechi care au funcționat</p>
+  <div class="list" id="evPerechi" style="max-height:none"></div>
+  <p class="sub2" style="margin-top:6px">Cine pe cine a ales. Dacă se aleg reciproc, e semnalul cel mai puternic.</p>
 </section>
 
 
@@ -749,6 +753,38 @@ el('bPDel').onclick=async function(){
 
 /* ---------- fișa rundei ---------- */
 var evId='';
+
+/* Perechile alese. Votul 'ch:ID' inseamna: omul a ales pe cineva de la masa lui. */
+function paintPerechi(d){
+  var box=el('evPerechi'); if(!box) return;
+  var st=(d && d.state) || {};
+  var v=st.votes || {};
+  var nume={};
+  ((st.round && st.round.tables) || []).forEach(function(t){
+    (t.people||[]).forEach(function(p){ nume[p.id]=p.name||'—' });
+  });
+  (st.wait||[]).forEach(function(p){ if(!nume[p.id]) nume[p.id]=p.name||'—' });
+
+  var ales={};
+  Object.keys(v).forEach(function(cine){
+    var val=String(v[cine]||'');
+    if(val.indexOf('ch:')===0) ales[cine]=val.slice(3);
+  });
+  var chei=Object.keys(ales);
+  if(!chei.length){ box.innerHTML='<p class="sub2" style="padding:12px 0">Nimeni nu a ales încă.</p>'; return }
+
+  var randuri=[], vazut={};
+  chei.forEach(function(a){
+    var b=ales[a];
+    var reciproc = ales[b]===a;
+    var cheie = reciproc ? [a,b].sort().join('|') : a+'>'+b;
+    if(vazut[cheie]) return; vazut[cheie]=1;
+    randuri.push('<div class="row"><span>'+esc(nume[a]||a)+(reciproc?' ↔ ':' → ')+esc(nume[b]||b)+
+      '</span><b>'+(reciproc?'reciproc':'')+'</b></div>');
+  });
+  box.innerHTML=randuri.join('');
+}
+
 function deschideEv(id){
   var e=(book.events||[]).filter(function(x){return x.id===id})[0]; if(!e)return;
   evId=id;
@@ -763,6 +799,7 @@ function deschideEv(id){
 async function reciteste(id){
   try{
     var d=await API.get(id), st=(d&&d.state)||{}, r=st.round;
+  try{ paintPerechi(d) }catch(e){}
     el('eState').innerHTML='<b>'+(r?'Rundă în curs':'Nicio rundă acum')+'</b>'+
       (r?(r.tables.length+' mese'+(r.dur?(' · '+HH.fmtLeft(r.start+r.dur-Date.now())+' rămas'):'')):
          ((st.wait||[]).length+' în coadă · '+(st.rounds||0)+' runde ținute'));
