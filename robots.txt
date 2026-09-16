@@ -2,6 +2,8 @@
 
 User-agent: *
 Allow: /
+Disallow: /cherie
+Disallow: /cherie.html
 
 User-agent: GPTBot
 Allow: /

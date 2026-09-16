@@ -77,6 +77,7 @@ body.appbody .sc.on{display:block}
     <div class="list" id="lPt" style="max-height:none;margin-top:14px"></div>
     <button class="btn wide" id="bNewPt" style="margin-top:16px">Adaugă un partener</button>
     <button class="btn ghost wide" id="bFmt" style="margin-top:9px">Formate proprii</button>
+  <button class="btn ghost wide" id="bNev">Ce le-ar ajuta cel mai mult</button>
     <div class="list" id="lFmt" style="max-height:none"></div>
   </div>
 
@@ -155,6 +156,19 @@ body.appbody .sc.on{display:block}
 
 
 <!-- format propriu -->
+<section class="sc" id="sNev">
+  <a class="back" href="#" id="bNevB">← Înapoi</a>
+  <p class="eyebrow">Materia primă</p>
+  <h2>Ce le-ar ajuta cel mai mult</h2>
+  <p class="sub2" style="margin-top:10px">Propoziții scrise de oameni care construiesc ceva, la finalul unei mese. Fără nume, fără firmă.</p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px">
+    <button class="btn ghost small" id="bNevCopy">Copiază tot</button>
+    <button class="btn ghost small" id="bNevRef">Reîmprospătează</button>
+  </div>
+  <p class="msg2" id="mNev2"></p>
+  <div class="list" id="nevList" style="max-height:none;margin-top:12px"></div>
+</section>
+
 <section class="sc" id="sFmt">
   <a class="back" href="#" id="bFB">← Înapoi</a>
   <p class="eyebrow">Proprietar</p>
@@ -645,6 +659,31 @@ el('lFmt').onclick=function(e){
   el('fQs').value=f.qs||''; el('fNote').value=f.note||'';
   el('bFDel').style.display=''; say('mFmt',''); go('sFmt');
 };
+
+/* Nevoile. Fiecare propozitie vine de la un om care tocmai a stat la o masa.
+   Astea sunt materia prima pentru orice mesaj catre cineva care a reusit. */
+var nevoi=[];
+async function incarcaNevoi(){
+  say('mNev2','Se încarcă…');
+  try{
+    var d=await API.book(key);
+    nevoi=(d.leads||[]).filter(function(x){ return x && x.nev });
+    nevoi.sort(function(a,b){ return (b.ts||0)-(a.ts||0) });
+    if(!nevoi.length){ el('nevList').innerHTML='<p class="sub2" style="padding:12px 0">Nicio propoziție încă.</p>'; say('mNev2',''); return }
+    el('nevList').innerHTML=nevoi.map(function(x){
+      return '<div class="row" style="align-items:flex-start"><span style="max-width:78%">'+esc(x.nev)+
+        '</span><b style="font-size:12px;opacity:.6">'+HH.fmtDate(x.ts)+'</b></div>';
+    }).join('');
+    say('mNev2', nevoi.length+' propoziții', 'ok');
+  }catch(e){ say('mNev2', e.message, 'err') }
+}
+el('bNev').onclick=function(){ go('sNev'); incarcaNevoi() };
+el('bNevB').onclick=function(e){ e.preventDefault(); HH.back() };
+el('bNevRef').onclick=function(){ incarcaNevoi() };
+el('bNevCopy').onclick=function(){
+  HH.copy(nevoi.map(function(x){ return '„'+x.nev+'"' }).join('\n\n'), el('bNevCopy'));
+};
+
 el('bFmt').onclick=function(){
   fmtId=''; el('fTitle').textContent='Un format nou';
   el('fNume').value=''; el('fSeats').value='4'; el('fDurate').value='';

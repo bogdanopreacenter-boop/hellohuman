@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Chérie — No application. No bio.</title>
+<meta name="description" content="Eight people who run companies, at one table, once a month in Bucharest. No application, no bio. A stranger vouched for you.">
+<meta name="theme-color" content="#241013">
+<link rel="canonical" href="https://hellohuman.ro/cherie">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Chérie — No application. No bio.">
+<meta property="og:description" content="Eight people who run companies, at one table, once a month in Bucharest. A stranger vouched for you. That was the interview.">
+<meta property="og:url" content="https://hellohuman.ro/cherie">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --vin:#241013;
+  --vin-sus:#2E161A;
+  --os:#E8DFD1;
+  --os-stins:#A2907E;
+  --alama:#B08D4F;
+  --serif:"Cormorant Garamond","Times New Roman",Times,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:#241013;
+  background:
+    radial-gradient(120% 90% at 50% -10%, #3A1B20 0%, transparent 58%),
+    #241013;
+  color:var(--os);
+  font-family:var(--serif);
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  min-height:100svh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:clamp(20px,5vw,64px);
+}
+
+/* cartonașul de la masă */
+.card{
+  width:100%;
+  max-width:540px;
+  border:1px solid rgba(176,141,79,.22);
+  background:linear-gradient(180deg, rgba(46,22,26,.7), rgba(36,16,19,.55));
+  padding:clamp(34px,6vw,58px) clamp(26px,5vw,52px) clamp(30px,5vw,48px);
+  position:relative;
+}
+.card::before{
+  content:"";position:absolute;left:50%;top:-1px;transform:translateX(-50%);
+  width:56px;height:1px;background:var(--alama);
+}
+
+.nume{
+  font-size:clamp(34px,8vw,52px);
+  font-weight:300;
+  letter-spacing:.24em;
+  text-indent:.24em;
+  text-align:center;
+  line-height:1;
+  color:var(--os);
+}
+.loc{
+  margin-top:14px;
+  text-align:center;
+  font-size:13px;
+  letter-spacing:.3em;
+  text-indent:.3em;
+  color:var(--os-stins);
+  font-style:italic;
+  font-weight:300;
+}
+
+/* masa: opt locuri, al optulea gol */
+.masa{ margin:clamp(30px,6vw,46px) auto clamp(26px,5vw,40px); max-width:300px }
+.masa svg{ width:100%; height:auto; display:block; overflow:visible }
+.masa .blat{ fill:none; stroke:var(--alama); stroke-width:.6; opacity:.3 }
+.masa .loc-plin{ fill:var(--os); opacity:0 }
+.masa .loc-gol{ fill:none; stroke:var(--alama); stroke-width:1; stroke-dasharray:2.4 2.6; opacity:0 }
+@keyframes asezare{ to{ opacity:.92 } }
+@keyframes asezare-gol{ to{ opacity:1 } }
+.masa .loc-plin{ animation:asezare .7s ease forwards }
+.masa .loc-plin:nth-of-type(1){animation-delay:.5s}
+.masa .loc-plin:nth-of-type(2){animation-delay:.74s}
+.masa .loc-plin:nth-of-type(3){animation-delay:.98s}
+.masa .loc-plin:nth-of-type(4){animation-delay:1.22s}
+.masa .loc-plin:nth-of-type(5){animation-delay:1.46s}
+.masa .loc-plin:nth-of-type(6){animation-delay:1.70s}
+.masa .loc-plin:nth-of-type(7){animation-delay:1.94s}
+.masa .loc-gol{ animation:asezare-gol .9s ease 2.5s forwards }
+
+h1{
+  font-size:clamp(23px,4.6vw,30px);
+  font-weight:300;
+  line-height:1.3;
+  text-align:center;
+  letter-spacing:.005em;
+}
+.sub{
+  margin-top:16px;
+  font-size:clamp(16px,2.6vw,18px);
+  line-height:1.66;
+  color:var(--os-stins);
+  text-align:center;
+  max-width:40ch;
+  margin-left:auto;margin-right:auto;
+}
+.rand{ margin-top:34px; padding-top:30px; border-top:1px solid rgba(176,141,79,.16) }
+.mic{
+  font-size:clamp(15px,2.4vw,16.5px);
+  line-height:1.72;
+  color:var(--os-stins);
+  text-align:center;
+  max-width:38ch;
+  margin:0 auto;
+}
+.mic b{ color:var(--os); font-weight:400; display:block; margin-bottom:6px }
+
+form{ margin-top:30px; display:flex; flex-direction:column; gap:12px; align-items:center }
+input{
+  width:100%; max-width:330px;
+  background:transparent;
+  border:0; border-bottom:1px solid rgba(176,141,79,.3);
+  color:var(--os);
+  font-family:var(--serif); font-size:17px; font-weight:300;
+  padding:11px 2px; text-align:center;
+  transition:border-color .35s;
+}
+input::placeholder{ color:rgba(162,144,126,.62); font-style:italic }
+input:focus{ outline:none; border-bottom-color:var(--alama) }
+button[type=submit]{
+  background:transparent; border:1px solid rgba(176,141,79,.4);
+  color:var(--alama);
+  font-family:var(--serif); font-size:14px; font-weight:400;
+  letter-spacing:.2em; text-indent:.2em;
+  padding:12px 30px; cursor:pointer;
+  transition:border-color .35s, color .35s;
+}
+button[type=submit]:hover,button[type=submit]:focus-visible{
+  border-color:var(--alama); color:var(--os); outline:none;
+}
+.raspuns{
+  margin-top:14px; font-size:15px; font-style:italic;
+  color:var(--alama); min-height:1.4em; text-align:center; opacity:0;
+  transition:opacity .5s;
+}
+.raspuns.on{ opacity:1 }
+
+.subsol{
+  margin-top:34px; text-align:center;
+  font-size:12px; letter-spacing:.24em; text-indent:.24em;
+  color:rgba(162,144,126,.5);
+}
+
+#lang{
+  position:fixed; top:clamp(14px,3vw,24px); right:clamp(14px,3vw,24px); z-index:10;
+  background:transparent; border:0;
+  color:rgba(162,144,126,.7);
+  font-family:var(--serif); font-size:13px; font-weight:400;
+  letter-spacing:.22em; text-indent:.22em;
+  padding:8px 4px; cursor:pointer; transition:color .35s;
+}
+#lang:hover,#lang:focus-visible{ color:var(--alama); outline:none }
+
+:focus-visible{ outline:1px solid var(--alama); outline-offset:3px }
+@media (prefers-reduced-motion:reduce){
+  .masa .loc-plin{ animation:none; opacity:.92 }
+  .masa .loc-gol{ animation:none; opacity:1 }
+  *{ transition-duration:.01ms !important }
+}
+</style>
+</head>
+<body>
+
+<button id="lang" type="button" aria-label="Română">RO</button>
+
+<main class="card">
+  <p class="nume">CHÉRIE</p>
+  <p class="loc" data-ro="București">Bucharest</p>
+
+  <figure class="masa" aria-label="A table with eight seats. Seven taken.">
+    <svg viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg" role="img">
+      <ellipse class="blat" cx="120" cy="75" rx="74" ry="38"/>
+      <circle class="loc-plin" cx="120" cy="26" r="4.6"/>
+      <circle class="loc-plin" cx="173" cy="41" r="4.6"/>
+      <circle class="loc-plin" cx="202" cy="75" r="4.6"/>
+      <circle class="loc-plin" cx="173" cy="109" r="4.6"/>
+      <circle class="loc-plin" cx="120" cy="124" r="4.6"/>
+      <circle class="loc-plin" cx="67"  cy="109" r="4.6"/>
+      <circle class="loc-plin" cx="38"  cy="75" r="4.6"/>
+      <circle class="loc-gol"  cx="67"  cy="41" r="5.2"/>
+    </svg>
+  </figure>
+
+  <h1 data-ro="Șapte locuri sunt luate.">Seven seats are taken.</h1>
+  <p class="sub" data-ro="Opt oameni care conduc companii, la o masă, o dată pe lună. Nimeni nu s-a mai văzut. Nimeni nu vine să vândă. Iar locurile nu se aleg la întâmplare.">Eight people who run companies, at one table, once a month. Nobody has met before. Nobody comes to sell anything. And where each of them sits is not left to chance.</p>
+
+  <div class="rand">
+    <p class="mic"><b data-ro="Fără formular. Fără prezentare.">No application. No bio.</b><span data-ro="Un străin a pus o vorbă bună pentru tine. Ăla a fost interviul.">A stranger vouched for you. That was the interview.</span></p>
+  </div>
+
+  <form id="f" novalidate>
+    <label for="email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)" data-ro="Emailul tău">Your email</label>
+    <input id="email" name="email" type="email" autocomplete="email"
+           placeholder="your email address" data-ro-ph="adresa ta de email" required>
+    <button type="submit" data-ro="Lasă-mi adresa">Leave your address</button>
+    <p class="raspuns" id="r" role="status"></p>
+  </form>
+
+  <p class="subsol">Chérie Network</p>
+</main>
+
+<script>
+(function(){
+  /* Limba nu se traduce — sunt doua variante scrise separat, fiecare in limba ei. */
+  var b=document.getElementById('lang'), ro=false;
+  var noduri=[].slice.call(document.querySelectorAll('[data-ro]'));
+  var campuri=[].slice.call(document.querySelectorAll('[data-ro-ph]'));
+  noduri.forEach(function(n){ n.setAttribute('data-en', n.textContent) });
+  campuri.forEach(function(n){ n.setAttribute('data-en-ph', n.placeholder) });
+
+  var raspuns={
+    en:{ ok:'Noted. If our paths cross, you will hear from us.', rau:'That address does not look right.' },
+    ro:{ ok:'Am notat. Dacă drumurile se intersectează, îți scriem.', rau:'Adresa nu pare în regulă.' }
+  };
+
+  function pune(){
+    noduri.forEach(function(n){ n.textContent = ro ? n.getAttribute('data-ro') : n.getAttribute('data-en') });
+    campuri.forEach(function(n){ n.placeholder = ro ? n.getAttribute('data-ro-ph') : n.getAttribute('data-en-ph') });
+    document.documentElement.lang = ro ? 'ro' : 'en';
+    b.textContent = ro ? 'EN' : 'RO';
+    b.setAttribute('aria-label', ro ? 'English' : 'Română');
+  }
+  b.onclick=function(){ ro=!ro; pune() };
+  try{ if((navigator.language||'').toLowerCase().indexOf('ro')===0){ ro=true; pune() } }catch(e){}
+
+  document.getElementById('f').onsubmit=function(e){
+    e.preventDefault();
+    var v=document.getElementById('email').value.trim();
+    var r=document.getElementById('r');
+    var l=ro?'ro':'en';
+    if(!v || v.indexOf('@')<1 || v.indexOf('.')<3){ r.textContent=raspuns[l].rau; r.classList.add('on'); return }
+    r.textContent=raspuns[l].ok; r.classList.add('on');
+    document.getElementById('email').value='';
+    // se salveaza in acelasi registru ca HelloHuman, cu eticheta "cherie"
+    try{
+      fetch('/api/store?lead=1&id=cherie', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ mail:v, src:'cherie', lang:l, ts:Date.now() })
+      }).catch(function(){});
+    }catch(e){}
+  };
+})();
+</script>
+</body>
+</html>
