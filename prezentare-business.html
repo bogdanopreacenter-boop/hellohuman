@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>HelloHuman</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --verde:#0B2620; --verde2:#123A31; --os:#F3EFE7; --os2:#E7E0D3;
+  --gri:#6B7A73; --gri2:#9AA8A1; --ocru:#C8912A; --linie:#DFE5E1;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Inter",-apple-system,system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:var(--os);color:var(--verde);font-family:var(--sans);font-weight:300;
+  -webkit-font-smoothing:antialiased;line-height:1.6}
+
+.p{min-height:100svh;padding:clamp(28px,6vw,72px) clamp(22px,7vw,96px);
+  display:flex;flex-direction:column;justify-content:space-between;
+  border-bottom:1px solid var(--linie);page-break-after:always;break-after:page}
+.p.dark{background:var(--verde);color:var(--os);border-bottom-color:#1B4238}
+.p.dark .ey{color:var(--ocru)} .p.dark .lead{color:#B9CBC2}
+.p.dark .rand{border-top-color:#1B4238} .p.dark .rand b{color:var(--os)}
+.p.dark .rand span{color:#A3B8AE} .p.dark .foot{border-top-color:#1B4238;color:#7C958B}
+.p.dark h2{color:var(--os)}
+
+.top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:auto}
+.logo{font-family:var(--serif);font-size:clamp(17px,2vw,20px);letter-spacing:.02em}
+.num{font-family:var(--sans);font-size:11px;letter-spacing:.24em;color:var(--gri2)}
+.p.dark .num{color:#6E8A80}
+
+.mid{padding:clamp(24px,5vw,48px) 0}
+.ey{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:.26em;
+  color:var(--ocru);margin-bottom:clamp(14px,2vw,20px);text-transform:none}
+h1{font-family:var(--serif);font-weight:300;font-size:clamp(34px,6.2vw,66px);
+  line-height:1.06;letter-spacing:-.012em;max-width:17ch}
+h2{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4.6vw,46px);
+  line-height:1.1;letter-spacing:-.01em;max-width:20ch}
+.lead{font-family:var(--serif);font-style:italic;font-size:clamp(17px,2.3vw,23px);
+  color:var(--ocru);margin-top:clamp(14px,2vw,20px);max-width:44ch;line-height:1.45}
+.sub{font-size:clamp(14px,1.55vw,16px);color:var(--gri);margin-top:clamp(16px,2.2vw,22px);
+  max-width:56ch;line-height:1.7}
+
+.rand{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:clamp(14px,3vw,40px);
+  padding:clamp(15px,2vw,20px) 0;border-top:1px solid var(--linie);align-items:start}
+.rand:first-of-type{margin-top:clamp(20px,3vw,32px)}
+.rand b{font-family:var(--serif);font-weight:500;font-size:clamp(17px,2.1vw,21px);
+  line-height:1.25;color:var(--verde)}
+.rand span{font-size:clamp(13.5px,1.45vw,15px);color:var(--gri);line-height:1.65}
+.rand i{display:block;font-family:var(--sans);font-style:normal;font-size:10.5px;
+  letter-spacing:.2em;color:var(--ocru);margin-bottom:5px}
+
+.note{font-family:var(--serif);font-style:italic;font-size:clamp(16px,2vw,20px);
+  color:var(--ocru);margin-top:clamp(22px,3vw,34px);padding-top:clamp(18px,2.4vw,24px);
+  border-top:1px solid var(--linie);max-width:52ch;line-height:1.45}
+.p.dark .note{border-top-color:#1B4238}
+
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  border-top:1px solid var(--linie);padding-top:clamp(14px,2vw,18px);
+  font-size:11.5px;letter-spacing:.06em;color:var(--gri2)}
+
+.cta{border:1px solid var(--ocru);padding:clamp(20px,3vw,28px);max-width:440px;margin-top:clamp(22px,3vw,30px)}
+.cta .u{font-family:var(--serif);font-size:clamp(20px,2.6vw,26px);color:var(--ocru);display:block;margin:6px 0 10px}
+.cta .m{font-size:13px;color:#A3B8AE}
+.cta .t{font-size:11px;letter-spacing:.2em;color:#7C958B}
+
+#lang{position:fixed;top:clamp(14px,2.5vw,22px);right:clamp(14px,2.5vw,22px);z-index:20;
+  background:var(--os);border:1px solid var(--linie);color:var(--gri);
+  font-family:var(--sans);font-size:11px;letter-spacing:.2em;padding:8px 14px;
+  cursor:pointer;transition:.3s;border-radius:2px}
+#lang:hover{border-color:var(--ocru);color:var(--ocru)}
+
+:focus-visible{outline:1px solid var(--ocru);outline-offset:3px}
+@media (max-width:760px){
+  .rand{grid-template-columns:1fr;gap:6px}
+  .p{min-height:auto;padding:44px 22px}
+  h1,h2,.lead,.sub{max-width:none}
+}
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{background:var(--os);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #lang{display:none}
+  .p{height:100vh;min-height:0;padding:40px 56px;border:0;
+     page-break-after:always;break-after:page;
+     -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .p:last-of-type{page-break-after:auto;break-after:auto}
+  .rand,.note,h1,h2,.lead{page-break-inside:avoid;break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<button id="lang" type="button" aria-label="English">EN</button>
+
+<!-- 1 -->
+<section class="p">
+  <div class="top"><span class="logo">HelloHuman</span><span class="num">01 / 05</span></div>
+  <div class="mid">
+    <p class="ey" data-t="e1">Ce primiți</p>
+    <h1 data-t="h1">Patru cifre pe care nu le aveți</h1>
+    <p class="lead" data-t="l1">Ultima nu se poate obține altfel.</p>
+
+    <div class="rand"><b data-t="r1a">Conversații între echipe</b><span data-t="r1b">Câte schimburi au traversat efectiv granița unui departament.</span></div>
+    <div class="rand"><b data-t="r2a">Confirmate de ambele părți</b><span data-t="r2b">Câte au fost indicate de amândoi participanții, separat, fără să știe unul de altul.</span></div>
+    <div class="rand"><b data-t="r3a">Viteza de integrare</b><span data-t="r3b">Cât de repede intră în rețeaua reală un angajat cu sub un an vechime.</span></div>
+    <div class="rand"><b data-t="r4a">Echipe fără nicio atingere</b><span data-t="r4b">Ce departamente au fost așezate împreună și nu a ieșit nimic.</span></div>
+  </div>
+  <div class="foot"><span>hellohuman.ro · bogdan@hellohuman.ro</span><span data-t="f1">Propunere confidențială</span></div>
+</section>
+
+<!-- 2 -->
+<section class="p dark">
+  <div class="top"><span class="logo">HelloHuman</span><span class="num">02 / 05</span></div>
+  <div class="mid">
+    <p class="ey" data-t="e2">Implementarea</p>
+    <h2 data-t="h2">Paisprezece zile.<br>Nimic altceva.</h2>
+    <p class="lead" data-t="l2">Angajații primesc cina. Dumneavoastră primiți raportul.</p>
+
+    <div class="rand"><b data-t="r5a">Un cod tipărit</b><span data-t="r5b">Lăsat acolo unde oamenii se adună la cafea. Cine are șapte minute îl scanează.</span></div>
+    <div class="rand"><b data-t="r6a">Un anunț intern</b><span data-t="r6b">Două săptămâni, un joc, iar la final o cină.</span></div>
+    <div class="rand"><b data-t="r7a">Atât</b><span data-t="r7b">Fără instalare, fără integrare, fără acces la sistemele dumneavoastră. Biroul nu se întrerupe niciun minut.</span></div>
+  </div>
+  <div class="foot"><span>hellohuman.ro</span><span data-t="f2">Zero muncă pentru echipa dumneavoastră</span></div>
+</section>
+
+<!-- 3 -->
+<section class="p">
+  <div class="top"><span class="logo">HelloHuman</span><span class="num">03 / 05</span></div>
+  <div class="mid">
+    <p class="ey" data-t="e3">Mecanismul</p>
+    <h2 data-t="h3">Nimeni nu trebuie<br>să-și facă curaj</h2>
+    <p class="lead" data-t="l3">Bariera nu este timiditatea. Este absența unui motiv acceptabil de a te așeza lângă un coleg din alt departament.</p>
+
+    <div class="rand"><b data-t="r8a">Sistemul furnizează alibiul</b><span data-t="r8b">Nimeni nu alege să stea acolo — codul a decis. Dispare decizia personală, iar odată cu ea riscul de a fi refuzat.</span></div>
+    <div class="rand"><b data-t="r9a">Șapte minute, apoi se încheie</b><span data-t="r9b">Conversația se taie exact când mai are unde să meargă.</span></div>
+    <div class="rand"><b data-t="r10a">Alegerea reciprocă</b><span data-t="r10b">La final, fiecare indică o singură persoană. Nimeni nu vede răspunsul nimănui.</span></div>
+
+    <p class="note" data-t="n3">Când doi se indică reciproc, fără să știe unul de altul, nu mai este politețe.</p>
+  </div>
+  <div class="foot"><span>hellohuman.ro</span><span data-t="f3">Psihologie aplicată</span></div>
+</section>
+
+<!-- 4 -->
+<section class="p dark">
+  <div class="top"><span class="logo">HelloHuman</span><span class="num">04 / 05</span></div>
+  <div class="mid">
+    <p class="ey" data-t="e4">Confidențialitate</p>
+    <h2 data-t="h4">Ce nu ajunge<br>niciodată în raport</h2>
+    <p class="lead" data-t="l4">Un angajat care se crede evaluat nominal nu participă. Iar dacă participă, nu este sincer.</p>
+
+    <div class="rand"><b data-t="r11a">Nicio identitate reală</b><span data-t="r11b">Prenumele, o poreclă, orice. Nu verificăm și nu comparăm cu nicio listă de personal.</span></div>
+    <div class="rand"><b data-t="r12a">Nicio pereche</b><span data-t="r12b">Raportul nu arată niciodată cine a stat cu cine.</span></div>
+    <div class="rand"><b data-t="r13a">Prag de cinci persoane</b><span data-t="r13b">Nu raportăm nimic despre grupuri mai mici. Sub acest prag, o cifră devine o afirmație despre un om anume.</span></div>
+    <div class="rand"><b data-t="r14a">Niciun acces la sisteme</b><span data-t="r14b">Nici Slack, nici Teams, nici email, nici rețeaua internă.</span></div>
+  </div>
+  <div class="foot"><span>hellohuman.ro</span><span data-t="f4">Exclusiv valori agregate</span></div>
+</section>
+
+<!-- 5 -->
+<section class="p">
+  <div class="top"><span class="logo">HelloHuman</span><span class="num">05 / 05</span></div>
+  <div class="mid">
+    <p class="ey" data-t="e5">Pasul următor</p>
+    <h2 data-t="h5">Paisprezece zile,<br>apoi decideți</h2>
+    <p class="sub" data-t="s5">Livrăm raportul și planul de așezare pentru evenimentul dumneavoastră. Ce faceți cu el rămâne la latitudinea dumneavoastră. Condițiile comerciale sunt în documentul anexat.</p>
+    <p class="lead" data-t="l5">Două săptămâni din septembrie nu se pot rula în decembrie.</p>
+
+    <div class="cta">
+      <span class="t" data-t="c1">Calibrați diagnosticul companiei</span>
+      <span class="u">hellohuman.ro/business</span>
+      <span class="m" data-t="c2">Fondator · bogdan@hellohuman.ro</span>
+    </div>
+  </div>
+  <div class="foot"><span>hellohuman.ro</span><span>2026 © HelloHuman</span></div>
+</section>
+
+<script>
+var L={
+ ro:{ttl:"HelloHuman",
+  e1:"Ce primiți",h1:"Patru cifre pe care nu le aveți",l1:"Ultima nu se poate obține altfel.",
+  r1a:"Conversații între echipe",r1b:"Câte schimburi au traversat efectiv granița unui departament.",
+  r2a:"Confirmate de ambele părți",r2b:"Câte au fost indicate de amândoi participanții, separat, fără să știe unul de altul.",
+  r3a:"Viteza de integrare",r3b:"Cât de repede intră în rețeaua reală un angajat cu sub un an vechime.",
+  r4a:"Echipe fără nicio atingere",r4b:"Ce departamente au fost așezate împreună și nu a ieșit nimic.",
+  f1:"Propunere confidențială",
+  e2:"Implementarea",h2:"Paisprezece zile.<br>Nimic altceva.",l2:"Angajații primesc cina. Dumneavoastră primiți raportul.",
+  r5a:"Un cod tipărit",r5b:"Lăsat acolo unde oamenii se adună la cafea. Cine are șapte minute îl scanează.",
+  r6a:"Un anunț intern",r6b:"Două săptămâni, un joc, iar la final o cină.",
+  r7a:"Atât",r7b:"Fără instalare, fără integrare, fără acces la sistemele dumneavoastră. Biroul nu se întrerupe niciun minut.",
+  f2:"Zero muncă pentru echipa dumneavoastră",
+  e3:"Mecanismul",h3:"Nimeni nu trebuie<br>să-și facă curaj",
+  l3:"Bariera nu este timiditatea. Este absența unui motiv acceptabil de a te așeza lângă un coleg din alt departament.",
+  r8a:"Sistemul furnizează alibiul",r8b:"Nimeni nu alege să stea acolo — codul a decis. Dispare decizia personală, iar odată cu ea riscul de a fi refuzat.",
+  r9a:"Șapte minute, apoi se încheie",r9b:"Conversația se taie exact când mai are unde să meargă.",
+  r10a:"Alegerea reciprocă",r10b:"La final, fiecare indică o singură persoană. Nimeni nu vede răspunsul nimănui.",
+  n3:"Când doi se indică reciproc, fără să știe unul de altul, nu mai este politețe.",f3:"Psihologie aplicată",
+  e4:"Confidențialitate",h4:"Ce nu ajunge<br>niciodată în raport",
+  l4:"Un angajat care se crede evaluat nominal nu participă. Iar dacă participă, nu este sincer.",
+  r11a:"Nicio identitate reală",r11b:"Prenumele, o poreclă, orice. Nu verificăm și nu comparăm cu nicio listă de personal.",
+  r12a:"Nicio pereche",r12b:"Raportul nu arată niciodată cine a stat cu cine.",
+  r13a:"Prag de cinci persoane",r13b:"Nu raportăm nimic despre grupuri mai mici. Sub acest prag, o cifră devine o afirmație despre un om anume.",
+  r14a:"Niciun acces la sisteme",r14b:"Nici Slack, nici Teams, nici email, nici rețeaua internă.",
+  f4:"Exclusiv valori agregate",
+  e5:"Pasul următor",h5:"Paisprezece zile,<br>apoi decideți",
+  s5:"Livrăm raportul și planul de așezare pentru evenimentul dumneavoastră. Ce faceți cu el rămâne la latitudinea dumneavoastră. Condițiile comerciale sunt în documentul anexat.",
+  l5:"Două săptămâni din septembrie nu se pot rula în decembrie.",
+  c1:"Calibrați diagnosticul companiei",c2:"Fondator · bogdan@hellohuman.ro"},
+ en:{ttl:"HelloHuman",
+  e1:"What you receive",h1:"Four figures you do not have",l1:"The last one cannot be obtained any other way.",
+  r1a:"Conversations across teams",r1b:"How many exchanges actually crossed a departmental boundary.",
+  r2a:"Confirmed by both sides",r2b:"How many were named by both participants, independently, without knowing.",
+  r3a:"Speed of integration",r3b:"How quickly an employee under one year enters the real network.",
+  r4a:"Teams that never met",r4b:"Which departments were seated together and produced nothing.",
+  f1:"Confidential proposal",
+  e2:"Implementation",h2:"Fourteen days.<br>Nothing else.",l2:"Your people get the dinner. You get the report.",
+  r5a:"A printed code",r5b:"Left where people gather for coffee. Anyone with seven minutes scans it.",
+  r6a:"An internal announcement",r6b:"Two weeks, a game, and a dinner at the end.",
+  r7a:"That is all",r7b:"No installation, no integration, no access to your systems. The office is not interrupted for a single minute.",
+  f2:"Zero work for your team",
+  e3:"The mechanism",h3:"Nobody has to<br>work up the nerve",
+  l3:"The barrier is not shyness. It is the absence of an acceptable reason to sit down beside a colleague from another department.",
+  r8a:"The system supplies the alibi",r8b:"Nobody chooses their seat — the code decides. The personal decision disappears, and with it the fear of rejection.",
+  r9a:"Seven minutes, then it ends",r9b:"The conversation is cut off, leaving them wanting more.",
+  r10a:"The mutual choice",r10b:"At the end, each person indicates one name. Nobody sees anyone else's answer.",
+  n3:"When two people indicate each other, independently, it is no longer politeness.",f3:"Applied psychology",
+  e4:"Privacy",h4:"What never reaches<br>the report",
+  l4:"An employee who believes they are assessed by name does not take part. And if they do, they are not honest.",
+  r11a:"No real identities",r11b:"A first name, a nickname, anything. We do not verify and we cross-reference no roster.",
+  r12a:"No pairs",r12b:"The report never shows who sat with whom.",
+  r13a:"A threshold of five",r13b:"We report nothing about smaller groups. Below that, a figure becomes a statement about one person.",
+  r14a:"No system access",r14b:"Not Slack, not Teams, not email, not your internal network.",
+  f4:"Aggregate values only",
+  e5:"Next step",h5:"Fourteen days,<br>then you decide",
+  s5:"We deliver the report and the seating plan for your event. What you do with it is yours to decide. Commercial terms are in the attached document.",
+  l5:"Two weeks in September cannot be run in December.",
+  c1:"Calibrate your company diagnostic",c2:"Founder · bogdan@hellohuman.ro"}};
+
+(function(){
+  var lang='ro', b=document.getElementById('lang');
+  function apply(){
+    document.documentElement.lang=lang; document.title=L[lang].ttl;
+    [].slice.call(document.querySelectorAll('[data-t]')).forEach(function(n){
+      var v=L[lang][n.getAttribute('data-t')]; if(v) n.innerHTML=v;
+    });
+    b.textContent = lang==='ro' ? 'EN' : 'RO';
+    b.setAttribute('aria-label', lang==='ro' ? 'English' : 'Română');
+  }
+  b.onclick=function(){ lang = lang==='ro' ? 'en' : 'ro'; apply() };
+  try{ if((navigator.language||'').toLowerCase().indexOf('ro')!==0){ lang='en' } }catch(e){}
+  apply();
+})();
+</script>
+</body>
+</html>

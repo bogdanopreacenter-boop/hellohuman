@@ -263,6 +263,14 @@ body{background:#16302B;margin:0}
     <label class="lb" for="dp" data-t="jTeam">Echipa sau departamentul</label>
     <input type="text" id="dp" maxlength="30" placeholder="Operațiuni" data-tp="phTeam">
   </div>
+  <div id="vechBox" style="display:none">
+    <label class="lb" data-t="jVech">De cât timp ești aici?</label>
+    <div class="opts" id="vech" style="margin-bottom:4px">
+      <button class="opt" data-v="nou" data-t="vNou">Sub un an</button>
+      <button class="opt" data-v="mediu" data-t="vMediu">Unu până la trei ani</button>
+      <button class="opt" data-v="vechi" data-t="vVechi">Peste trei ani</button>
+    </div>
+  </div>
   <div class="opts" id="cats" style="margin-top:24px"></div>
   <p class="msg2" id="mJoin"></p>
   <div class="push">
@@ -465,7 +473,7 @@ var T={
 ro:{cOf:'Din partea casei',dp1:'Scanezi cartonașul de pe masă.',dp2:'Te așezi cu trei oameni pe care nu îi cunoști.',ftBiz:'Ai un local? Vezi cum funcționează',navBiz:'Business',aEye:'Pentru firma de evenimente',aH:'Șapte lucruri despre eveniment',aP:'Completezi o dată, primești un cod. Ni-l trimiți și îți dăm linkurile.',nevQ:'Ce te-ar ajuta cel mai mult acum?',nevPh:'o propoziție, fără nume și fără firmă',nevB:'Trimite',nevOk:'Am notat.',nevWait:'Se trimite…',nevScurt:'Scrie o propoziție.',chQ:'Cu cine ai vorbit cel mai ușor?',chP:'Nu vede nimeni răspunsul.',chSkip:'Sari peste',frQ:'Ai chema un prieten data viitoare?',wAccept:'Merge și în doi sau trei, nu aștept să fim patru',cap1:'Cartonașul stă pe masă. Atât trebuie să vezi.',cap2:'Patru oameni care nu se cunoșteau, la masa 7.',askPh:'o propoziție, în cuvintele tale',askSend:'Trimite răspunsul',askQ:'Dacă i-ai povesti mâine unui prieten ce ai făcut acum, ce i-ai spune?',nav1:'Cum funcționează',nav2:'Unde',nav3:'Întrebări',back:'Înapoi',next:'Continuă',leave:'Nu mai aștept',done:'Gata',
  phMail:'tu@email.com',phCity:'Orașul tău',phName:'Andrei',phTeam:'Operațiuni',
  bMailT:'Anunță-mă',iEye:'Ce te-ar interesa? Poți alege câte vrei.',
- jH:'Ce ți se potrivește?',jName:'Prenumele tău',jTeam:'Echipa sau departamentul',
+ jH:'Ce ți se potrivește?',jName:'Prenumele tău',jVech:'De cât timp ești aici?',vNou:'Sub un an',vMediu:'Unu până la trei ani',vVechi:'Peste trei ani',jTeam:'Echipa sau departamentul',
  jPick:'',jIn:'Intru',jPair:'Vin cu cineva',
  pEye:'Împreună',pH:'Aceeași masă,<br>voi doi.',pP:'Unul face un cod, celălalt îl scrie aici. Sau i-l trimiți direct.',
  pCode:'Codul de la prietenul tău',pUse:'Gata',pSendTxt:'Stăm la aceeași masă. Codul e',pSend:'Trimite-i codul',pOr:'— sau —',pGen:'Fă-mi un cod',
@@ -495,7 +503,7 @@ ro:{cOf:'Din partea casei',dp1:'Scanezi cartonașul de pe masă.',dp2:'Te așezi
 en:{cOf:'On the house',dp1:'You scan the card on the table.',dp2:'You sit down with three people you do not know.',ftBiz:'Got a venue? See how it works',navBiz:'Business',aEye:'For the events company',aH:'Seven things about the event',aP:'Fill it once, get a code. Send it to the agency and they handle the rest.',nevQ:'What would help you most right now?',nevPh:'one sentence, no names, no company',nevB:'Send',nevOk:'Noted.',nevWait:'Sending…',nevScurt:'Write one sentence.',chQ:'Who did you talk to most easily?',chP:'Nobody sees your answer.',chSkip:'Skip',frQ:'Would you bring a friend next time?',wAccept:"Two or three is fine, I'm not waiting for four",cap1:'The card sits on the table. That is all you need to see.',cap2:'Four people who had never met, at table 7.',askPh:'one sentence, in your own words',askSend:'Send it',askQ:'If you told a friend tomorrow what you just did, what would you say?',nav1:'How it works',nav2:'Where',nav3:'Questions',back:'Back',next:'Continue',leave:'I am not waiting',done:'Done',
  phMail:'you@email.com',phCity:'Your city',phName:'Andrew',phTeam:'Operations',
  bMailT:'Keep me posted',iEye:'What would interest you? Pick as many as you like.',
- jH:'Which one fits?',jName:'Your first name',jTeam:'Team or department',
+ jH:'Which one fits?',jName:'Your first name',jVech:'How long have you been here?',vNou:'Under a year',vMediu:'One to three years',vVechi:'Over three years',jTeam:'Team or department',
  jPick:'',jIn:"I am in",jPair:'I came with someone',
  pEye:'Together',pH:'Same table,<br>the two of you.',pP:'One makes a code, the other writes it here. Or you just send it over.',
  pCode:'The code from your friend',pUse:'Done',pSendTxt:'We are sitting together. The code is',pSend:'Send them the code',pOr:'— or —',pGen:'Make me a code',
@@ -657,6 +665,7 @@ async function intraInSeara(id){
   el('site').style.display='none'; el('app').classList.add('on');
   el('jEv').textContent=cfg.ev||'HelloHuman';
   el('depBox').style.display=cfg.dep?'':'none';
+  el('vechBox').style.display=cfg.dep?'':'none';
   me.id=uid(); paintCats();
   HH.initNav(ECR,'sJoin',function(){});
 }
@@ -710,6 +719,13 @@ el('aLang').onclick=function(){
   try{ if(typeof deseneaza==='function') deseneaza() }catch(e){}
 };
 
+
+el('vech').onclick=function(e){
+  var b=e.target.closest('.opt'); if(!b) return;
+  [].slice.call(el('vech').querySelectorAll('.opt')).forEach(function(x){ x.classList.remove('sel') });
+  b.classList.add('sel'); me.vech=b.dataset.v;
+};
+
 el('bIn').onclick=function(){
   var n=el('nm').value.trim();
   if(!n||!me.cat)return say('mJoin',lang==='en'?'Name and one choice.':'Numele și o variantă.','err');
@@ -720,7 +736,7 @@ async function inscrie(){
   if(busy)return; busy=true;
   me.name=el('nm').value.trim(); me.dep=(el('dp').value||'').trim();
   try{
-    await API.op(eid,'join',{id:me.id,name:me.name,dep:me.dep,cat:me.cat,ts:Date.now(),miss:0,pair:me.pair||'',board:me.board||0});
+    await API.op(eid,'join',{id:me.id,name:me.name,dep:me.dep,vech:me.vech||'',cat:me.cat,ts:Date.now(),miss:0,pair:me.pair||'',board:me.board||0});
     midShown=false; go('sWait');
     if(poll)clearInterval(poll); poll=setInterval(tick,3000); tick();
   }catch(e){ say('mJoin',e.message,'err') }
@@ -728,7 +744,7 @@ async function inscrie(){
 }
 el('wAcc').onchange=async function(){
   me.accept = el('wAcc').checked;
-  try{ await API.op(eid,'join',{id:me.id,name:me.name,dep:me.dep,cat:me.cat,ts:Date.now(),miss:0,pair:me.pair||'',accept:me.accept?1:0}) }catch(e){}
+  try{ await API.op(eid,'join',{id:me.id,name:me.name,dep:me.dep,vech:me.vech||'',cat:me.cat,ts:Date.now(),miss:0,pair:me.pair||'',accept:me.accept?1:0}) }catch(e){}
   tick();
 };
 el('bW0').onclick=async function(){
@@ -851,7 +867,7 @@ document.querySelector('#sMid .opts').onclick=async function(e){
   try{ await API.op(eid,'vote',{id:me.id,v:v}) }catch(err){}
   if(v==='back'){ if(clkT){clearInterval(clkT);clkT=null} return arataFinal(true) }
   var tag=(v==='stay'&&myTable)?('t'+myTable.n):'';
-  try{ await API.op(eid,'join',{id:me.id,name:me.name,dep:me.dep,cat:me.cat,ts:Date.now(),miss:0,pair:me.pair||'',stay:tag}) }catch(err){}
+  try{ await API.op(eid,'join',{id:me.id,name:me.name,dep:me.dep,vech:me.vech||'',cat:me.cat,ts:Date.now(),miss:0,pair:me.pair||'',stay:tag}) }catch(err){}
   go('sTab');
 };
 function arataFinal(devreme){
@@ -952,7 +968,7 @@ el('bNev').onclick=async function(){
 el('bChSkip').onclick=function(){ el('chBox').style.display='none' };
 
 el('bAgain').onclick=async function(){
-  try{ await API.op(eid,'join',{id:me.id,name:me.name,dep:me.dep,cat:me.cat,ts:Date.now(),miss:0,pair:''});
+  try{ await API.op(eid,'join',{id:me.id,name:me.name,dep:me.dep,vech:me.vech||'',cat:me.cat,ts:Date.now(),miss:0,pair:''});
     midShown=false; myTable=null; go('sWait');
     if(poll)clearInterval(poll); poll=setInterval(tick,3000); tick();
   }catch(e){}

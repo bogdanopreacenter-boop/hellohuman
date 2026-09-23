@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>HelloHuman — pentru conducere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--verde:#0B2620;--os:#F3EFE7;--gri:#6B7A73;--gri2:#9AA8A1;--ocru:#C8912A;--linie:#DFE5E1;
+ --serif:"Cormorant Garamond",Georgia,serif;--sans:"Inter",-apple-system,system-ui,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--os);color:var(--verde);font-family:var(--sans);font-weight:300;
+ line-height:1.6;-webkit-font-smoothing:antialiased;
+ padding:clamp(28px,6vw,64px) clamp(22px,6vw,48px);
+ padding-top:calc(clamp(28px,6vw,64px) + env(safe-area-inset-top,0px));
+ padding-bottom:calc(clamp(28px,6vw,64px) + env(safe-area-inset-bottom,0px))}
+.wrap{max-width:660px;margin:0 auto}
+.logo{font-family:var(--serif);font-size:19px;letter-spacing:.02em;margin-bottom:clamp(34px,6vw,54px)}
+h1{font-family:var(--serif);font-weight:300;font-size:clamp(27px,4.6vw,38px);line-height:1.15;
+ letter-spacing:-.01em;margin-bottom:16px}
+.lead{font-family:var(--serif);font-style:italic;font-size:clamp(17px,2.3vw,21px);color:var(--ocru);
+ line-height:1.45;margin-bottom:20px}
+p.t{font-size:15px;color:var(--gri);line-height:1.7;margin-bottom:14px}
+.mic{font-size:13px;color:var(--gri2);margin-top:18px}
+.bar{height:2px;background:var(--linie);margin:clamp(26px,4vw,36px) 0 clamp(22px,3vw,30px)}
+.bar i{display:block;height:2px;background:var(--ocru);width:0;transition:width .4s ease}
+.pas{font-size:11px;letter-spacing:.24em;color:var(--ocru);margin-bottom:12px}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(21px,3.2vw,27px);line-height:1.28;
+ margin-bottom:8px;letter-spacing:-.005em}
+.hint{font-size:13px;color:var(--gri2);margin-bottom:20px}
+.opt{display:block;width:100%;text-align:left;background:transparent;border:1px solid var(--linie);
+ color:var(--verde);font-family:var(--sans);font-size:15px;font-weight:300;line-height:1.5;
+ padding:15px 18px;margin-bottom:9px;cursor:pointer;transition:.22s;border-radius:2px;
+ -webkit-tap-highlight-color:transparent}
+.opt:hover{border-color:var(--gri2)}
+.opt.on{border-color:var(--ocru);background:rgba(200,145,42,.06);color:var(--verde)}
+input,textarea{width:100%;background:transparent;border:0;border-bottom:1px solid var(--linie);
+ color:var(--verde);font-family:var(--sans);font-size:16px;font-weight:300;padding:11px 2px;
+ transition:border-color .3s;border-radius:0}
+input::placeholder,textarea::placeholder{color:var(--gri2)}
+input:focus,textarea:focus{outline:none;border-bottom-color:var(--ocru)}
+textarea{resize:vertical;min-height:62px;line-height:1.6}
+.lb{display:block;font-size:12px;letter-spacing:.14em;color:var(--gri2);margin:22px 0 4px}
+.btn{background:transparent;border:1px solid var(--ocru);color:var(--ocru);
+ font-family:var(--sans);font-size:13px;letter-spacing:.18em;padding:14px 32px;cursor:pointer;
+ transition:.28s;border-radius:2px;-webkit-tap-highlight-color:transparent;margin-top:22px}
+.btn:hover:not(:disabled){background:var(--ocru);color:var(--os)}
+.btn:disabled{opacity:.34;cursor:default}
+.btn.g{border-color:var(--linie);color:var(--gri);letter-spacing:.14em;padding:12px 22px;margin-left:10px}
+.msg{font-size:13.5px;margin-top:14px;min-height:1.3em;color:var(--gri)}
+.msg.err{color:#B4443A} .msg.ok{color:var(--ocru)}
+.sc{display:none} .sc.on{display:block;animation:in .42s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.fin{border-top:1px solid var(--linie);padding-top:clamp(24px,4vw,32px);margin-top:clamp(24px,4vw,32px)}
+:focus-visible{outline:1px solid var(--ocru);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="logo">HelloHuman</p>
+
+  <section class="sc on" id="s0">
+    <h1>Sunt Bogdan, fondatorul HelloHuman.</h1>
+    <p class="lead">Am adus la aceeași masă psihologia, sociologia și tehnologia.</p>
+    <p class="t">Rezultatul măsoară un lucru complet ignorat de piață: dacă doi oameni care nu se cunoșteau ajung să se caute intenționat.</p>
+    <p class="t">Patru întrebări. Nu toate companiile au aceleași puncte oarbe, iar răspunsurile dumneavoastră calibrează exact ce vă arăt.</p>
+    <p class="mic">Puteți alege până la două variante la fiecare întrebare. Două minute.</p>
+    <button class="btn" id="bGo">ÎNCEPEȚI</button>
+  </section>
+
+  <section class="sc" id="sQ">
+    <div class="bar"><i id="bar"></i></div>
+    <p class="pas" id="pas"></p>
+    <h2 id="qt"></h2>
+    <p class="hint">Până la două variante.</p>
+    <div id="qo"></div>
+    <button class="btn" id="bNext" disabled>CONTINUAȚI</button>
+  </section>
+
+  <section class="sc" id="sF">
+    <h1>Gata.</h1>
+    <p class="lead">Încă trei întrebări, dacă doriți. Fiecare vă reduce cu 10% primul ciclu.</p>
+    <p class="mic">Răspundeți la câte vreți. Sau la niciuna.</p>
+    <div id="fbox"></div>
+    <div class="fin">
+      <label class="lb" for="em">EMAIL</label>
+      <input type="email" id="em" placeholder="adresa dumneavoastră" autocomplete="email">
+      <label class="lb" for="co">COMPANIA</label>
+      <input type="text" id="co" placeholder="numele companiei" autocomplete="organization">
+      <button class="btn" id="bSend">TRIMITEȚI</button>
+      <p class="msg" id="m"></p>
+    </div>
+  </section>
+
+  <section class="sc" id="sOk">
+    <h1>Mulțumesc.</h1>
+    <p class="lead">Vă scriu personal, în câteva ore.</p>
+    <p class="t">Vă trimit prezentarea calibrată pe ce ați indicat. Are cinci pagini și se citește într-un minut.</p>
+    <p class="mic">Bogdan · bogdan@hellohuman.ro</p>
+  </section>
+</div>
+
+<script>
+var Q=[{"t": "Pe măsură ce organizația crește, ce observați cel mai des?", "o": [["Departamentele încep să-și apere propriul teritoriu", "SILO"], ["Deciziile se iau mai greu, pentru că informația nu mai circulă", "VIZIBILITATE"], ["Rezultatele bune vin din aceleași câteva echipe", "EFICIENTA"], ["Nu am observat o schimbare semnificativă", "STATUSQUO"]]}, {"t": "Când aflați că două departamente nu mai colaborează?", "o": [["Când un proiect comun stagnează", "SILO"], ["Când pleacă cineva și se vede golul", "VIZIBILITATE"], ["Din rapoartele de performanță, cu întârziere", "EFICIENTA"], ["De obicei aflu la timp", "STATUSQUO"]]}, {"t": "Ce v-ar fi cel mai greu de acceptat într-o soluție nouă?", "o": [["Să ceară timp de la echipele operaționale", "FRICTIUNE"], ["Să ceară acces la sistemele noastre interne", "FRICTIUNE"], ["Să nu pot arăta un rezultat măsurabil", "DOVADA"], ["Să fie încă o inițiativă care se stinge în trei luni", "STATUSQUO"]]}, {"t": "Ce ar trebui să vă arate un raport ca să conteze pentru dumneavoastră?", "o": [["Unde se rup legăturile între echipe", "SILO"], ["Cine susține de fapt organizația, dincolo de organigramă", "VIZIBILITATE"], ["O comparație în timp, cu aceeași metodologie", "DOVADA"], ["Prefer să văd mai întâi un exemplu concret", "STATUSQUO"]]}];
+var F=[{"t": "Dacă o persoană-cheie ar părăsi echipa mâine, cât ar dura până când altcineva i-ar putea prelua responsabilitățile?", "o": ["Sub o lună", "Câteva luni", "Peste un an", "Sunt oameni pe care nu i-am putea înlocui"], "tip": "ales"}, {"t": "Ce informație v-ar schimba modul în care luați decizii despre echipe, dar în prezent nu aveți de unde să o obțineți?", "tip": "text"}, {"t": "La finalul unui proiect cu noi, ce v-ar face să spuneți ferm: „A meritat investiția”?", "tip": "text"}];
+var ROL="ceo";
+var el=function(i){return document.getElementById(i)};
+var i=0, raspuns=[], finale=[], reducere=0;
+
+function go(id){
+  ['s0','sQ','sF','sOk'].forEach(function(x){ el(x).classList.toggle('on', x===id) });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function paint(){
+  var q=Q[i];
+  el('pas').textContent = (i+1)+' DIN '+Q.length;
+  el('bar').style.width = ((i)/Q.length*100)+'%';
+  el('qt').textContent = q.t;
+  el('qo').innerHTML = q.o.map(function(o,k){
+    return '<button class="opt" data-k="'+k+'">'+o[0]+'</button>';
+  }).join('');
+  el('bNext').disabled = true;
+  el('bNext').textContent = (i===Q.length-1) ? 'GATA' : 'CONTINUAȚI';
+}
+el('bGo').onclick=function(){ go('sQ'); paint() };
+el('qo').onclick=function(e){
+  var b=e.target.closest('.opt'); if(!b) return;
+  var sel=[].slice.call(el('qo').querySelectorAll('.opt.on'));
+  if(b.classList.contains('on')){ b.classList.remove('on') }
+  else if(sel.length<2){ b.classList.add('on') }
+  el('bNext').disabled = el('qo').querySelectorAll('.opt.on').length===0;
+};
+el('bNext').onclick=function(){
+  raspuns.push([].slice.call(el('qo').querySelectorAll('.opt.on')).map(function(b){
+    return Q[i].o[+b.dataset.k][1];
+  }));
+  i++;
+  if(i<Q.length){ paint() } else { paintF(); go('sF') }
+};
+function paintF(){
+  el('fbox').innerHTML = F.map(function(f,k){
+    if(f.tip==='ales'){
+      return '<div class="fin"><h2>'+(k+1)+' · '+f.t+'</h2><div class="fo" data-f="'+k+'">'+
+        f.o.map(function(o,j){ return '<button class="opt" data-j="'+j+'">'+o+'</button>' }).join('')+'</div></div>';
+    }
+    return '<div class="fin"><h2>'+(k+1)+' · '+f.t+'</h2>'+
+      '<textarea data-f="'+k+'" rows="2" placeholder="o propoziție"></textarea></div>';
+  }).join('');
+  [].slice.call(document.querySelectorAll('.fo')).forEach(function(g){
+    g.onclick=function(e){
+      var b=e.target.closest('.opt'); if(!b) return;
+      [].slice.call(g.querySelectorAll('.opt')).forEach(function(x){x.classList.remove('on')});
+      b.classList.add('on');
+    };
+  });
+}
+el('bSend').onclick=async function(){
+  var mail=el('em').value.trim(), comp=el('co').value.trim();
+  if(!mail || mail.indexOf('@')<1 || mail.indexOf('.')<3){ say('Scrieți o adresă validă.','err'); return }
+  finale=[]; reducere=0;
+  F.forEach(function(f,k){
+    var v='';
+    if(f.tip==='ales'){
+      var s=document.querySelector('.fo[data-f="'+k+'"] .opt.on');
+      if(s) v=f.o[+s.dataset.j];
+    } else {
+      var t=document.querySelector('textarea[data-f="'+k+'"]');
+      if(t) v=t.value.trim();
+    }
+    finale.push(v);
+    if(v) reducere+=10;
+  });
+  if(reducere>30) reducere=30;
+  el('bSend').disabled=true; say('Se trimite…');
+  try{
+    await fetch('/api/store?lead=1&id=business',{method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({src:'business',rol:ROL,mail:mail,comp:comp,
+        raspuns:raspuns,finale:finale,reducere:reducere,ts:Date.now()})});
+  }catch(e){}
+  go('sOk');
+};
+function say(t,c){ var m=el('m'); m.textContent=t; m.className='msg'+(c?' '+c:'') }
+</script>
+</body>
+</html>

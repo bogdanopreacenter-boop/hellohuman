@@ -189,8 +189,10 @@
       <p class="lead" style="margin:18px auto 30px" data-t="l5">Ne spui unde ești, ce fel de loc ai și ce cauți. Ne uităm peste și îți răspundem în două zile lucrătoare.</p>
       <div class="cta" style="justify-content:center">
         <a class="btn" href="/alatura-te.html" data-t="b1">Vreau HelloHuman la mine</a>
-        <a class="btn ghost" href="mailto:contact@hellohuman.ro" data-t="mail">Scrie direct pe email</a>
+        <a class="btn ghost" id="bPdf" href="/hellohuman-raport-hr.pdf" download data-t="pdf">Prezentarea, fără formular</a>
+<a class="btn ghost" href="mailto:contact@hellohuman.ro" data-t="mail">Scrie direct pe email</a>
       </div>
+<p class="sub2" style="margin-top:14px;opacity:.7" data-t="pdfS">Nu-ți cerem adresa. O descarci și gata.</p>
     </div>
   </section>
 
@@ -280,7 +282,7 @@ var L={ ro:{ lead2:"Ideea e aceeași peste tot, dar obstacolul diferă. Într-un
   e5:"Dacă vrei să vorbim",
   h5:"Un minut, cinci<br>lucruri despre tine.",
   l5:"Ne spui unde ești, ce fel de loc ai și ce cauți. Ne uităm peste și îți răspundem în două zile lucrătoare.",
-  mail:"Scrie direct pe email",
+  pdf:"Prezentarea, fără formular",pdfS:"Nu-ți cerem adresa. O descarci și gata.",mail:"Scrie direct pe email",
   ftS:"Oameni care nu se cunosc stau câteva minute la aceeași masă, în locuri unde sunt deja prezenți.",
   ftL:"Locuri",
   ftC:"Contact" }, en:{ lead2:"The idea is the same everywhere, but the obstacle differs. In a bar, nobody gets up from their own table.",ftGeo:"Wherever there are people who do not know each other",k3b:"Museums and cultural spaces",tellus:"Tell us about your place",lead1:"An hour that sits on top of the schedule you already have. Guests scan a code on the table, get a table with two or three people they do not know and a starting question. When the announced interval ends, everyone goes back to their own table.",ttl:"HelloHuman for venues and events — how it works",
@@ -336,13 +338,15 @@ var L={ ro:{ lead2:"Ideea e aceeași peste tot, dar obstacolul diferă. Într-un
   e5:"If you want to talk",
   h5:"One minute, five<br>things about you.",
   l5:"Tell us where you are, what kind of place you have and what you are after. We read it and reply within two working days.",
-  mail:"Write to us by email",
+  pdf:"The deck, no form",pdfS:"We do not ask for your address. You just download it.",mail:"Write to us by email",
   ftS:"People who do not know each other spend a few minutes at the same table, in places where they already are.",
   ftL:"Venues",
   ftC:"Contact" } };
 function T(k){ return (L[lang]||L.ro)[k]||L.ro[k]||'' }
 function setLang(v){ lang=v; try{localStorage.setItem('hh_l',v)}catch(e){} applyLang() }
 function applyLang(){
+  var b=document.getElementById('bPdf');
+  if(b) b.href = (lang==='en') ? '/hellohuman-hr-report.pdf' : '/hellohuman-raport-hr.pdf';
   document.documentElement.lang=lang; document.title=T('ttl');
   [].slice.call(document.querySelectorAll('[data-t]')).forEach(function(n){
     var v=T(n.getAttribute('data-t')); if(v)n.innerHTML=v });

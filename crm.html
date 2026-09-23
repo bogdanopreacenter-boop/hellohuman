@@ -78,6 +78,7 @@ body.appbody .sc.on{display:block}
     <button class="btn wide" id="bNewPt" style="margin-top:16px">Adaugă un partener</button>
     <button class="btn ghost wide" id="bFmt" style="margin-top:9px">Formate proprii</button>
   <button class="btn ghost wide" id="bNev" style="margin-top:9px">Ce le lipsește oamenilor</button>
+    <button class="btn ghost wide" id="bBiz" style="margin-top:9px">Cereri de la companii</button>
     <div class="list" id="lFmt" style="max-height:none"></div>
   </div>
 
@@ -149,6 +150,12 @@ body.appbody .sc.on{display:block}
   <p class="msg2" id="mEv"></p>
   <div class="push"><button class="btn ghost wide" id="bEDel" style="border-color:rgba(196,85,47,.5);color:#E89078">Șterge runda</button></div>
 
+  <div id="raportBox" style="margin-top:26px">
+    <p class="kk">Raportul pentru client</p>
+    <div class="list" id="raport" style="max-height:none"></div>
+    <button class="btn ghost small" id="bRapCopy" style="margin-top:10px">Copiază raportul</button>
+  </div>
+
   <p class="kk" style="margin-top:26px">Perechi care au funcționat</p>
   <div class="list" id="evPerechi" style="max-height:none"></div>
   <p class="sub2" style="margin-top:6px">Cine pe cine a ales. Dacă se aleg reciproc, e semnalul cel mai puternic.</p>
@@ -156,6 +163,19 @@ body.appbody .sc.on{display:block}
 
 
 <!-- format propriu -->
+<section class="sc" id="sBiz">
+  <a class="back" href="#" id="bBizB">← Înapoi</a>
+  <p class="eyebrow">Cereri de la companii</p>
+  <h2>Cine a completat chestionarul</h2>
+  <p class="sub2" style="margin-top:10px">Profilul se calculează din răspunsuri. Reducerea, din întrebările finale.</p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px">
+    <button class="btn ghost small" id="bBizRef">Reîmprospătează</button>
+    <button class="btn ghost small" id="bBizCopy">Copiază tot</button>
+  </div>
+  <p class="msg2" id="mBiz"></p>
+  <div class="list" id="bizList" style="max-height:none;margin-top:12px"></div>
+</section>
+
 <section class="sc" id="sNev">
   <a class="back" href="#" id="bNevB">← Înapoi</a>
   <p class="eyebrow">Ce am auzit la mese</p>
@@ -280,6 +300,10 @@ body.appbody .sc.on{display:block}
 <p class="note" id="cNote"></p>
   
   
+  <label class="lb" for="cSala">Câți oameni sunt în sală</label>
+  <input type="text" id="cSala" maxlength="5" inputmode="numeric" placeholder="120">
+  <p class="sub2" style="margin-top:6px;margin-bottom:14px">Fără cifra asta nu putem calcula rata de participare.</p>
+
   <label class="lb" for="cT">Numerele meselor</label>
   <input type="text" id="cT" placeholder="1, 2, 3, 4, 5, 6">
     
@@ -370,7 +394,7 @@ var P=HH.PROFILES;
 var TT={never:'niciodată',now:'chiar acum',min:'acum {n} min',hour:'acum {n} h'};
 var when=function(ts){return HH.fmtWhen(ts,TT)};
 var key='', book={partners:[],events:[],leads:[],requests:[]}, live={}, timer=null;
-var ECR=['sLog','sMain','sPart','sEv','sNew','sDemo','sCfg','sQR','sFmt','sNev'];
+var ECR=['sLog','sMain','sPart','sEv','sNew','sDemo','sCfg','sQR','sFmt','sNev','sBiz'];
 
 /* ---------- intrare ---------- */
 async function intra(k){
@@ -677,6 +701,59 @@ async function incarcaNevoi(){
     say('mNev2', nevoi.length+' propoziții', 'ok');
   }catch(e){ say('mNev2', e.message, 'err') }
 }
+
+/* Cereri de la companii. Profilul se calculeaza aici, nu in pagina de chestionar,
+   ca sa nu se vada logica. Regula: status quo peste jumatate opreste totul. */
+var bizLista=[];
+function profil(raspuns){
+  if(!raspuns || !raspuns.length) return {nume:'—', dom:''};
+  var t={}, tot=0;
+  raspuns.forEach(function(g){ (g||[]).forEach(function(e){ t[e]=(t[e]||0)+1; tot++ }) });
+  if(!tot) return {nume:'—', dom:''};
+  if((t.STATUSQUO||0) >= tot/2) return {nume:'Începătorul precaut', dom:'STATUSQUO'};
+  delete t.STATUSQUO;
+  var ordine=['SILO','VIZIBILITATE','EFICIENTA','FRICTIUNE','DOVADA'];
+  var dom='', max=-1;
+  ordine.forEach(function(k){ if((t[k]||0)>max){ max=t[k]||0; dom=k } });
+  var nume={SILO:'Silozuri între echipe',VIZIBILITATE:'Vrea vizibilitate',
+    EFICIENTA:'Caută efect asupra rezultatelor',FRICTIUNE:'Nu tolerează muncă în plus',
+    DOVADA:'Cere dovadă măsurabilă'};
+  return {nume:nume[dom]||'—', dom:dom};
+}
+async function incarcaBiz(){
+  say('mBiz','Se încarcă…');
+  try{
+    var d=await API.book(key);
+    bizLista=(d.leads||[]).filter(function(x){ return x && (x.src==='business'||x.src==='business-intrare') });
+    bizLista.sort(function(a,b){ return (b.ts||0)-(a.ts||0) });
+    if(!bizLista.length){ el('bizList').innerHTML='<p class="sub2" style="padding:12px 0">Nicio cerere încă.</p>'; say('mBiz',''); return }
+    el('bizList').innerHTML=bizLista.map(function(x){
+      var p=profil(x.raspuns);
+      var rol={ceo:'conducere',hr:'resurse umane',parteneri:'agenție'}[x.rol]||'—';
+      var fin=(x.finale||[]).filter(Boolean);
+      return '<div class="row" style="align-items:flex-start;flex-direction:column;gap:4px">'+
+        '<div style="display:flex;justify-content:space-between;width:100%">'+
+          '<b>'+esc(x.comp||'(fără companie)')+'</b>'+
+          '<span style="font-size:12px;opacity:.6">'+HH.fmtDate(x.ts)+'</span></div>'+
+        '<span style="font-size:13px">'+esc(x.mail||'')+' · '+rol+'</span>'+
+        (x.raspuns ? '<span style="font-size:13px;color:var(--gold)">'+esc(p.nume)+
+          (x.reducere ? '  ·  −'+x.reducere+'%' : '')+'</span>' : '<span style="font-size:13px;opacity:.5">doar a intrat, nu a completat</span>')+
+        (fin.length ? '<span style="font-size:12.5px;opacity:.75;margin-top:2px">'+fin.map(esc).join(' · ')+'</span>' : '')+
+      '</div>';
+    }).join('');
+    say('mBiz', bizLista.length+' cereri', 'ok');
+  }catch(e){ say('mBiz', e.message, 'err') }
+}
+el('bBiz').onclick=function(){ go('sBiz'); incarcaBiz() };
+el('bBizB').onclick=function(e){ e.preventDefault(); HH.back() };
+el('bBizRef').onclick=function(){ incarcaBiz() };
+el('bBizCopy').onclick=function(){
+  HH.copy(bizLista.map(function(x){
+    var p=profil(x.raspuns);
+    return (x.comp||'—')+'\t'+(x.mail||'')+'\t'+(x.rol||'')+'\t'+p.nume+'\t'+(x.reducere||0)+'%';
+  }).join('\n'), el('bBizCopy'));
+};
+
 el('bNev').onclick=function(){ go('sNev'); incarcaNevoi() };
 el('bNevB').onclick=function(e){ e.preventDefault(); HH.back() };
 el('bNevRef').onclick=function(){ incarcaNevoi() };
@@ -794,6 +871,91 @@ el('bPDel').onclick=async function(){
 var evId='';
 
 /* Perechile alese. Votul 'ch:ID' inseamna: omul a ales pe cineva de la masa lui. */
+
+/* Raportul pentru client. Doar cifre agregate — niciun nume, nicio pereche.
+   Aia e chiar promisiunea din prezentare, iar trebuie respectata literal. */
+var raportTxt='';
+function paintRaport(d){
+  var box=el('raport'); if(!box) return;
+  var st=(d && d.state) || {}, cfg=(d && d.cfg) || {};
+  var ist=st.istoric || [];
+  if(!ist.length && !(st.round)){ box.innerHTML='<p class="sub2" style="padding:12px 0">Încă nu s-a ținut nicio rundă.</p>'; return }
+
+  /* toti oamenii care au trecut prin rundele de azi */
+  var toti={}, mese=[];
+  function strange(r){
+    (r.tables||[]).forEach(function(t){
+      mese.push(t);
+      (t.people||[]).forEach(function(p){ toti[p.id]=p });
+    });
+  }
+  if(st.round) strange(st.round);
+  (st.runde||[]).forEach(strange);
+
+  var n=Object.keys(toti).length;
+  var oameniIst=ist.reduce(function(a,x){ return a+(x.oameni||0) },0);
+  var meseIst=ist.reduce(function(a,x){ return a+(x.mese||0) },0);
+  var nOameni = n || oameniIst;
+  var nMese = mese.length || meseIst;
+
+  /* 1. rata de participare */
+  var sala=cfg.sala||0;
+  var rata = sala ? Math.round(nOameni/sala*100) : 0;
+
+  /* 2. conexiuni intre departamente — perechi de la aceeasi masa, din echipe diferite */
+  var cross=0, perechiTot=0, meseMixte=0;
+  mese.forEach(function(t){
+    var p=(t.people||[]); var dep={};
+    p.forEach(function(x){ if(x.dep) dep[x.dep]=1 });
+    if(Object.keys(dep).length>1) meseMixte++;
+    for(var a=0;a<p.length;a++) for(var b=a+1;b<p.length;b++){
+      perechiTot++;
+      if(p[a].dep && p[b].dep && p[a].dep!==p[b].dep) cross++;
+    }
+  });
+
+  /* 3. reciprocitate — cate perechi s-au ales una pe alta */
+  var v=st.votes||{}, ales={};
+  Object.keys(v).forEach(function(k){
+    var val=String(v[k]||''); if(val.indexOf('ch:')===0) ales[k]=val.slice(3);
+  });
+  var recip=0, vazut={};
+  Object.keys(ales).forEach(function(a){
+    var b=ales[a];
+    if(ales[b]===a){ var key=[a,b].sort().join('|'); if(!vazut[key]){ vazut[key]=1; recip++ } }
+  });
+
+  /* 4. integrarea noilor veniti */
+  var noi=0, noiCross=0;
+  mese.forEach(function(t){
+    var p=(t.people||[]);
+    p.forEach(function(x){
+      if(x.vech!=='nou') return;
+      noi++;
+      p.forEach(function(y){ if(y.id!==x.id && y.dep && x.dep && y.dep!==x.dep) noiCross++ });
+    });
+  });
+
+  var r=[];
+  if(sala) r.push(['Rata de participare', rata+'%', nOameni+' din '+sala+' oameni din sală']);
+  else r.push(['Participanți', String(nOameni), 'numărul din sală nu a fost completat']);
+  r.push(['Mese formate', String(nMese), ist.length ? (ist.length+' runde') : '']);
+  if(perechiTot) r.push(['Conexiuni între departamente', String(cross),
+    Math.round(cross/perechiTot*100)+'% din toate perechile de la mese']);
+  if(meseMixte) r.push(['Mese cu echipe amestecate', String(meseMixte), 'din '+nMese]);
+  if(recip) r.push(['Perechi reciproce', String(recip), 's-au ales unul pe altul, separat']);
+  if(noi) r.push(['Noi veniți', String(noi),
+    'au cunoscut în medie '+(noi?(noiCross/noi).toFixed(1):'0')+' oameni din alte echipe']);
+
+  box.innerHTML=r.map(function(x){
+    return '<div class="row"><span>'+esc(x[0])+'</span><b>'+esc(x[1])+
+      (x[2]?('<span style="display:block;font-weight:400;font-size:12px;opacity:.6">'+esc(x[2])+'</span>'):'')+'</b></div>';
+  }).join('');
+
+  raportTxt = r.map(function(x){ return x[0]+': '+x[1]+(x[2]?('  ('+x[2]+')'):'') }).join('\n');
+}
+el('bRapCopy').onclick=function(){ HH.copy(raportTxt||'—', el('bRapCopy')) };
+
 function paintPerechi(d){
   var box=el('evPerechi'); if(!box) return;
   var st=(d && d.state) || {};
@@ -838,7 +1000,7 @@ function deschideEv(id){
 async function reciteste(id){
   try{
     var d=await API.get(id), st=(d&&d.state)||{}, r=st.round;
-  try{ paintPerechi(d) }catch(e){}
+  try{ paintRaport(d); paintPerechi(d) }catch(e){}
     el('eState').innerHTML='<b>'+(r?'Rundă în curs':'Nicio rundă acum')+'</b>'+
       (r?(r.tables.length+' mese'+(r.dur?(' · '+HH.fmtLeft(r.start+r.dur-Date.now())+' rămas'):'')):
          ((st.wait||[]).length+' în coadă · '+(st.rounds||0)+' runde ținute'));
@@ -928,7 +1090,7 @@ el('bDGo').onclick=async function(){
   var qs=((cLimba==='en'&&P.demo.qs.en)?P.demo.qs.en:P.demo.qs.ro).slice(dQ).concat(((cLimba==='en'&&P.demo.qs.en)?P.demo.qs.en:P.demo.qs.ro).slice(0,dQ));  // pornim de la cea aleasă
   var pw=String(Math.floor(1000+Math.random()*9000));
   var cfg={ev:'Demonstrație',client:'',profile:'demo',tables:t,seats:3,minutes:3,
-           cats:((cLimba==='en'&&P.demo.cats.en)?P.demo.cats.en:P.demo.cats.ro),ofera:(el('cOfera')?el('cOfera').value.trim():''), qs:qs.join('\n'), qs2:altaLimba(qs),pwHost:pw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8,dep:false,quiet:'',demo:true};
+           cats:((cLimba==='en'&&P.demo.cats.en)?P.demo.cats.en:P.demo.cats.ro),ofera:(el('cOfera')?el('cOfera').value.trim():''), sala:parseInt(el('cSala').value,10)||0, qs:qs.join('\n'), qs2:altaLimba(qs),pwHost:pw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8,dep:false,quiet:'',demo:true};
   try{
     var id=await API.create({cfg:cfg,state:{wait:[],round:null,rounds:0,votes:{},met:{}}});
     await salveaza(function(bk){ bk.events=bk.events||[];
@@ -1150,7 +1312,7 @@ el('bCGo').onclick=async function(){
   b.disabled=true; b.textContent='…'; say('mCfg','');
   var cfg={ev:nume,client:part?part.name:'',profile:cProf,tables:t,
     seats:parseInt(el('cS').value,10)||p.seats, minutes:parseInt(el('cM').value,10)||p.minutes,
-    cats:c.length?c:p.cats.ro, ofera:(el('cOfera')?el('cOfera').value.trim():''), qs:q.join('\n'), qs2:altaLimba(q), pwHost:pw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8, dep:!!p.dep, quiet:((cLimba==='en'&&p.quiet.en)?p.quiet.en:p.quiet.ro)||'',lang:cLimba,
+    cats:c.length?c:p.cats.ro, ofera:(el('cOfera')?el('cOfera').value.trim():''), sala:parseInt(el('cSala').value,10)||0, qs:q.join('\n'), qs2:altaLimba(q), pwHost:pw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8, dep:!!p.dep, quiet:((cLimba==='en'&&p.quiet.en)?p.quiet.en:p.quiet.ro)||'',lang:cLimba,
     oneTable:!!p.oneTable, noTimer:!!p.noTimer, autoStart:!!p.autoStart,
     threshold:p.threshold||0, needsFlight:!!p.needsFlight, edition:!!p.edition};
   try{
