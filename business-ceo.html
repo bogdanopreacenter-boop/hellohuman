@@ -58,57 +58,69 @@ textarea{resize:vertical;min-height:62px;line-height:1.6}
 .fin{border-top:1px solid var(--linie);padding-top:clamp(24px,4vw,32px);margin-top:clamp(24px,4vw,32px)}
 :focus-visible{outline:1px solid var(--ocru);outline-offset:3px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+#lang{position:fixed;top:clamp(14px,3vw,22px);right:clamp(14px,3vw,22px);z-index:30;background:var(--os);border:1px solid var(--linie);color:var(--gri);font-family:var(--sans);font-size:11px;letter-spacing:.2em;padding:8px 14px;cursor:pointer;transition:.3s;border-radius:2px;-webkit-tap-highlight-color:transparent}
+#lang:hover{border-color:var(--ocru);color:var(--ocru)}
 </style>
 </head>
 <body>
+<button id="lang" type="button" aria-label="English">EN</button>
 <div class="wrap">
   <p class="logo">HelloHuman</p>
 
   <section class="sc on" id="s0">
-    <h1>Sunt Bogdan, fondatorul HelloHuman.</h1>
-    <p class="lead">Am adus la aceeași masă psihologia, sociologia și tehnologia.</p>
-    <p class="t">Rezultatul măsoară un lucru complet ignorat de piață: dacă doi oameni care nu se cunoșteau ajung să se caute intenționat.</p>
-    <p class="t">Patru întrebări. Nu toate companiile au aceleași puncte oarbe, iar răspunsurile dumneavoastră calibrează exact ce vă arăt.</p>
-    <p class="mic">Puteți alege până la două variante la fiecare întrebare. Două minute.</p>
-    <button class="btn" id="bGo">ÎNCEPEȚI</button>
+    <h1 data-k="h0">Sunt Bogdan, fondatorul HelloHuman.</h1>
+    <p class="lead" data-k="l0">Am adus la aceeași masă psihologia, sociologia și tehnologia.</p>
+    <p class="t" data-k="t0a">Rezultatul măsoară un lucru complet ignorat de piață: dacă doi oameni care nu se cunoșteau ajung să se caute intenționat.</p>
+    <p class="t" data-k="t0b">Patru întrebări. Nu toate companiile au aceleași puncte oarbe, iar răspunsurile dumneavoastră calibrează exact ce vă arăt.</p>
+    <p class="mic" data-k="m0">Puteți alege până la două variante la fiecare întrebare. Două minute.</p>
+    <button class="btn" id="bGo" data-k="bgo">ÎNCEPEȚI</button>
   </section>
 
   <section class="sc" id="sQ">
     <div class="bar"><i id="bar"></i></div>
     <p class="pas" id="pas"></p>
     <h2 id="qt"></h2>
-    <p class="hint">Până la două variante.</p>
+    <p class="hint" data-k="hint">Până la două variante.</p>
     <div id="qo"></div>
     <button class="btn" id="bNext" disabled>CONTINUAȚI</button>
   </section>
 
   <section class="sc" id="sF">
-    <h1>Gata.</h1>
-    <p class="lead">Încă trei întrebări, dacă doriți. Fiecare vă reduce cu 10% primul ciclu.</p>
-    <p class="mic">Răspundeți la câte vreți. Sau la niciuna.</p>
+    <h1 data-k="hf">Gata.</h1>
+    <p class="lead" data-k="lf">Încă trei întrebări, dacă doriți. Fiecare vă reduce cu 10% primul ciclu.</p>
+    <p class="mic" data-k="mf">Răspundeți la câte vreți. Sau la niciuna.</p>
     <div id="fbox"></div>
     <div class="fin">
-      <label class="lb" for="em">EMAIL</label>
-      <input type="email" id="em" placeholder="adresa dumneavoastră" autocomplete="email">
-      <label class="lb" for="co">COMPANIA</label>
-      <input type="text" id="co" placeholder="numele companiei" autocomplete="organization">
-      <button class="btn" id="bSend">TRIMITEȚI</button>
+      <label class="lb" for="em" data-k="lbem">EMAIL</label>
+      <input type="email" id="em" placeholder="adresa dumneavoastră" data-kp="phem" autocomplete="email">
+      <label class="lb" for="co" data-k="lbco">COMPANIA</label>
+      <input type="text" id="co" placeholder="numele companiei" data-kp="phco" autocomplete="organization">
+      <button class="btn" id="bSend" data-k="bsend">TRIMITEȚI</button>
       <p class="msg" id="m"></p>
     </div>
   </section>
 
   <section class="sc" id="sOk">
-    <h1>Mulțumesc.</h1>
-    <p class="lead">Vă scriu personal, în câteva ore.</p>
-    <p class="t">Vă trimit prezentarea calibrată pe ce ați indicat. Are cinci pagini și se citește într-un minut.</p>
-    <p class="mic">Bogdan · bogdan@hellohuman.ro</p>
+    <h1 data-k="hok">Mulțumesc.</h1>
+    <p class="lead" data-k="lok">Vă scriu personal, în câteva ore.</p>
+    <p class="t" data-k="tok">Vă trimit prezentarea calibrată pe ce ați indicat. Are cinci pagini și se citește într-un minut.</p>
+    <p class="mic" data-k="mok">Bogdan · bogdan@hellohuman.ro</p>
   </section>
 </div>
 
 <script>
+var QRO=[{"t": "Pe măsură ce organizația crește, ce observați cel mai des?", "o": [["Departamentele încep să-și apere propriul teritoriu", "SILO"], ["Deciziile se iau mai greu, pentru că informația nu mai circulă", "VIZIBILITATE"], ["Rezultatele bune vin din aceleași câteva echipe", "EFICIENTA"], ["Nu am observat o schimbare semnificativă", "STATUSQUO"]]}, {"t": "Când aflați că două departamente nu mai colaborează?", "o": [["Când un proiect comun stagnează", "SILO"], ["Când pleacă cineva și se vede golul", "VIZIBILITATE"], ["Din rapoartele de performanță, cu întârziere", "EFICIENTA"], ["De obicei aflu la timp", "STATUSQUO"]]}, {"t": "Ce v-ar fi cel mai greu de acceptat într-o soluție nouă?", "o": [["Să ceară timp de la echipele operaționale", "FRICTIUNE"], ["Să ceară acces la sistemele noastre interne", "FRICTIUNE"], ["Să nu pot arăta un rezultat măsurabil", "DOVADA"], ["Să fie încă o inițiativă care se stinge în trei luni", "STATUSQUO"]]}, {"t": "Ce ar trebui să vă arate un raport ca să conteze pentru dumneavoastră?", "o": [["Unde se rup legăturile între echipe", "SILO"], ["Cine susține de fapt organizația, dincolo de organigramă", "VIZIBILITATE"], ["O comparație în timp, cu aceeași metodologie", "DOVADA"], ["Prefer să văd mai întâi un exemplu concret", "STATUSQUO"]]}];
+var QEN=[{"t": "As the organisation grows, what do you observe most often?", "o": ["Departments start defending their own ground", "Decisions take longer, because information stops moving", "Good results keep coming from the same few teams", "I have not seen a significant change"]}, {"t": "When do you find out that two departments have stopped collaborating?", "o": ["When a shared project stalls", "When someone leaves and the gap shows", "From performance reports, late", "I usually find out in time"]}, {"t": "What would be hardest to accept in a new solution?", "o": ["That it takes time from operational teams", "That it requires access to our internal systems", "That I cannot show a measurable result", "That it is another initiative that fades in three months"]}, {"t": "What should a report show you for it to matter?", "o": ["Where the links between teams break", "Who actually holds the organisation together, beyond the org chart", "A comparison over time, with the same methodology", "I would rather see a concrete example first"]}];
+var FEN=[{"t": "If a key member of your team left tomorrow, how long before someone else could take over their responsibilities?", "o": ["Under a month", "A few months", "Over a year", "There are people we simply could not replace"], "tip": "ales"}, {"t": "What information would change how you decide about teams, but you currently have no way of obtaining?", "tip": "text"}, {"t": "At the end of a project with us, what would make you say firmly: the investment was worth it?", "tip": "text"}];
+var TRO={"h0": "Sunt Bogdan, fondatorul HelloHuman.", "l0": "Am adus la aceeași masă psihologia, sociologia și tehnologia.", "t0a": "Rezultatul măsoară un lucru complet ignorat de piață: dacă doi oameni care nu se cunoșteau ajung să se caute intenționat.", "t0b": "Patru întrebări. Nu toate companiile au aceleași puncte oarbe, iar răspunsurile dumneavoastră calibrează exact ce vă arăt.", "m0": "Puteți alege până la două variante la fiecare întrebare. Două minute.", "bgo": "ÎNCEPEȚI", "hint": "Până la două variante.", "bnext": "CONTINUAȚI", "bgata": "GATA", "din": "DIN", "hf": "Gata.", "lf": "Încă trei întrebări, dacă doriți. Fiecare vă reduce cu 10% primul ciclu.", "mf": "Răspundeți la câte vreți. Sau la niciuna.", "lbem": "EMAIL", "lbco": "COMPANIA", "phem": "adresa dumneavoastră", "phco": "numele companiei", "bsend": "TRIMITEȚI", "phtext": "o propoziție", "hok": "Mulțumesc.", "lok": "Vă scriu personal, în câteva ore.", "tok": "Vă trimit prezentarea calibrată pe ce ați indicat. Are cinci pagini și se citește într-un minut.", "mok": "Bogdan · bogdan@hellohuman.ro", "errmail": "Scrieți o adresă validă.", "sending": "Se trimite…"};
+var TEN={"h0": "I am Bogdan, the founder of HelloHuman.", "l0": "I brought psychology, sociology and technology to the same table.", "t0a": "The result measures something the market ignores entirely: whether two people who did not know each other end up seeking one another out.", "t0b": "Four questions. Not every company has the same blind spots, and your answers calibrate exactly what I show you.", "m0": "You may choose up to two options per question. Two minutes.", "bgo": "BEGIN", "hint": "Up to two options.", "bnext": "CONTINUE", "bgata": "DONE", "din": "OF", "hf": "Done.", "lf": "Three more questions, if you like. Each takes 10% off your first cycle.", "mf": "Answer as many as you want. Or none.", "lbem": "EMAIL", "lbco": "COMPANY", "phem": "your address", "phco": "company name", "bsend": "SEND", "phtext": "one sentence", "hok": "Thank you.", "lok": "I will write to you personally, within a few hours.", "tok": "I will send the presentation calibrated on what you indicated. Five pages, a minute to read.", "mok": "Bogdan · bogdan@hellohuman.ro", "errmail": "Please enter a valid address.", "sending": "Sending…"};
+var TTL={ro:"HelloHuman — pentru conducere",en:"HelloHuman — for leadership"};
+var lang="ro";
+var FRO=null;
 var Q=[{"t": "Pe măsură ce organizația crește, ce observați cel mai des?", "o": [["Departamentele încep să-și apere propriul teritoriu", "SILO"], ["Deciziile se iau mai greu, pentru că informația nu mai circulă", "VIZIBILITATE"], ["Rezultatele bune vin din aceleași câteva echipe", "EFICIENTA"], ["Nu am observat o schimbare semnificativă", "STATUSQUO"]]}, {"t": "Când aflați că două departamente nu mai colaborează?", "o": [["Când un proiect comun stagnează", "SILO"], ["Când pleacă cineva și se vede golul", "VIZIBILITATE"], ["Din rapoartele de performanță, cu întârziere", "EFICIENTA"], ["De obicei aflu la timp", "STATUSQUO"]]}, {"t": "Ce v-ar fi cel mai greu de acceptat într-o soluție nouă?", "o": [["Să ceară timp de la echipele operaționale", "FRICTIUNE"], ["Să ceară acces la sistemele noastre interne", "FRICTIUNE"], ["Să nu pot arăta un rezultat măsurabil", "DOVADA"], ["Să fie încă o inițiativă care se stinge în trei luni", "STATUSQUO"]]}, {"t": "Ce ar trebui să vă arate un raport ca să conteze pentru dumneavoastră?", "o": [["Unde se rup legăturile între echipe", "SILO"], ["Cine susține de fapt organizația, dincolo de organigramă", "VIZIBILITATE"], ["O comparație în timp, cu aceeași metodologie", "DOVADA"], ["Prefer să văd mai întâi un exemplu concret", "STATUSQUO"]]}];
 var F=[{"t": "Dacă o persoană-cheie ar părăsi echipa mâine, cât ar dura până când altcineva i-ar putea prelua responsabilitățile?", "o": ["Sub o lună", "Câteva luni", "Peste un an", "Sunt oameni pe care nu i-am putea înlocui"], "tip": "ales"}, {"t": "Ce informație v-ar schimba modul în care luați decizii despre echipe, dar în prezent nu aveți de unde să o obțineți?", "tip": "text"}, {"t": "La finalul unui proiect cu noi, ce v-ar face să spuneți ferm: „A meritat investiția”?", "tip": "text"}];
 var ROL="ceo";
+var FRO_=null;
 var el=function(i){return document.getElementById(i)};
 var i=0, raspuns=[], finale=[], reducere=0;
 
@@ -118,14 +130,14 @@ function go(id){
 }
 function paint(){
   var q=Q[i];
-  el('pas').textContent = (i+1)+' DIN '+Q.length;
+  el('pas').textContent = (i+1)+' '+T('din')+' '+Q.length;
   el('bar').style.width = ((i)/Q.length*100)+'%';
   el('qt').textContent = q.t;
   el('qo').innerHTML = q.o.map(function(o,k){
     return '<button class="opt" data-k="'+k+'">'+o[0]+'</button>';
   }).join('');
   el('bNext').disabled = true;
-  el('bNext').textContent = (i===Q.length-1) ? 'GATA' : 'CONTINUAȚI';
+  el('bNext').textContent = (i===Q.length-1) ? T('bgata') : T('bnext');
 }
 el('bGo').onclick=function(){ go('sQ'); paint() };
 el('qo').onclick=function(e){
@@ -149,7 +161,7 @@ function paintF(){
         f.o.map(function(o,j){ return '<button class="opt" data-j="'+j+'">'+o+'</button>' }).join('')+'</div></div>';
     }
     return '<div class="fin"><h2>'+(k+1)+' · '+f.t+'</h2>'+
-      '<textarea data-f="'+k+'" rows="2" placeholder="o propoziție"></textarea></div>';
+      '<textarea data-f="'+k+'" rows="2" placeholder="'+T('phtext')+'"></textarea></div>';
   }).join('');
   [].slice.call(document.querySelectorAll('.fo')).forEach(function(g){
     g.onclick=function(e){
@@ -161,7 +173,7 @@ function paintF(){
 }
 el('bSend').onclick=async function(){
   var mail=el('em').value.trim(), comp=el('co').value.trim();
-  if(!mail || mail.indexOf('@')<1 || mail.indexOf('.')<3){ say('Scrieți o adresă validă.','err'); return }
+  if(!mail || mail.indexOf('@')<1 || mail.indexOf('.')<3){ say(T('errmail'),'err'); return }
   finale=[]; reducere=0;
   F.forEach(function(f,k){
     var v='';
@@ -176,7 +188,7 @@ el('bSend').onclick=async function(){
     if(v) reducere+=10;
   });
   if(reducere>30) reducere=30;
-  el('bSend').disabled=true; say('Se trimite…');
+  el('bSend').disabled=true; say(T('sending'));
   try{
     await fetch('/api/store?lead=1&id=business',{method:'POST',
       headers:{'Content-Type':'application/json'},
@@ -186,6 +198,29 @@ el('bSend').onclick=async function(){
   go('sOk');
 };
 function say(t,c){ var m=el('m'); m.textContent=t; m.className='msg'+(c?' '+c:'') }
+
+FRO_ = F.slice();
+function T(k){ return (lang==='en'?TEN:TRO)[k]||'' }
+function applyLang(){
+  Q = (lang==='en') ? QEN.map(function(q,n){
+        return {t:q.t, o:q.o.map(function(txt,j){ return [txt, QRO[n].o[j][1]] })} })
+      : QRO;
+  F = (lang==='en') ? FEN : FRO_;
+  document.documentElement.lang = lang;
+  document.title = TTL[lang];
+  [].slice.call(document.querySelectorAll('[data-k]')).forEach(function(n){
+    var v=T(n.getAttribute('data-k')); if(v) n.textContent=v });
+  [].slice.call(document.querySelectorAll('[data-kp]')).forEach(function(n){
+    var v=T(n.getAttribute('data-kp')); if(v) n.placeholder=v });
+  var b=el('lang'); if(b){ b.textContent = lang==='ro'?'EN':'RO';
+    b.setAttribute('aria-label', lang==='ro'?'English':'Română') }
+  if(el('sQ').classList.contains('on')) paint();
+  if(el('sF').classList.contains('on')) paintF();
+}
+el('lang').onclick=function(){ lang = lang==='ro'?'en':'ro'; applyLang() };
+try{ if((navigator.language||'').toLowerCase().indexOf('ro')!==0){ lang='en' } }catch(e){}
+applyLang();
+
 </script>
 </body>
 </html>

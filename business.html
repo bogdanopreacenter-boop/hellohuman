@@ -68,89 +68,109 @@ footer a{color:var(--gri);text-decoration:none}
 footer a:hover{color:var(--ocru)}
 :focus-visible{outline:1px solid var(--ocru);outline-offset:3px}
 @media(max-width:700px){.rand{grid-template-columns:1fr;gap:5px}h1,h2,.lead,.sub{max-width:none}}
+#lang{position:fixed;top:clamp(12px,2.5vw,18px);right:clamp(14px,3vw,22px);z-index:30;background:var(--os);border:1px solid var(--linie);color:var(--gri);font-family:var(--sans);font-size:11px;letter-spacing:.2em;padding:7px 13px;cursor:pointer;transition:.3s;border-radius:2px;-webkit-tap-highlight-color:transparent}
+#lang:hover{border-color:var(--ocru);color:var(--ocru)}
 </style>
 </head>
 <body>
 
+<button id="lang" type="button" aria-label="English">EN</button>
 <header><div class="w">
   <a class="logo" href="/">HelloHuman</a>
   <a class="nav" href="mailto:bogdan@hellohuman.ro">bogdan@hellohuman.ro</a>
 </div></header>
 
 <section><div class="w">
-  <p class="ey">Pentru companii</p>
-  <h1>Patru cifre pe care nu le aveți</h1>
-  <p class="lead">Ultima nu se poate obține altfel.</p>
+  <p class="ey" data-t="b0">Pentru companii</p>
+  <h1 data-t="b1">Patru cifre pe care nu le aveți</h1>
+  <p class="lead" data-t="b2">Ultima nu se poate obține altfel.</p>
 
-  <div class="rand"><b>Conversații între echipe</b><span>Câte schimburi au traversat efectiv granița unui departament.</span></div>
-  <div class="rand"><b>Confirmate de ambele părți</b><span>Câte au fost indicate de amândoi participanții, separat, fără să știe unul de altul.</span></div>
-  <div class="rand"><b>Viteza de integrare</b><span>Cât de repede intră în rețeaua reală un angajat cu sub un an vechime.</span></div>
-  <div class="rand"><b>Echipe fără nicio atingere</b><span>Ce departamente au fost așezate împreună și nu a ieșit nimic.</span></div>
+  <div class="rand"><b data-t="b3">Conversații între echipe</b><span data-t="b4">Câte schimburi au traversat efectiv granița unui departament.</span></div>
+  <div class="rand"><b data-t="b5">Confirmate de ambele părți</b><span data-t="b6">Câte au fost indicate de amândoi participanții, separat, fără să știe unul de altul.</span></div>
+  <div class="rand"><b data-t="b7">Viteza de integrare</b><span data-t="b8">Cât de repede intră în rețeaua reală un angajat cu sub un an vechime.</span></div>
+  <div class="rand"><b data-t="b9">Echipe fără nicio atingere</b><span data-t="b10">Ce departamente au fost așezate împreună și nu a ieșit nimic.</span></div>
 </div></section>
 
 <section class="dark"><div class="w">
-  <p class="ey">Implementarea</p>
-  <h2>Paisprezece zile.<br>Nimic altceva.</h2>
-  <p class="lead">Angajații primesc cina. Dumneavoastră primiți raportul.</p>
+  <p class="ey" data-t="b11">Implementarea</p>
+  <h2 data-t="b12">Paisprezece zile.<br>Nimic altceva.</h2>
+  <p class="lead" data-t="b13">Angajații primesc cina. Dumneavoastră primiți raportul.</p>
 
-  <div class="rand"><b>Un cod tipărit</b><span>Lăsat acolo unde oamenii se adună la cafea. Cine are șapte minute îl scanează.</span></div>
-  <div class="rand"><b>Un anunț intern</b><span>Două săptămâni, un joc, iar la final o cină.</span></div>
-  <div class="rand"><b>Atât</b><span>Fără instalare, fără integrare, fără acces la sistemele dumneavoastră. Biroul nu se întrerupe niciun minut.</span></div>
+  <div class="rand"><b data-t="b14">Un cod tipărit</b><span data-t="b15">Lăsat acolo unde oamenii se adună la cafea. Cine are șapte minute îl scanează.</span></div>
+  <div class="rand"><b data-t="b16">Un anunț intern</b><span data-t="b17">Două săptămâni, un joc, iar la final o cină.</span></div>
+  <div class="rand"><b data-t="b18">Atât</b><span data-t="b19">Fără instalare, fără integrare, fără acces la sistemele dumneavoastră. Biroul nu se întrerupe niciun minut.</span></div>
 </div></section>
 
 <section><div class="w">
-  <p class="ey">Mecanismul</p>
-  <h2>Nimeni nu trebuie<br>să-și facă curaj</h2>
-  <p class="lead">Bariera nu este timiditatea. Este absența unui motiv acceptabil de a te așeza lângă un coleg din alt departament.</p>
+  <p class="ey" data-t="b20">Mecanismul</p>
+  <h2 data-t="b21">Nimeni nu trebuie<br>să-și facă curaj</h2>
+  <p class="lead" data-t="b22">Bariera nu este timiditatea. Este absența unui motiv acceptabil de a te așeza lângă un coleg din alt departament.</p>
 
-  <div class="rand"><b>Sistemul furnizează alibiul</b><span>Nimeni nu alege să stea acolo — codul a decis. Dispare decizia personală, iar odată cu ea riscul de a fi refuzat.</span></div>
-  <div class="rand"><b>Șapte minute, apoi se încheie</b><span>Conversația se taie exact când mai are unde să meargă.</span></div>
-  <div class="rand"><b>Alegerea reciprocă</b><span>La final, fiecare indică o singură persoană. Nimeni nu vede răspunsul nimănui.</span></div>
+  <div class="rand"><b data-t="b23">Sistemul furnizează alibiul</b><span data-t="b24">Nimeni nu alege să stea acolo — codul a decis. Dispare decizia personală, iar odată cu ea riscul de a fi refuzat.</span></div>
+  <div class="rand"><b data-t="b25">Șapte minute, apoi se încheie</b><span data-t="b26">Conversația se taie exact când mai are unde să meargă.</span></div>
+  <div class="rand"><b data-t="b27">Alegerea reciprocă</b><span data-t="b28">La final, fiecare indică o singură persoană. Nimeni nu vede răspunsul nimănui.</span></div>
 
-  <p class="note">Când doi se indică reciproc, fără să știe unul de altul, nu mai este politețe.</p>
+  <p class="note" data-t="b29">Când doi se indică reciproc, fără să știe unul de altul, nu mai este politețe.</p>
 </div></section>
 
 <section class="dark"><div class="w">
-  <p class="ey">Confidențialitate</p>
-  <h2>Ce nu ajunge<br>niciodată în raport</h2>
-  <p class="lead">Un angajat care se crede evaluat nominal nu participă. Iar dacă participă, nu este sincer.</p>
+  <p class="ey" data-t="b30">Confidențialitate</p>
+  <h2 data-t="b31">Ce nu ajunge<br>niciodată în raport</h2>
+  <p class="lead" data-t="b32">Un angajat care se crede evaluat nominal nu participă. Iar dacă participă, nu este sincer.</p>
 
-  <div class="rand"><b>Nicio identitate reală</b><span>Prenumele, o poreclă, orice. Nu verificăm și nu comparăm cu nicio listă de personal.</span></div>
-  <div class="rand"><b>Nicio pereche</b><span>Raportul nu arată niciodată cine a stat cu cine.</span></div>
-  <div class="rand"><b>Prag de cinci persoane</b><span>Nu raportăm nimic despre grupuri mai mici. Sub acest prag, o cifră devine o afirmație despre un om anume.</span></div>
-  <div class="rand"><b>Niciun acces la sisteme</b><span>Nici Slack, nici Teams, nici email, nici rețeaua internă.</span></div>
+  <div class="rand"><b data-t="b33">Nicio identitate reală</b><span data-t="b34">Prenumele, o poreclă, orice. Nu verificăm și nu comparăm cu nicio listă de personal.</span></div>
+  <div class="rand"><b data-t="b35">Nicio pereche</b><span data-t="b36">Raportul nu arată niciodată cine a stat cu cine.</span></div>
+  <div class="rand"><b data-t="b37">Prag de cinci persoane</b><span data-t="b38">Nu raportăm nimic despre grupuri mai mici. Sub acest prag, o cifră devine o afirmație despre un om anume.</span></div>
+  <div class="rand"><b data-t="b39">Niciun acces la sisteme</b><span data-t="b40">Nici Slack, nici Teams, nici email, nici rețeaua internă.</span></div>
 </div></section>
 
 <section><div class="w">
-  <p class="ey">Pasul următor</p>
-  <h2>Spuneți-ne ce vă apasă</h2>
-  <p class="sub">Nu toate companiile au aceleași puncte oarbe. Patru întrebări, două minute, iar vă trimit exact ce vă privește — nu un material generic.</p>
+  <p class="ey" data-t="b41">Pasul următor</p>
+  <h2 data-t="b42">Spuneți-ne ce vă apasă</h2>
+  <p class="sub" data-t="b43">Nu toate companiile au aceleași puncte oarbe. Patru întrebări, două minute, iar vă trimit exact ce vă privește — nu un material generic.</p>
 
   <form id="f" novalidate>
-    <label class="lb" for="em">EMAIL</label>
-    <input type="email" id="em" placeholder="adresa dumneavoastră" autocomplete="email" required>
-    <label class="lb" for="fn">FUNCȚIA</label>
+    <label class="lb" for="em" data-t="b44">EMAIL</label>
+    <input type="email" id="em" placeholder="adresa dumneavoastră" data-tp="p0" autocomplete="email" required>
+    <label class="lb" for="fn" data-t="b45">FUNCȚIA</label>
     <select id="fn">
-      <option value="">— preferați să nu spuneți —</option>
-      <option value="ceo">Conducere executivă</option>
-      <option value="hr">Resurse umane</option>
-      <option value="parteneri">Agenție sau consultanță</option>
+      <option value="" data-t="b47">— preferați să nu spuneți —</option>
+      <option value="ceo" data-t="b48">Conducere executivă</option>
+      <option value="hr" data-t="b49">Resurse umane</option>
+      <option value="parteneri" data-t="b50">Agenție sau consultanță</option>
     </select>
-    <label class="lb" for="co">COMPANIA</label>
-    <input type="text" id="co" placeholder="numele companiei" autocomplete="organization">
-    <button class="btn" id="b" type="submit">CONTINUAȚI</button>
+    <label class="lb" for="co" data-t="b46">COMPANIA</label>
+    <input type="text" id="co" placeholder="numele companiei" data-tp="p1" autocomplete="organization">
+    <button class="btn" id="b" type="submit" data-t="b51">CONTINUAȚI</button>
     <p class="msg" id="m"></p>
   </form>
 </div></section>
 
 <footer><div class="w">
   <span>HelloHuman · <a href="mailto:bogdan@hellohuman.ro">bogdan@hellohuman.ro</a></span>
-  <span><a href="/">Pentru localuri și evenimente</a></span>
+  <span><a href="/" data-t="b52">Pentru localuri și evenimente</a></span>
 </div></footer>
 
 <script>
+
+var L={ro:{ttl:"HelloHuman pentru companii",b0:"Pentru companii",b1:"Patru cifre pe care nu le aveți",b2:"Ultima nu se poate obține altfel.",b3:"Conversații între echipe",b4:"Câte schimburi au traversat efectiv granița unui departament.",b5:"Confirmate de ambele părți",b6:"Câte au fost indicate de amândoi participanții, separat, fără să știe unul de altul.",b7:"Viteza de integrare",b8:"Cât de repede intră în rețeaua reală un angajat cu sub un an vechime.",b9:"Echipe fără nicio atingere",b10:"Ce departamente au fost așezate împreună și nu a ieșit nimic.",b11:"Implementarea",b12:"Paisprezece zile.<br>Nimic altceva.",b13:"Angajații primesc cina. Dumneavoastră primiți raportul.",b14:"Un cod tipărit",b15:"Lăsat acolo unde oamenii se adună la cafea. Cine are șapte minute îl scanează.",b16:"Un anunț intern",b17:"Două săptămâni, un joc, iar la final o cină.",b18:"Atât",b19:"Fără instalare, fără integrare, fără acces la sistemele dumneavoastră. Biroul nu se întrerupe niciun minut.",b20:"Mecanismul",b21:"Nimeni nu trebuie<br>să-și facă curaj",b22:"Bariera nu este timiditatea. Este absența unui motiv acceptabil de a te așeza lângă un coleg din alt departament.",b23:"Sistemul furnizează alibiul",b24:"Nimeni nu alege să stea acolo — codul a decis. Dispare decizia personală, iar odată cu ea riscul de a fi refuzat.",b25:"Șapte minute, apoi se încheie",b26:"Conversația se taie exact când mai are unde să meargă.",b27:"Alegerea reciprocă",b28:"La final, fiecare indică o singură persoană. Nimeni nu vede răspunsul nimănui.",b29:"Când doi se indică reciproc, fără să știe unul de altul, nu mai este politețe.",b30:"Confidențialitate",b31:"Ce nu ajunge<br>niciodată în raport",b32:"Un angajat care se crede evaluat nominal nu participă. Iar dacă participă, nu este sincer.",b33:"Nicio identitate reală",b34:"Prenumele, o poreclă, orice. Nu verificăm și nu comparăm cu nicio listă de personal.",b35:"Nicio pereche",b36:"Raportul nu arată niciodată cine a stat cu cine.",b37:"Prag de cinci persoane",b38:"Nu raportăm nimic despre grupuri mai mici. Sub acest prag, o cifră devine o afirmație despre un om anume.",b39:"Niciun acces la sisteme",b40:"Nici Slack, nici Teams, nici email, nici rețeaua internă.",b41:"Pasul următor",b42:"Spuneți-ne ce vă apasă",b43:"Nu toate companiile au aceleași puncte oarbe. Patru întrebări, două minute, iar vă trimit exact ce vă privește — nu un material generic.",b44:"EMAIL",b45:"FUNCȚIA",b46:"COMPANIA",b47:"— preferați să nu spuneți —",b48:"Conducere executivă",b49:"Resurse umane",b50:"Agenție sau consultanță",b51:"CONTINUAȚI",b52:"Pentru localuri și evenimente",p0:"adresa dumneavoastră",p1:"numele companiei"},
+ en:{ttl:"HelloHuman for companies",b0:"For companies",b1:"Four figures you do not have",b2:"The last one cannot be obtained any other way.",b3:"Conversations across teams",b4:"How many exchanges actually crossed a departmental boundary.",b5:"Confirmed by both sides",b6:"How many were named by both participants, independently, without knowing.",b7:"Speed of integration",b8:"How quickly an employee under one year enters the real network.",b9:"Teams that never met",b10:"Which departments were seated together and produced nothing.",b11:"Implementation",b12:"Fourteen days.<br>Nothing else.",b13:"Your people get the dinner. You get the report.",b14:"A printed code",b15:"Left where people gather for coffee. Anyone with seven minutes scans it.",b16:"An internal announcement",b17:"Two weeks, a game, and a dinner at the end.",b18:"That is all",b19:"No installation, no integration, no access to your systems. The office is not interrupted for a single minute.",b20:"The mechanism",b21:"Nobody has to<br>work up the nerve",b22:"The barrier is not shyness. It is the absence of an acceptable reason to sit down beside a colleague from another department.",b23:"The system supplies the alibi",b24:"Nobody chooses their seat — the code decides. The personal decision disappears, and with it the fear of rejection.",b25:"Seven minutes, then it ends",b26:"The conversation is cut off, leaving them wanting more.",b27:"The mutual choice",b28:"At the end, each person indicates one name. Nobody sees anyone else&#39;s answer.",b29:"When two people indicate each other, independently, it is no longer politeness.",b30:"Privacy",b31:"What never reaches<br>the report",b32:"An employee who believes they are assessed by name does not take part. And if they do, they are not honest.",b33:"No real identities",b34:"A first name, a nickname, anything. We do not verify and we cross-reference no roster.",b35:"No pairs",b36:"The report never shows who sat with whom.",b37:"A threshold of five",b38:"We report nothing about smaller groups. Below that, a figure becomes a statement about one person.",b39:"No system access",b40:"Not Slack, not Teams, not email, not your internal network.",b41:"Next step",b42:"Tell us what weighs on you",b43:"Not every company has the same blind spots. Four questions, two minutes, and I send you exactly what concerns you — not a generic document.",b44:"EMAIL",b45:"ROLE",b46:"COMPANY",b47:"— prefer not to say —",b48:"Executive leadership",b49:"Human resources",b50:"Agency or consultancy",b51:"CONTINUE",b52:"For venues and events",p0:"your address",p1:"company name"}};
+var lang="ro";
+function applyLang(){
+  document.documentElement.lang=lang; document.title=L[lang].ttl;
+  [].slice.call(document.querySelectorAll("[data-t]")).forEach(function(n){
+    var v=L[lang][n.getAttribute("data-t")]; if(v) n.innerHTML=v });
+  [].slice.call(document.querySelectorAll("[data-tp]")).forEach(function(n){
+    var v=L[lang][n.getAttribute("data-tp")]; if(v) n.placeholder=v });
+  var b=document.getElementById("lang"); if(b){ b.textContent=lang==="ro"?"EN":"RO";
+    b.setAttribute("aria-label", lang==="ro"?"English":"Română") }
+}
 var el=function(i){return document.getElementById(i)};
 function say(t,c){var m=el('m');m.textContent=t;m.className='msg'+(c?' '+c:'')}
+el("lang").onclick=function(){ lang=lang==="ro"?"en":"ro"; applyLang() };
+try{ if((navigator.language||"").toLowerCase().indexOf("ro")!==0){ lang="en" } }catch(e){}
+applyLang();
+
 el('f').onsubmit=async function(e){
   e.preventDefault();
   var mail=el('em').value.trim(), fn=el('fn').value, comp=el('co').value.trim();
