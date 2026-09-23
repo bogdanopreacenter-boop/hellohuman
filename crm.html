@@ -408,7 +408,7 @@ el('pw').onkeydown=function(e){ if(e.key==='Enter'){e.preventDefault();el('bLog'
 el('bLog').onclick=async function(){
   var v=el('pw').value; if(!v)return say('mLog','Scrie parola.','err');
   say('mLog','Se încarcă…');
-  try{ await intra(v); say('mLog',''); go('sMain'); paintMain(); porneste() }
+  try{ await intra(v); say('mLog',''); go('sMain'); paintMain(); porneste(); bizPunct() }
   catch(e){ key=''; say('mLog', e.message==='cheie gresita'?'Parolă greșită.':e.message,'err') }
 };
 el('bOut').onclick=function(){ opreste(); HH.drop('hh_k'); key=''; book={partners:[],events:[],leads:[],requests:[]};
@@ -731,20 +731,86 @@ async function incarcaBiz(){
       var p=profil(x.raspuns);
       var rol={ceo:'conducere',hr:'resurse umane',parteneri:'agenție'}[x.rol]||'—';
       var fin=(x.finale||[]).filter(Boolean);
-      return '<div class="row" style="align-items:flex-start;flex-direction:column;gap:4px">'+
-        '<div style="display:flex;justify-content:space-between;width:100%">'+
-          '<b>'+esc(x.comp||'(fără companie)')+'</b>'+
-          '<span style="font-size:12px;opacity:.6">'+HH.fmtDate(x.ts)+'</span></div>'+
+      var trimis = bizTrimis(x);
+      return '<div class="row" style="align-items:flex-start;flex-direction:column;gap:5px">'+
+        '<div style="display:flex;justify-content:space-between;width:100%;gap:10px">'+
+          '<b>'+(trimis?'':'<span style="color:var(--gold)">• </span>')+esc(x.comp||'(fără companie)')+'</b>'+
+          '<span style="font-size:12px;opacity:.6;white-space:nowrap">'+HH.fmtDate(x.ts)+'</span></div>'+
         '<span style="font-size:13px">'+esc(x.mail||'')+' · '+rol+'</span>'+
         (x.raspuns ? '<span style="font-size:13px;color:var(--gold)">'+esc(p.nume)+
           (x.reducere ? '  ·  −'+x.reducere+'%' : '')+'</span>' : '<span style="font-size:13px;opacity:.5">doar a intrat, nu a completat</span>')+
         (fin.length ? '<span style="font-size:12.5px;opacity:.75;margin-top:2px">'+fin.map(esc).join(' · ')+'</span>' : '')+
+        '<div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:7px">'+
+          '<button class="btn ghost small" data-msg="'+esc(x.mail||'')+'">Copiază mesajul</button>'+
+          '<button class="btn ghost small" data-trm="'+esc(x.mail||'')+'">'+(trimis?'Trimis ✓':'Marchează trimis')+'</button>'+
+        '</div>'+
       '</div>';
     }).join('');
     say('mBiz', bizLista.length+' cereri', 'ok');
   }catch(e){ say('mBiz', e.message, 'err') }
 }
+
+/* Ce s-a trimis deja. Se tine local, pe calculatorul tau — nu are rost pe server. */
+function bizTrimisLista(){ try{ return JSON.parse(localStorage.getItem('hh_trm')||'[]') }catch(e){ return [] } }
+function bizTrimis(x){ return bizTrimisLista().indexOf(x.mail||'')>=0 }
+function bizMarcheaza(mail){
+  var l=bizTrimisLista(), i=l.indexOf(mail);
+  if(i>=0) l.splice(i,1); else l.push(mail);
+  try{ localStorage.setItem('hh_trm', JSON.stringify(l)) }catch(e){}
+}
+
+/* Mesajul de însoțire, compus din profil. Se copiază, se lipește în email. */
+var PRIMA={
+  SILO:'Din răspunsurile dumneavoastră reiese că distanța dintre echipe este ceea ce vă apasă cel mai mult.',
+  VIZIBILITATE:'Din răspunsurile dumneavoastră reiese că vă lipsește vizibilitatea asupra a ceea ce se întâmplă între oameni.',
+  DOVADA:'Din răspunsurile dumneavoastră reiese că aveți nevoie de o cifră pe care să o puteți susține.',
+  FRICTIUNE:'Din răspunsurile dumneavoastră reiese că orice soluție trebuie să nu adauge muncă nimănui.',
+  EFICIENTA:'Din răspunsurile dumneavoastră reiese că vă interesează efectul asupra rezultatelor, nu procesul.',
+  STATUSQUO:'Din răspunsurile dumneavoastră reiese că preferați să vedeți dovada înainte de orice angajament.'
+};
+function bizMesaj(x){
+  var p=profil(x.raspuns);
+  var L=[];
+  L.push('Bună ziua,');
+  L.push('');
+  L.push('Vă mulțumesc pentru răspunsurile oferite.');
+  L.push('');
+  if(PRIMA[p.dom]) L.push(PRIMA[p.dom]);
+  L.push('');
+  L.push('Găsiți prezentarea aici — cinci pagini, un minut de citit:');
+  L.push('https://hellohuman.ro/prezentare-business');
+  L.push('');
+  L.push('S-ar putea să descoperiți că restul informațiilor sunt la fel de relevante — de cele mai multe ori, companiile găsesc soluții și la probleme pe care nu știau că le caută.');
+  L.push('');
+  if(x.reducere) L.push('Pentru răspunsurile suplimentare, primul ciclu beneficiază de o reducere de '+x.reducere+'%.');
+  if(x.reducere) L.push('');
+  L.push('Dacă doriți să aprofundăm, îmi răspundeți direct la acest email.');
+  L.push('');
+  L.push('Toate cele bune,');
+  L.push('Bogdan');
+  L.push('bogdan@hellohuman.ro');
+  return L.join('\n');
+}
+el('bizList').onclick=function(e){
+  var b=e.target.closest('button'); if(!b) return;
+  var mail=b.dataset.msg || b.dataset.trm; if(!mail) return;
+  var x=bizLista.filter(function(y){ return (y.mail||'')===mail })[0]; if(!x) return;
+  if(b.dataset.msg){ HH.copy(bizMesaj(x), b) }
+  else { bizMarcheaza(mail); incarcaBiz() }
+};
+
 el('bBiz').onclick=function(){ go('sBiz'); incarcaBiz() };
+/* punct pe buton cand sunt cereri netrimise */
+async function bizPunct(){
+  try{
+    var d=await API.book(key);
+    var noi=(d.leads||[]).filter(function(x){
+      return x && (x.src==='business'||x.src==='business-intrare') && !bizTrimis(x);
+    }).length;
+    var b=el('bBiz');
+    b.innerHTML = 'Cereri de la companii' + (noi ? ' <b style="color:var(--gold)">'+noi+'</b>' : '');
+  }catch(e){}
+}
 el('bBizB').onclick=function(e){ e.preventDefault(); HH.back() };
 el('bBizRef').onclick=function(){ incarcaBiz() };
 el('bBizCopy').onclick=function(){
