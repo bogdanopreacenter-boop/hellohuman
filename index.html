@@ -32,6 +32,27 @@ body{background:#16302B;margin:0}
 #app.on{display:block;max-width:560px;margin:0 auto;padding:26px 20px 60px;min-height:100vh}
 #app .sc{display:none}
 #app .sc.on{display:block}
+
+.pmenu{ position:relative; display:inline-block }
+.pbtn{ background:none; border:0; font:inherit; color:inherit; cursor:pointer;
+  padding:0; -webkit-tap-highlight-color:transparent }
+.pbtn::after{ content:"›"; display:inline-block; margin-left:5px;
+  transform:rotate(90deg); font-size:.9em; opacity:.55; transition:transform .22s }
+.pbtn[aria-expanded="true"]::after{ transform:rotate(-90deg); opacity:1 }
+.pdrop{ position:absolute; top:calc(100% + 12px); right:0; z-index:60;
+  min-width:278px; background:var(--ink,#0B2620); border:1px solid rgba(255,255,255,.14);
+  border-radius:3px; padding:6px; box-shadow:0 14px 34px rgba(0,0,0,.32) }
+.pdrop[hidden]{ display:none }
+.pdrop a{ display:block; padding:12px 14px; text-decoration:none; border-radius:2px;
+  transition:background .2s }
+.pdrop a + a{ margin-top:2px }
+.pdrop a:hover,.pdrop a:focus-visible{ background:rgba(255,255,255,.07) }
+.pdrop b{ display:block; font:500 15px/1.3 var(--sr,Georgia,serif); color:#F3EFE7; margin-bottom:3px }
+.pdrop span{ display:block; font:400 12.5px/1.45 var(--ui); color:rgba(243,239,231,.62) }
+@media(max-width:640px){
+  .pmenu{ position:static }
+  .pdrop{ left:12px; right:12px; min-width:0 }
+}
 </style>
 <script type="application/ld+json">
 {
@@ -145,7 +166,19 @@ body{background:#16302B;margin:0}
       <a href="#how" class="hidem" data-t="nav1">Cum funcționează</a>
       <a href="#next" class="hidem" data-t="nav2">Unde</a>
       <a href="#faq" class="hidem" data-t="nav3">Întrebări</a>
-      <a href="/parteneri.html" class="bizlink" data-t="navBiz">Business</a>
+      <div class="pmenu">
+        <button class="bizlink pbtn" id="bPart" type="button" aria-expanded="false" aria-controls="pdrop" data-t="navBiz">Parteneri</button>
+        <div class="pdrop" id="pdrop" hidden>
+          <a href="/business">
+            <b data-t="pmC">Companii</b>
+            <span data-t="pmCs">Evenimente interne, măsurare, rapoarte</span>
+          </a>
+          <a href="/parteneri.html">
+            <b data-t="pmL">Locuri cu public</b>
+            <span data-t="pmLs">Baruri, librării, muzee, hoteluri, terminale</span>
+          </a>
+        </div>
+      </div>
       <button class="lang" id="bLang">EN</button>
     </nav>
   </div>
@@ -470,7 +503,7 @@ body{background:#16302B;margin:0}
 var el=HH.el, esc=HH.esc, say=HH.say, go=HH.go, API=HH.API, P=HH.PROFILES;
 
 var T={
-ro:{cOf:'Din partea casei',dp1:'Scanezi cartonașul de pe masă.',dp2:'Te așezi cu trei oameni pe care nu îi cunoști.',ftBiz:'Ai un local? Vezi cum funcționează',navBiz:'Business',aEye:'Pentru firma de evenimente',aH:'Șapte lucruri despre eveniment',aP:'Completezi o dată, primești un cod. Ni-l trimiți și îți dăm linkurile.',nevQ:'Ce te-ar ajuta cel mai mult acum?',nevPh:'o propoziție, fără nume și fără firmă',nevB:'Trimite',nevOk:'Am notat.',nevWait:'Se trimite…',nevScurt:'Scrie o propoziție.',chQ:'Cu cine ai vorbit cel mai ușor?',chP:'Nu vede nimeni răspunsul.',chSkip:'Sari peste',frQ:'Ai chema un prieten data viitoare?',wAccept:'Merge și în doi sau trei, nu aștept să fim patru',cap1:'Cartonașul stă pe masă. Atât trebuie să vezi.',cap2:'Patru oameni care nu se cunoșteau, la masa 7.',askPh:'o propoziție, în cuvintele tale',askSend:'Trimite răspunsul',askQ:'Dacă i-ai povesti mâine unui prieten ce ai făcut acum, ce i-ai spune?',nav1:'Cum funcționează',nav2:'Unde',nav3:'Întrebări',back:'Înapoi',next:'Continuă',leave:'Nu mai aștept',done:'Gata',
+ro:{cOf:'Din partea casei',dp1:'Scanezi cartonașul de pe masă.',dp2:'Te așezi cu trei oameni pe care nu îi cunoști.',ftBiz:'Ai un local? Vezi cum funcționează',navBiz:'Parteneri',pmC:'Companii',pmCs:'Evenimente interne, măsurare, rapoarte',pmL:'Locuri cu public',pmLs:'Baruri, librării, muzee, hoteluri, terminale',aEye:'Pentru firma de evenimente',aH:'Șapte lucruri despre eveniment',aP:'Completezi o dată, primești un cod. Ni-l trimiți și îți dăm linkurile.',nevQ:'Ce te-ar ajuta cel mai mult acum?',nevPh:'o propoziție, fără nume și fără firmă',nevB:'Trimite',nevOk:'Am notat.',nevWait:'Se trimite…',nevScurt:'Scrie o propoziție.',chQ:'Cu cine ai vorbit cel mai ușor?',chP:'Nu vede nimeni răspunsul.',chSkip:'Sari peste',frQ:'Ai chema un prieten data viitoare?',wAccept:'Merge și în doi sau trei, nu aștept să fim patru',cap1:'Cartonașul stă pe masă. Atât trebuie să vezi.',cap2:'Patru oameni care nu se cunoșteau, la masa 7.',askPh:'o propoziție, în cuvintele tale',askSend:'Trimite răspunsul',askQ:'Dacă i-ai povesti mâine unui prieten ce ai făcut acum, ce i-ai spune?',nav1:'Cum funcționează',nav2:'Unde',nav3:'Întrebări',back:'Înapoi',next:'Continuă',leave:'Nu mai aștept',done:'Gata',
  phMail:'tu@email.com',phCity:'Orașul tău',phName:'Andrei',phTeam:'Operațiuni',
  bMailT:'Anunță-mă',iEye:'Ce te-ar interesa? Poți alege câte vrei.',
  jH:'Ce ți se potrivește?',jName:'Prenumele tău',jVech:'De cât timp ești aici?',vNou:'Sub un an',vMediu:'Unu până la trei ani',vVechi:'Peste trei ani',jTeam:'Echipa sau departamentul',
@@ -500,7 +533,7 @@ ro:{cOf:'Din partea casei',dp1:'Scanezi cartonașul de pe masă.',dp2:'Te așezi
  c7a:'Sau scrie-le tu, una pe rând',cGen:'Generează codul',
  cdH:'Gata. Trimite-ne codul.',cdP:'Îl încărcăm noi și primești linkurile pentru eveniment.',
  cdWa:'Trimite pe WhatsApp',cdMail:'Trimite pe email',cdCopy:'Copiază codul'},
-en:{cOf:'On the house',dp1:'You scan the card on the table.',dp2:'You sit down with three people you do not know.',ftBiz:'Got a venue? See how it works',navBiz:'Business',aEye:'For the events company',aH:'Seven things about the event',aP:'Fill it once, get a code. Send it to the agency and they handle the rest.',nevQ:'What would help you most right now?',nevPh:'one sentence, no names, no company',nevB:'Send',nevOk:'Noted.',nevWait:'Sending…',nevScurt:'Write one sentence.',chQ:'Who did you talk to most easily?',chP:'Nobody sees your answer.',chSkip:'Skip',frQ:'Would you bring a friend next time?',wAccept:"Two or three is fine, I'm not waiting for four",cap1:'The card sits on the table. That is all you need to see.',cap2:'Four people who had never met, at table 7.',askPh:'one sentence, in your own words',askSend:'Send it',askQ:'If you told a friend tomorrow what you just did, what would you say?',nav1:'How it works',nav2:'Where',nav3:'Questions',back:'Back',next:'Continue',leave:'I am not waiting',done:'Done',
+en:{cOf:'On the house',dp1:'You scan the card on the table.',dp2:'You sit down with three people you do not know.',ftBiz:'Got a venue? See how it works',navBiz:'Partners',pmC:'Companies',pmCs:'Internal events, measurement, reports',pmL:'Places with people',pmLs:'Bars, bookshops, museums, hotels, terminals',aEye:'For the events company',aH:'Seven things about the event',aP:'Fill it once, get a code. Send it to the agency and they handle the rest.',nevQ:'What would help you most right now?',nevPh:'one sentence, no names, no company',nevB:'Send',nevOk:'Noted.',nevWait:'Sending…',nevScurt:'Write one sentence.',chQ:'Who did you talk to most easily?',chP:'Nobody sees your answer.',chSkip:'Skip',frQ:'Would you bring a friend next time?',wAccept:"Two or three is fine, I'm not waiting for four",cap1:'The card sits on the table. That is all you need to see.',cap2:'Four people who had never met, at table 7.',askPh:'one sentence, in your own words',askSend:'Send it',askQ:'If you told a friend tomorrow what you just did, what would you say?',nav1:'How it works',nav2:'Where',nav3:'Questions',back:'Back',next:'Continue',leave:'I am not waiting',done:'Done',
  phMail:'you@email.com',phCity:'Your city',phName:'Andrew',phTeam:'Operations',
  bMailT:'Keep me posted',iEye:'What would interest you? Pick as many as you like.',
  jH:'Which one fits?',jName:'Your first name',jVech:'How long have you been here?',vNou:'Under a year',vMediu:'One to three years',vVechi:'Over three years',jTeam:'Team or department',
@@ -1151,6 +1184,26 @@ el('bQMail').onclick=function(){
     if(++incercari>60){ bara('Scriptul principal nu a pornit — intraInSeara lipseste', '#E07A5F'); return }
     setTimeout(asteapta, 50);
   })();
+})();
+</script>
+<script>
+/* Meniul de parteneri. Doua lumi, un singur buton in antet. */
+(function(){
+  var b=document.getElementById('bPart'), d=document.getElementById('pdrop');
+  if(!b||!d) return;
+  function inchide(){ d.hidden=true; b.setAttribute('aria-expanded','false') }
+  b.onclick=function(e){
+    e.stopPropagation();
+    var deschis = !d.hidden;
+    d.hidden = deschis;
+    b.setAttribute('aria-expanded', deschis?'false':'true');
+  };
+  document.addEventListener('click', function(e){
+    if(!d.hidden && !d.contains(e.target) && e.target!==b) inchide();
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape') inchide();
+  });
 })();
 </script>
 </body>
