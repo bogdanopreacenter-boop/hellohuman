@@ -537,3 +537,6 @@ h1,h2,h3,.lead,.sub,.note{text-wrap:pretty}
 @supports not (text-wrap:pretty){
   h1,h2,h3{text-wrap:balance}
 }
+
+/* pagina pe care ești, în subsol */
+.aici{color:var(--gold);opacity:.9;cursor:default}
