@@ -19,6 +19,8 @@ body.appbody .sc.on{display:block}
 </style>
 
 
+<link rel="icon" type="image/svg+xml" href="/marca.svg">
+<link rel="apple-touch-icon" href="/logo-hellohuman.png">
 </head>
 <body class="appbody">
 <div class="app">
@@ -79,6 +81,8 @@ body.appbody .sc.on{display:block}
     <button class="btn ghost wide" id="bFmt" style="margin-top:9px">Formate proprii</button>
   <button class="btn ghost wide" id="bNev" style="margin-top:9px">Ce le lipsește oamenilor</button>
     <button class="btn ghost wide" id="bBiz" style="margin-top:9px">Cereri de la companii</button>
+    <button class="btn ghost wide" id="bRec2" style="margin-top:9px">Locuri recomandate</button>
+    <button class="btn ghost wide" id="bChe" style="margin-top:9px">Cherie</button>
     <div class="list" id="lFmt" style="max-height:none"></div>
   </div>
 
@@ -163,6 +167,32 @@ body.appbody .sc.on{display:block}
 
 
 <!-- format propriu -->
+<section class="sc" id="sChe">
+  <a class="back" href="#" id="bCheB">← Înapoi</a>
+  <p class="eyebrow">Cherie</p>
+  <h2>Cine a lăsat adresa</h2>
+  <p class="sub2" style="margin-top:10px">Formularul de la /cherie. Nimeni nu ajunge acolo fără link.</p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px">
+    <button class="btn ghost small" id="bCheRef">Reîmprospătează</button>
+    <button class="btn ghost small" id="bCheCopy">Copiază tot</button>
+  </div>
+  <p class="msg2" id="mChe"></p>
+  <div class="list" id="cheList" style="max-height:none;margin-top:12px"></div>
+</section>
+
+<section class="sc" id="sRec">
+  <a class="back" href="#" id="bRecB">← Înapoi</a>
+  <p class="eyebrow">Locuri recomandate</p>
+  <h2>Ce locuri v-au fost semnalate</h2>
+  <p class="sub2" style="margin-top:10px">Oameni care vin acolo, iar ar vrea HelloHuman la ei.</p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px">
+    <button class="btn ghost small" id="bRecRef">Reîmprospătează</button>
+    <button class="btn ghost small" id="bRecCopy">Copiază tot</button>
+  </div>
+  <p class="msg2" id="mRec2"></p>
+  <div class="list" id="recList" style="max-height:none;margin-top:12px"></div>
+</section>
+
 <section class="sc" id="sBiz">
   <a class="back" href="#" id="bBizB">← Înapoi</a>
   <p class="eyebrow">Cereri de la companii</p>
@@ -394,7 +424,7 @@ var P=HH.PROFILES;
 var TT={never:'niciodată',now:'chiar acum',min:'acum {n} min',hour:'acum {n} h'};
 var when=function(ts){return HH.fmtWhen(ts,TT)};
 var key='', book={partners:[],events:[],leads:[],requests:[]}, live={}, timer=null;
-var ECR=['sLog','sMain','sPart','sEv','sNew','sDemo','sCfg','sQR','sFmt','sNev','sBiz'];
+var ECR=['sLog','sMain','sPart','sEv','sNew','sDemo','sCfg','sQR','sFmt','sNev','sBiz','sRec','sChe'];
 
 /* ---------- intrare ---------- */
 async function intra(k){
@@ -759,17 +789,46 @@ function bizMarcheaza(mail){
   try{ localStorage.setItem('hh_trm', JSON.stringify(l)) }catch(e){}
 }
 
-/* Mesajul de însoțire, compus din profil. Se copiază, se lipește în email. */
+/* Mesajul de însoțire.
+   Tema vine din profil. Structura de limbaj vine din același profil —
+   un om care cere dovadă nu se convinge cum se convinge unul care decide singur.
+   Iar cuvintele lui, din răspunsurile deschise, se întorc neschimbate. */
+
 var PRIMA={
-  SILO:'Din răspunsurile dumneavoastră reiese că distanța dintre echipe este ceea ce vă apasă cel mai mult.',
-  VIZIBILITATE:'Din răspunsurile dumneavoastră reiese că vă lipsește vizibilitatea asupra a ceea ce se întâmplă între oameni.',
-  DOVADA:'Din răspunsurile dumneavoastră reiese că aveți nevoie de o cifră pe care să o puteți susține.',
-  FRICTIUNE:'Din răspunsurile dumneavoastră reiese că orice soluție trebuie să nu adauge muncă nimănui.',
-  EFICIENTA:'Din răspunsurile dumneavoastră reiese că vă interesează efectul asupra rezultatelor, nu procesul.',
-  STATUSQUO:'Din răspunsurile dumneavoastră reiese că preferați să vedeți dovada înainte de orice angajament.'
+  SILO:'Punctul pe care l-ați indicat este distanța dintre echipe.',
+  VIZIBILITATE:'Punctul pe care l-ați indicat este ce se întâmplă între oameni, fără să se vadă.',
+  DOVADA:'Punctul pe care l-ați indicat este lipsa unei cifre pe care să o puteți susține.',
+  FRICTIUNE:'Punctul pe care l-ați indicat este costul în timp al oricărei inițiative noi.',
+  EFICIENTA:'Punctul pe care l-ați indicat este efectul asupra rezultatelor, nu procesul.',
+  STATUSQUO:'Punctul pe care l-ați indicat este nevoia de dovadă înaintea oricărui angajament.'
 };
+
+/* Structura de limbaj, după profil. */
+var STRUCT={
+  SILO:{      /* traversare — accent pe ce se leagă */
+    mij:'Prezentarea arată ce se poate măsura între echipe și cât de repede.',
+    inch:'Decizia rămâne a dumneavoastră. Vă răspund la orice întrebare, fără să insist.'},
+  VIZIBILITATE:{
+    mij:'Prezentarea arată exact ce vedeți la final și ce nu ajunge niciodată în raport.',
+    inch:'Dacă vreți să vedeți cum arată un raport real, vi-l trimit.'},
+  DOVADA:{    /* extern — dovezi, referințe, metodologie */
+    mij:'Prezentarea are cifrele și sursele lor: anchete europene pe zeci de mii de respondenți, iar metodologia completă în anexă.',
+    inch:'Dacă departamentul dumneavoastră juridic vrea documentația de prelucrare a datelor, o trimit înainte de orice discuție.'},
+  FRICTIUNE:{ /* dinspre — accent pe ce evită */
+    mij:'Nu cerem acces la niciun sistem, nu instalăm nimic și nu ocupăm timpul nimănui din echipă.',
+    inch:'Dacă la jumătate vă răzgândiți, se oprește dintr-un buton. Nu rămâne nimic instalat.'},
+  EFICIENTA:{ /* către — accent pe ce obține */
+    mij:'Prezentarea arată ce obțineți în paisprezece zile și ce decizie puteți lua pe baza acelor cifre.',
+    inch:'Dacă vreți, calculăm împreună ce ar însemna asta pentru organizația dumneavoastră.'},
+  STATUSQUO:{ /* proceduri — pași, ordine, fără angajament */
+    mij:'Prezentarea are cei trei pași, în ordine, cu ce se întâmplă la fiecare.',
+    inch:'Nu e nevoie de nicio decizie acum. Citiți, iar dacă are sens, vorbim.'}
+};
+
 function bizMesaj(x){
   var p=profil(x.raspuns);
+  var s=STRUCT[p.dom]||STRUCT.SILO;
+  var fin=(x.finale||[]);
   var L=[];
   L.push('Bună ziua,');
   L.push('');
@@ -778,13 +837,25 @@ function bizMesaj(x){
   if(PRIMA[p.dom]) L.push(PRIMA[p.dom]);
   L.push('');
   L.push('Găsiți prezentarea aici — cinci pagini, un minut de citit:');
-  L.push('https://hellohuman.ro/prezentare-business');
+  L.push('https://hellohuman.ro/masuram');
   L.push('');
-  L.push('S-ar putea să descoperiți că restul informațiilor sunt la fel de relevante — de cele mai multe ori, companiile găsesc soluții și la probleme pe care nu știau că le caută.');
+  L.push(s.mij);
   L.push('');
-  if(x.reducere) L.push('Pentru răspunsurile suplimentare, primul ciclu beneficiază de o reducere de '+x.reducere+'%.');
-  if(x.reducere) L.push('');
-  L.push('Dacă doriți să aprofundăm, îmi răspundeți direct la acest email.');
+  /* cuvintele lui, întoarse neschimbate */
+  if(fin[2]){
+    L.push('La întrebarea despre ce ar însemna că a meritat, ați răspuns: „' + fin[2].replace(/^[„"]|[”"]$/g,'') + '”.');
+    L.push('Exact asta se vede în cifrele de la final.');
+    L.push('');
+  } else if(fin[1]){
+    L.push('Ați scris că v-ar folosi să știți: „' + fin[1].replace(/^[„"]|[”"]$/g,'') + '”.');
+    L.push('Aceea este una dintre cifrele pe care le livrăm.');
+    L.push('');
+  }
+  if(x.reducere){
+    L.push('Pentru răspunsurile suplimentare, primul ciclu beneficiază de o reducere de '+x.reducere+'%.');
+    L.push('');
+  }
+  L.push(s.inch);
   L.push('');
   L.push('Toate cele bune,');
   L.push('Bogdan');
@@ -797,6 +868,97 @@ el('bizList').onclick=function(e){
   var x=bizLista.filter(function(y){ return (y.mail||'')===mail })[0]; if(!x) return;
   if(b.dataset.msg){ HH.copy(bizMesaj(x), b) }
   else { bizMarcheaza(mail); incarcaBiz() }
+};
+
+
+/* Locuri recomandate. Oameni care vin acolo, iar vor HelloHuman la ei.
+   Nu au datele patronului — le cautam noi. */
+var recLista=[];
+function recTrimisLista(){ try{ return JSON.parse(localStorage.getItem('hh_rec')||'[]') }catch(e){ return [] } }
+function recTrimis(x){ return recTrimisLista().indexOf((x.loc||'')+'|'+(x.oras||''))>=0 }
+function recMarcheaza(k){
+  var l=recTrimisLista(), i=l.indexOf(k);
+  if(i>=0) l.splice(i,1); else l.push(k);
+  try{ localStorage.setItem('hh_rec', JSON.stringify(l)) }catch(e){}
+}
+async function incarcaRec(){
+  say('mRec2','Se încarcă…');
+  try{
+    var d=await API.book(key);
+    recLista=(d.leads||[]).filter(function(x){ return x && x.src==='recomandare' });
+    recLista.sort(function(a,b){ return (b.ts||0)-(a.ts||0) });
+    if(!recLista.length){ el('recList').innerHTML='<p class="sub2" style="padding:12px 0">Nicio recomandare încă.</p>'; say('mRec2',''); return }
+    /* grupez pe loc: daca doi oameni recomanda acelasi loc, conteaza dublu */
+    var grup={};
+    recLista.forEach(function(x){
+      var k=(x.loc||'').toLowerCase().trim()+'|'+(x.oras||'').toLowerCase().trim();
+      if(!grup[k]) grup[k]={loc:x.loc,oras:x.oras,n:0,de:[],mail:[],ts:x.ts};
+      grup[k].n++;
+      if(x.dece) grup[k].de.push(x.dece);
+      if(x.mail) grup[k].mail.push(x.mail);
+      if((x.ts||0)>grup[k].ts) grup[k].ts=x.ts;
+    });
+    var lst=Object.keys(grup).map(function(k){ grup[k].cheie=k; return grup[k] })
+      .sort(function(a,b){ return b.n-a.n || (b.ts||0)-(a.ts||0) });
+    el('recList').innerHTML=lst.map(function(g){
+      var t=recTrimis(g);
+      return '<div class="row" style="align-items:flex-start;flex-direction:column;gap:5px">'+
+        '<div style="display:flex;justify-content:space-between;width:100%;gap:10px">'+
+          '<b>'+(t?'':'<span style="color:var(--gold)">• </span>')+esc(g.loc||'(fără nume)')+
+            (g.n>1?' <span style="color:var(--gold)">×'+g.n+'</span>':'')+'</b>'+
+          '<span style="font-size:12px;opacity:.6;white-space:nowrap">'+HH.fmtDate(g.ts)+'</span></div>'+
+        '<span style="font-size:13px">'+esc(g.oras||'—')+'</span>'+
+        (g.de.length?'<span style="font-size:12.5px;opacity:.78;margin-top:2px">„'+g.de.map(esc).join('” · „')+'”</span>':'')+
+        '<div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:7px">'+
+          '<button class="btn ghost small" data-cauta="'+esc(g.loc+' '+(g.oras||''))+'">Caută pe Google</button>'+
+          '<button class="btn ghost small" data-rtrm="'+esc(g.cheie)+'">'+(t?'Contactat ✓':'Marchează contactat')+'</button>'+
+        '</div>'+
+      '</div>';
+    }).join('');
+    say('mRec2', lst.length+' locuri · '+recLista.length+' recomandări', 'ok');
+  }catch(e){ say('mRec2', e.message, 'err') }
+}
+
+/* Cherie. Formular ascuns, fara legatura din site. */
+var cheLista=[];
+async function incarcaChe(){
+  say('mChe','Se încarcă…');
+  try{
+    var d=await API.book(key);
+    cheLista=(d.leads||[]).filter(function(x){ return x && x.src==='cherie' });
+    cheLista.sort(function(a,b){ return (b.ts||0)-(a.ts||0) });
+    if(!cheLista.length){ el('cheList').innerHTML='<p class="sub2" style="padding:12px 0">Nicio adresă încă.</p>'; say('mChe',''); return }
+    el('cheList').innerHTML=cheLista.map(function(x){
+      return '<div class="row" style="align-items:flex-start;flex-direction:column;gap:4px">'+
+        '<div style="display:flex;justify-content:space-between;width:100%;gap:10px">'+
+          '<b>'+esc(x.mail||x.email||'—')+'</b>'+
+          '<span style="font-size:12px;opacity:.6;white-space:nowrap">'+HH.fmtDate(x.ts)+'</span></div>'+
+        (x.nume?'<span style="font-size:13px">'+esc(x.nume)+'</span>':'')+
+        (x.text?'<span style="font-size:12.5px;opacity:.78;margin-top:2px">'+esc(x.text)+'</span>':'')+
+      '</div>';
+    }).join('');
+    say('mChe', cheLista.length+' adrese', 'ok');
+  }catch(e){ say('mChe', e.message, 'err') }
+}
+el('bChe').onclick=function(){ go('sChe'); incarcaChe() };
+el('bCheB').onclick=function(e){ e.preventDefault(); HH.back() };
+el('bCheRef').onclick=function(){ incarcaChe() };
+el('bCheCopy').onclick=function(){
+  HH.copy(cheLista.map(function(x){ return (x.mail||x.email||'—')+'\t'+(x.nume||'')+'\t'+(x.text||'') }).join('\n'), el('bCheCopy'));
+};
+
+el('bRec2').onclick=function(){ go('sRec'); incarcaRec() };
+el('bRecB').onclick=function(e){ e.preventDefault(); HH.back() };
+el('bRecRef').onclick=function(){ incarcaRec() };
+el('bRecCopy').onclick=function(){
+  HH.copy(recLista.map(function(x){
+    return (x.loc||'—')+'\t'+(x.oras||'')+'\t'+(x.dece||'')+'\t'+(x.mail||'');
+  }).join('\n'), el('bRecCopy'));
+};
+el('recList').onclick=function(e){
+  var b=e.target.closest('button'); if(!b) return;
+  if(b.dataset.cauta){ window.open('https://www.google.com/search?q='+encodeURIComponent(b.dataset.cauta),'_blank') }
+  else if(b.dataset.rtrm){ recMarcheaza(b.dataset.rtrm); incarcaRec() }
 };
 
 el('bBiz').onclick=function(){ go('sBiz'); incarcaBiz() };

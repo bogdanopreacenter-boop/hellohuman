@@ -239,8 +239,8 @@ var HH = (function () {
       },
       quiet: { ro: 'Sunt aici, las pe alții să înceapă', en: "I am in, someone else can start" },
       qs: {
-        ro: ['Ce ați văzut azi și nu vă iese din cap?', 'Ce nu ați înțeles și ați vrea să vă explice cineva?', 'Ce ați lua acasă, dacă s-ar putea?', 'Ce v-a plictisit și de ce?'],
-        en: ['What did you see today that stayed with you?', 'What did you not get, that you wish someone would explain?', 'What would you take home, if you could?', 'What bored you, and why?']
+        ro: ['Ce ați văzut azi și nu vă iese din cap?', 'Ce nu ați înțeles și ați vrea să vă explice cineva?', 'Ce ați lua acasă, dacă s-ar putea?', 'Ce v-ar fi plăcut să întrebați pe cineva de aici?'],
+        en: ['What did you see today that stayed with you?', 'What did you not get, that you wish someone would explain?', 'What would you take home, if you could?', 'What would you have liked to ask someone here?']
       },
       note: { ro: 'La finalul vizitei. Toți au văzut aceleași săli, dar fiecare a reținut altceva.', en: 'At the end of the visit. Everyone saw the same rooms, but each kept something different.' },
       end: { ro: 'Le-ai plăcut mai mult<br>decât crezi.', en: 'They liked you more<br>than you think.' }

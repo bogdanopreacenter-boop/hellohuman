@@ -52,15 +52,6 @@
           "value": "noindex, nofollow"
         }
       ]
-    },
-    {
-      "source": "/prezentare-business.html",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        }
-      ]
     }
   ],
   "rewrites": [
@@ -83,6 +74,10 @@
     {
       "source": "/business/parteneri",
       "destination": "/business-parteneri.html"
+    },
+    {
+      "source": "/masuram",
+      "destination": "/prezentare-business.html"
     }
   ]
 }

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>HelloHuman — cunoști oameni noi, chiar acolo unde ești</title>
-<meta name="description" content="Cunoști oameni noi chiar acolo unde ești deja. Scanezi codul de pe masă, alegi cum vrei să participi, iar noi te așezăm la o masă cu oameni care vor să discute. Fără cont, fără aplicație.">
+<meta name="description" content="Cunoști oameni noi acolo unde mergi oricum. Scanezi un cod de pe masă, alegi cum vrei să participi, iar sistemul te așază cu doi-trei oameni pe care nu îi cunoști. Fără cont, fără rezervare, fără aplicație.">
 <link rel="canonical" href="https://hellohuman.ro/">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta name="theme-color" content="#16302B">
@@ -12,14 +12,14 @@
 <meta property="og:locale" content="ro_RO">
 <meta property="og:site_name" content="HelloHuman">
 <meta property="og:url" content="https://hellohuman.ro/">
-<meta property="og:title" content="HelloHuman — cunoști oameni noi, chiar acolo unde ești">
-<meta property="og:description" content="Scanezi codul de pe masă, alegi cum vrei să participi, iar noi te așezăm la o masă cu oameni care vor să discute.">
-<meta property="og:image" content="https://hellohuman.ro/cartonas-cod-qr-masa-bar.jpg">
-<meta property="og:image:width" content="1408">
-<meta property="og:image:height" content="768">
+<meta property="og:title" content="Cunoști oameni noi. Toți au scanat același cod.">
+<meta property="og:description" content="Fără cont. Fără rezervare. Doar scanezi. Un cod pe masă te așază cu oameni pe care nu îi cunoști — toți au scanat același cod.">
+<meta property="og:image" content="https://hellohuman.ro/masa-doi-oameni-cod-qr.jpg">
+<meta property="og:image:width" content="1400">
+<meta property="og:image:height" content="876">
 <meta property="og:image:alt" content="Cartonaș HelloHuman cu cod QR pe o masă de bar">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://hellohuman.ro/cartonas-cod-qr-masa-bar.jpg">
+<meta name="twitter:image" content="https://hellohuman.ro/masa-doi-oameni-cod-qr.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Karla:wght@400;500;700&display=swap&subset=latin,latin-ext" rel="stylesheet">
@@ -53,6 +53,32 @@ body{background:#16302B;margin:0}
   .pmenu{ position:static }
   .pdrop{ left:12px; right:12px; min-width:0 }
 }
+.logo{display:inline-flex;align-items:center;gap:9px}
+.logo img{width:30px;height:30px;flex:none;opacity:.95}
+.footlogo{display:block;margin-bottom:16px}
+@media(max-width:640px){footer .wrap{display:block;text-align:center}
+.footlogo{margin:0 auto 18px}
+.footlogo img{margin:0 auto}}
+.footlogo img{width:112px;height:auto;opacity:.7;transition:opacity .3s}
+.footlogo:hover img{opacity:1}
+.src2{font-size:12.5px;color:var(--dim);margin-top:14px;font-style:italic}
+#recloc .btn{margin-top:22px;text-decoration:none;display:inline-block}
+.lb2{display:block;font-size:11px;letter-spacing:.16em;color:var(--dim);margin:18px 0 5px}
+#fRec input{width:100%;background:transparent;border:0;border-bottom:1px solid var(--lined);color:inherit;font:inherit;font-size:16px;padding:10px 2px;border-radius:0}
+#fRec input:focus{outline:none;border-bottom-color:var(--gold)}
+#fRec .btn{margin-top:24px}
+.msg3{font-size:13px;margin-top:12px;min-height:1.2em;color:var(--dim)}
+.msg3.err{color:var(--rust)}
+.bilet{max-width:340px;margin:clamp(28px,4vw,40px) auto 0;padding:clamp(20px,3vw,26px);
+  background:var(--oat2);border:1px solid var(--lined);border-radius:3px;color:var(--ink)}
+.bk{font:500 10.5px/1 var(--sans);letter-spacing:.24em;color:var(--dim);margin:0}
+.bn{font:900 clamp(46px,9vw,62px)/1 var(--disp);margin:6px 0 0;letter-spacing:-.03em}
+.br{height:1px;background:var(--lined);margin:16px 0}
+.bl{display:flex;justify-content:space-between;gap:14px;padding:7px 0;align-items:baseline}
+.bl span{font:400 12.5px/1.4 var(--sans);color:var(--dim);flex:none}
+.bl b{font:500 14px/1.45 var(--disp);text-align:right}
+.bt{font:400 13px/1 var(--sans);color:var(--dim);margin:0;letter-spacing:.06em}
+.bsub{text-align:center;font:italic 400 14px/1.5 var(--disp);color:var(--dim);margin:16px 0 0}
 </style>
 <script type="application/ld+json">
 {
@@ -129,15 +155,15 @@ body{background:#16302B;margin:0}
   },
   {
    "@type": "ImageObject",
-   "contentUrl": "https://hellohuman.ro/cartonas-cod-qr-masa-bar.jpg",
-   "caption": "Cartonaș HelloHuman cu cod QR pe o masă de bar, lângă un telefon care tocmai l-a scanat",
+   "contentUrl": "https://hellohuman.ro/masa-doi-oameni-cod-qr.jpg",
+   "caption": "Un cartonaș cu cod QR lăsat pe masă, într-un local. Cine are chef îl scanează și este așezat cu oameni pe care nu îi cunoaște.",
    "width": 1408,
    "height": 768
   },
   {
    "@type": "ImageObject",
-   "contentUrl": "https://hellohuman.ro/conversatie-masa-librarie.jpg",
-   "caption": "Patru oameni la aceeași masă într-o librărie, în conversație, cu telefonul arătând numărul mesei și întrebarea de pornire",
+   "contentUrl": "https://hellohuman.ro/masa-doi-oameni-cod-qr.jpg",
+   "caption": "Doi oameni care nu se cunoșteau, la aceeași masă, cu un cartonaș cu cod QR între ei. Așa începe o rundă HelloHuman: câteva minute de conversație, fără ca nimeni să fi trebuit să abordeze pe cineva.",
    "width": 1408,
    "height": 768
   }
@@ -154,6 +180,8 @@ body{background:#16302B;margin:0}
 #aLang:active{ background:rgba(255,255,255,.16) }
 #app:not(.on) #aLang{ display:none }
 </style>
+<link rel="icon" type="image/svg+xml" href="/marca.svg">
+<link rel="apple-touch-icon" href="/logo-hellohuman.png">
 </head>
 <body>
 
@@ -161,7 +189,7 @@ body{background:#16302B;margin:0}
 
 <header class="bar">
   <div class="wrap">
-    <a class="logo" href="#top">Hello<span>Human</span></a>
+    <a class="logo" href="#top"><img src="/marca-inchis.svg" alt="" width="30" height="30" aria-hidden="true">Hello<span>Human</span></a>
     <nav class="barnav">
       <a href="#how" class="hidem" data-t="nav1">Cum funcționează</a>
       <a href="#next" class="hidem" data-t="nav2">Unde</a>
@@ -174,7 +202,7 @@ body{background:#16302B;margin:0}
             <span data-t="pmCs">Evenimente interne, măsurare, rapoarte</span>
           </a>
           <a href="/parteneri.html">
-            <b data-t="pmL">Locuri cu public</b>
+            <b data-t="pmL">Locații</b>
             <span data-t="pmLs">Baruri, librării, muzee, hoteluri, terminale</span>
           </a>
         </div>
@@ -188,12 +216,11 @@ body{background:#16302B;margin:0}
   <section class="hero">
     <div class="wrap">
       <figure class="heroimg">
-        <img src="/cartonas-cod-qr-masa-bar.jpg" width="1408" height="768"
-             alt="Cartonaș HelloHuman cu cod QR pe o masă, lângă mâna cuiva care tocmai l-a scanat cu telefonul"
-             fetchpriority="high" decoding="async">
+        <img src="/masa-doi-oameni-cod-qr.jpg" width="1400" height="876" fetchpriority="high" decoding="async"
+             alt="Doi oameni care nu se cunoșteau, la aceeași masă, cu un cartonaș cu cod QR luminat între ei. Așa începe o rundă HelloHuman: câteva minute de conversație, fără ca nimeni să fi trebuit să abordeze pe cineva.">
       </figure>
-      <h1 data-t="hH">Cunoști oameni noi.<br>Chiar acolo unde ești.</h1>
-      <p class="lead" data-t="hP">Fără dating, fără aplicații, fără profiluri.</p><p class="lead2" data-t="hP2">Scanezi codul de pe masă, alegi cum vrei să participi, iar noi te așezăm la o masă cu oameni care vor să discute.</p>
+      <h1 data-t="hH">Cunoști oameni noi.<br>Toți au scanat același cod.</h1>
+      <p class="lead" data-t="hP">Fără cont. Fără rezervare. Doar scanezi.</p>
       <div class="cta">
         <a class="btn" href="#how" data-t="hB1">Vezi cum funcționează</a>
         <a class="btn ghost" href="#faq" data-t="hB2">Întrebări frecvente</a>
@@ -201,17 +228,37 @@ body{background:#16302B;margin:0}
     </div>
   </section>
 
-  <section class="paper" id="how">
+<section class="sec" id="dece">
+  <div class="wrap">
+    <p class="eyebrow" data-t="dE">Cercetare</p>
+    <h2 data-t="dH">E mai bine decât pare</h2>
+    <p class="lead" data-t="dP">Ne așteptăm ca o conversație cu un necunoscut să fie stânjenitoare. Se dovedește aproape întotdeauna că nu e.</p>
+    <p class="src2" data-t="dS">Sandstrom și Dunn, psihologie socială.</p>
+  </div>
+</section>
+
+<section class="paper" id="how">
     <div class="wrap">
       <p class="eyebrow" data-t="sEye">Cum funcționează?</p>
-      <h2 data-t="sH">Trei pași.<br>Zece secunde.</h2>
-      <p class="lead" style="margin-top:14px" data-t="sP">Nu trebuie să abordezi pe nimeni. Sistemul face totul pentru tine.</p>
+      <h2 data-t="sH">Scanezi și aștepți.<br>Zece secunde.</h2>
+      <p class="lead" style="margin-top:14px" data-t="sP">Restul se întâmplă.</p>
       <div class="steps">
-        <div class="step"><p class="n">1</p><h3 data-t="s1h">Scanezi codul</h3><p data-t="s1p">Găsești un cod pe masă. Îl scanezi cu camera telefonului și scrii prenumele tău.</p></div>
-        <div class="step"><p class="n">2</p><h3 data-t="s2h">Alegi cum vrei să participi</h3><p data-t="s2p">Vrei să vorbești? Preferi să asculți? Cauți idei noi? Alege o opțiune, iar noi îți spunem imediat la ce masă să te așezi.</p></div>
-        <div class="step"><p class="n">3</p><h3 data-t="s3h">Discuți. Apoi ești liber.</h3><p data-t="s3p">Primești o întrebare care sparge gheața. Când timpul expiră, te ridici și pleci. Fără obligații.</p></div>
+        <div class="step"><p class="n">1</p><h3 data-t="s1h">Scanezi codul</h3><p data-t="s1p">Un cartonaș pe masă. Zece secunde, fără cont.</p></div>
+        <div class="step"><p class="n">2</p><h3 data-t="s2h">O apăsare</h3><p data-t="s2p">Vorbești, asculți, sau doar stai.</p></div>
+        <div class="step"><p class="n">3</p><h3 data-t="s3h">Aștepți</h3><p data-t="s3p">Îți vibrează telefonul când începe.</p></div>
       </div>
-    </div>
+    
+      <div class="bilet">
+        <p class="bk" data-t="kMasa">MASA TA</p>
+        <p class="bn">7</p>
+        <div class="br"></div>
+        <div class="bl"><span data-t="kCu">La masă cu tine</span><b>Ana, Radu</b></div>
+        <div class="bl"><span data-t="kQ">De aici porniți</span><b data-t="kQt">Ce ai învățat prea târziu?</b></div>
+        <div class="br"></div>
+        <p class="bt">20:00</p>
+      </div>
+      <p class="bsub" data-t="kSub">Atât primești. Nimic altceva.</p>
+</div>
   </section>
 
   
@@ -220,12 +267,8 @@ body{background:#16302B;margin:0}
     <div class="wrap">
       <p class="eyebrow" data-t="nEye">Unde se organizează?</p>
       <h2 data-t="nH">În locurile pe care<br>deja le frecventezi.</h2>
-      <figure class="patru">
-        <img src="/locuri-hellohuman.jpg" width="1408" height="768"
-             alt="Patru locuri unde se întâmplă: o cafenea, cartonașul pe masă, un muzeu și lobby-ul unui hotel"
-             loading="lazy" decoding="async">
-      </figure>
-      <p class="lead" style="margin-top:14px" data-t="nP">Nu te poți înscrie de aici. Participarea se face doar scanând codul de pe masă. Spune-ne orașul tău și te anunțăm când organizăm ceva acolo.</p>
+      
+      <p class="lead" style="margin-top:14px" data-t="nP">Spune-ne orașul tău. Te anunțăm când găsim unul acolo.</p>
       <div class="sig">
         <div class="sigrow">
           <input type="email" id="pubMail" placeholder="tu@email.com" autocomplete="email" enterkeyhint="done" data-tp="phMail">
@@ -248,20 +291,42 @@ body{background:#16302B;margin:0}
       <div class="ctx">
         <div class="ctxrow"><h3 data-t="f1q">Ce este HelloHuman?</h3><p data-t="f1a">Este un mod simplu de a cunoaște oameni noi, chiar acolo unde ești deja. Găsești un cod QR pe masă, îl scanezi, alegi cum vrei să participi, iar noi te așezăm la o masă cu alți doi sau trei oameni care vor să discute.</p></div>
         <div class="ctxrow"><h3 data-t="f2q">Este o aplicație de dating?</h3><p data-t="f2a">Nu. Nu există profiluri, poze sau vârste. Nu alegi pe nimeni. Sistemul face mese de trei sau patru oameni, pentru conversații care curg de la sine.</p></div>
-        <div class="ctxrow"><h3 data-t="f3q">Sunt introvertit. Este pentru mine?</h3><p data-t="f3a">Da. La înscriere poți alege că azi preferi să asculți. Sistemul nu adună la aceeași masă doar oameni care ascultă, iar întrebarea de început sparge gheața fără să ceară nimic de la tine.</p></div>
+        <div class="ctxrow"><h3 data-t="f3q">Sunt introvertit. Este pentru mine?</h3><p data-t="f3a">Yes. You can say from the start that today you would rather listen. The system does not seat only quiet people together, and the opening question does the rest — asking nothing of you.</p></div>
         
       </div>
     </div>
   </section>
+
+<section class="sec" id="recloc">
+  <div class="wrap">
+    <p class="eyebrow" data-t="rE">Un loc anume</p>
+    <h2 data-t="rH2">Unde ai vrea să găsești HelloHuman?</h2>
+    <p class="lead" data-t="rP2">Scrie-ne cum se numește și în ce oraș e.</p>
+    <form id="fRec" novalidate style="max-width:420px;margin-top:26px">
+      <label class="lb2" for="r1" data-t="rL1">CE LOC</label>
+      <input type="text" id="r1" placeholder="Cafeneaua din colț" data-tp="rP1">
+      <label class="lb2" for="r2" data-t="rL2">ÎN CE ORAȘ</label>
+      <input type="text" id="r2" placeholder="București" data-tp="rP2b">
+      <label class="lb2" for="r3" data-t="rL3">DE CE ACELA</label>
+      <input type="text" id="r3" placeholder="o propoziție" data-tp="rP3">
+      <label class="lb2" for="r4" data-t="rL4">EMAILUL TĂU</label>
+      <input type="email" id="r4" placeholder="tu@email.com" data-tp="rP4" autocomplete="email">
+      <button class="btn ghost" id="bRec" type="submit" data-t="rB">TRIMITE</button>
+      <p class="msg3" id="mRec"></p>
+    </form>
+    <p class="src2" data-t="rN">Te anunțăm când ajunge acolo.</p>
+  </div>
+</section>
+
+
 </main>
 
 <footer class="foot">
   <div class="wrap">
+    <a href="/" class="footlogo"><img src="/logo-hellohuman-inchis.svg" width="150" height="150" loading="lazy" alt="HelloHuman"></a>
     <div>
-      <img src="/logo-hellohuman.png" width="821" height="317"
-           alt="HelloHuman — trei oameni la o masă, desenați dintr-o singură linie"
-           style="width:100%;max-width:280px;height:auto;opacity:.9" loading="lazy" decoding="async">
-      <p class="sm" style="margin-top:10px;max-width:34ch" data-t="ftT">Oameni care nu se cunosc stau de vorbă câteva minute, chiar acolo unde se aflau oricum.</p>
+      <img src="/logo-hellohuman-inchis.svg" width="200" height="200" loading="lazy" decoding="async" alt="HelloHuman — cinci oameni așezați în jurul unei mese, cu un cod în mijloc.">
+      <p class="sm" style="margin-top:10px;max-width:34ch" data-t="ftT">Oameni care nu se cunosc ajung la aceeași masă pentru câteva minute, chiar acolo unde se aflau oricum.</p>
       
     </div>
     <div class="col">
@@ -350,7 +415,7 @@ body{background:#16302B;margin:0}
 <section class="sc" id="sWait">
   <p class="eyebrow" data-t="wEyeA">Te-am înscris</p>
   <h2 id="wLipsa">—</h2>
-  <p class="sub2" id="wS" style="margin-top:14px" data-t="wP">Bagă telefonul în buzunar. Îți vibrează când începe.</p>
+  <p class="sub2" id="wS" style="margin-top:14px" data-t="wP">Îți vibrează telefonul când începe.</p>
 
   <label class="check" id="wAccBox" style="margin-top:22px">
     <input type="checkbox" id="wAcc"><span data-t="wAccept">Merge și în doi sau trei, nu aștept să fim patru</span>
@@ -390,9 +455,7 @@ body{background:#16302B;margin:0}
 </section>
 
 <section class="sc" id="sEnd">
-  <img src="/logo-hellohuman.png" width="821" height="317"
-       alt="HelloHuman — trei oameni la o masă, desenați dintr-o singură linie"
-       style="width:100%;max-width:300px;height:auto;opacity:.85;display:block;margin:0 auto 24px">
+  <img src="/logo-hellohuman-inchis.svg" width="200" height="200" loading="lazy" decoding="async" alt="HelloHuman — cinci oameni așezați în jurul unei mese, cu un cod în mijloc.">
   <p class="eyebrow" data-t="eEye">Gata pentru azi</p>
   <h2 id="eH">Le-ai plăcut mai mult<br>decât crezi.</h2>
   <p class="sub2" style="margin-top:12px" data-t="eP">Vrei să știi când mai facem?</p>
@@ -503,7 +566,7 @@ body{background:#16302B;margin:0}
 var el=HH.el, esc=HH.esc, say=HH.say, go=HH.go, API=HH.API, P=HH.PROFILES;
 
 var T={
-ro:{cOf:'Din partea casei',dp1:'Scanezi cartonașul de pe masă.',dp2:'Te așezi cu trei oameni pe care nu îi cunoști.',ftBiz:'Ai un local? Vezi cum funcționează',navBiz:'Parteneri',pmC:'Companii',pmCs:'Evenimente interne, măsurare, rapoarte',pmL:'Locuri cu public',pmLs:'Baruri, librării, muzee, hoteluri, terminale',aEye:'Pentru firma de evenimente',aH:'Șapte lucruri despre eveniment',aP:'Completezi o dată, primești un cod. Ni-l trimiți și îți dăm linkurile.',nevQ:'Ce te-ar ajuta cel mai mult acum?',nevPh:'o propoziție, fără nume și fără firmă',nevB:'Trimite',nevOk:'Am notat.',nevWait:'Se trimite…',nevScurt:'Scrie o propoziție.',chQ:'Cu cine ai vorbit cel mai ușor?',chP:'Nu vede nimeni răspunsul.',chSkip:'Sari peste',frQ:'Ai chema un prieten data viitoare?',wAccept:'Merge și în doi sau trei, nu aștept să fim patru',cap1:'Cartonașul stă pe masă. Atât trebuie să vezi.',cap2:'Patru oameni care nu se cunoșteau, la masa 7.',askPh:'o propoziție, în cuvintele tale',askSend:'Trimite răspunsul',askQ:'Dacă i-ai povesti mâine unui prieten ce ai făcut acum, ce i-ai spune?',nav1:'Cum funcționează',nav2:'Unde',nav3:'Întrebări',back:'Înapoi',next:'Continuă',leave:'Nu mai aștept',done:'Gata',
+ro:{cOf:'Din partea casei',dp1:'Scanezi cartonașul de pe masă.',dp2:'Te așezi cu trei oameni pe care nu îi cunoști.',ftBiz:'Ai un local? Vezi cum funcționează',navBiz:'Parteneri',pmC:'Companii',pmCs:'Evenimente interne, măsurare, rapoarte',pmL:'Locații',pmLs:'Baruri, librării, muzee, hoteluri, terminale',aEye:'Pentru firma de evenimente',aH:'Șapte lucruri despre eveniment',aP:'Completezi o dată, primești un cod. Ni-l trimiți și îți dăm linkurile.',nevQ:'Ce te-ar ajuta cel mai mult acum?',nevPh:'o propoziție, fără nume și fără firmă',nevB:'Trimite',nevOk:'Am notat.',nevWait:'Se trimite…',nevScurt:'Scrie o propoziție.',chQ:'Cu cine ai vorbit cel mai ușor?',chP:'Nu vede nimeni răspunsul.',chSkip:'Sari peste',frQ:'Ai chema un prieten data viitoare?',wAccept:'Merge și în doi sau trei, nu aștept să fim patru',cap1:'Cartonașul stă pe masă. Atât trebuie să vezi.',cap2:'Patru oameni care nu se cunoșteau, la masa 7.',askPh:'o propoziție, în cuvintele tale',askSend:'Trimite răspunsul',askQ:'Dacă i-ai povesti mâine unui prieten ce ai făcut acum, ce i-ai spune?',nav1:'Cum funcționează',nav2:'Unde',nav3:'Întrebări',back:'Înapoi',next:'Continuă',leave:'Nu mai aștept',done:'Gata',
  phMail:'tu@email.com',phCity:'Orașul tău',phName:'Andrei',phTeam:'Operațiuni',
  bMailT:'Anunță-mă',iEye:'Ce te-ar interesa? Poți alege câte vrei.',
  jH:'Ce ți se potrivește?',jName:'Prenumele tău',jVech:'De cât timp ești aici?',vNou:'Sub un an',vMediu:'Unu până la trei ani',vVechi:'Peste trei ani',jTeam:'Echipa sau departamentul',
@@ -511,7 +574,7 @@ ro:{cOf:'Din partea casei',dp1:'Scanezi cartonașul de pe masă.',dp2:'Te așezi
  pEye:'Împreună',pH:'Aceeași masă,<br>voi doi.',pP:'Unul face un cod, celălalt îl scrie aici. Sau i-l trimiți direct.',
  pCode:'Codul de la prietenul tău',pUse:'Gata',pSendTxt:'Stăm la aceeași masă. Codul e',pSend:'Trimite-i codul',pOr:'— sau —',pGen:'Fă-mi un cod',
  flH:'Când te îmbarci?',flP:'Te anunțăm din timp.',
- wEyeA:'Te-am înscris',wPeople:'sunt deja înscriși',wP:'Bagă telefonul în buzunar. Îți vibrează când începe.',
+ wEyeA:'Te-am înscris',wPeople:'sunt deja înscriși',wP:'Îți vibrează telefonul când începe.',
  tEye:'Runda a început',tDone:'Termin mai devreme',cK:'Masa ta',cW:'La masă cu tine',cQ:'De aici porniți',
  mEye:'Se apropie finalul',mH:'Tu ce ai vrea?',mP:'Nimeni de la masă nu vede ce alegi.',
  mStay:'Aș mai sta cu ei',mMove:'Aș cunoaște pe altcineva',mBack:'Eu am terminat',
@@ -533,7 +596,7 @@ ro:{cOf:'Din partea casei',dp1:'Scanezi cartonașul de pe masă.',dp2:'Te așezi
  c7a:'Sau scrie-le tu, una pe rând',cGen:'Generează codul',
  cdH:'Gata. Trimite-ne codul.',cdP:'Îl încărcăm noi și primești linkurile pentru eveniment.',
  cdWa:'Trimite pe WhatsApp',cdMail:'Trimite pe email',cdCopy:'Copiază codul'},
-en:{cOf:'On the house',dp1:'You scan the card on the table.',dp2:'You sit down with three people you do not know.',ftBiz:'Got a venue? See how it works',navBiz:'Partners',pmC:'Companies',pmCs:'Internal events, measurement, reports',pmL:'Places with people',pmLs:'Bars, bookshops, museums, hotels, terminals',aEye:'For the events company',aH:'Seven things about the event',aP:'Fill it once, get a code. Send it to the agency and they handle the rest.',nevQ:'What would help you most right now?',nevPh:'one sentence, no names, no company',nevB:'Send',nevOk:'Noted.',nevWait:'Sending…',nevScurt:'Write one sentence.',chQ:'Who did you talk to most easily?',chP:'Nobody sees your answer.',chSkip:'Skip',frQ:'Would you bring a friend next time?',wAccept:"Two or three is fine, I'm not waiting for four",cap1:'The card sits on the table. That is all you need to see.',cap2:'Four people who had never met, at table 7.',askPh:'one sentence, in your own words',askSend:'Send it',askQ:'If you told a friend tomorrow what you just did, what would you say?',nav1:'How it works',nav2:'Where',nav3:'Questions',back:'Back',next:'Continue',leave:'I am not waiting',done:'Done',
+en:{cOf:'On the house',dp1:'You scan the card on the table.',dp2:'You sit down with three people you do not know.',ftBiz:'Got a venue? See how it works',navBiz:'Partners',pmC:'Companies',pmCs:'Internal events, measurement, reports',pmL:'Venues',pmLs:'Bars, bookshops, museums, hotels, terminals',aEye:'For the events company',aH:'Seven things about the event',aP:'Fill it once, get a code. Send it to the agency and they handle the rest.',nevQ:'What would help you most right now?',nevPh:'one sentence, no names, no company',nevB:'Send',nevOk:'Noted.',nevWait:'Sending…',nevScurt:'Write one sentence.',chQ:'Who did you talk to most easily?',chP:'Nobody sees your answer.',chSkip:'Skip',frQ:'Would you bring a friend next time?',wAccept:"Two or three is fine, I'm not waiting for four",cap1:'The card sits on the table. That is all you need to see.',cap2:'Four people who had never met, at table 7.',askPh:'one sentence, in your own words',askSend:'Send it',askQ:'If you told a friend tomorrow what you just did, what would you say?',nav1:'How it works',nav2:'Where',nav3:'Questions',back:'Back',next:'Continue',leave:'I am not waiting',done:'Done',
  phMail:'you@email.com',phCity:'Your city',phName:'Andrew',phTeam:'Operations',
  bMailT:'Keep me posted',iEye:'What would interest you? Pick as many as you like.',
  jH:'Which one fits?',jName:'Your first name',jVech:'How long have you been here?',vNou:'Under a year',vMediu:'One to three years',vVechi:'Over three years',jTeam:'Team or department',
@@ -565,42 +628,42 @@ en:{cOf:'On the house',dp1:'You scan the card on the table.',dp2:'You sit down w
  cdWa:'Send on WhatsApp',cdMail:'Send by email',cdCopy:'Copy the code'}
 };
 var SITE={
- ro:{ hP:'Fără dating, fără aplicații, fără profiluri.',hP2:'Scanezi codul de pe masă, alegi cum vrei să participi, iar noi te așezăm la o masă cu oameni care vor să discute.',
- sP:'Nu trebuie să abordezi pe nimeni. Sistemul face totul pentru tine.',
- s1h:'Scanezi codul',s1p:'Găsești un cod pe masă. Îl scanezi cu camera telefonului și scrii prenumele tău.',
- s2h:'Alegi cum vrei să participi',s2p:'Vrei să vorbești? Preferi să asculți? Cauți idei noi? Alege o opțiune, iar noi îți spunem imediat la ce masă să te așezi.',
- s3h:'Discuți. Apoi ești liber.',s3p:'Primești o întrebare care sparge gheața. Când timpul expiră, te ridici și pleci. Fără obligații.',
- nP:'Nu te poți înscrie de aici. Participarea se face doar scanând codul de pe masă. Spune-ne orașul tău și te anunțăm când organizăm ceva acolo.',
+ ro:{kMasa:"MASA TA",kCu:"La masă cu tine",kQ:"De aici porniți",kQt:"Ce ai învățat prea târziu?",kSub:"Atât primești. Nimic altceva.",rL1:"CE LOC",rL2:"ÎN CE ORAȘ",rL3:"DE CE ACELA",rL4:"EMAILUL TĂU",rP1:"Cafeneaua din colț",rP2b:"București",rP3:"o propoziție",rP4:"tu@email.com",rB:"TRIMITE",rN:"Te anunțăm când ajunge acolo.",dE:"Cercetare",dH:"E mai bine decât pare",dP:"Ne așteptăm ca o conversație cu un necunoscut să fie stânjenitoare. Se dovedește aproape întotdeauna că nu e.",dS:"Sandstrom și Dunn, psihologie socială.",rE:"Un loc anume",rH2:"Unde ai vrea să găsești HelloHuman?",rP2:"Scrie-ne cum se numește și în ce oraș e.",rB2:"SPUNE-NE CARE", hP:'Fără cont. Fără rezervare. Doar scanezi.',hP2:'Scanezi codul, spui în ce fel vrei să participi, iar telefonul îți arată la ce masă. Nu trebuie să abordezi pe nimeni.',
+ sP:'Restul se întâmplă.',
+ s1h:'Scanezi codul',s1p:'Un cartonaș pe masă. Zece secunde, fără cont.',
+ s2h:'O apăsare',s2p:'Vorbești, asculți, sau doar stai.',
+ s3h:'Aștepți',s3p:'Îți vibrează telefonul când începe.',
+ nP:'Spune-ne orașul tău. Te anunțăm când găsim unul acolo.',
  cons:'Sunt de acord să primesc notificări despre evenimentele din orașul meu.',
  gdpr:'Folosim emailul tău doar pentru a te anunța despre evenimente din orașul tău. Nu îl vindem sau distribuim. Te poți dezabona oricând. Operator: HelloHuman, România.',
  f1q:'Ce este HelloHuman?',f1a:'Este un mod simplu de a cunoaște oameni noi, chiar acolo unde ești deja. Găsești un cod QR pe masă, îl scanezi, alegi cum vrei să participi, iar noi te așezăm la o masă cu alți doi sau trei oameni care vor să discute.',
  f2q:'Este o aplicație de dating?',f2a:'Nu. Nu există profiluri, poze sau vârste. Nu alegi pe nimeni. Sistemul face mese de trei sau patru oameni, pentru conversații care curg de la sine.',
- f3q:'Sunt introvertit. Este pentru mine?',f3a:'Da. La înscriere poți alege că azi preferi să asculți. Sistemul nu adună la aceeași masă doar oameni care ascultă, iar întrebarea de început sparge gheața fără să ceară nimic de la tine.',
+ f3q:'Sunt introvertit. Este pentru mine?',f3a:'Da. Poți spune de la început că azi preferi să asculți. Sistemul nu pune la aceeași masă numai oameni tăcuți, iar întrebarea de pornire face restul — fără să-ți ceară nimic.',
  f4q:'Pot veni cu un prieten?',f4a:'Da. Unul dintre voi generează un cod de 3 cifre, celălalt îl introduce, iar sistemul vă așază împreună.',
  f5q:'Ce se întâmplă cu datele mele?',f5a:'Folosim doar prenumele tău pe durata evenimentului. Emailul este opțional, doar pentru a te anunța despre viitoare evenimente.',
  q1:'După o conversație, oamenii subestimează cât de mult i-au plăcut celuilalt. Este un efect care durează luni de zile.',
  q2:'Comunicarea spontană cu un străin poate aduce o stare de bine neașteptată.',
  wEnd:'De ce amânăm atunci? Pentru că ne e teamă de ce va crede celălalt. HelloHuman elimină presiunea: tu doar te așezi la masă.',
  hEye:'Oameni noi, acolo unde ești deja',
- hH:'Cunoști oameni noi.<br>Chiar acolo unde ești.',
+ hH:'Cunoști oameni noi.<br>Toți au scanat același cod.',
  hB1:'Vezi cum funcționează',hB2:'Întrebări frecvente',cCap:'Acesta este ecranul pe care îl vei vedea',
  cQv:'Descoperiți trei lucruri<br>pe care le aveți în comun',
- sEye:'Cum funcționează?',sH:'Trei pași.<br>Zece secunde.',
+ sEye:'Cum funcționează?',sH:'Scanezi și aștepți.<br>Zece secunde.',
  nEye:'Unde se organizează?',nH:'În locurile pe care<br>deja le frecventezi.',
  fEye:'Întrebări frecvente',fH:'Ai întrebări?<br>Iată răspunsurile.',
  wEye:'De ce funcționează',wH:'Știința din spatele<br>conexiunilor umane.',
- ftS:'Pe scurt',ftT:'Oameni care nu se cunosc stau de vorbă câteva minute, chiar acolo unde se aflau oricum.'},
- en:{ hP:'No dating, no apps, no profiles.',hP2:'Scan the code on the table, choose how you want to join, and we\'ll seat you at a table with people who want to talk.</b>',
- sP:'You do not have to approach anyone. The system does it all for you.',
+ ftS:'Pe scurt',ftT:'Oameni care nu se cunosc ajung la aceeași masă pentru câteva minute, chiar acolo unde se aflau oricum.'},
+ en:{kMasa:"YOUR TABLE",kCu:"At your table",kQ:"Start from here",kQt:"What did you learn too late?",kSub:"That's all you get. Nothing else.",rL1:"WHICH PLACE",rL2:"WHICH CITY",rL3:"WHY THAT ONE",rL4:"YOUR EMAIL",rP1:"The café on the corner",rP2b:"Bucharest",rP3:"one sentence",rP4:"you@email.com",rB:"SEND",rN:"We let you know when it gets there.",dE:"Research",dH:"It goes better than expected",dP:"We expect a conversation with a stranger to be awkward. It almost never is.",dS:"Sandstrom and Dunn, social psychology.",rE:"A place in mind",rH2:"Where would you like to find HelloHuman?",rP2:"Tell us what it is called and which city.",rB2:"TELL US WHICH", hP:'No account. No booking. Just scan.',hP2:'Scan the code on the table, choose how you want to join, and we\'ll seat you at a table with people who want to talk.</b>',
+ sP:'The rest happens.',
  s1h:'You scan the code',s1p:'There is a code on the table. Scan it with your phone camera and write your first name.',
  s2h:'You choose how to join',s2p:'Want to talk? Rather listen? Looking for new ideas? Pick one, and we tell you straight away which table to sit at.',
- s3h:'You talk. Then you are free.',s3p:'You get a question that breaks the ice. When the time runs out, you get up and go. No obligations.',
+ s3h:'You wait',s3p:'Your phone buzzes when it starts.',
  nP:'You cannot sign up from here. You join only by scanning the code on the table. Tell us your city and we will let you know when something happens there.',
  cons:'I agree to receive notifications about events in my city.',
  gdpr:'We use your email only to tell you about events in your city. We don\'t sell or share it. You can unsubscribe at any time. Operator: HelloHuman, Romania.',
  f1q:'What is HelloHuman?',f1a:'It is a simple way to meet new people, right where you already are. You find a QR code on a table, scan it, choose how you want to join, and we seat you at a table with 2-3 people who want to talk.',
  f2q:'Is it a dating app?',f2a:'No. There are no profiles, photos or ages. You do not pick anyone. The system forms groups of 3-4 people for natural conversation, with no pressure.',
- f3q:'I am introverted. Is it for me?',f3a:'Yes. You can choose the "prefer to listen" option. The system ensures it doesn\'t seat only shy people at the same table, and the starting question breaks the ice immediately.',
+ f3q:'I am introverted. Is it for me?',f3a:'Yes. You caYes. You can say from the start that today you would rather listen. The system does not seat only quiet people together, and the opening question does the rest — asking nothing of you.',
  f4q:'Can I come with a friend?',f4a:'Yes. One of you generates a 3-digit code, the other enters it, and the system seats you together.',
  f5q:'What happens to my data?',f5a:'We only use your first name during the event. Email is optional, just so we can tell you about future events.',
  q1:'After a conversation, people underestimate how much they were liked. This effect lasts for months.',
@@ -610,7 +673,7 @@ var SITE={
  hH:'Meet new people.<br>Right where you are.',
  hB1:'See how it works',hB2:'FAQ',cCap:'This is the screen you will see',
  cQv:'Discover three things<br>you all have in common',
- sEye:'How does it work?',sH:'Three steps.<br>Ten seconds.',
+ sEye:'How does it work?',sH:'Scan and wait.<br>Ten seconds.',
  nEye:'Where does it happen?',nH:'In the places you<br>already frequent.',
  fEye:'FAQ',fH:'Got questions?<br>Here are the answers.',
  wEye:'Why it works',wH:'The science behind<br>human connections.',
@@ -1204,6 +1267,26 @@ el('bQMail').onclick=function(){
   document.addEventListener('keydown', function(e){
     if(e.key==='Escape') inchide();
   });
+})();
+
+(function(){
+  var f=document.getElementById('fRec'); if(!f) return;
+  var msg=document.getElementById('mRec');
+  f.onsubmit=async function(e){
+    e.preventDefault();
+    var loc=document.getElementById('r1').value.trim();
+    var ora=document.getElementById('r2').value.trim();
+    var dec=document.getElementById('r3').value.trim();
+    var mail=document.getElementById('r4').value.trim();
+    if(!loc || !mail || mail.indexOf('@')<1){ msg.textContent='—'; msg.className='msg3 err'; return }
+    document.getElementById('bRec').disabled=true;
+    try{
+      await fetch('/api/store?lead=1&id=recomandari',{method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({src:'recomandare',loc:loc,oras:ora,dece:dec,mail:mail,ts:Date.now()})});
+    }catch(err){}
+    f.innerHTML='<p class="lead">'+(T[lang]&&T[lang].rN?T[lang].rN:'Mulțumim.')+'</p>';
+  };
 })();
 </script>
 </body>

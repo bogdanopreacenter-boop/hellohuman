@@ -16,6 +16,8 @@
   --sans:'Karla',system-ui,-apple-system,sans-serif;
   --disp:'Fraunces',Georgia,serif;
 }
+:root{--s1:4px;--s2:8px;--s3:16px;--s4:24px;--s5:48px;--s6:96px}
+
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
 body{background:var(--pine);color:var(--oat);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
@@ -32,7 +34,7 @@ h3{font-family:var(--disp);font-weight:600;font-size:21px;letter-spacing:-.015em
 p{max-width:66ch}
 .lead{font-size:clamp(18px,2vw,21px);color:var(--mist);line-height:1.55}
 .paper .lead{color:var(--grey)}
-.eyebrow{font-family:var(--disp);font-style:italic;font-weight:400;font-size:17px;color:var(--gold);margin-bottom:12px}
+.eyebrow{font-family:var(--disp);font-style:italic;font-weight:400;font-size:17px;color:var(--gold);margin-bottom:var(--s3)}
 .paper .eyebrow{color:var(--rust)}
 section{padding:clamp(52px,8vw,96px) 0}
 .paper{background:var(--oat);color:var(--ink)}
@@ -516,3 +518,16 @@ h2{ margin-bottom:clamp(12px,1.6vw,20px) }
 .door p{ color:var(--mist) }
 .door span{ border-bottom:0 }
 .step h3{ margin:10px 0 6px; color:var(--oat) }
+
+/* scara de spatiere: 4 · 8 · 16 · 24 · 48 · 96 */
+h1+.lead,h2+.lead{margin-top:var(--s4)}
+.lead+.cta,.lead+.sig,.lead+.btn,.lead+form{margin-top:var(--s5)}
+.eyebrow+h1,.eyebrow+h2{margin-top:0}
+.rand+.rand{margin-top:0}
+
+/* subsol pe telefon: o coloana, centrat */
+@media(max-width:640px){
+  footer .wrap{display:block;text-align:center}
+  .footlogo{margin:0 auto 18px}
+  .footlogo img{margin:0 auto}
+}

@@ -5,7 +5,6 @@ Allow: /
 Disallow: /business-ceo
 Disallow: /business-hr
 Disallow: /business-parteneri
-Disallow: /prezentare-business
 Disallow: /cherie
 Disallow: /cherie.html
 

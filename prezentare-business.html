@@ -3,15 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow">
-<title>HelloHuman</title>
+<title>Cum măsurăm conexiunile dintre echipe — HelloHuman</title>
+<meta name="description" content="Paisprezece zile, un cod tipărit lăsat pe mese, iar la final patru cifre: câte conversații au traversat granițele departamentelor, câte au fost confirmate de ambii participanți, cât de repede intră în rețea un angajat nou și ce echipe nu se ating deloc.">
+<link rel="canonical" href="https://hellohuman.ro/masuram">
+<meta property="og:title" content="Cum măsurăm conexiunile dintre echipe">
+<meta property="og:description" content="Patru cifre pe care nu le aveți. Paisprezece zile, fără instalare și fără acces la sistemele dumneavoastră.">
+<meta property="og:image" content="https://hellohuman.ro/masa-birou-companie.jpg">
+<meta property="og:url" content="https://hellohuman.ro/masuram">
+<link rel="icon" type="image/svg+xml" href="/marca.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
   --verde:#0B2620; --verde2:#123A31; --os:#F3EFE7; --os2:#E7E0D3;
-  --gri:#6B7A73; --gri2:#9AA8A1; --ocru:#C8912A; --linie:#DFE5E1;
+  --gri:#6B7A73; --gri2:#9AA8A1; --ocru:#C8912A;--ocru2:#8C6114;--ocru2:#8C6114; --linie:#DFE5E1;
   --serif:"Cormorant Garamond",Georgia,serif;
   --sans:"Inter",-apple-system,system-ui,sans-serif;
 }
@@ -24,25 +30,26 @@ body{background:var(--os);color:var(--verde);font-family:var(--sans);font-weight
   display:flex;flex-direction:column;justify-content:space-between;
   border-bottom:1px solid var(--linie);page-break-after:always;break-after:page}
 .p.dark{background:var(--verde);color:var(--os);border-bottom-color:#1B4238}
-.p.dark .ey{color:var(--ocru)} .p.dark .lead{color:#B9CBC2}
+.p.dark .ey{color:var(--ocru2)} .p.dark .lead{color:#B9CBC2}
 .p.dark .rand{border-top-color:#1B4238} .p.dark .rand b{color:var(--os)}
 .p.dark .rand span{color:#A3B8AE} .p.dark .foot{border-top-color:#1B4238;color:#7C958B}
 .p.dark h2{color:var(--os)}
 
 .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:auto}
-.logo{font-family:var(--serif);font-size:clamp(17px,2vw,20px);letter-spacing:.02em}
+.logo{font-family:var(--serif);font-size:clamp(17px,2vw,20px);letter-spacing:.02em;text-decoration:none;color:inherit;transition:opacity .25s}
+.logo:hover{opacity:.72}
 .num{font-family:var(--sans);font-size:11px;letter-spacing:.24em;color:var(--gri2)}
 .p.dark .num{color:#6E8A80}
 
 .mid{padding:clamp(24px,5vw,48px) 0}
 .ey{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:.26em;
-  color:var(--ocru);margin-bottom:clamp(14px,2vw,20px);text-transform:none}
+  color:var(--ocru2);margin-bottom:clamp(14px,2vw,20px);text-transform:none}
 h1{font-family:var(--serif);font-weight:300;font-size:clamp(34px,6.2vw,66px);
   line-height:1.06;letter-spacing:-.012em;max-width:17ch}
 h2{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4.6vw,46px);
   line-height:1.1;letter-spacing:-.01em;max-width:20ch}
 .lead{font-family:var(--serif);font-style:italic;font-size:clamp(17px,2.3vw,23px);
-  color:var(--ocru);margin-top:clamp(14px,2vw,20px);max-width:44ch;line-height:1.45}
+  color:var(--ocru2);margin-top:clamp(14px,2vw,20px);max-width:44ch;line-height:1.45}
 .sub{font-size:clamp(14px,1.55vw,16px);color:var(--gri);margin-top:clamp(16px,2.2vw,22px);
   max-width:56ch;line-height:1.7}
 
@@ -56,7 +63,7 @@ h2{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4.6vw,46px);
   letter-spacing:.2em;color:var(--ocru);margin-bottom:5px}
 
 .note{font-family:var(--serif);font-style:italic;font-size:clamp(16px,2vw,20px);
-  color:var(--ocru);margin-top:clamp(22px,3vw,34px);padding-top:clamp(18px,2.4vw,24px);
+  color:var(--ocru2);margin-top:clamp(22px,3vw,34px);padding-top:clamp(18px,2.4vw,24px);
   border-top:1px solid var(--linie);max-width:52ch;line-height:1.45}
 .p.dark .note{border-top-color:#1B4238}
 
@@ -91,7 +98,12 @@ h2{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4.6vw,46px);
   .p:last-of-type{page-break-after:auto;break-after:auto}
   .rand,.note,h1,h2,.lead{page-break-inside:avoid;break-inside:avoid}
 }
+.rand b i{display:inline-block;font-family:var(--serif);font-style:normal;font-size:.82em;
+  color:var(--ocru);min-width:1.35em;opacity:.85}
+.dark .lead,.dark .note,.dark .ey,.p.dark .lead,.p.dark .note,.p.dark .ey{color:var(--ocru)}
 </style>
+<link rel="icon" type="image/svg+xml" href="/marca.svg">
+<link rel="apple-touch-icon" href="/logo-hellohuman.png">
 </head>
 <body>
 
@@ -99,58 +111,94 @@ h2{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4.6vw,46px);
 
 <!-- 1 -->
 <section class="p">
-  <div class="top"><span class="logo">HelloHuman</span><span class="num">01 / 05</span></div>
+  <div class="top"><a class="logo" href="/business">HelloHuman</a><span class="num">01 / 08</span></div>
   <div class="mid">
     <p class="ey" data-t="e1">Ce primiți</p>
-    <h1 data-t="h1">Patru cifre pe care nu le aveți</h1>
-    <p class="lead" data-t="l1">Ultima nu se poate obține altfel.</p>
+    <h1 data-t="h1">Patru cifre care nu apar nicăieri</h1>
+    <p class="lead" data-t="l1">Pe ce s-a întâmplat, nu pe ce presupuneți.</p>
 
-    <div class="rand"><b data-t="r1a">Conversații între echipe</b><span data-t="r1b">Câte schimburi au traversat efectiv granița unui departament.</span></div>
-    <div class="rand"><b data-t="r2a">Confirmate de ambele părți</b><span data-t="r2b">Câte au fost indicate de amândoi participanții, separat, fără să știe unul de altul.</span></div>
-    <div class="rand"><b data-t="r3a">Viteza de integrare</b><span data-t="r3b">Cât de repede intră în rețeaua reală un angajat cu sub un an vechime.</span></div>
-    <div class="rand"><b data-t="r4a">Echipe fără nicio atingere</b><span data-t="r4b">Ce departamente au fost așezate împreună și nu a ieșit nimic.</span></div>
+    <div class="rand"><b data-t="r1a">Traversări</b><span data-t="r1b">Câte schimburi au traversat efectiv granița unui departament.</span></div>
+    <div class="rand"><b data-t="r2a">Confirmate din ambele direcții</b><span data-t="r2b">Câte au fost indicate de amândoi participanții, separat, fără să știe unul de altul.</span></div>
+    <div class="rand"><b data-t="r3a">Intrarea în rețea</b><span data-t="r3b">Cât de repede intră în rețeaua reală un angajat cu sub un an vechime.</span></div>
+    <div class="rand"><b data-t="r4a">Unde s-a oprit</b><span data-t="r4b">Ce departamente au stat împreună la masă fără să rămână nimic în urmă.</span></div>
   </div>
   <div class="foot"><span>hellohuman.ro · bogdan@hellohuman.ro</span><span data-t="f1">Propunere confidențială</span></div>
 </section>
 
 <!-- 2 -->
 <section class="p dark">
-  <div class="top"><span class="logo">HelloHuman</span><span class="num">02 / 05</span></div>
+  <div class="top"><a class="logo" href="/business">HelloHuman</a><span class="num">02 / 08</span></div>
+  <div class="mid">
+    <p class="ey" data-t="e2b">Dacă nu faceți nimic</p>
+    <h2 data-t="h2b">Când pleacă unul,<br>se clatină și ceilalți</h2>
+    <p class="lead" data-t="l2b">Cifrele de mai jos nu sunt ale noastre. Sunt publicate, verificabile, și vă privesc deja.</p>
+
+    <div class="rand"><b data-t="r2a">51%</b><span data-t="r2as">dintre angajații care au văzut un coleg plecând în ultimele șase luni își căutau activ alt loc de muncă. <i>Gallup</i></span></div>
+    <div class="rand"><b data-t="r2b">42%</b><span data-t="r2bs">din abilitățile necesare într-o poziție sunt cunoscute doar de persoana care o ocupă. Când pleacă, pleacă și ele. <i>Panopto, 2018</i></span></div>
+    <div class="rand"><b data-t="r2c">3–5 ani</b><span data-t="r2cs">până când un angajat nou ajunge la conectivitatea unuia consacrat. Cu practici deliberate, nouă până la douăsprezece luni. <i>Rob Cross</i></span></div>
+
+    <p class="note" data-t="n2b">Nu vă cerem să ne credeți pe cuvânt. Uitați-vă la cine a plecat de la dumneavoastră anul trecut.</p>
+  </div>
+  <div class="foot"><span>hellohuman.ro</span><span data-t="f2b">Surse publice, verificabile</span></div>
+</section>
+
+<!-- 2 -->
+<section class="p dark">
+  <div class="top"><a class="logo" href="/business">HelloHuman</a><span class="num">03 / 08</span></div>
   <div class="mid">
     <p class="ey" data-t="e2">Implementarea</p>
-    <h2 data-t="h2">Paisprezece zile.<br>Nimic altceva.</h2>
-    <p class="lead" data-t="l2">Angajații primesc cina. Dumneavoastră primiți raportul.</p>
+    <h2 data-t="h2">Paisprezece zile.<br>Nimic din programul dumneavoastră.</h2>
+    <p class="lead" data-t="l2">Șapte minute de om. O apăsare. Niciun chestionar.</p>
 
-    <div class="rand"><b data-t="r5a">Un cod tipărit</b><span data-t="r5b">Lăsat acolo unde oamenii se adună la cafea. Cine are șapte minute îl scanează.</span></div>
-    <div class="rand"><b data-t="r6a">Un anunț intern</b><span data-t="r6b">Două săptămâni, un joc, iar la final o cină.</span></div>
-    <div class="rand"><b data-t="r7a">Atât</b><span data-t="r7b">Fără instalare, fără integrare, fără acces la sistemele dumneavoastră. Biroul nu se întrerupe niciun minut.</span></div>
+    <div class="rand"><b data-t="r5a"><i>1</i>Un cod tipărit</b><span data-t="r5b">Lăsat acolo unde oamenii se adună la cafea. Cine are șapte minute îl scanează.</span></div>
+    <div class="rand"><b data-t="r6a"><i>2</i>Un anunț intern</b><span data-t="r6b">Două săptămâni, un joc, iar la final o cină.</span></div>
+    <div class="rand"><b data-t="r7a"><i>3</i>Oamenii scanează când vor</b><span data-t="r7b">Când au șapte minute. Fără instalare, fără integrare, fără acces la sistemele dumneavoastră. Biroul nu se întrerupe niciun minut.</span></div>
   </div>
-  <div class="foot"><span>hellohuman.ro</span><span data-t="f2">Zero muncă pentru echipa dumneavoastră</span></div>
+  <div class="foot"><span>hellohuman.ro</span><span data-t="f2">Angajații primesc cina. Dumneavoastră, raportul.</span></div>
 </section>
 
 <!-- 3 -->
+<!-- cazuri -->
 <section class="p">
-  <div class="top"><span class="logo">HelloHuman</span><span class="num">03 / 05</span></div>
+  <div class="top"><a class="logo" href="/business">HelloHuman</a><span class="num">04 / 08</span></div>
+  <div class="mid">
+    <p class="ey" data-t="ec">Cazuri</p>
+    <h2 data-t="hc">Când are sens</h2>
+    <p class="lead" data-t="lc">Cinci momente din viața unei companii. Probabil recunoașteți cel puțin unul.</p>
+
+    <div class="rand"><b data-t="c1x">După o angajare în grup</b><span data-t="c1y">Câte legături formează oamenii noi în prima lună — nu dacă se declară integrați.</span></div>
+    <div class="rand"><b data-t="c2x">Înainte de o reorganizare</b><span data-t="c2y">Ce echipe lucrează deja împreună, înainte să mutați pe cineva.</span></div>
+    <div class="rand"><b data-t="c3x">Când un proiect comun stagnează</b><span data-t="c3y">Dacă informația se oprește între departamente sau înăuntrul lor.</span></div>
+    <div class="rand"><b data-t="c4x">Înaintea evenimentului de final de an</b><span data-t="c4y">Mesele se așază pe date, nu pe intuiție.</span></div>
+    <div class="rand"><b data-t="c5x">Când cineva important pleacă</b><span data-t="c5y">Câți oameni rămân fără punctul lor de sprijin.</span></div>
+
+    <p class="note" data-t="nc">Importanța cuiva se descoperă de obicei abia după ce pleacă.</p>
+  </div>
+  <div class="foot"><span>hellohuman.ro</span><span data-t="fc">Cinci momente, o singură măsurătoare</span></div>
+</section>
+
+<section class="p">
+  <div class="top"><a class="logo" href="/business">HelloHuman</a><span class="num">05 / 08</span></div>
   <div class="mid">
     <p class="ey" data-t="e3">Mecanismul</p>
-    <h2 data-t="h3">Nimeni nu trebuie<br>să-și facă curaj</h2>
+    <h2 data-t="h3">De ce vorbesc oamenii<br>când nimeni nu le-a cerut</h2>
     <p class="lead" data-t="l3">Bariera nu este timiditatea. Este absența unui motiv acceptabil de a te așeza lângă un coleg din alt departament.</p>
 
-    <div class="rand"><b data-t="r8a">Sistemul furnizează alibiul</b><span data-t="r8b">Nimeni nu alege să stea acolo — codul a decis. Dispare decizia personală, iar odată cu ea riscul de a fi refuzat.</span></div>
+    <div class="rand"><b data-t="r8a">Sistemul furnizează motivul</b><span data-t="r8b">Nimeni nu alege să stea acolo — codul a decis. Dispare decizia personală, iar odată cu ea riscul de a fi refuzat.</span></div>
     <div class="rand"><b data-t="r9a">Șapte minute, apoi se încheie</b><span data-t="r9b">Conversația se taie exact când mai are unde să meargă.</span></div>
     <div class="rand"><b data-t="r10a">Alegerea reciprocă</b><span data-t="r10b">La final, fiecare indică o singură persoană. Nimeni nu vede răspunsul nimănui.</span></div>
 
-    <p class="note" data-t="n3">Când doi se indică reciproc, fără să știe unul de altul, nu mai este politețe.</p>
+    <p class="note" data-t="n3">Când doi se aleg unul pe altul, fără să știe, nu mai e politețe.</p>
   </div>
   <div class="foot"><span>hellohuman.ro</span><span data-t="f3">Psihologie aplicată</span></div>
 </section>
 
 <!-- 4 -->
 <section class="p dark">
-  <div class="top"><span class="logo">HelloHuman</span><span class="num">04 / 05</span></div>
+  <div class="top"><a class="logo" href="/business">HelloHuman</a><span class="num">06 / 08</span></div>
   <div class="mid">
     <p class="ey" data-t="e4">Confidențialitate</p>
-    <h2 data-t="h4">Ce nu ajunge<br>niciodată în raport</h2>
+    <h2 data-t="h4">Ce rămâne<br>în afara raportului</h2>
     <p class="lead" data-t="l4">Un angajat care se crede evaluat nominal nu participă. Iar dacă participă, nu este sincer.</p>
 
     <div class="rand"><b data-t="r11a">Nicio identitate reală</b><span data-t="r11b">Prenumele, o poreclă, orice. Nu verificăm și nu comparăm cu nicio listă de personal.</span></div>
@@ -163,7 +211,24 @@ h2{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4.6vw,46px);
 
 <!-- 5 -->
 <section class="p">
-  <div class="top"><span class="logo">HelloHuman</span><span class="num">05 / 05</span></div>
+  <div class="top"><a class="logo" href="/business">HelloHuman</a><span class="num">07 / 08</span></div>
+  <div class="mid">
+    <p class="ey" data-t="e5b">Ce alegeți</p>
+    <h2 data-t="h5b">Trei decizii,<br>niciuna obligatorie</h2>
+    <p class="lead" data-t="l5b">Fiecare se ia separat. Puteți începe cu prima și vă opriți acolo.</p>
+
+    <div class="rand"><b data-t="c1a">Doar măsurarea</b><span data-t="c1b">Paisprezece zile la birou, raportul și planul de așezare. Atât. Restul rămâne o opțiune, nu o obligație.</span></div>
+    <div class="rand"><b data-t="c2a">Cu cei care lucrează de acasă</b><span data-t="c2b">Colegii la distanță intră de pe laptop, în grupuri mici. Aceleași întrebări, aceleași date. Se decide separat.</span></div>
+    <div class="rand"><b data-t="c3a">Cu așezarea din decembrie</b><span data-t="c3b">Datele din cele două săptămâni configurează mesele la evenimentul de final de an. Fără ele, o mie de oameni se așază pe intuiție.</span></div>
+
+    <p class="note" data-t="n5b">Nu vindem pachete. Fiecare parte funcționează singură, iar împreună funcționează mai bine.</p>
+  </div>
+  <div class="foot"><span>hellohuman.ro</span><span data-t="f5b">Fără angajament pe termen lung</span></div>
+</section>
+
+<!-- 6 -->
+<section class="p">
+  <div class="top"><a class="logo" href="/business">HelloHuman</a><span class="num">08 / 08</span></div>
   <div class="mid">
     <p class="ey" data-t="e5">Pasul următor</p>
     <h2 data-t="h5">Paisprezece zile,<br>apoi decideți</h2>
@@ -182,24 +247,61 @@ h2{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4.6vw,46px);
 <script>
 var L={
  ro:{ttl:"HelloHuman",
-  e1:"Ce primiți",h1:"Patru cifre pe care nu le aveți",l1:"Ultima nu se poate obține altfel.",
-  r1a:"Conversații între echipe",r1b:"Câte schimburi au traversat efectiv granița unui departament.",
-  r2a:"Confirmate de ambele părți",r2b:"Câte au fost indicate de amândoi participanții, separat, fără să știe unul de altul.",
-  r3a:"Viteza de integrare",r3b:"Cât de repede intră în rețeaua reală un angajat cu sub un an vechime.",
-  r4a:"Echipe fără nicio atingere",r4b:"Ce departamente au fost așezate împreună și nu a ieșit nimic.",
+  ec:"Cazuri",
+  hc:"Când are sens",
+  lc:"Cinci momente din viața unei companii. Probabil recunoașteți cel puțin unul.",
+  c1x:"După o angajare în grup",
+  c1y:"Câte legături formează oamenii noi în prima lună — nu dacă se declară integrați.",
+  c2x:"Înainte de o reorganizare",
+  c2y:"Ce echipe lucrează deja împreună, înainte să mutați pe cineva.",
+  c3x:"Când un proiect comun stagnează",
+  c3y:"Dacă informația se oprește între departamente sau înăuntrul lor.",
+  c4x:"Înaintea evenimentului de final de an",
+  c4y:"Mesele se așază pe date, nu pe intuiție.",
+  c5x:"Când cineva important pleacă",
+  c5y:"Câți oameni rămân fără punctul lor de sprijin.",
+  nc:"Importanța cuiva se descoperă de obicei abia după ce pleacă.",
+  fc:"Cinci momente, o singură măsurătoare",
+  e2b:"Dacă nu faceți nimic",
+  h2b:"Când pleacă unul,<br>se clatină și ceilalți",
+  l2b:"Cifrele de mai jos nu sunt ale noastre. Sunt publicate, verificabile, și vă privesc deja.",
+  r2a:"51%",
+  r2as:"dintre angajații care au văzut un coleg plecând în ultimele șase luni își căutau activ alt loc de muncă. <i>Gallup</i>",
+  r2b:"42%",
+  r2bs:"din abilitățile necesare într-o poziție sunt cunoscute doar de persoana care o ocupă. Când pleacă, pleacă și ele. <i>Panopto, 2018</i>",
+  r2c:"3–5 ani",
+  r2cs:"până când un angajat nou ajunge la conectivitatea unuia consacrat. Cu practici deliberate, nouă până la douăsprezece luni. <i>Rob Cross</i>",
+  n2b:"Nu vă cerem să ne credeți pe cuvânt. Uitați-vă la cine a plecat de la dumneavoastră anul trecut.",
+  f2b:"Surse publice, verificabile",
+  e5b:"Ce alegeți",
+  h5b:"Trei decizii,<br>niciuna obligatorie",
+  l5b:"Fiecare se ia separat. Puteți începe cu prima și vă opriți acolo.",
+  c1a:"Doar măsurarea",
+  c1b:"Paisprezece zile la birou, raportul și planul de așezare. Atât. Restul rămâne o opțiune, nu o obligație.",
+  c2a:"Cu cei care lucrează de acasă",
+  c2b:"Colegii la distanță intră de pe laptop, în grupuri mici. Aceleași întrebări, aceleași date. Se decide separat.",
+  c3a:"Cu așezarea din decembrie",
+  c3b:"Datele din cele două săptămâni configurează mesele la evenimentul de final de an. Fără ele, o mie de oameni se așază pe intuiție.",
+  n5b:"Nu vindem pachete. Fiecare parte funcționează singură, iar împreună funcționează mai bine.",
+  f5b:"Fără angajament pe termen lung",
+  e1:"Ce primiți",h1:"Patru cifre care nu apar nicăieri",l1:"Pe ce s-a întâmplat, nu pe ce presupuneți.",
+  r1a:"Traversări",r1b:"Câte schimburi au traversat efectiv granița unui departament.",
+  r2a:"Confirmate din ambele direcții",r2b:"Câte au fost indicate de amândoi participanții, separat, fără să știe unul de altul.",
+  r3a:"Intrarea în rețea",r3b:"Cât de repede intră în rețeaua reală un angajat cu sub un an vechime.",
+  r4a:"Unde s-a oprit",r4b:"Ce departamente au stat împreună la masă fără să rămână nimic în urmă.",
   f1:"Propunere confidențială",
-  e2:"Implementarea",h2:"Paisprezece zile.<br>Nimic altceva.",l2:"Angajații primesc cina. Dumneavoastră primiți raportul.",
-  r5a:"Un cod tipărit",r5b:"Lăsat acolo unde oamenii se adună la cafea. Cine are șapte minute îl scanează.",
-  r6a:"Un anunț intern",r6b:"Două săptămâni, un joc, iar la final o cină.",
-  r7a:"Atât",r7b:"Fără instalare, fără integrare, fără acces la sistemele dumneavoastră. Biroul nu se întrerupe niciun minut.",
-  f2:"Zero muncă pentru echipa dumneavoastră",
-  e3:"Mecanismul",h3:"Nimeni nu trebuie<br>să-și facă curaj",
+  e2:"Implementarea",h2:"Paisprezece zile.<br>Nimic din programul dumneavoastră.",l2:"Șapte minute de om. O apăsare. Niciun chestionar.",
+  r5a:"<i>1</i>Un cod tipărit",r5b:"Lăsat acolo unde oamenii se adună la cafea. Cine are șapte minute îl scanează.",
+  r6a:"<i>2</i>Un anunț intern",r6b:"Două săptămâni, un joc, iar la final o cină.",
+  r7a:"<i>3</i>Oamenii scanează când vor",r7b:"Când au șapte minute. Fără instalare, fără integrare, fără acces la sistemele dumneavoastră. Biroul nu se întrerupe niciun minut.",
+  f2:"Angajații primesc cina. Dumneavoastră, raportul.",
+  e3:"Mecanismul",h3:"De ce vorbesc oamenii<br>când nimeni nu le-a cerut",
   l3:"Bariera nu este timiditatea. Este absența unui motiv acceptabil de a te așeza lângă un coleg din alt departament.",
-  r8a:"Sistemul furnizează alibiul",r8b:"Nimeni nu alege să stea acolo — codul a decis. Dispare decizia personală, iar odată cu ea riscul de a fi refuzat.",
+  r8a:"Sistemul furnizează motivul",r8b:"Nimeni nu alege să stea acolo — codul a decis. Dispare decizia personală, iar odată cu ea riscul de a fi refuzat.",
   r9a:"Șapte minute, apoi se încheie",r9b:"Conversația se taie exact când mai are unde să meargă.",
-  r10a:"Alegerea reciprocă",r10b:"La final, fiecare indică o singură persoană. Nimeni nu vede răspunsul nimănui.",
-  n3:"Când doi se indică reciproc, fără să știe unul de altul, nu mai este politețe.",f3:"Psihologie aplicată",
-  e4:"Confidențialitate",h4:"Ce nu ajunge<br>niciodată în raport",
+  r10a:"Alegerea reciprocă",r10b:"La final, fiecare apasă un singur nume. Nimeni nu vede ce a ales celălalt.",
+  n3:"Când doi se aleg unul pe altul, fără să știe, nu mai e politețe.",f3:"Psihologie aplicată",
+  e4:"Confidențialitate",h4:"Ce rămâne<br>în afara raportului",
   l4:"Un angajat care se crede evaluat nominal nu participă. Iar dacă participă, nu este sincer.",
   r11a:"Nicio identitate reală",r11b:"Prenumele, o poreclă, orice. Nu verificăm și nu comparăm cu nicio listă de personal.",
   r12a:"Nicio pereche",r12b:"Raportul nu arată niciodată cine a stat cu cine.",
@@ -211,24 +313,61 @@ var L={
   l5:"Două săptămâni din septembrie nu se pot rula în decembrie.",
   c1:"Calibrați diagnosticul companiei",c2:"Fondator · bogdan@hellohuman.ro"},
  en:{ttl:"HelloHuman",
-  e1:"What you receive",h1:"Four figures you do not have",l1:"The last one cannot be obtained any other way.",
-  r1a:"Conversations across teams",r1b:"How many exchanges actually crossed a departmental boundary.",
-  r2a:"Confirmed by both sides",r2b:"How many were named by both participants, independently, without knowing.",
-  r3a:"Speed of integration",r3b:"How quickly an employee under one year enters the real network.",
-  r4a:"Teams that never met",r4b:"Which departments were seated together and produced nothing.",
+  ec:"Use cases",
+  hc:"When this makes sense",
+  lc:"Five moments in the life of a company. You probably recognise at least one.",
+  c1x:"After a wave of hiring",
+  c1y:"How many links new people form in their first month — not whether they say they feel integrated.",
+  c2x:"Before a reorganisation",
+  c2y:"Which teams already work together, before you move anyone.",
+  c3x:"When a shared project stalls",
+  c3y:"Whether information stops between departments or inside them.",
+  c4x:"Before your end-of-year event",
+  c4y:"Tables are seated on data, not on instinct.",
+  c5x:"When someone important leaves",
+  c5y:"How many people are left without their point of support.",
+  nc:"How much someone mattered is usually discovered after they leave.",
+  fc:"Five moments, one measurement",
+  e2b:"If you do nothing",
+  h2b:"When one leaves,<br>the others start looking",
+  l2b:"The figures below are not ours. They are published, verifiable, and they already concern you.",
+  r2a:"51%",
+  r2as:"of employees who saw a colleague leave in the past six months were actively looking for another job. <i>Gallup</i>",
+  r2b:"42%",
+  r2bs:"of the skills a position requires are known only by the person who holds it. When they leave, so do those. <i>Panopto, 2018</i>",
+  r2c:"3–5 years",
+  r2cs:"before a new hire reaches the connectivity of an established one. With deliberate practice, nine to twelve months. <i>Rob Cross</i>",
+  n2b:"We are not asking you to take our word for it. Look at who left you last year.",
+  f2b:"Public, verifiable sources",
+  e5b:"What you choose",
+  h5b:"Three decisions,<br>none of them required",
+  l5b:"Each is made separately. You may begin with the first and stop there.",
+  c1a:"The measurement alone",
+  c1b:"Fourteen days at the office, the report and the seating plan. That is all. The rest stays an option, not an obligation.",
+  c2a:"With the people at home",
+  c2b:"Remote colleagues join from a laptop, in small groups. The same questions, the same data. Decided separately.",
+  c3a:"With the December seating",
+  c3b:"The two weeks of data configure the tables at your end-of-year event. Without them, a thousand people are seated on instinct.",
+  n5b:"We do not sell packages. Each part works on its own, and together they work better.",
+  f5b:"No long-term commitment",
+  e1:"What you receive",h1:"Four figures that appear nowhere else",l1:"On what happened, not on what you assume.",
+  r1a:"Crossings",r1b:"How many exchanges actually crossed a departmental boundary.",
+  r2a:"Confirmed from both directions",r2b:"How many were named by both participants, independently, without knowing.",
+  r3a:"Entry into the network",r3b:"How quickly an employee under one year enters the real network.",
+  r4a:"Where it stopped",r4b:"Which departments sat together and left nothing behind.",
   f1:"Confidential proposal",
-  e2:"Implementation",h2:"Fourteen days.<br>Nothing else.",l2:"Your people get the dinner. You get the report.",
-  r5a:"A printed code",r5b:"Left where people gather for coffee. Anyone with seven minutes scans it.",
-  r6a:"An internal announcement",r6b:"Two weeks, a game, and a dinner at the end.",
-  r7a:"That is all",r7b:"No installation, no integration, no access to your systems. The office is not interrupted for a single minute.",
-  f2:"Zero work for your team",
-  e3:"The mechanism",h3:"Nobody has to<br>work up the nerve",
+  e2:"Implementation",h2:"Fourteen days.<br>Nothing from your schedule.",l2:"Seven minutes per person. One tap. No questionnaire.",
+  r5a:"<i>1</i>A printed code",r5b:"Left where people gather for coffee. Anyone with seven minutes scans it.",
+  r6a:"<i>2</i>An internal announcement",r6b:"Two weeks, a game, and a dinner at the end.",
+  r7a:"<i>3</i>People scan when they want to",r7b:"When they have seven minutes. No installation, no integration, no access to your systems. The office is not interrupted for a single minute.",
+  f2:"Your people get the dinner. You get the report.",
+  e3:"The mechanism",h3:"Why people talk<br>when nobody asked them to",
   l3:"The barrier is not shyness. It is the absence of an acceptable reason to sit down beside a colleague from another department.",
-  r8a:"The system supplies the alibi",r8b:"Nobody chooses their seat — the code decides. The personal decision disappears, and with it the fear of rejection.",
+  r8a:"The system supplies the reason",r8b:"Nobody chooses their seat — the code decides. The personal decision disappears, and with it the fear of rejection.",
   r9a:"Seven minutes, then it ends",r9b:"The conversation is cut off, leaving them wanting more.",
-  r10a:"The mutual choice",r10b:"At the end, each person indicates one name. Nobody sees anyone else's answer.",
+  r10a:"The mutual choice",r10b:"At the end, each person taps one name. Nobody sees what the other chose.",
   n3:"When two people indicate each other, independently, it is no longer politeness.",f3:"Applied psychology",
-  e4:"Privacy",h4:"What never reaches<br>the report",
+  e4:"Privacy",h4:"What stays<br>out of the report",
   l4:"An employee who believes they are assessed by name does not take part. And if they do, they are not honest.",
   r11a:"No real identities",r11b:"A first name, a nickname, anything. We do not verify and we cross-reference no roster.",
   r12a:"No pairs",r12b:"The report never shows who sat with whom.",
