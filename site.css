@@ -531,3 +531,9 @@ h1+.lead,h2+.lead{margin-top:var(--s4)}
   .footlogo{margin:0 auto 18px}
   .footlogo img{margin:0 auto}
 }
+
+/* fara cuvinte agatate pe randul de jos */
+h1,h2,h3,.lead,.sub,.note{text-wrap:pretty}
+@supports not (text-wrap:pretty){
+  h1,h2,h3{text-wrap:balance}
+}
