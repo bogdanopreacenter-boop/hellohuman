@@ -271,7 +271,6 @@ bogdan@hellohuman.ro`
   localuri: {
     ro: {
 
-      /* BARURI — reflectă localuri.html */
       bar: {
         subiect: '{{loc}} — mesele nu se golesc',
         body: `Bună ziua,
@@ -307,14 +306,13 @@ Echipa HelloHuman
 contact@hellohuman.ro`
       },
 
-      /* LIBRĂRII — reflectă librarii.html */
       book: {
         subiect: '{{loc}} — oameni care revin',
         body: `Bună ziua,
 
 Mulțumim pentru interesul arătat. Am notat că {{loc}} este în {{oras}}.
 
-Formatul pentru librării și cafenele e diferit de cel dintr-un bar. Aici nu e cronometru, nu e rundă. E o masă, o oră, un subiect anunțat din timp, la aceeași oră în fiecare săptămână.
+Formatul pentru librării și anticariate e diferit de cel dintr-un bar. Aici nu e cronometru, nu e rundă. E o masă, o oră, un subiect anunțat din timp, la aceeași oră în fiecare săptămână.
 
 Gazda din partea dumneavoastră citește întrebarea și predă scena mesei. Atât.
 
@@ -345,7 +343,41 @@ Echipa HelloHuman
 contact@hellohuman.ro`
       },
 
-      /* MUZEE — reflectă cultura.html */
+      cafe: {
+        subiect: '{{loc}} — orele de după-amiază',
+        body: `Bună ziua,
+
+Mulțumim pentru interesul arătat. Am notat că {{loc}} este în {{oras}}.
+
+Ce urmează, pas cu pas:
+
+1. Vorbim cincisprezece minute la telefon. Ne spuneți cum arată sala, ce ore sunt liniștite, câți clienți aveți într-o după-amiază obișnuită.
+
+2. Alegem împreună o fereastră orară — de obicei între 15:00 și 18:00. Nu ocupăm mese la ore de vârf.
+
+3. Facem prima rundă gratuit. Suntem acolo, punem codurile pe mese, rămânem până se termină.
+
+{{want}}
+
+Ce aduce HelloHuman într-o cafenea:
+
+— Oameni noi în orele moarte. Între 14:00 și 19:00, volumul scade de șase ori. Chirie, curent, salarii — toate rulează la fel.
+
+— Marți, miercuri, joi. Zilele grele primesc un motiv clar să intre cineva.
+
+— Zero investiție. Fără echipament, fără software, fără costuri ascunse.
+
+— Se întorc. Și aduc pe cineva. Un om care a cunoscut pe cineva revine. Și nu vine singur.
+
+Nu semnați nimic înainte. Nu cerem exclusivitate și nu cerem nimic în avans.
+
+Vă răspundem în două zile lucrătoare la orice întrebare.
+
+Cu bine,
+Echipa HelloHuman
+contact@hellohuman.ro`
+      },
+
       cult: {
         subiect: '{{loc}} — vizitatorii care rămân',
         body: `Bună ziua,
@@ -381,7 +413,6 @@ Echipa HelloHuman
 contact@hellohuman.ro`
       },
 
-      /* HOTELURI — reflectă hoteluri.html */
       hotel: {
         subiect: '{{loc}} — oaspeții care coboară',
         body: `Bună ziua,
@@ -415,7 +446,6 @@ Echipa HelloHuman
 contact@hellohuman.ro`
       },
 
-      /* TERMINALE — reflectă terminale.html */
       term: {
         subiect: '{{loc}} — pasagerii rămân în zona comercială',
         body: `Bună ziua,
@@ -451,7 +481,6 @@ Echipa HelloHuman
 contact@hellohuman.ro`
       },
 
-      /* AGENȚII — reflectă corporate.html */
       agency: {
         subiect: '{{loc}} — un instrument pentru clienții dumneavoastră',
         body: `Bună ziua,
@@ -488,7 +517,6 @@ Echipa HelloHuman
 contact@hellohuman.ro`
       },
 
-      /* ALTCEVA */
       other: {
         subiect: '{{loc}} — spuneți-ne mai multe',
         body: `Bună ziua,
@@ -559,7 +587,7 @@ contact@hellohuman.ro`
 
 Thank you for your interest. We noted that {{loc}} is in {{city}}.
 
-Our format for bookshops and cafés differs from the one in a bar. No timer, no rounds. One table, one hour, a topic announced in advance, at the same hour every week.
+Our format for bookshops and antiquarian bookshops differs from the one in a bar. No timer, no rounds. One table, one hour, a topic announced in advance, at the same hour every week.
 
 Your host reads the question and hands the floor to the table. That is all.
 
@@ -584,6 +612,41 @@ What HelloHuman brings to a bookshop:
 — No cost. The first series is free. One table and one hour a week.
 
 The figure we follow is not how many come the first time. It is how many from the first edition are there at the fourth.
+
+Best,
+The HelloHuman team
+contact@hellohuman.ro`
+      },
+
+      cafe: {
+        subiect: '{{loc}} — the afternoon hours',
+        body: `Hello,
+
+Thank you for your interest. We noted that {{loc}} is in {{city}}.
+
+Here is what happens next, step by step:
+
+1. We talk for fifteen minutes on the phone. You tell us what the room looks like, which hours are quiet, how many customers you get on a normal afternoon.
+
+2. We choose together a time window — usually between 3pm and 6pm. We do not take tables at peak hours.
+
+3. We run the first round for free. We are there, we put the codes on the tables, we stay until it is over.
+
+{{want}}
+
+What HelloHuman brings to a café:
+
+— New people in the quiet hours. Between 2pm and 7pm, volume drops six times. Rent, electricity, wages — all run the same.
+
+— Tuesday, Wednesday, Thursday. Slow days get a clear reason to come in.
+
+— Zero investment. No equipment, no software, no hidden costs.
+
+— They come back. And bring someone. Someone who met someone returns. And does not come alone.
+
+You sign nothing in advance. No exclusivity, nothing paid upfront.
+
+We reply within two working days to any question.
 
 Best,
 The HelloHuman team
