@@ -2,7 +2,7 @@
    emails.js — textele de email pentru CRM.
    Se incarca in crm.html cu: <script src="/emails.js"></script>
    Variabile: {{companie}}, {{loc}}, {{oras}}, {{reducere}},
-              {{raspuns2}}, {{raspuns3}}, {{nume}}
+              {{raspuns2}}, {{raspuns3}}, {{nume}}, {{profil}}
    ============================================================ */
 
 var EMAILS = {
@@ -17,10 +17,8 @@ var EMAILS = {
 
 Vă mulțumesc pentru răspunsurile oferite.
 
-Punctul pe care l-ați indicat este distanța dintre echipe.
-
 Găsiți prezentarea aici — cinci pagini, un minut de citit:
-https://hellohuman.ro/masuram
+https://hellohuman.ro/masuram?p={{profil}}
 
 Prezentarea arată ce se poate face vizibil între departamente, în paisprezece zile, fără chestionare și fără acces la sistemele dumneavoastră.
 
@@ -41,10 +39,8 @@ bogdan@hellohuman.ro`
 
 Vă mulțumesc pentru răspunsurile oferite.
 
-Punctul pe care l-ați indicat este ce se întâmplă între oameni, fără să se vadă.
-
 Găsiți prezentarea aici — cinci pagini, un minut de citit:
-https://hellohuman.ro/masuram
+https://hellohuman.ro/masuram?p={{profil}}
 
 Prezentarea arată exact ce vedeți la final și ce nu ajunge niciodată în document. Departamente întregi, niciodată persoane.
 
@@ -65,10 +61,8 @@ bogdan@hellohuman.ro`
 
 Vă mulțumesc pentru răspunsurile oferite.
 
-Punctul pe care l-ați indicat este lipsa unei cifre pe care să o puteți susține.
-
 Găsiți prezentarea aici — cinci pagini, un minut de citit:
-https://hellohuman.ro/masuram
+https://hellohuman.ro/masuram?p={{profil}}
 
 Prezentarea are cifrele și sursele lor: anchete europene pe zeci de mii de respondenți, iar metodologia completă în anexă.
 
@@ -89,10 +83,8 @@ bogdan@hellohuman.ro`
 
 Vă mulțumesc pentru răspunsurile oferite.
 
-Punctul pe care l-ați indicat este costul în timp al oricărei inițiative noi.
-
 Găsiți prezentarea aici — cinci pagini, un minut de citit:
-https://hellohuman.ro/masuram
+https://hellohuman.ro/masuram?p={{profil}}
 
 Nu cerem acces la niciun sistem, nu instalăm nimic și nu ocupăm timpul nimănui din echipă. Un cod QR lângă aparatul de cafea — atât.
 
@@ -113,10 +105,8 @@ bogdan@hellohuman.ro`
 
 Vă mulțumesc pentru răspunsurile oferite.
 
-Punctul pe care l-ați indicat este efectul asupra rezultatelor, nu procesul.
-
 Găsiți prezentarea aici — cinci pagini, un minut de citit:
-https://hellohuman.ro/masuram
+https://hellohuman.ro/masuram?p={{profil}}
 
 Prezentarea arată ce obțineți în paisprezece zile și ce decizie puteți lua pe baza acelor cifre. Fără șablon, construit pe nevoia pe care ați indicat-o.
 
@@ -137,10 +127,8 @@ bogdan@hellohuman.ro`
 
 Vă mulțumesc pentru răspunsurile oferite.
 
-Punctul pe care l-ați indicat este nevoia de dovadă înaintea oricărui angajament.
-
 Găsiți prezentarea aici — cinci pagini, un minut de citit:
-https://hellohuman.ro/masuram
+https://hellohuman.ro/masuram?p={{profil}}
 
 Prezentarea are cei trei pași, în ordine, cu ce se întâmplă la fiecare. Nu semnați nimic înainte. Prima rundă e gratuită.
 
@@ -165,10 +153,8 @@ bogdan@hellohuman.ro`
 
 Thank you for your answers.
 
-The point you indicated is the distance between teams.
-
 Here is the presentation — five pages, one minute to read:
-https://hellohuman.ro/masuram
+https://hellohuman.ro/masuram?p={{profil}}
 
 It shows what can be made visible between departments in fourteen days, without surveys and without access to your systems.
 
@@ -189,10 +175,8 @@ bogdan@hellohuman.ro`
 
 Thank you for your answers.
 
-The point you indicated is what happens between people, without being seen.
-
 Here is the presentation — five pages, one minute to read:
-https://hellohuman.ro/masuram
+https://hellohuman.ro/masuram?p={{profil}}
 
 It shows exactly what you see at the end and what never reaches the document. Whole departments, never individuals.
 
@@ -213,10 +197,8 @@ bogdan@hellohuman.ro`
 
 Thank you for your answers.
 
-The point you indicated is the lack of a figure you can stand behind.
-
 Here is the presentation — five pages, one minute to read:
-https://hellohuman.ro/masuram
+https://hellohuman.ro/masuram?p={{profil}}
 
 It has the figures and their sources: European research across tens of thousands of respondents, with the full methodology in the appendix.
 
@@ -237,10 +219,8 @@ bogdan@hellohuman.ro`
 
 Thank you for your answers.
 
-The point you indicated is the time cost of any new initiative.
-
 Here is the presentation — five pages, one minute to read:
-https://hellohuman.ro/masuram
+https://hellohuman.ro/masuram?p={{profil}}
 
 We request no access to any system, install nothing and take no time from anyone on your team. A QR code next to the coffee machine — that is all.
 
@@ -261,10 +241,8 @@ bogdan@hellohuman.ro`
 
 Thank you for your answers.
 
-The point you indicated is the effect on results, not the process.
-
 Here is the presentation — five pages, one minute to read:
-https://hellohuman.ro/masuram
+https://hellohuman.ro/masuram?p={{profil}}
 
 It shows what you get in fourteen days and what decision you can make on those figures. No template, built around the need you indicated.
 
@@ -285,10 +263,8 @@ bogdan@hellohuman.ro`
 
 Thank you for your answers.
 
-The point you indicated is the need for proof before any commitment.
-
 Here is the presentation — five pages, one minute to read:
-https://hellohuman.ro/masuram
+https://hellohuman.ro/masuram?p={{profil}}
 
 It has the three steps, in order, with what happens at each. You sign nothing in advance. The first round is free.
 
@@ -306,7 +282,7 @@ bogdan@hellohuman.ro`
     }
   },
 
-  /* ============ LOCALURI — patroni de baruri, cafenele, etc. ============ */
+  /* ============ LOCALURI ============ */
   localuri: {
     ro: {
 
