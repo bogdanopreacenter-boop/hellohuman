@@ -16,8 +16,8 @@
 <meta property="og:description" content="Arhitectură de coeziune organizațională pe care agenția o propune, iar clientul o măsoară. Zero integrare IT.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Karla:wght@400;500;700&display=swap&subset=latin,latin-ext" rel="stylesheet">
-<link rel="stylesheet" href="/site.css?v=5">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css?v=6">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -30,38 +30,117 @@
    "email": "contact@hellohuman.ro",
    "telephone": "+40750255200",
    "description": "HelloHuman oferă arhitectură de coeziune organizațională și networking structurat pentru mediul enterprise.",
-   "areaServed": {
-    "@type": "Country",
-    "name": "România"
-   }
+   "areaServed": {"@type": "Country","name": "România"}
   },
   {
    "@type": "Service",
    "name": "Arhitectură de coeziune organizațională",
    "description": "Un instrument strategic pe care agenția îl propune, cu raportare detaliată a impactului și zero efort de integrare IT.",
-   "provider": {
-    "@id": "https://hellohuman.ro/#org"
-   },
-   "areaServed": {
-    "@type": "Country",
-    "name": "România"
-   },
-   "audience": {
-    "@type": "BusinessAudience",
-    "audienceType": "Agenții de evenimente, resurse umane, companii enterprise"
-   },
-   "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "RON",
-    "description": "Implementarea pilot este gratuită."
-   }
+   "provider": {"@id": "https://hellohuman.ro/#org"},
+   "areaServed": {"@type": "Country","name": "România"},
+   "audience": {"@type": "BusinessAudience","audienceType": "Agenții de evenimente, resurse umane, companii enterprise"},
+   "offers": {"@type": "Offer","price": "0","priceCurrency": "RON","description": "Implementarea pilot este gratuită."}
   }
  ]
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="/marca.svg">
 <link rel="apple-touch-icon" href="/logo-hellohuman.png">
+
+<style>
+/* ============================================================
+   Corporate.html — suprascrieri peste site.css
+   Fonturi noi consistente cu business.html
+   ============================================================ */
+
+:root{
+  --disp:"Newsreader",Georgia,serif;
+  --sans:"Inter",-apple-system,system-ui,sans-serif;
+  --brand:"Plus Jakarta Sans",-apple-system,system-ui,sans-serif;
+}
+
+/* Fix: clasele .rand și .sec nu erau definite — le înlocuim cu .ctxrow din site.css */
+/* Restul stilurilor vin din site.css */
+
+body{font-family:var(--sans);font-weight:400}
+
+/* Logo wordmark cu Plus Jakarta Sans */
+.logo{font-family:var(--brand);font-weight:600;letter-spacing:-.02em;font-size:19px}
+
+/* Titluri cu Newsreader */
+h1,h2,h3,.lead,.note,.eyebrow,.signote{font-family:var(--disp);font-optical-sizing:auto}
+h1{font-weight:400;letter-spacing:-.016em;line-height:1.12}
+h2{font-weight:400;letter-spacing:-.014em;line-height:1.18}
+h3{font-weight:500;letter-spacing:-.008em}
+.lead{font-weight:400}
+.note{font-weight:400}
+.eyebrow{font-weight:500}
+
+/* CTA auriu consistent cu business.html */
+.btn{
+  background:var(--gold);border:1px solid var(--gold);color:var(--pine);
+  font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.18em;
+  padding:17px 34px;border-radius:2px;
+  box-shadow:0 10px 28px -12px rgba(245,184,65,.45);
+  transition:all .3s cubic-bezier(.22,.61,.36,1)
+}
+.btn:hover:not(:disabled){
+  background:var(--pine);border-color:var(--pine);color:var(--oat);
+  transform:translateY(-2px);box-shadow:0 16px 34px -12px rgba(22,48,43,.4)
+}
+.btn.ghost{
+  background:transparent;border:1px solid var(--line);color:var(--oat);
+  box-shadow:none
+}
+.btn.ghost:hover{
+  background:var(--pine);border-color:var(--gold);color:var(--gold);
+  transform:translateY(-2px);box-shadow:none
+}
+
+/* Pași — înlocuiește .steps.dark cu ceva mai modern */
+.steps.dark{background:transparent;gap:0}
+.steps.dark .step{background:transparent;border-top:1px solid var(--line);padding:26px 0 0;margin-top:26px}
+.steps.dark .step:first-child{margin-top:0}
+.steps.dark .step .n{font-family:var(--disp);font-weight:900;font-size:clamp(38px,5vw,54px);color:var(--gold);letter-spacing:-.04em;line-height:1;margin-bottom:14px}
+.steps.dark .step h3{color:var(--oat);margin-bottom:8px}
+.steps.dark .step p{color:var(--mist);font-size:15.5px;line-height:1.7}
+
+/* Cardul "Masa ta" — păstrat, ajustat */
+.card{background:var(--oat2);color:var(--ink);border-radius:4px;padding:32px 30px 26px;transform:rotate(-1.6deg);box-shadow:0 24px 60px -20px rgba(0,0,0,.5);position:relative}
+.cardcap{color:var(--mist);font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-align:center;margin-bottom:14px;font-family:var(--sans);font-weight:500}
+
+/* Note */
+.note{background:rgba(240,235,224,.05);border-left:2px solid var(--gold);padding:16px 18px;color:var(--mist);font-size:15px;line-height:1.6;border-radius:0 2px 2px 0}
+.note b{color:var(--oat);font-family:var(--sans);font-weight:700;display:block;margin-bottom:4px;font-style:normal}
+
+/* Securitate */
+.ctx{margin-top:38px}
+
+/* Footer completat */
+.foot{background:var(--pine2);padding:52px 0 40px;border-top:1px solid var(--line)}
+.foot .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+.foot .wrap > div:first-child{grid-column:span 1}
+.foot h4{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--mist);margin-bottom:12px;letter-spacing:.02em;text-transform:uppercase}
+.foot ul{list-style:none;padding:0;margin:0}
+.foot li{margin-bottom:10px;font-size:15px}
+.foot a{color:var(--oat);text-decoration:none;border-bottom:1px solid var(--line)}
+.foot a:hover{border-color:var(--gold);color:var(--gold)}
+.foot .brand{font-family:var(--brand);font-weight:600;font-size:22px;color:var(--oat);letter-spacing:-.02em;margin-bottom:10px}
+.foot p{font-size:14px;color:var(--dim);line-height:1.6;max-width:36ch;margin:0}
+@media(max-width:760px){
+  .foot .wrap{grid-template-columns:1fr;gap:28px}
+}
+
+/* Micro-animații reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity 1s cubic-bezier(.22,.61,.36,1),transform 1s cubic-bezier(.22,.61,.36,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1!important;transform:none!important;transition:none!important}}
+
+/* Bar nav — logo consistent */
+.bar .logo img{width:30px;height:30px}
+.barnav .hidem{font-family:var(--sans);font-size:14px}
+.lang{font-family:var(--sans);font-weight:600}
+</style>
 </head>
 <body>
 
@@ -76,97 +155,129 @@
 </header>
 
 <main>
-  <section class="hero">
-    <div class="wrap">
-      <div>
-        <a class="back" href="/parteneri.html" data-t="c2">← Toate tipurile de loc</a>
-        <p class="eyebrow" data-t="c3">HelloHuman For Enterprise</p>
-        <h1 data-t="hh">Arhitectură de coeziune<br>pe care agenția o propune,<br>iar clientul o măsoară.</h1>
-        <p class="lead" data-t="c45">Participanții interacționează în runde structurate, optimizând coeziunea inter-departamentală fără fricțiuni. La final, clientul primește un raport de impact măsurabil. Dumneavoastră livrați o soluție premium, cu risc operațional zero.</p>
-        <div class="cta">
-          <a class="btn" href="/alatura-te.html" data-t="c4">Inițiați o implementare pilot</a>
-          <a class="btn ghost" href="tel:+40750255200">+40 750 255 200</a>
-        </div>
-        <p class="sm" style="margin-top:14px;color:var(--dim)" data-t="c5">Un minut, date esențiale. Răspundem în două zile lucrătoare.</p>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <a class="back" href="/parteneri.html" data-t="c2">← Toate tipurile de loc</a>
+      <p class="eyebrow" data-t="c3">HelloHuman For Enterprise</p>
+      <h1 data-t="hh">Arhitectură de coeziune<br>pe care agenția o propune,<br>iar clientul o măsoară.</h1>
+      <p class="lead" data-t="c45">Participanții interacționează în runde structurate, optimizând coeziunea inter-departamentală fără fricțiuni. La final, clientul primește un raport de impact măsurabil. Dumneavoastră livrați o soluție premium, cu risc operațional zero.</p>
+      <div class="cta">
+        <a class="btn" href="/alatura-te.html" data-t="c4">Inițiați o implementare pilot</a>
+        <a class="btn ghost" href="tel:+40750255200">+40 750 255 200</a>
       </div>
-      <div>
-        <p class="cardcap" data-t="c6">Ce văd echipele pe telefon</p>
-        <div class="card" aria-hidden="true">
-          <p class="kk" data-t="c7">Masa ta</p>
-          <p class="no">7</p>
-          <div class="rule"></div>
-          <div class="row"><span data-t="c8">Cu tine</span><b data-t="y1">Elena, Radu</b></div>
-          <div class="row"><span data-t="c9">Obiectivul rundei</span><b data-t="z0">Identificați trei provocări<br>comune în departamente</b></div>
-          <p class="tick">14:32</p>
-        </div>
+      <p class="sm" style="margin-top:14px;color:var(--dim);font-size:13px" data-t="c5">Un minut, date esențiale. Răspundem în două zile lucrătoare.</p>
+    </div>
+    <div>
+      <p class="cardcap" data-t="c6">Ce văd echipele pe telefon</p>
+      <div class="card" aria-hidden="true">
+        <p class="kk" data-t="c7">Masa ta</p>
+        <p class="no">7</p>
+        <div class="rule"></div>
+        <div class="row"><span data-t="c8">Cu tine</span><b data-t="y1">Elena, Radu</b></div>
+        <div class="row"><span data-t="c9">Obiectivul rundei</span><b data-t="z0">Identificați trei provocări<br>comune în departamente</b></div>
+        <p class="tick">14:32</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="paper">
-    <div class="wrap two">
-      <div>
-        <p class="eyebrow" data-t="c10">Arhitectura coeziunii organizaționale</p>
-        <h2 data-t="z1">Zero fricțiuni<br>de ierarhie.</h2>
-        <p class="lead" style="margin-top:16px" data-t="w0">Obstacolul principal la un eveniment corporate nu este timiditatea, ci structura de siloz și ierarhia. Sistemul asignează automat grupurile, eliminând anxietatea primului pas și facilitând intersecții de mare valoare între echipe.</p>
-      </div>
-      <div>
-        <div class="note" style="margin-top:0"><b data-t="c11">Personalizarea obiectivelor</b>Setăm întrebările în funcție de obiectivele strategice ale companiei.</div>
-        <div class="note"><b data-t="c12">Frictiune zero</b>Fără instalări de aplicații, fără conturi noi. Un simplu cod QR.</div>
-        <div class="note"><b data-t="c13">Raport de impact executiv</b>Date anonimizate despre retenție, interacțiuni noi și eficiența percepției.</div>
-      </div>
+<!-- ARHITECTURA -->
+<section class="paper">
+  <div class="wrap two rv">
+    <div>
+      <p class="eyebrow" data-t="c10">Arhitectura coeziunii organizaționale</p>
+      <h2 data-t="z1">Zero fricțiuni<br>de ierarhie.</h2>
+      <p class="lead" style="margin-top:16px" data-t="w0">Obstacolul principal la un eveniment corporate nu este timiditatea, ci structura de siloz și ierarhia. Sistemul asignează automat grupurile, eliminând anxietatea primului pas și facilitând intersecții de mare valoare între echipe.</p>
     </div>
-  </section>
+    <div>
+      <div class="note" style="margin-top:0"><b data-t="c11">Personalizarea obiectivelor</b>Setăm întrebările în funcție de obiectivele strategice ale companiei.</div>
+      <div class="note"><b data-t="c12">Fricțiune zero</b>Fără instalări de aplicații, fără conturi noi. Un simplu cod QR.</div>
+      <div class="note"><b data-t="c13">Raport de impact executiv</b>Date anonimizate despre retenție, interacțiuni noi și eficiența percepției.</div>
+    </div>
+  </div>
+</section>
 
-  <section class="sec"><div class="wrap">
+<!-- VALOAREA PENTRU AGENȚIE -->
+<section>
+  <div class="wrap rv">
     <h2 data-t="hCe">Valoarea adăugată pentru agenție</h2>
-    <div class="rand"><b data-t="ag1">O soluție premium propusă, cu risc operațional zero.</b><span data-t="ag1s"> O integrați în arhitectura evenimentului, noi o livrăm integral. Zero consum de resurse interne.</span></div>
-    <div class="rand"><b data-t="ag2">Un raport executiv pe biroul clientului.</b><span data-t="ag2s"> La final, clientul primește un document cu indicatori de performanță, purtând brandul agenției. Argumentul perfect pentru retenție.</span></div>
-    <div class="rand"><b data-t="ag3">Dovada ROI-ului în bugetul viitor.</b><span data-t="ag3s"> Un eveniment cu impact măsurabil justifică recurența. Parteneriatul dumneavoastră devine strategic.</span></div>
-  </div></section>
+    <div class="ctx">
+      <div class="ctxrow"><h3 data-t="ag1">O soluție premium propusă, cu risc operațional zero.</h3><p data-t="ag1s">O integrați în arhitectura evenimentului, noi o livrăm integral. Zero consum de resurse interne.</p></div>
+      <div class="ctxrow"><h3 data-t="ag2">Un raport executiv pe biroul clientului.</h3><p data-t="ag2s">La final, clientul primește un document cu indicatori de performanță, purtând brandul agenției. Argumentul perfect pentru retenție.</p></div>
+      <div class="ctxrow"><h3 data-t="ag3">Dovada ROI-ului în bugetul viitor.</h3><p data-t="ag3s">Un eveniment cu impact măsurabil justifică recurența. Parteneriatul dumneavoastră devine strategic.</p></div>
+    </div>
+  </div>
+</section>
 
-  <section>
-    <div class="wrap">
-      <p class="eyebrow" data-t="c14">Ecosistemul de colaborare</p>
-      <h2 data-t="c15">Trei pași simpli.</h2>
-      <div class="steps dark">
-        <div class="step"><p class="n">1</p><h3 data-t="c16">Definiți perimetrul</h3><p data-t="w1">Comunicați variabilele: volum, structură echipe și obiectivul de coeziune. Configurarea durează sub trei minute.</p></div>
-        <div class="step"><p class="n">2</p><h3 data-t="c17">Sistemul generează instanța</h3><p data-t="c18">Primiți accesul de administrator și infrastructura digitală dedicată evenimentului.</p></div>
-        <div class="step"><p class="n">3</p><h3 data-t="c19">Implementare frictionless</h3><p data-t="c20">Afișați codul QR. Un coordonator din echipa dumneavoastră gestionează fluxul dintr-un singur buton.</p></div>
-      </div>
+<!-- ECOSISTEMUL -->
+<section class="dark">
+  <div class="wrap rv">
+    <p class="eyebrow" data-t="c14">Ecosistemul de colaborare</p>
+    <h2 data-t="c15">Trei pași simpli.</h2>
+    <div class="steps dark">
+      <div class="step"><p class="n">1</p><h3 data-t="c16">Definiți perimetrul</h3><p data-t="w1">Comunicați variabilele: volum, structură echipe și obiectivul de coeziune. Configurarea durează sub trei minute.</p></div>
+      <div class="step"><p class="n">2</p><h3 data-t="c17">Sistemul generează instanța</h3><p data-t="c18">Primiți accesul de administrator și infrastructura digitală dedicată evenimentului.</p></div>
+      <div class="step"><p class="n">3</p><h3 data-t="c19">Implementare frictionless</h3><p data-t="c20">Afișați codul QR. Un coordonator din echipa dumneavoastră gestionează fluxul dintr-un singur buton.</p></div>
     </div>
-  </section>
-  <section id="intrebari" class="paper">
-    <div class="wrap">
-      <p class="eyebrow" data-t="c21">Date tehnice</p>
-      <h2 data-t="z2">Cinci parametri<br>de bază.</h2>
-      <div class="ctx">
-        <div class="ctxrow"><h3 data-t="c22">Care este durata optimă?</h3><p data-t="c23">Aproximativ 60 de minute pentru patru interacțiuni succesive. Se integrează perfect în agenda existentă.</p></div>
-        <div class="ctxrow"><h3 data-t="c24">Ce conține raportul de impact?</h3><p data-t="c24a">Volumul de interacțiuni unice generate, gradul de participare și un NPS intern al coeziunii. Totul este 100% anonimizat.</p></div>
-        <div class="ctxrow"><h3 data-t="c25">Cum este protejată confidențialitatea?</h3><p data-t="c26">Discuțiile sunt strict orientate spre mediul profesional. Nu solicităm și nu stocăm date personale sensibile.</p></div>
-        <div class="ctxrow"><h3 data-t="c27">Sunt evitate coliziunile ierarhice?</h3><p data-t="c28">Da. Algoritmul poate izola managementul de propriile echipe directe pentru a garanta o comunicare deschisă.</p></div>
-        <div class="ctxrow"><h3 data-t="c29">Ce infrastructură este necesară?</h3><p data-t="c30">Integrare IT zero. Participanții folosesc propriile terminale mobile pentru a scana un cod QR afișat.</p></div>
-      </div>
+  </div>
+</section>
+
+<!-- DATE TEHNICE -->
+<section id="intrebari" class="paper">
+  <div class="wrap rv">
+    <p class="eyebrow" data-t="c21">Date tehnice</p>
+    <h2 data-t="z2">Cinci parametri<br>de bază.</h2>
+    <div class="ctx">
+      <div class="ctxrow"><h3 data-t="c22">Care este durata optimă?</h3><p data-t="c23">Aproximativ 60 de minute pentru patru interacțiuni succesive. Se integrează perfect în agenda existentă.</p></div>
+      <div class="ctxrow"><h3 data-t="c24">Ce conține raportul de impact?</h3><p data-t="c24a">Volumul de interacțiuni unice generate, gradul de participare și un NPS intern al coeziunii. Totul este 100% anonimizat.</p></div>
+      <div class="ctxrow"><h3 data-t="c25">Cum este protejată confidențialitatea?</h3><p data-t="c26">Discuțiile sunt strict orientate spre mediul profesional. Nu solicităm și nu stocăm date personale sensibile.</p></div>
+      <div class="ctxrow"><h3 data-t="c27">Sunt evitate coliziunile ierarhice?</h3><p data-t="c28">Da. Algoritmul poate izola managementul de propriile echipe directe pentru a garanta o comunicare deschisă.</p></div>
+      <div class="ctxrow"><h3 data-t="c29">Ce infrastructură este necesară?</h3><p data-t="c30">Integrare IT zero. Participanții folosesc propriile terminale mobile pentru a scana un cod QR afișat.</p></div>
     </div>
-  </section>
-  <section>
-    <div class="wrap" style="text-align:center">
-      <p class="eyebrow" data-t="c31">Inițiere colaborare</p>
-      <h2 data-t="z3">Evaluați potențialul<br>pentru clienții dumneavoastră.</h2>
-      <p class="lead" style="margin:18px auto 30px" data-t="c32">Detaliați-ne profilul evenimentelor și tipologia clienților. Revenim cu un model arhitectural în 48 de ore.</p>
-      <div class="cta" style="justify-content:center">
-        <a class="btn" href="/alatura-te.html" data-t="y9">Inițiați o implementare pilot</a>
-        <a class="btn ghost" id="bPdfC" href="/hellohuman-raport-hr.pdf" download data-t="c33">Documentație executivă (PDF)</a>
-        <a class="btn ghost" href="mailto:contact@hellohuman.ro" data-t="c34">Contactați-ne prin email</a>
-      </div>
-      <p class="sub2" style="margin-top:14px;opacity:.7" data-t="c35">Timp mediu de răspuns: 2 zile lucrătoare.</p>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section>
+  <div class="wrap rv" style="text-align:center">
+    <p class="eyebrow" data-t="c31">Inițiere colaborare</p>
+    <h2 data-t="z3" style="margin-left:auto;margin-right:auto">Evaluați potențialul<br>pentru clienții dumneavoastră.</h2>
+    <p class="lead" style="margin:18px auto 30px;max-width:48ch" data-t="c32">Detaliați-ne profilul evenimentelor și tipologia clienților. Revenim cu un model arhitectural în 48 de ore.</p>
+    <div class="cta" style="justify-content:center">
+      <a class="btn" href="/alatura-te.html" data-t="y9">Inițiați o implementare pilot</a>
+      <a class="btn ghost" id="bPdfC" href="/hellohuman-raport-hr.pdf" download data-t="c33">Documentație executivă (PDF)</a>
+      <a class="btn ghost" href="mailto:contact@hellohuman.ro" data-t="c34">Contactați-ne prin email</a>
     </div>
-  </section>
+    <p class="sub2" style="margin-top:14px;opacity:.7;font-size:14px" data-t="c35">Timp mediu de răspuns: 2 zile lucrătoare.</p>
+  </div>
+</section>
 
 </main>
 
 <footer class="foot">
-  <!-- Același footer ca în versiunea anterioară -->
+  <div class="wrap">
+    <div>
+      <p class="brand">HelloHuman</p>
+      <p data-t="ftS">HelloHuman creează experiențe sociale ghidate, aducând oameni compatibili la aceeași masă.</p>
+    </div>
+    <div>
+      <h4 data-t="ftC">Contact</h4>
+      <ul>
+        <li><a href="mailto:contact@hellohuman.ro">contact@hellohuman.ro</a></li>
+        <li><a href="tel:+40750255200">+40 750 255 200</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Linkuri</h4>
+      <ul>
+        <li><a href="/" data-t="ftP">Pagina pentru participanți</a></li>
+        <li><a href="/alatura-te.html">Devino partener</a></li>
+      </ul>
+    </div>
+  </div>
 </footer>
 
 <script>
@@ -190,15 +301,15 @@ var L={ ro:{
   z1:"Zero fricțiuni<br>de ierarhie.",
   w0:"Obstacolul principal la un eveniment corporate nu este timiditatea, ci structura de siloz și ierarhia. Sistemul asignează automat grupurile, eliminând anxietatea primului pas și facilitând intersecții de mare valoare între echipe.",
   c11:"Personalizarea obiectivelor",
-  c12:"Frictiune zero",
+  c12:"Fricțiune zero",
   c13:"Raport de impact executiv",
   hCe:"Valoarea adăugată pentru agenție",
   ag1:"O soluție premium propusă, cu risc operațional zero.",
-  ag1s:" O integrați în arhitectura evenimentului, noi o livrăm integral. Zero consum de resurse interne.",
+  ag1s:"O integrați în arhitectura evenimentului, noi o livrăm integral. Zero consum de resurse interne.",
   ag2:"Un raport executiv pe biroul clientului.",
-  ag2s:" La final, clientul primește un document cu indicatori de performanță, purtând brandul agenției. Argumentul perfect pentru retenție.",
+  ag2s:"La final, clientul primește un document cu indicatori de performanță, purtând brandul agenției. Argumentul perfect pentru retenție.",
   ag3:"Dovada ROI-ului în bugetul viitor.",
-  ag3s:" Un eveniment cu impact măsurabil justifică recurența. Parteneriatul dumneavoastră devine strategic.",
+  ag3s:"Un eveniment cu impact măsurabil justifică recurența. Parteneriatul dumneavoastră devine strategic.",
   c14:"Ecosistemul de colaborare",
   c15:"Trei pași simpli.",
   c16:"Definiți perimetrul",
@@ -226,16 +337,8 @@ var L={ ro:{
   c33:"Documentație executivă (PDF)",
   c34:"Contactați-ne prin email",
   c35:"Timp mediu de răspuns: 2 zile lucrătoare.",
-  c36:"Arhitectură de coeziune: Oameni care nu se cunosc interacționează constructiv chiar acolo unde se aflau oricum.",
-  c37:"Pentru medii organizaționale și spații publice",
-  c38:"Baruri și restaurante",
-  c39:"Librării și anticariate",
-  c39b:"Cafenele",
-  c40:"Spații culturale",
-  c41:"Hoteluri și turism",
-  c42:"Terminale",
-  c43:"Enterprise & Corporate",
-  c44:"Deveniți partener"
+  ftS:"HelloHuman creează experiențe sociale ghidate, aducând oameni compatibili la aceeași masă.",
+  ftC:"Contact", ftP:"Pagina pentru participanți"
 },
 en:{
   ttl:"HelloHuman For Enterprise — Organizational cohesion architecture",
@@ -260,11 +363,11 @@ en:{
   c13:"Executive impact report",
   hCe:"Added value for the agency",
   ag1:"A premium solution you propose, with zero operational risk.",
-  ag1s:" You integrate it into the event architecture, we deliver it fully. Zero internal resources consumed.",
+  ag1s:"You integrate it into the event architecture, we deliver it fully. Zero internal resources consumed.",
   ag2:"An executive report on the client's desk.",
-  ag2s:" At the end, the client receives a KPI document bearing the agency's brand. The perfect retention argument.",
+  ag2s:"At the end, the client receives a KPI document bearing the agency's brand. The perfect retention argument.",
   ag3:"Proof of ROI for the next budget.",
-  ag3s:" An event with measurable impact justifies recurrence. Your partnership becomes strategic.",
+  ag3s:"An event with measurable impact justifies recurrence. Your partnership becomes strategic.",
   c14:"The collaboration ecosystem",
   c15:"Three simple steps.",
   c16:"Define the perimeter",
@@ -292,16 +395,9 @@ en:{
   c33:"Executive documentation (PDF)",
   c34:"Contact us via email",
   c35:"Average response time: 2 working days.",
-  c36:"Cohesion architecture: People who do not know each other interact constructively right where they already are.",
-  c37:"For organizational environments and public spaces",
-  c38:"Bars and restaurants",
-  c39:"Bookshops and antiquarian bookshops",
-  c39b:"Cafés",
-  c40:"Cultural spaces",
-  c41:"Hotels and tourism",
-  c42:"Terminals",
-  c43:"Enterprise & Corporate",
-  c44:"Become a partner" } };
+  ftS:"HelloHuman curates social experiences, connecting like-minded people around tables.",
+  ftC:"Contact", ftP:"Participant page"
+}};
 function T(k){ return (L[lang]||L.ro)[k]||L.ro[k]||'' }
 function setLang(v){ lang=v; try{localStorage.setItem('hh_l',v)}catch(e){} applyLang() }
 function applyLang(){
@@ -319,6 +415,18 @@ function applyLang(){
   var b=document.getElementById('bLang');
   if(b) b.onclick=function(){ setLang(lang==='ro'?'en':'ro') };
 })();
+
+/* Reveal la scroll */
+if('IntersectionObserver' in window){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target) }
+    });
+  }, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv').forEach(function(n){ io.observe(n) });
+} else {
+  document.querySelectorAll('.rv').forEach(function(n){ n.classList.add('in') });
+}
 </script>
 </body>
 </html>
