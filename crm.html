@@ -413,7 +413,6 @@ var when=function(ts){return HH.fmtWhen(ts,TT)};
 var key='', book={partners:[],events:[],leads:[],requests:[]}, live={}, timer=null;
 var ECR=['sLog','sMain','sPart','sEv','sNew','sDemo','sCfg','sQR','sFmt','sNev','sRec','sChe'];
 
-/* ---------- intrare ---------- */
 async function intra(k){
   key=k; book=await API.book(k);
   book.partners=book.partners||[]; book.events=book.events||[];
@@ -438,7 +437,6 @@ async function salveaza(mut){
   await API.bookSave(key,{partners:book.partners,events:book.events,formate:book.formate||[]});
 }
 
-/* ============ UTILITARE PENTRU ASCUNSE / TESTE ============ */
 function ascunseCorp(){ try{ return JSON.parse(localStorage.getItem('hh_asc_corp')||'[]') }catch(e){ return [] } }
 function ascunseReq(){ try{ return JSON.parse(localStorage.getItem('hh_asc_req')||'[]') }catch(e){ return [] } }
 function stergeCorp(){ try{ return JSON.parse(localStorage.getItem('hh_del_corp')||'[]') }catch(e){ return [] } }
@@ -446,10 +444,6 @@ function stergeReq(){ try{ return JSON.parse(localStorage.getItem('hh_del_req')|
 
 function ascundeCorp(mail){
   var l=ascunseCorp(); if(l.indexOf(mail)<0)l.push(mail);
-  try{ localStorage.setItem('hh_asc_corp',JSON.stringify(l)) }catch(e){}
-}
-function arataCorp(mail){
-  var l=ascunseCorp().filter(function(x){ return x!==mail });
   try{ localStorage.setItem('hh_asc_corp',JSON.stringify(l)) }catch(e){}
 }
 function stergeCorpMail(mail){
@@ -526,6 +520,7 @@ function trimiteEmailCorp(x){
   var tpl = (EMAILS.corporate[lang] && EMAILS.corporate[lang][dom]) || EMAILS.corporate.ro.SILO;
   var subiect = inlocuieste(tpl.subiect, x, lang);
   var body = inlocuieste(tpl.body, x, lang);
+  body = body.replace(/\{\{profil\}\}/g, dom);
   var url = 'mailto:' + encodeURIComponent(x.mail) +
             '?subject=' + encodeURIComponent(subiect) +
             '&body=' + encodeURIComponent(body);
@@ -572,14 +567,12 @@ function porneste(){
 }
 function opreste(){ if(timer){clearInterval(timer);timer=null} }
 
-/* ============ PANOU ============ */
 var fila='Ev';
 el('tabs').onclick=function(e){
   var b=e.target.closest('.tab'); if(!b)return;
   fila=b.dataset.tab;
   [].slice.call(el('tabs').children).forEach(function(x){x.classList.toggle('on',x===b)});
   ['Ev','Pt','Lo','Rq','Corp'].forEach(function(t){ var n=el('t'+t); if(n) n.style.display=(t===fila)?'':'none' });
-  /* când deschid un tab, punctul dispare */
   if(fila==='Rq') marchezCititeReq();
   if(fila==='Corp') marchezCititeCorp();
   paintMain();
@@ -696,7 +689,6 @@ el('bMarkSel').onclick=async function(){
   }catch(e){ say('mMain',e.message,'err') }
 };
 
-/* ============ CONTACTE ============ */
 function sursa(s){
   if(!s||s==='site')return 'de pe site';
   var e=(book.events||[]).filter(function(x){return x.id===s})[0];
@@ -725,7 +717,6 @@ el('bLoCopy').onclick=function(){
   HH.copy(f.map(function(x){return x.email}).join(', '), el('bLoCopy'));
 };
 
-/* ============ CERERI LOCALURI ============ */
 var rqFiltru = 'toate';
 ['Toate','Noi','Acc','Res','Asc'].forEach(function(k){
   var btn = el('rqF'+k); if(!btn) return;
@@ -744,9 +735,7 @@ el('rqFToate').style.borderColor='var(--gold)'; el('rqFToate').style.color='var(
 function paintReqs(){
   var rq=(book.requests||[]).slice().reverse();
   var asc = ascunseReq(), del = stergeReq();
-  /* excludem șterse */
   rq = rq.filter(function(r){ return del.indexOf(r.id)<0 });
-  /* filtru */
   if(rqFiltru==='ascuns') rq = rq.filter(function(r){ return asc.indexOf(r.id)>=0 });
   else rq = rq.filter(function(r){ return asc.indexOf(r.id)<0 });
   if(rqFiltru==='nou') rq = rq.filter(function(r){ return r.status==='nou' });
@@ -811,12 +800,8 @@ function ghiceste(k){
   if(k.indexOf('agenți')>=0)return 'corp';
   return 'bar';
 }
-function marchezCititeReq(){
-  var noi = (book.requests||[]).filter(function(r){return r.status==='nou'}).length;
-  if(noi) el('rqDot').innerHTML='';
-}
+function marchezCititeReq(){ el('rqDot').innerHTML=''; }
 
-/* ============ CORPORATE ============ */
 var corpFiltru = 'toate';
 var arataTeste = false;
 ['Toate','Net','Trim','Asc','Test'].forEach(function(k){
@@ -876,14 +861,10 @@ function paintCorp(){
   var brute=(book.leads||[]).filter(function(x){ return x && (x.src==='business'||x.src==='business-intrare') });
   var lista = dedupBiz(brute);
   var asc = ascunseCorp(), del = stergeCorp();
-  /* excludem șterse */
   lista = lista.filter(function(x){ return del.indexOf(x.mail)<0 });
-  /* filtru ascunse / nu */
   if(corpFiltru==='ascunse') lista = lista.filter(function(x){ return asc.indexOf(x.mail)>=0 });
   else lista = lista.filter(function(x){ return asc.indexOf(x.mail)<0 });
-  /* filtru teste */
   if(!arataTeste) lista = lista.filter(function(x){ return !esteTest(x.mail) });
-  /* filtru trimise */
   if(corpFiltru==='trimise') lista = lista.filter(function(x){ return bizTrimis(x) });
   if(corpFiltru==='netrimise') lista = lista.filter(function(x){ return !bizTrimis(x) });
 
@@ -947,14 +928,8 @@ el('bizList').onclick=function(e){
   }
 };
 
-function marchezCititeCorp(){
-  var noi = (book.leads||[]).filter(function(x){
-    return x && (x.src==='business'||x.src==='business-intrare') && !bizTrimis(x);
-  }).length;
-  if(noi) el('corpDot').innerHTML='';
-}
+function marchezCititeCorp(){ el('corpDot').innerHTML=''; }
 
-/* Ce s-a trimis. */
 function bizTrimisLista(){ try{ return JSON.parse(localStorage.getItem('hh_trm')||'[]') }catch(e){ return [] } }
 function bizTrimis(x){ return bizTrimisLista().indexOf(x.mail||'')>=0 }
 function bizMarcheaza(mail){
@@ -963,20 +938,16 @@ function bizMarcheaza(mail){
   try{ localStorage.setItem('hh_trm', JSON.stringify(l)) }catch(e){}
 }
 
-/* Beculețe — la intrare și la reîmprospătare */
 async function puncte(){
   try{
     var d=await API.book(key);
-    /* localuri */
-    var noiRq = (d.requests||[]).filter(function(r){ return r.status==='nou' }).length;
     var ascRq = ascunseReq();
     var delRq = stergeReq();
-    noiRq = (d.requests||[]).filter(function(r){
+    var noiRq = (d.requests||[]).filter(function(r){
       return r.status==='nou' && ascRq.indexOf(r.id)<0 && delRq.indexOf(r.id)<0;
     }).length;
     el('rqDot').innerHTML = noiRq ? (' <b style="color:var(--gold)">'+noiRq+'</b>') : '';
 
-    /* corporate */
     var brute=(d.leads||[]).filter(function(x){ return x && (x.src==='business'||x.src==='business-intrare') });
     var lista = dedupBiz(brute);
     var ascC = ascunseCorp(), delC = stergeCorp();
@@ -987,7 +958,6 @@ async function puncte(){
   }catch(e){}
 }
 
-/* ============ FORMTE PROPRII ============ */
 var fmtId='', fTacut=2;
 function formate(){ return (book && book.formate) || [] }
 function paintFTacut(){
@@ -1016,7 +986,6 @@ el('lFmt').onclick=function(e){
   el('bFDel').style.display=''; say('mFmt',''); go('sFmt');
 };
 
-/* ============ NEVOI ============ */
 var nevoi=[];
 async function incarcaNevoi(){
   say('mNev2','Se încarcă…');
@@ -1033,7 +1002,6 @@ async function incarcaNevoi(){
   }catch(e){ say('mNev2', e.message, 'err') }
 }
 
-/* ============ LOCURI RECOMANDATE ============ */
 var recLista=[];
 function recTrimisLista(){ try{ return JSON.parse(localStorage.getItem('hh_rec')||'[]') }catch(e){ return [] } }
 function recTrimis(x){ return recTrimisLista().indexOf((x.loc||'')+'|'+(x.oras||''))>=0 }
@@ -1079,7 +1047,6 @@ async function incarcaRec(){
   }catch(e){ say('mRec2', e.message, 'err') }
 }
 
-/* ============ CHERIE ============ */
 var cheLista=[];
 async function incarcaChe(){
   say('mChe','Se încarcă…');
@@ -1190,7 +1157,6 @@ el('bFDel').onclick=async function(){
   }catch(e){ say('mFmt',e.message,'err') }
 };
 
-/* ============ FIȘA PARTENERULUI ============ */
 var ptId='';
 function deschidePt(id){
   var p=(book.partners||[]).filter(function(x){return x.id===id})[0]; if(!p)return;
@@ -1234,7 +1200,6 @@ el('bPDel').onclick=async function(){
     paintMain(); HH.back() }catch(e){ say('mPart',e.message,'err') }
 };
 
-/* ============ FIȘA RUNDEI ============ */
 var evId='';
 function esteDemo(){
   var e=(book.events||[]).filter(function(x){return x.id===evId})[0];
@@ -1405,7 +1370,6 @@ el('bEDel').onclick=async function(){
     delete live[evId]; paintMain(); HH.back() }catch(err){ say('mEv',err.message,'err') }
 };
 
-/* ============ PARTENER NOU ============ */
 var nProf='bar', nId='', dinCerere='';
 function paintNProf(){
   el('nProf').innerHTML=Object.keys(P).filter(function(k){return k!=='demo'}).map(function(k){
@@ -1443,7 +1407,6 @@ function nMsgTxt(){ return 'Panoul tău HelloHuman. '+el('nPwOut').textContent }
 el('bNSend').onclick=function(){ HH.shareLink(el('nLink').textContent, nMsgTxt()) };
 el('bNCopy').onclick=function(){ HH.copy(nMsg(), el('bNCopy')) };
 
-/* ============ DEMO ============ */
 var dQ=0;
 function paintDQ(){
   var dqs=(cLimba==='en'&&P.demo.qs.en)?P.demo.qs.en:P.demo.qs.ro;
@@ -1534,7 +1497,6 @@ el('qStop2').onclick=async function(){
   try{ await API.op(demoId,'stop'); demoTick() }catch(e){ say('qMsg',e.message,'err') }
 };
 
-/* ============ CONFIGURARE RUNDĂ ============ */
 var cProf='bar';
 var cLimba='ro';
 function paintCLang(){
@@ -1671,7 +1633,6 @@ el('bCGo').onclick=async function(){
   b.disabled=false; b.textContent='Creează runda';
 };
 
-/* ============ COD QR ============ */
 var qUrl='', qEv='', qHostUrl='', qHostPw='';
 function aratQR(nume, url, pw, id){
   qUrl=url; qEv=id; qHostUrl=HH.base()+'partener.html#m='+id; qHostPw=pw||'';
@@ -1731,7 +1692,6 @@ function tiparesteCod(adresa){
 }
 el('bQPrint').onclick=function(){ tiparesteCod(qUrl) };
 
-/* ============ PORNIRE ============ */
 HH.initNav(ECR,'sLog',function(){ HH.go('sLog',true) });
 (function(){
   var k=HH.recall('hh_k');
