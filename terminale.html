@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title data-t="ttl">HelloHuman pentru aeroporturi și gări</title>
-<meta name="description" content="Pasagerii spun când se îmbarcă. Sistemul îi așază doar cu oameni care au o fereastră similară de așteptare și se închide cu douăzeci de minute înainte de prima plecare. Fără personal.">
+<title data-t="ttl">HelloHuman pentru aeroporturi și terminale</title>
+<meta name="description" content="Pasagerii care ar sta la poartă rămân în zona comercială. Fără personal, fără aplicație, fără înregistrare. Un cod QR pe masă și atât.">
 <link rel="canonical" href="https://hellohuman.ro/terminale.html">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta name="theme-color" content="#16302B">
@@ -12,8 +12,8 @@
 <meta property="og:locale" content="ro_RO">
 <meta property="og:site_name" content="HelloHuman">
 <meta property="og:url" content="https://hellohuman.ro/terminale.html">
-<meta property="og:title" content="HelloHuman pentru aeroporturi și gări">
-<meta property="og:description" content="Pasagerii spun când se îmbarcă. Sistemul îi așază doar cu oameni care au o fereastră similară de așteptare și se închide cu douăzeci de minute înainte de prima plecare. Fără personal.">
+<meta property="og:title" content="HelloHuman pentru aeroporturi și terminale">
+<meta property="og:description" content="Pasagerii care ar sta la poartă rămân în zona comercială. Fără personal, fără aplicație, fără înregistrare.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Karla:wght@400;500;700&display=swap&subset=latin,latin-ext" rel="stylesheet">
@@ -29,7 +29,7 @@
    "url": "https://hellohuman.ro/",
    "email": "contact@hellohuman.ro",
    "telephone": "+40750255200",
-   "description": "HelloHuman organizează seri în care oameni care nu se cunosc stau câteva minute la aceeași masă, într-un local unde sunt deja prezenți.",
+   "description": "HelloHuman organizează întâlniri în care oameni care nu se cunosc stau câteva minute împreună, într-un loc unde sunt deja prezenți.",
    "areaServed": {
     "@type": "Country",
     "name": "România"
@@ -37,8 +37,8 @@
   },
   {
    "@type": "Service",
-   "name": "Conversații pentru terminale de călători",
-   "description": "Pasagerii spun când se îmbarcă. Sistemul îi așază doar cu oameni care au o fereastră similară de așteptare și se închide cu douăzeci de minute înainte de prima plecare. Fără personal.",
+   "name": "Timp de ședere crescut pentru terminale",
+   "description": "Pasagerii care ar sta la poartă rămân în zona comercială. Fără personal, fără aplicație, fără înregistrare. Un cod QR pe masă și atât.",
    "provider": {
     "@id": "https://hellohuman.ro/#org"
    },
@@ -48,13 +48,13 @@
    },
    "audience": {
     "@type": "BusinessAudience",
-    "audienceType": "Aeroporturi, gări, terminale de autocar, lounge-uri"
+    "audienceType": "Aeroporturi, gări, terminale de autocar, operatori de retail aeroportuar"
    },
    "offers": {
     "@type": "Offer",
     "price": "0",
     "priceCurrency": "RON",
-    "description": "Prima seară este gratuită."
+    "description": "Prima serie este gratuită."
    }
   },
   {
@@ -62,26 +62,26 @@
    "mainEntity": [
     {
      "@type": "Question",
-     "name": "Cine se ocupă?",
+     "name": "Cine pune cartonașele pe mese?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Nimeni. Nu există gazdă și nu se fac anunțuri."
+      "text": "O singură dată, la instalare. Rămân pe mese. Personalul localului le verifică din mers, ca parte din rutina obișnuită."
      }
     },
     {
      "@type": "Question",
-     "name": "Ce se întâmplă cu cineva care are zborul peste douăzeci de minute?",
+     "name": "Ce se întâmplă dacă un pasager ratează zborul?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Nu e inclus. Sistemul așază doar oameni care au minimum treizeci de minute comune."
+      "text": "Nu se poate. Sistemul se închide automat cu douăzeci de minute înainte de cea mai apropiată îmbarcare din grup, iar fiecare pasager primește o notificare."
      }
     },
     {
      "@type": "Question",
-     "name": "Unde se pune, concret?",
+     "name": "Ce se întâmplă dacă un pasager se plânge?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "În cafenele, lounge-uri și zone de așteptare. Funcționează la fel în gări și terminale de autocar."
+      "text": "Nimeni nu este abordat. Cine vrea scanează. Cine nu vrea nu observă nimic."
      }
     },
     {
@@ -89,7 +89,7 @@
      "name": "Ce echipament trebuie montat?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Niciunul. Un cod QR printat pe mese."
+      "text": "Niciunul. Un cod QR printat pe masă."
      }
     }
    ]
@@ -107,7 +107,7 @@
     <a class="logo" href="/"><img src="/marca-inchis.svg" alt="" width="30" height="30" aria-hidden="true">Hello<span>Human</span></a>
     <nav class="barnav">
       <a href="/parteneri.html" class="hidem" data-t="nav1">Toate locurile</a>
-      <a class="lang" href="/alatura-te.html" data-t="nav2">Scrie-ne</a>
+      <button class="lang" id="bLang">EN</button>
     </nav>
   </div>
 </header>
@@ -117,23 +117,23 @@
     <div class="wrap">
       <div>
         <a class="back" href="/parteneri.html" data-t="back">← Toate tipurile de loc</a>
-        <p class="eyebrow" data-t="e1">Aeroporturi și gări</p>
-        <h1 data-t="h1">Pornește singur,<br>fără personal.</h1>
-        <p class="lead" data-t="l1">Pasagerii spun când se îmbarcă. Sistemul îi așază doar cu oameni care au o fereastră similară de așteptare și închide sesiunea cu douăzeci de minute înainte de prima plecare.</p>
+        <p class="eyebrow" data-t="e1">Aeroporturi și terminale</p>
+        <h1 data-t="h1">Pasagerii care ar sta la poartă<br>rămân în zona comercială.</h1>
+        <p class="lead" data-t="l1">Un cod QR pe mesele din cafenele, food court și lounge. Pasagerii care așteaptă își spun ora îmbarcării, iar sistemul îi așază doar cu cei care au o fereastră de așteptare similară. Fără personal, fără aplicație, fără înregistrare.</p>
         <div class="cta">
-          <a class="btn" href="/alatura-te.html" data-t="cta1">Spune-ne despre terminalul vostru</a>
+          <a class="btn" href="/alatura-te.html" data-t="cta1">Vreau HelloHuman în terminalul meu</a>
           <a class="btn ghost" href="tel:+40750255200">+40 750 255 200</a>
         </div>
         <p class="sm" style="margin-top:14px;color:var(--dim)" data-t="sub1">Cinci lucruri, un minut. Vă răspundem în două zile lucrătoare.</p>
       </div>
       <div>
-        <p class="cardcap" data-t="cap">Ce văd clienții pe telefon</p>
+        <p class="cardcap" data-t="cap">Ce văd pasagerii pe telefon</p>
         <div class="card" aria-hidden="true">
-          <p class="kk" data-t="mt">Masa dumneavoastră</p>
+          <p class="kk" data-t="mt">Întâlnirea dumneavoastră</p>
           <p class="no">7</p>
           <div class="rule"></div>
-          <div class="row"><span data-t="wu">La masă cu</span><b>Raluca, Andrei</b></div>
-          <div class="row"><span data-t="yq">Întrebarea voastră</span><b>Unde te duci,<br>și de ce acolo?</b></div>
+          <div class="row"><span data-t="wu">Împreună cu</span><b>Raluca, Andrei</b></div>
+          <div class="row"><span data-t="yq">Tema serii</span><b>Unde te duci,<br>și de ce acolo?</b></div>
           <p class="tick">14:32</p>
         </div>
       </div>
@@ -145,43 +145,59 @@
       <div>
         <p class="eyebrow" data-t="e2">Ce e diferit aici</p>
         <h2 data-t="h2">Fără gazdă<br>și fără anunțuri.</h2>
-        <p class="lead" style="margin-top:16px" data-t="l2">Pornește de la sine când sunt trei oameni care așteaptă în același interval. Sub trei nu se întâmplă nimic și nimeni nu află nimic — o masă goală e mai rea decât nicio masă.</p>
+        <p class="lead" style="margin-top:16px" data-t="l2">Pornește de la sine când sunt trei pasageri care așteaptă în același interval. Sub trei nu se întâmplă nimic și nimeni nu află nimic — o masă goală este mai rea decât nicio masă.</p>
       </div>
       <div>
-        <div class="note" style="margin-top:0"><b data-t="b1">Ieșirea e garantată</b>Sesiunea se închide cu douăzeci de minute înainte de îmbarcarea celui mai grăbit.</div>
+        <div class="note" style="margin-top:0"><b data-t="b1">Ieșirea este garantată</b>Sesiunea se închide automat cu douăzeci de minute înainte de îmbarcarea celui mai grăbit din grup.</div>
         <div class="note"><b data-t="b2">Fără echipament</b>Un cod QR printat pe masă. Nimic de instalat sau de întreținut.</div>
-        <div class="note"><b data-t="b3">Model de venit</b>Oamenii plătesc deja pentru o așteptare mai bună, prin lounge-uri.</div>
+        <div class="note"><b data-t="b3">Doar ferestre similare</b>Sistemul așază doar pasageri care au minimum treizeci de minute comune.</div>
       </div>
     </div>
   </section>
 
-  <section>
-    <div class="wrap">
-      <p class="eyebrow" data-t="e3">De ce funcționează într-un terminal</p>
-      <h2 data-t="h3">Frica pasagerului nu e<br>că nu-i place omul.<br>E că nu poate pleca.</h2>
-      <p class="lead" style="margin-top:18px" data-t="l3">Într-un bar, clientul se întoarce la masa lui. Într-un terminal rămâne în aceeași sală, uneori o oră după ce conversația s-a încheiat. De aceea singurul lucru garantat aici e ieșirea, iar ora ei e cunoscută înainte ca oamenii să se așeze.</p>
-    </div>
-  </section>
-  <section id="intrebari">
-    <div class="wrap">
-      <p class="eyebrow" data-t="e4">Ce ne întreabă operatorii</p>
-      <h2 data-t="h4">Patru întrebări,<br>de fiecare dată.</h2>
-      <div class="ctx">
-        <div class="ctxrow"><h3 data-t="q1">Cine se ocupă?</h3><p data-t="a1">Nimeni. Nu există gazdă și nu se fac anunțuri.</p></div>
-        <div class="ctxrow"><h3 data-t="q2">Ce se întâmplă cu cineva care are zborul peste douăzeci de minute?</h3><p data-t="a2">Nu e inclus. Sistemul așază doar oameni care au minimum treizeci de minute comune.</p></div>
-        <div class="ctxrow"><h3 data-t="q3">Unde se pune, concret?</h3><p data-t="a3">În cafenele, lounge-uri și zone de așteptare. Funcționează la fel în gări și terminale de autocar.</p></div>
-        <div class="ctxrow"><h3 data-t="q4">Ce echipament trebuie montat?</h3><p data-t="a4">Niciunul. Un cod QR printat pe mese.</p></div>
+  <section class="sec"><div class="wrap">
+    <h2 data-t="hCe">Ce aduce HelloHuman unui terminal</h2>
+    <div class="rand"><b data-t="ce1">Pasagerii rămân în zona comercială.</b><span data-t="ce1s"> Cei care ar fi stat la poartă rămân la masă. Consumul nu se mută, se adaugă.</span></div>
+    <div class="rand"><b data-t="ce2">Conversația ocupă timpul de așteptare.</b><span data-t="ce2s"> Un pasager care stă singur cu telefonul nu consumă. Un pasager care stă cu cineva comandă încă o cafea.</span></div>
+    <div class="rand"><b data-t="ce3">Zero investiție. Zero personal.</b><span data-t="ce3s"> Cartonașele se pun o singură dată la instalare. Rămân pe mese. Personalul care lucrează în spațiu le verifică din mers, ca parte din rutina pe care o are deja.</span></div>
+    <div class="rand"><b data-t="ce4">Pornire automată, oprire automată.</b><span data-t="ce4s"> Sistemul pornește singur când se adună trei pasageri și se închide cu douăzeci de minute înainte de îmbarcare. Nimeni nu trebuie să supravegheze.</span></div>
+  </div></section>
+
+  <section class="paper">
+    <div class="wrap two">
+      <div>
+        <p class="eyebrow" data-t="e3">Unde se instalează</p>
+        <h2 data-t="h3">Cartonașe pe mese.<br>O singură dată.</h2>
+        <p class="lead" style="margin-top:16px" data-t="l3">Se pun o singură dată la instalare, în zonele agreate, și rămân acolo. Nu există muncă zilnică, nu există logistică recurentă.</p>
+      </div>
+      <div>
+        <div class="note" style="margin-top:0"><b data-t="d1">Zonele potrivite</b>Cafenele, food court, lounge-uri și baruri din airside. Oriunde pasagerii se așază oricum.</div>
+        <div class="note"><b data-t="d2">Zonele nepotrivite</b>Porțile de îmbarcare, scaunele din zona de așteptare, zonele de tranzit. Acolo nimeni nu se așază la o masă.</div>
+        <div class="note"><b data-t="d3">Verificare periodică</b>Cineva din personalul localului verifică din când în când că cartonașele sunt la locul lor — la fel cum verifică meniul sau șervețelele.</div>
       </div>
     </div>
   </section>
+
+  <section id="intrebari">
+    <div class="wrap">
+      <p class="eyebrow" data-t="e4">Ce se întâmplă dacă</p>
+      <h2 data-t="h4">Trei temeri pe care<br>le-am auzit deja.</h2>
+      <div class="ctx">
+        <div class="ctxrow"><h3 data-t="q1">Un pasager ratează zborul.</h3><p data-t="a1">Nu se poate. Sistemul se închide automat cu douăzeci de minute înainte de cea mai apropiată îmbarcare din grup, iar fiecare pasager primește o notificare pe telefon. Nimeni nu rămâne fără timp.</p></div>
+        <div class="ctxrow"><h3 data-t="q2">Un pasager se plânge.</h3><p data-t="a2">Nimeni nu este abordat și nimeni nu este strigat pe nume. Cine vrea scanează codul de pe masă, cine nu vrea nu observă nimic.</p></div>
+        <div class="ctxrow"><h3 data-t="q3">Cartonașul dispare sau se deteriorează.</h3><p data-t="a3">Se înlocuiește. Costul unui cartonaș este neglijabil, iar pierderea nu afectează funcționarea sistemului.</p></div>
+      </div>
+    </div>
+  </section>
+
   <section class="paper">
     <div class="wrap" style="text-align:center">
       <p class="eyebrow" data-t="e5">Dacă doriți să vorbim</p>
       <h2 data-t="h5">Un cod pe masă,<br>nimic altceva.</h2>
-      <p class="lead" style="margin:18px auto 30px" data-t="l5">Ne spuneți despre ce zonă e vorba și câți oameni trec pe acolo. Vă răspundem în două zile lucrătoare.</p>
+      <p class="lead" style="margin:18px auto 30px" data-t="l5">Ne spuneți despre ce zonă este vorba și câți pasageri trec pe acolo. Vă răspundem în două zile lucrătoare, cu o propunere concretă.</p>
       <div class="cta" style="justify-content:center">
-        <a class="btn" href="/alatura-te.html">Spune-ne despre terminalul vostru</a>
-        <a class="btn ghost" href="mailto:contact@hellohuman.ro" data-t="mail">Scrie direct pe email</a>
+        <a class="btn" href="/alatura-te.html" data-t="cta2">Vreau HelloHuman în terminalul meu</a>
+        <a class="btn ghost" href="mailto:contact@hellohuman.ro" data-t="mail">Scrieți-ne direct pe email</a>
       </div>
     </div>
   </section>
@@ -193,7 +209,7 @@
     <a href="/" class="footlogo"><img src="/logo-hellohuman-inchis.svg" width="150" height="150" loading="lazy" alt="HelloHuman"></a>
     <div>
       <p class="logo" style="font-size:24px">Hello<span>Human</span></p>
-      <p class="sm" style="margin-top:10px;max-width:36ch" data-t="ft">Seri în care oameni care nu se cunosc stau câteva minute la aceeași masă, în locuri unde sunt deja prezenți.</p>
+      <p class="sm" style="margin-top:10px;max-width:36ch" data-t="ft">Seri în care oameni care nu se cunosc stau câteva minute împreună, în locuri unde sunt deja prezenți.</p>
       <p class="sm" style="margin-top:10px" data-t="ftc">București și restul țării</p>
     </div>
     <div class="col">
@@ -203,7 +219,7 @@
         <li><a href="/librarii.html" data-t="l2n">Librării și cafenele</a></li>
         <li><a href="/cultura.html" data-t="l3n">Muzee și spații culturale</a></li>
         <li><a href="/hoteluri.html" data-t="l4n">Hoteluri și turism</a></li>
-        <li><span class="aici">Aeroporturi și gări</span></li>
+        <li><span class="aici">Aeroporturi și terminale</span></li>
         <li><a href="/corporate.html" data-t="l6n">Evenimente de firmă</a></li>
       </ul>
     </div>
@@ -220,8 +236,8 @@
 
 <script>
 (function(){
-var L={ro:{"ttl": "HelloHuman pentru aeroporturi și gări", "e1": "Aeroporturi și gări", "h1": "Pornește singur,<br>fără personal.", "l1": "Pasagerii spun când se îmbarcă. Sistemul îi așază doar cu oameni care au o fereastră similară de așteptare și închide sesiunea cu douăzeci de minute înainte de prima plecare.", "cta1": "Spune-ne despre terminalul vostru", "e2": "Ce e diferit aici", "h2": "Fără gazdă<br>și fără anunțuri.", "l2": "Pornește de la sine când sunt trei oameni care așteaptă în același interval. Sub trei nu se întâmplă nimic și nimeni nu află nimic — o masă goală e mai rea decât nicio masă.", "b1": "Ieșirea e garantată", "b2": "Fără echipament", "b3": "Model de venit", "e3": "De ce funcționează într-un terminal", "h3": "Frica pasagerului nu e<br>că nu-i place omul.<br>E că nu poate pleca.", "l3": "Într-un bar, clientul se întoarce la masa lui. Într-un terminal rămâne în aceeași sală, uneori o oră după ce conversația s-a încheiat. De aceea singurul lucru garantat aici e ieșirea, iar ora ei e cunoscută înainte ca oamenii să se așeze.", "e4": "Ce ne întreabă operatorii", "h4": "Patru întrebări,<br>de fiecare dată.", "q1": "Cine se ocupă?", "a1": "Nimeni. Nu există gazdă și nu se fac anunțuri.", "q2": "Ce se întâmplă cu cineva care are zborul peste douăzeci de minute?", "a2": "Nu e inclus. Sistemul așază doar oameni care au minimum treizeci de minute comune.", "q3": "Unde se pune, concret?", "a3": "În cafenele, lounge-uri și zone de așteptare. Funcționează la fel în gări și terminale de autocar.", "q4": "Ce echipament trebuie montat?", "a4": "Niciunul. Un cod QR printat pe mese.", "h5": "Un cod pe masă,<br>nimic altceva.", "l5": "Ne spuneți despre ce zonă e vorba și câți oameni trec pe acolo. Vă răspundem în două zile lucrătoare.", "nav1": "Toate locurile", "nav2": "Scrie-ne", "back": "← Toate tipurile de loc", "sub1": "Cinci lucruri, un minut. Vă răspundem în două zile lucrătoare.", "cap": "Ce văd clienții pe telefon", "mt": "Masa dumneavoastră", "wu": "La masă cu", "yq": "Întrebarea voastră", "mail": "Scrie direct pe email", "ft": "Seri în care oameni care nu se cunosc stau câteva minute la aceeași masă, în locuri unde sunt deja prezenți.", "ftc": "București și restul țării", "ftL": "Locuri", "ftC": "Contact", "l1n": "Baruri și restaurante", "l2n": "Librării și cafenele", "l3n": "Muzee și spații culturale", "l4n": "Hoteluri și turism", "l6n": "Evenimente de firmă", "ftA": "Spuneți-ne despre locul dumneavoastră", "e5": "Dacă doriți să vorbim"},
- en:{"nav1": "All venues", "nav2": "Write to us", "back": "← All kinds of venue", "sub1": "Five things, one minute. We reply within two working days.", "cap": "What customers see on their phone", "mt": "Your table", "wu": "At your table", "yq": "Your question", "mail": "Write to us directly", "ft": "Evenings where people who do not know each other spend a few minutes at the same table, in places they are already in.", "ftc": "Bucharest and the rest of the country", "ftL": "Venues", "ftC": "Contact", "l1n": "Bars and restaurants", "l2n": "Bookshops and cafés", "l3n": "Museums and cultural spaces", "l4n": "Hotels and tourism", "l6n": "Company events", "ftA": "Tell us about your venue", "e5": "If you would like to talk", "ttl": "HelloHuman for airports and stations", "e1": "Airports and stations", "h1": "It starts on its own,<br>with no staff.", "l1": "Passengers say when they board. The system seats them only with people who have a similar waiting window, and closes the session twenty minutes before the first departure.", "cta1": "Tell us about your terminal", "e2": "What is different here", "h2": "No host<br>and no announcements.", "l2": "It starts by itself when three people are waiting in the same window. Below three, nothing happens and nobody hears about it — an empty table is worse than no table.", "b1": "The exit is guaranteed", "b2": "No equipment", "b3": "A revenue model", "e3": "Why it works in a terminal", "h3": "A passenger's fear is not<br>that they dislike the person.<br>It is that they cannot leave.", "l3": "In a bar, the customer goes back to their own table. In a terminal they stay in the same room, sometimes for an hour after the conversation has ended. That is why the one thing guaranteed here is the exit, and its hour is known before anyone sits down.", "e4": "What operators ask us", "h4": "Four questions,<br>every time.", "q1": "Who runs it?", "a1": "Nobody. There is no host and there are no announcements.", "q2": "What about someone whose flight is in twenty minutes?", "a2": "They are not included. The system only seats people with at least thirty minutes in common.", "q3": "Where does it go, exactly?", "a3": "In cafés, lounges and waiting areas. It works the same in train and coach terminals.", "q4": "What equipment has to be installed?", "a4": "None. A QR code printed on the tables.", "h5": "A code on the table,<br>nothing else.", "l5": "Tell us which area it is and how many people pass through. We reply within two working days."}};
+var L={ro:{"ttl": "HelloHuman pentru aeroporturi și terminale", "e1": "Aeroporturi și terminale", "h1": "Pasagerii care ar sta la poartă<br>rămân în zona comercială.", "l1": "Un cod QR pe mesele din cafenele, food court și lounge. Pasagerii care așteaptă își spun ora îmbarcării, iar sistemul îi așază doar cu cei care au o fereastră de așteptare similară. Fără personal, fără aplicație, fără înregistrare.", "cta1": "Vreau HelloHuman în terminalul meu", "cta2": "Vreau HelloHuman în terminalul meu", "e2": "Ce e diferit aici", "h2": "Fără gazdă<br>și fără anunțuri.", "l2": "Pornește de la sine când sunt trei pasageri care așteaptă în același interval. Sub trei nu se întâmplă nimic și nimeni nu află nimic — o masă goală este mai rea decât nicio masă.", "b1": "Ieșirea este garantată", "b2": "Fără echipament", "b3": "Doar ferestre similare", "hCe": "Ce aduce HelloHuman unui terminal", "ce1": "Pasagerii rămân în zona comercială.", "ce1s": " Cei care ar fi stat la poartă rămân la masă. Consumul nu se mută, se adaugă.", "ce2": "Conversația ocupă timpul de așteptare.", "ce2s": " Un pasager care stă singur cu telefonul nu consumă. Un pasager care stă cu cineva comandă încă o cafea.", "ce3": "Zero investiție. Zero personal.", "ce3s": " Cartonașele se pun o singură dată la instalare. Rămân pe mese. Personalul care lucrează în spațiu le verifică din mers, ca parte din rutina pe care o are deja.", "ce4": "Pornire automată, oprire automată.", "ce4s": " Sistemul pornește singur când se adună trei pasageri și se închide cu douăzeci de minute înainte de îmbarcare. Nimeni nu trebuie să supravegheze.", "e3": "Unde se instalează", "h3": "Cartonașe pe mese.<br>O singură dată.", "l3": "Se pun o singură dată la instalare, în zonele agreate, și rămân acolo. Nu există muncă zilnică, nu există logistică recurentă.", "d1": "Zonele potrivite", "d2": "Zonele nepotrivite", "d3": "Verificare periodică", "e4": "Ce se întâmplă dacă", "h4": "Trei temeri pe care<br>le-am auzit deja.", "q1": "Un pasager ratează zborul.", "a1": "Nu se poate. Sistemul se închide automat cu douăzeci de minute înainte de cea mai apropiată îmbarcare din grup, iar fiecare pasager primește o notificare pe telefon. Nimeni nu rămâne fără timp.", "q2": "Un pasager se plânge.", "a2": "Nimeni nu este abordat și nimeni nu este strigat pe nume. Cine vrea scanează codul de pe masă, cine nu vrea nu observă nimic.", "q3": "Cartonașul dispare sau se deteriorează.", "a3": "Se înlocuiește. Costul unui cartonaș este neglijabil, iar pierderea nu afectează funcționarea sistemului.", "h5": "Un cod pe masă,<br>nimic altceva.", "l5": "Ne spuneți despre ce zonă este vorba și câți pasageri trec pe acolo. Vă răspundem în două zile lucrătoare, cu o propunere concretă.", "nav1": "Toate locurile", "back": "← Toate tipurile de loc", "sub1": "Cinci lucruri, un minut. Vă răspundem în două zile lucrătoare.", "cap": "Ce văd pasagerii pe telefon", "mt": "Întâlnirea dumneavoastră", "wu": "Împreună cu", "yq": "Tema serii", "mail": "Scrieți-ne direct pe email", "ft": "Seri în care oameni care nu se cunosc stau câteva minute împreună, în locuri unde sunt deja prezenți.", "ftc": "București și restul țării", "ftL": "Locuri", "ftC": "Contact", "l1n": "Baruri și restaurante", "l2n": "Librării și cafenele", "l3n": "Muzee și spații culturale", "l4n": "Hoteluri și turism", "l6n": "Evenimente de firmă", "ftA": "Spuneți-ne despre locul dumneavoastră", "e5": "Dacă doriți să vorbim"},
+ en:{"nav1": "All venues", "back": "← All kinds of venue", "sub1": "Five things, one minute. We reply within two working days.", "cap": "What passengers see on their phone", "mt": "Your meeting", "wu": "Together with", "yq": "The evening's theme", "mail": "Write to us directly", "ft": "Evenings where people who do not know each other spend a few minutes together, in places they are already in.", "ftc": "Bucharest and the rest of the country", "ftL": "Venues", "ftC": "Contact", "l1n": "Bars and restaurants", "l2n": "Bookshops and cafés", "l3n": "Museums and cultural spaces", "l4n": "Hotels and tourism", "l6n": "Company events", "ftA": "Tell us about your venue", "e5": "If you would like to talk", "ttl": "HelloHuman for airports and terminals", "e1": "Airports and terminals", "h1": "Passengers who would wait at the gate<br>stay in the commercial area.", "l1": "One QR code on the tables in cafés, food courts and lounges. Waiting passengers tell us their boarding time, and the system seats them only with those who have a similar waiting window. No staff, no app, no sign-up.", "cta1": "I want HelloHuman in my terminal", "cta2": "I want HelloHuman in my terminal", "e2": "What is different here", "h2": "No host<br>and no announcements.", "l2": "It starts by itself when three passengers are waiting in the same window. Below three, nothing happens and nobody hears about it — an empty table is worse than no table.", "b1": "The exit is guaranteed", "b2": "No equipment", "b3": "Similar windows only", "hCe": "What HelloHuman brings to a terminal", "ce1": "Passengers stay in the commercial area.", "ce1s": " Those who would have waited at the gate stay at a table. Spending is not shifted, it is added.", "ce2": "Conversation fills the waiting time.", "ce2s": " A passenger sitting alone with a phone spends nothing. A passenger sitting with someone orders one more coffee.", "ce3": "Zero investment. Zero staff.", "ce3s": " The cards are placed once at installation. They stay on the tables. Staff working the space check them in passing, as part of the routine they already have.", "ce4": "Automatic start, automatic stop.", "ce4s": " The system starts on its own when three passengers gather and closes twenty minutes before boarding. Nobody needs to supervise.", "e3": "Where it goes", "h3": "Cards on tables.<br>Once.", "l3": "They are placed once at installation, in the agreed areas, and stay there. No daily work, no recurring logistics.", "d1": "Suitable areas", "d2": "Unsuitable areas", "d3": "Periodic check", "e4": "What happens if", "h4": "Three fears we<br>have already heard.", "q1": "A passenger misses their flight.", "a1": "That cannot happen. The system closes automatically twenty minutes before the nearest boarding in the group, and each passenger receives a notification on their phone. Nobody is left without time.", "q2": "A passenger complains.", "a2": "Nobody is approached and nobody is called by name. Whoever wants to scans the code on the table; whoever does not notices nothing.", "q3": "The card disappears or gets damaged.", "a3": "It is replaced. A card costs almost nothing, and losing one does not affect how the system works.", "h5": "A code on the table,<br>nothing else.", "l5": "Tell us which area it is and how many passengers pass through. We reply within two working days, with a concrete proposal."}};
 var lang="ro";
 function setLang(l){ lang=l; document.documentElement.lang=l;
   var d=L[l]; if(d.ttl) document.title=d.ttl;
