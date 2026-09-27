@@ -15,6 +15,8 @@ body.appbody{background:#16302B;margin:0}
 body.appbody .app{display:block!important;max-width:560px;margin:0 auto;padding:26px 20px 60px;min-height:100vh}
 body.appbody .sc{display:none}
 body.appbody .sc.on{display:block}
+.tabs{flex-wrap:wrap}
+.tab{font-size:13px;padding:11px 4px}
 </style>
 <link rel="icon" type="image/svg+xml" href="/marca.svg">
 <link rel="apple-touch-icon" href="/logo-hellohuman.png">
@@ -50,7 +52,8 @@ body.appbody .sc.on{display:block}
     <button class="tab on" data-tab="Ev">Runde</button>
     <button class="tab" data-tab="Pt">Parteneri</button>
     <button class="tab" data-tab="Lo">Contacte</button>
-    <button class="tab" data-tab="Rq">Cereri <span id="rqDot"></span></button>
+    <button class="tab" data-tab="Rq">Cereri<span id="rqDot"></span></button>
+    <button class="tab" data-tab="Corp">Corporate<span id="corpDot"></span></button>
   </div>
 
   <div id="tEv">
@@ -75,7 +78,6 @@ body.appbody .sc.on{display:block}
     <button class="btn wide" id="bNewPt" style="margin-top:16px">Adaugă un partener</button>
     <button class="btn ghost wide" id="bFmt" style="margin-top:9px">Formate proprii</button>
     <button class="btn ghost wide" id="bNev" style="margin-top:9px">Ce le lipsește oamenilor</button>
-    <button class="btn ghost wide" id="bBiz" style="margin-top:9px">Cereri de la companii</button>
     <button class="btn ghost wide" id="bRec2" style="margin-top:9px">Locuri recomandate</button>
     <button class="btn ghost wide" id="bChe" style="margin-top:9px">Cherie</button>
     <div class="list" id="lFmt" style="max-height:none"></div>
@@ -90,8 +92,27 @@ body.appbody .sc.on{display:block}
   </div>
 
   <div id="tRq" style="display:none">
-    <p class="sub2" style="margin:14px 0 10px">Cine a cerut să lucrăm împreună.</p>
+    <p class="sub2" style="margin:14px 0 10px">Localuri care vor HelloHuman la ei.</p>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">
+      <button class="btn ghost small" id="rqFToate">Toate</button>
+      <button class="btn ghost small" id="rqFNoi">Noi</button>
+      <button class="btn ghost small" id="rqFAcc">Acceptate</button>
+      <button class="btn ghost small" id="rqFRes">Respinse</button>
+      <button class="btn ghost small" id="rqFAsc">Ascunse</button>
+    </div>
     <div class="list" id="lRq" style="max-height:none"></div>
+  </div>
+
+  <div id="tCorp" style="display:none">
+    <p class="sub2" style="margin:14px 0 10px">Companii care au completat chestionarul.</p>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">
+      <button class="btn ghost small" id="corpFToate">Toate</button>
+      <button class="btn ghost small" id="corpFNet">Netrimise</button>
+      <button class="btn ghost small" id="corpFTrim">Trimise</button>
+      <button class="btn ghost small" id="corpFAsc">Ascunse</button>
+      <button class="btn ghost small" id="corpFTest">Arată teste</button>
+    </div>
+    <div class="list" id="bizList" style="max-height:none"></div>
   </div>
 
   <p class="msg2" id="mMain"></p>
@@ -181,19 +202,6 @@ body.appbody .sc.on{display:block}
   </div>
   <p class="msg2" id="mRec2"></p>
   <div class="list" id="recList" style="max-height:none;margin-top:12px"></div>
-</section>
-
-<section class="sc" id="sBiz">
-  <a class="back" href="#" id="bBizB">← Înapoi</a>
-  <p class="eyebrow">Cereri de la companii</p>
-  <h2>Cine a completat chestionarul</h2>
-  <p class="sub2" style="margin-top:10px">Profilul se calculează din răspunsuri. Reducerea, din întrebările finale.</p>
-  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px">
-    <button class="btn ghost small" id="bBizRef">Reîmprospătează</button>
-    <button class="btn ghost small" id="bBizCopy">Copiază tot</button>
-  </div>
-  <p class="msg2" id="mBiz"></p>
-  <div class="list" id="bizList" style="max-height:none;margin-top:12px"></div>
 </section>
 
 <section class="sc" id="sNev">
@@ -392,8 +400,9 @@ body.appbody .sc.on{display:block}
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="/core.js"></script>
-
+<script src="/emails.js"></script>
 <script>
+
 /* ============================================================
    crm.html — panoul proprietarului.
    ============================================================ */
@@ -402,7 +411,7 @@ var P=HH.PROFILES;
 var TT={never:'niciodată',now:'chiar acum',min:'acum {n} min',hour:'acum {n} h'};
 var when=function(ts){return HH.fmtWhen(ts,TT)};
 var key='', book={partners:[],events:[],leads:[],requests:[]}, live={}, timer=null;
-var ECR=['sLog','sMain','sPart','sEv','sNew','sDemo','sCfg','sQR','sFmt','sNev','sBiz','sRec','sChe'];
+var ECR=['sLog','sMain','sPart','sEv','sNew','sDemo','sCfg','sQR','sFmt','sNev','sRec','sChe'];
 
 /* ---------- intrare ---------- */
 async function intra(k){
@@ -416,13 +425,12 @@ el('pw').onkeydown=function(e){ if(e.key==='Enter'){e.preventDefault();el('bLog'
 el('bLog').onclick=async function(){
   var v=el('pw').value; if(!v)return say('mLog','Scrie parola.','err');
   say('mLog','Se încarcă…');
-  try{ await intra(v); say('mLog',''); go('sMain'); paintMain(); porneste(); bizPunct() }
+  try{ await intra(v); say('mLog',''); go('sMain'); paintMain(); porneste(); puncte() }
   catch(e){ key=''; say('mLog', e.message==='cheie gresita'?'Parolă greșită.':e.message,'err') }
 };
 el('bOut').onclick=function(){ opreste(); HH.drop('hh_k'); key=''; book={partners:[],events:[],leads:[],requests:[]};
   el('pw').value=''; go('sLog') };
 
-/* ---------- salvare ---------- */
 async function salveaza(mut){
   book=await API.book(key);
   book.partners=book.partners||[]; book.events=book.events||[]; book.leads=book.leads||[]; book.requests=book.requests||[];
@@ -430,9 +438,114 @@ async function salveaza(mut){
   await API.bookSave(key,{partners:book.partners,events:book.events,formate:book.formate||[]});
 }
 
-/* ---------- starea reală a rundelor ----------
-   FIX #3: fereastră extinsă de la 3 zile la 30 zile,
-   ca să prindă și evenimentele lungi. */
+/* ============ UTILITARE PENTRU ASCUNSE / TESTE ============ */
+function ascunseCorp(){ try{ return JSON.parse(localStorage.getItem('hh_asc_corp')||'[]') }catch(e){ return [] } }
+function ascunseReq(){ try{ return JSON.parse(localStorage.getItem('hh_asc_req')||'[]') }catch(e){ return [] } }
+function stergeCorp(){ try{ return JSON.parse(localStorage.getItem('hh_del_corp')||'[]') }catch(e){ return [] } }
+function stergeReq(){ try{ return JSON.parse(localStorage.getItem('hh_del_req')||'[]') }catch(e){ return [] } }
+
+function ascundeCorp(mail){
+  var l=ascunseCorp(); if(l.indexOf(mail)<0)l.push(mail);
+  try{ localStorage.setItem('hh_asc_corp',JSON.stringify(l)) }catch(e){}
+}
+function arataCorp(mail){
+  var l=ascunseCorp().filter(function(x){ return x!==mail });
+  try{ localStorage.setItem('hh_asc_corp',JSON.stringify(l)) }catch(e){}
+}
+function stergeCorpMail(mail){
+  var l=stergeCorp(); if(l.indexOf(mail)<0)l.push(mail);
+  try{ localStorage.setItem('hh_del_corp',JSON.stringify(l)) }catch(e){}
+}
+function ascundeReq(id){
+  var l=ascunseReq(); if(l.indexOf(id)<0)l.push(id);
+  try{ localStorage.setItem('hh_asc_req',JSON.stringify(l)) }catch(e){}
+}
+function stergeReqId(id){
+  var l=stergeReq(); if(l.indexOf(id)<0)l.push(id);
+  try{ localStorage.setItem('hh_del_req',JSON.stringify(l)) }catch(e){}
+}
+
+function esteTest(mail){
+  mail = (mail||'').toLowerCase();
+  return mail.indexOf('test')>=0 || mail.indexOf('twst')>=0 ||
+         mail.indexOf('example.com')>=0 || mail.indexOf('asdf')>=0 ||
+         mail.indexOf('@x.')>=0;
+}
+
+/* ============ TRIMITERE EMAIL ============ */
+function inlocuieste(text, x, lang){
+  var fin = (x.finale||[]);
+  var r2 = '', r3 = '';
+  if(lang==='en'){
+    if(fin[1]) r2 = 'You mentioned it would help to know: "' + String(fin[1]).replace(/^[„"]|[”"]$/g,'') + '".';
+    if(fin[2]) r3 = 'When asked what would make it worth it, you said: "' + String(fin[2]).replace(/^[„"]|[”"]$/g,'') + '".\nThat is exactly what the figures show at the end.';
+  } else {
+    if(fin[1]) r2 = 'Ați scris că v-ar folosi să știți: „' + String(fin[1]).replace(/^[„"]|[”"]$/g,'') + '".';
+    if(fin[2]) r3 = 'La întrebarea despre ce ar însemna că a meritat, ați răspuns: „' + String(fin[2]).replace(/^[„"]|[”"]$/g,'') + '".\nExact asta se vede în cifrele de la final.';
+  }
+  var reduc = '';
+  if(x.reducere){
+    reduc = (lang==='en')
+      ? ('For the additional answers, the first cycle benefits from a '+x.reducere+'% discount.')
+      : ('Pentru răspunsurile suplimentare, primul ciclu beneficiază de o reducere de '+x.reducere+'%.');
+  }
+  return String(text||'')
+    .replace(/\{\{companie\}\}/g, x.comp||'')
+    .replace(/\{\{company\}\}/g, x.comp||'')
+    .replace(/\{\{loc\}\}/g, x.loc||x.name||'')
+    .replace(/\{\{oras\}\}/g, x.oras||x.city||'')
+    .replace(/\{\{city\}\}/g, x.oras||x.city||'')
+    .replace(/\{\{reducere\}\}/g, reduc)
+    .replace(/\{\{discount\}\}/g, reduc)
+    .replace(/\{\{raspuns2\}\}/g, r2)
+    .replace(/\{\{answer2\}\}/g, r2)
+    .replace(/\{\{raspuns3\}\}/g, r3)
+    .replace(/\{\{answer3\}\}/g, r3)
+    .replace(/\{\{want\}\}/g, x.want ? ((lang==='en') ? ('What you hope to get: "'+x.want+'".') : ('Ce sperați să obțineți: „'+x.want+'".')) : '')
+    .replace(/\{\{nume\}\}/g, x.name||'')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
+function ghicesteTipLoc(kind){
+  kind = (kind||'').toLowerCase();
+  if(kind.indexOf('librăr')>=0 || kind.indexOf('librar')>=0 || kind.indexOf('cafenea')>=0 || kind.indexOf('book')>=0) return 'book';
+  if(kind.indexOf('muzeu')>=0 || kind.indexOf('cultural')>=0 || kind.indexOf('galerie')>=0) return 'cult';
+  if(kind.indexOf('hotel')>=0 || kind.indexOf('pensiune')>=0) return 'hotel';
+  if(kind.indexOf('aeroport')>=0 || kind.indexOf('gară')>=0 || kind.indexOf('gara')>=0 || kind.indexOf('terminal')>=0) return 'term';
+  if(kind.indexOf('agenți')>=0 || kind.indexOf('agent')>=0) return 'agency';
+  if(kind.indexOf('bar')>=0 || kind.indexOf('restaurant')>=0 || kind.indexOf('pub')>=0) return 'bar';
+  return 'other';
+}
+
+function trimiteEmailCorp(x){
+  if(!x || !x.mail) return;
+  var p = profil(x.raspuns);
+  var lang = x.lang || 'ro';
+  var dom = p.dom || 'SILO';
+  var tpl = (EMAILS.corporate[lang] && EMAILS.corporate[lang][dom]) || EMAILS.corporate.ro.SILO;
+  var subiect = inlocuieste(tpl.subiect, x, lang);
+  var body = inlocuieste(tpl.body, x, lang);
+  var url = 'mailto:' + encodeURIComponent(x.mail) +
+            '?subject=' + encodeURIComponent(subiect) +
+            '&body=' + encodeURIComponent(body);
+  window.location.href = url;
+}
+
+function trimiteEmailLoc(x){
+  if(!x || !x.email) return;
+  var tip = ghicesteTipLoc(x.kind);
+  var lang = x.lang || 'ro';
+  var tpl = (EMAILS.localuri[lang] && EMAILS.localuri[lang][tip]) || EMAILS.localuri.ro.other;
+  var subiect = inlocuieste(tpl.subiect, x, lang);
+  var body = inlocuieste(tpl.body, x, lang);
+  var url = 'mailto:' + encodeURIComponent(x.email) +
+            '?subject=' + encodeURIComponent(subiect) +
+            '&body=' + encodeURIComponent(body);
+  window.location.href = url;
+}
+
+/* ============ STARE RUNDE ============ */
 async function citesteLive(){
   var prag=Date.now()-30*86400000;
   var recente=(book.events||[]).filter(function(e){return (e.ts||0)>prag}).slice(-30);
@@ -459,13 +572,16 @@ function porneste(){
 }
 function opreste(){ if(timer){clearInterval(timer);timer=null} }
 
-/* ---------- panoul ---------- */
+/* ============ PANOU ============ */
 var fila='Ev';
 el('tabs').onclick=function(e){
   var b=e.target.closest('.tab'); if(!b)return;
   fila=b.dataset.tab;
   [].slice.call(el('tabs').children).forEach(function(x){x.classList.toggle('on',x===b)});
-  ['Ev','Pt','Lo','Rq'].forEach(function(t){ el('t'+t).style.display=(t===fila)?'':'none' });
+  ['Ev','Pt','Lo','Rq','Corp'].forEach(function(t){ var n=el('t'+t); if(n) n.style.display=(t===fila)?'':'none' });
+  /* când deschid un tab, punctul dispare */
+  if(fila==='Rq') marchezCititeReq();
+  if(fila==='Corp') marchezCititeCorp();
   paintMain();
 };
 el('bRef').onclick=async function(){
@@ -473,7 +589,6 @@ el('bRef').onclick=async function(){
   try{ book=await API.book(key); await citesteLive(); paintMain() }catch(e){ say('mMain',e.message,'err') }
   b.disabled=false; b.textContent='Reîmprospătează';
 };
-
 
 function starea(e){
   var s=live[e.id];
@@ -491,8 +606,6 @@ function paintMain(){
   el('kEv').textContent=reale.length;
   el('kLead').textContent=lo.length;
   el('kLive').textContent=evs.filter(function(e){return live[e.id]&&live[e.id].round}).length;
-  var noi=rq.filter(function(r){return r.status==='nou'}).length;
-  el('rqDot').innerHTML=noi?(' <b style="color:var(--gold)">'+noi+'</b>'):'';
 
   if(fila==='Ev'){
     var l=evs.slice().reverse();
@@ -530,6 +643,7 @@ function paintMain(){
   if(fila==='Pt')paintFmtLista();
   if(fila==='Lo')paintLeads();
   if(fila==='Rq')paintReqs();
+  if(fila==='Corp')paintCorp();
 }
 el('lEv').onclick=function(e){
   var r=e.target.closest('[data-ev]'); if(!r)return;
@@ -538,7 +652,6 @@ el('lEv').onclick=function(e){
 };
 el('lPt').onclick=function(e){ var r=e.target.closest('[data-pt]'); if(r)deschidePt(r.dataset.pt) };
 
-/* ---------- filtre și selecție multiplă ---------- */
 var filtru='all', selMod=false, sel={};
 ['All','Real','Test','Live'].forEach(function(k){
   el('f'+k).onclick=function(){
@@ -579,23 +692,11 @@ el('bMarkSel').onclick=async function(){
   if(!ids.length)return say('mMain','Nu ai bifat nimic.','err');
   try{
     await salveaza(function(bk){ (bk.events||[]).forEach(function(e){ if(ids.indexOf(e.id)>=0)e.demo=true }) });
-    sel={}; say('mMain','Marcate ca probă. Le poți ascunde din filtrul „Reale".','ok'); paintMain();
+    sel={}; say('mMain','Marcate ca probă.','ok'); paintMain();
   }catch(e){ say('mMain',e.message,'err') }
 };
-el('bEMark').onclick=async function(){
-  var e=(book.events||[]).filter(function(x){return x.id===evId})[0]; if(!e)return;
-  try{
-    var nou=!e.demo;
-    await salveaza(function(bk){ (bk.events||[]).forEach(function(x){ if(x.id===evId)x.demo=nou }) });
-    e.demo=nou; el('bEMark').textContent=nou?'Scoate din probe':'Marchează ca probă';
-    say('mEv',nou?'Marcată ca probă. Nu mai intră în cifre.':'Scoasă din probe.','ok');
-    paintMain();
-    /* FIX #4: reîmprospătăm și raportul/perechile ca să respecte noul statut */
-    reciteste(evId);
-  }catch(err){ say('mEv',err.message,'err') }
-};
 
-/* ---------- contacte ---------- */
+/* ============ CONTACTE ============ */
 function sursa(s){
   if(!s||s==='site')return 'de pe site';
   var e=(book.events||[]).filter(function(x){return x.id===s})[0];
@@ -624,12 +725,51 @@ el('bLoCopy').onclick=function(){
   HH.copy(f.map(function(x){return x.email}).join(', '), el('bLoCopy'));
 };
 
-/* ---------- cereri de alăturare ---------- */
+/* ============ CERERI LOCALURI ============ */
+var rqFiltru = 'toate';
+['Toate','Noi','Acc','Res','Asc'].forEach(function(k){
+  var btn = el('rqF'+k); if(!btn) return;
+  btn.onclick=function(){
+    rqFiltru = {Toate:'toate',Noi:'nou',Acc:'acceptat',Res:'respins',Asc:'ascuns'}[k];
+    ['Toate','Noi','Acc','Res','Asc'].forEach(function(x){
+      var b=el('rqF'+x); if(!b) return;
+      var on = (x===k);
+      b.style.borderColor = on?'var(--gold)':''; b.style.color = on?'var(--gold)':'';
+    });
+    paintReqs();
+  };
+});
+el('rqFToate').style.borderColor='var(--gold)'; el('rqFToate').style.color='var(--gold)';
+
 function paintReqs(){
   var rq=(book.requests||[]).slice().reverse();
+  var asc = ascunseReq(), del = stergeReq();
+  /* excludem șterse */
+  rq = rq.filter(function(r){ return del.indexOf(r.id)<0 });
+  /* filtru */
+  if(rqFiltru==='ascuns') rq = rq.filter(function(r){ return asc.indexOf(r.id)>=0 });
+  else rq = rq.filter(function(r){ return asc.indexOf(r.id)<0 });
+  if(rqFiltru==='nou') rq = rq.filter(function(r){ return r.status==='nou' });
+  if(rqFiltru==='acceptat') rq = rq.filter(function(r){ return r.status==='acceptat' });
+  if(rqFiltru==='respins') rq = rq.filter(function(r){ return r.status==='respins' });
+
   el('lRq').innerHTML=rq.length?rq.map(function(r){
     var cul=r.status==='nou'?'var(--gold)':(r.status==='acceptat'?'#9BD8A8':'var(--dim)');
-    return '<div class="prow" style="display:block">'
+    var ascuns = asc.indexOf(r.id)>=0;
+    var btns = '';
+    if(rqFiltru==='ascuns'){
+      btns = '<button class="btn ghost small" data-rq="arat" data-id="'+r.id+'">Arată din nou</button>';
+    } else if(r.status==='nou'){
+      btns = '<button class="btn small" data-rq="mail" data-id="'+r.id+'">Trimite email</button>'+
+             '<button class="btn ghost small" data-rq="ok" data-id="'+r.id+'">Acceptă</button>'+
+             '<button class="btn ghost small" data-rq="asc" data-id="'+r.id+'">Ascunde</button>'+
+             '<button class="btn ghost small" data-rq="del" data-id="'+r.id+'" style="border-color:rgba(196,85,47,.5);color:#E89078">Șterge</button>';
+    } else {
+      btns = '<button class="btn ghost small" data-rq="mail" data-id="'+r.id+'">Trimite email</button>'+
+             '<button class="btn ghost small" data-rq="asc" data-id="'+r.id+'">Ascunde</button>'+
+             '<button class="btn ghost small" data-rq="del" data-id="'+r.id+'" style="border-color:rgba(196,85,47,.5);color:#E89078">Șterge</button>';
+    }
+    return '<div class="prow" style="display:block;'+(ascuns?'opacity:.5':'')+'">'
       +'<div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline">'
       +'<div class="nm">'+esc(r.name)+'</div>'
       +'<div class="numt" style="color:'+cul+'">'+esc(r.status)+'</div></div>'
@@ -637,27 +777,32 @@ function paintReqs(){
       +'<div class="sub" style="margin-top:4px;color:var(--gold)">a dat de noi: '+esc(r.found||'—')+'</div>'
       +(r.want?('<p class="sub" style="margin-top:8px;font-style:italic">„'+esc(r.want)+'”</p>'):'')
       +'<div class="sub" style="margin-top:8px">'+esc(r.email)+(r.phone?(' · '+esc(r.phone)):'')+'</div>'
-      +(r.status==='nou'?('<div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">'
-        +'<button class="btn small" data-rq="ok" data-id="'+r.id+'">Acceptă</button>'
-        +'<button class="btn ghost small" data-rq="mail" data-id="'+r.id+'">Scrie-i</button>'
-        +'<button class="btn ghost small" data-rq="no" data-id="'+r.id+'" style="border-color:rgba(196,85,47,.5);color:#E89078">Respinge</button>'
-        +'</div>'):'')
+      +'<div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">'+btns+'</div>'
       +'</div>';
-  }).join(''):'<p class="sub2" style="padding:16px 0">Nicio cerere încă. Butonul e pe paginile de parteneri.</p>';
+  }).join(''):'<p class="sub2" style="padding:16px 0">Nicio cerere aici.</p>';
 }
 el('lRq').onclick=async function(e){
   var b=e.target.closest('[data-rq]'); if(!b)return;
   var r=(book.requests||[]).filter(function(x){return x.id===b.dataset.id})[0]; if(!r)return;
-  if(b.dataset.rq==='mail'){ location.href='mailto:'+r.email+'?subject='+encodeURIComponent('HelloHuman — '+r.name); return }
-  if(b.dataset.rq==='no'){
-    if(!confirm('Respingi cererea de la "'+r.name+'"? Rămâne în listă, marcată.'))return;
-    try{ await API.reqStatus(key,r.id,'respins'); r.status='respins'; paintReqs() }catch(err){ say('mMain',err.message,'err') }
-    return;
+  var op = b.dataset.rq;
+
+  if(op==='mail'){ trimiteEmailLoc(r); return }
+  if(op==='asc'){ ascundeReq(r.id); paintReqs(); return }
+  if(op==='arat'){ 
+    var l=ascunseReq().filter(function(x){return x!==r.id});
+    try{ localStorage.setItem('hh_asc_req', JSON.stringify(l)) }catch(e){}
+    paintReqs(); return;
   }
-  nId=''; el('nTitle').textContent='Acceptă: '+r.name;
-  el('nName').value=r.name; el('nCity').value=r.city||'';
-  nProf=ghiceste(r.kind); el('nPw').value=String(Math.floor(1000+Math.random()*9000));
-  el('nOut').style.display='none'; say('mNew',''); dinCerere=r.id; paintNProf(); go('sNew');
+  if(op==='del'){
+    if(!confirm('Ștergi cererea de la "'+r.name+'"? Dispare definitiv din panoul tău.'))return;
+    stergeReqId(r.id); paintReqs(); return;
+  }
+  if(op==='ok'){
+    nId=''; el('nTitle').textContent='Acceptă: '+r.name;
+    el('nName').value=r.name; el('nCity').value=r.city||'';
+    nProf=ghiceste(r.kind); el('nPw').value=String(Math.floor(1000+Math.random()*9000));
+    el('nOut').style.display='none'; say('mNew',''); dinCerere=r.id; paintNProf(); go('sNew');
+  }
 };
 function ghiceste(k){
   k=(k||'').toLowerCase();
@@ -666,8 +811,183 @@ function ghiceste(k){
   if(k.indexOf('agenți')>=0)return 'corp';
   return 'bar';
 }
+function marchezCititeReq(){
+  var noi = (book.requests||[]).filter(function(r){return r.status==='nou'}).length;
+  if(noi) el('rqDot').innerHTML='';
+}
 
-/* ---------- formate proprii ---------- */
+/* ============ CORPORATE ============ */
+var corpFiltru = 'toate';
+var arataTeste = false;
+['Toate','Net','Trim','Asc','Test'].forEach(function(k){
+  var btn = el('corpF'+k); if(!btn) return;
+  btn.onclick=function(){
+    if(k==='Test'){
+      arataTeste = !arataTeste;
+      btn.textContent = arataTeste ? 'Ascunde teste' : 'Arată teste';
+      btn.style.borderColor = arataTeste?'var(--gold)':'';
+      btn.style.color = arataTeste?'var(--gold)':'';
+      paintCorp(); return;
+    }
+    corpFiltru = {Toate:'toate',Net:'netrimise',Trim:'trimise',Asc:'ascunse'}[k];
+    ['Toate','Net','Trim','Asc'].forEach(function(x){
+      var b=el('corpF'+x); if(!b) return;
+      var on = (x===k);
+      b.style.borderColor = on?'var(--gold)':''; b.style.color = on?'var(--gold)':'';
+    });
+    paintCorp();
+  };
+});
+el('corpFToate').style.borderColor='var(--gold)'; el('corpFToate').style.color='var(--gold)';
+
+function profil(raspuns){
+  if(!raspuns || !raspuns.length) return {nume:'—', dom:''};
+  var t={}, tot=0;
+  raspuns.forEach(function(g){ (g||[]).forEach(function(e){ t[e]=(t[e]||0)+1; tot++ }) });
+  if(!tot) return {nume:'—', dom:''};
+  if((t.STATUSQUO||0) >= tot/2) return {nume:'Începătorul precaut', dom:'STATUSQUO'};
+  delete t.STATUSQUO;
+  var ordine=['SILO','VIZIBILITATE','EFICIENTA','FRICTIUNE','DOVADA'];
+  var dom='', max=-1;
+  ordine.forEach(function(k){ if((t[k]||0)>max){ max=t[k]||0; dom=k } });
+  var nume={SILO:'Silozuri între echipe',VIZIBILITATE:'Vrea vizibilitate',
+    EFICIENTA:'Caută efect asupra rezultatelor',FRICTIUNE:'Nu tolerează muncă în plus',
+    DOVADA:'Cere dovadă măsurabilă'};
+  return {nume:nume[dom]||'—', dom:dom};
+}
+function dedupBiz(lista){
+  var byMail={};
+  (lista||[]).forEach(function(x){
+    var m=(x.mail||'').toLowerCase().trim();
+    if(!m) return;
+    if(!byMail[m]){ byMail[m]=Object.assign({},x); return }
+    var v=byMail[m];
+    ['comp','rol','raspuns','finale','reducere','src','lang','name','loc','oras','city','kind','want'].forEach(function(k){
+      if(!v[k] && x[k]) v[k]=x[k];
+    });
+    if(x.raspuns && (!v.raspuns || !v.raspuns.length)){ v.raspuns=x.raspuns; v.finale=x.finale; v.reducere=x.reducere }
+    if((x.ts||0)>(v.ts||0)) v.ts=x.ts;
+  });
+  return Object.keys(byMail).map(function(k){ return byMail[k] })
+    .sort(function(a,b){ return (b.ts||0)-(a.ts||0) });
+}
+
+function paintCorp(){
+  var brute=(book.leads||[]).filter(function(x){ return x && (x.src==='business'||x.src==='business-intrare') });
+  var lista = dedupBiz(brute);
+  var asc = ascunseCorp(), del = stergeCorp();
+  /* excludem șterse */
+  lista = lista.filter(function(x){ return del.indexOf(x.mail)<0 });
+  /* filtru ascunse / nu */
+  if(corpFiltru==='ascunse') lista = lista.filter(function(x){ return asc.indexOf(x.mail)>=0 });
+  else lista = lista.filter(function(x){ return asc.indexOf(x.mail)<0 });
+  /* filtru teste */
+  if(!arataTeste) lista = lista.filter(function(x){ return !esteTest(x.mail) });
+  /* filtru trimise */
+  if(corpFiltru==='trimise') lista = lista.filter(function(x){ return bizTrimis(x) });
+  if(corpFiltru==='netrimise') lista = lista.filter(function(x){ return !bizTrimis(x) });
+
+  if(!lista.length){
+    el('bizList').innerHTML='<p class="sub2" style="padding:12px 0">Nicio cerere în filtrul curent.</p>';
+    return;
+  }
+
+  el('bizList').innerHTML=lista.map(function(x){
+    var p=profil(x.raspuns);
+    var rol={ceo:'conducere',hr:'resurse umane',parteneri:'agenție'}[x.rol]||'—';
+    var fin=(x.finale||[]).filter(Boolean);
+    var trimis = bizTrimis(x);
+    var ascuns = asc.indexOf(x.mail)>=0;
+    var isTest = esteTest(x.mail);
+
+    var btns;
+    if(corpFiltru==='ascunse'){
+      btns = '<button class="btn ghost small" data-bz="arat" data-m="'+esc(x.mail)+'">Arată din nou</button>';
+    } else {
+      btns = '<button class="btn small" data-bz="mail" data-m="'+esc(x.mail)+'">Trimite email</button>'+
+             '<button class="btn ghost small" data-bz="trm" data-m="'+esc(x.mail)+'">'+(trimis?'Marchează netrimis':'Marchează trimis')+'</button>'+
+             '<button class="btn ghost small" data-bz="asc" data-m="'+esc(x.mail)+'">Ascunde</button>'+
+             '<button class="btn ghost small" data-bz="del" data-m="'+esc(x.mail)+'" style="border-color:rgba(196,85,47,.5);color:#E89078">Șterge</button>';
+    }
+
+    return '<div class="row" style="align-items:flex-start;flex-direction:column;gap:5px;'+(ascuns?'opacity:.5;':'')+'">'+
+      '<div style="display:flex;justify-content:space-between;width:100%;gap:10px">'+
+        '<b>'+(trimis?'':'<span style="color:var(--gold)">• </span>')+esc(x.comp||'(fără companie)')+
+          (isTest?' <span style="color:var(--dim);font-size:11px">test</span>':'')+'</b>'+
+        '<span style="font-size:12px;opacity:.6;white-space:nowrap">'+HH.fmtDate(x.ts)+'</span></div>'+
+      '<span style="font-size:13px">'+esc(x.mail||'')+' · '+rol+'</span>'+
+      (x.raspuns ? '<span style="font-size:13px;color:var(--gold)">'+esc(p.nume)+
+        (x.reducere ? '  ·  −'+x.reducere+'%' : '')+'</span>' : '<span style="font-size:13px;opacity:.5">doar a intrat, nu a completat</span>')+
+      (fin.length ? '<span style="font-size:12.5px;opacity:.75;margin-top:2px">'+fin.map(esc).join(' · ')+'</span>' : '')+
+      '<div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:7px">'+btns+'</div>'+
+    '</div>';
+  }).join('');
+}
+
+el('bizList').onclick=function(e){
+  var b=e.target.closest('[data-bz]'); if(!b) return;
+  var mail = b.dataset.m;
+  var brute=(book.leads||[]).filter(function(x){ return x && (x.src==='business'||x.src==='business-intrare') });
+  var lista = dedupBiz(brute);
+  var x = lista.filter(function(y){ return (y.mail||'')===mail })[0];
+  if(!x) return;
+  var op = b.dataset.bz;
+
+  if(op==='mail'){ trimiteEmailCorp(x); return }
+  if(op==='trm'){ bizMarcheaza(mail); paintCorp(); puncte(); return }
+  if(op==='asc'){ ascundeCorp(mail); paintCorp(); puncte(); return }
+  if(op==='arat'){ 
+    var l=ascunseCorp().filter(function(y){return y!==mail});
+    try{ localStorage.setItem('hh_asc_corp', JSON.stringify(l)) }catch(e){}
+    paintCorp(); return;
+  }
+  if(op==='del'){
+    if(!confirm('Ștergi cererea de la "'+(x.comp||x.mail)+'"? Dispare definitiv din panoul tău.'))return;
+    stergeCorpMail(mail); paintCorp(); puncte(); return;
+  }
+};
+
+function marchezCititeCorp(){
+  var noi = (book.leads||[]).filter(function(x){
+    return x && (x.src==='business'||x.src==='business-intrare') && !bizTrimis(x);
+  }).length;
+  if(noi) el('corpDot').innerHTML='';
+}
+
+/* Ce s-a trimis. */
+function bizTrimisLista(){ try{ return JSON.parse(localStorage.getItem('hh_trm')||'[]') }catch(e){ return [] } }
+function bizTrimis(x){ return bizTrimisLista().indexOf(x.mail||'')>=0 }
+function bizMarcheaza(mail){
+  var l=bizTrimisLista(), i=l.indexOf(mail);
+  if(i>=0) l.splice(i,1); else l.push(mail);
+  try{ localStorage.setItem('hh_trm', JSON.stringify(l)) }catch(e){}
+}
+
+/* Beculețe — la intrare și la reîmprospătare */
+async function puncte(){
+  try{
+    var d=await API.book(key);
+    /* localuri */
+    var noiRq = (d.requests||[]).filter(function(r){ return r.status==='nou' }).length;
+    var ascRq = ascunseReq();
+    var delRq = stergeReq();
+    noiRq = (d.requests||[]).filter(function(r){
+      return r.status==='nou' && ascRq.indexOf(r.id)<0 && delRq.indexOf(r.id)<0;
+    }).length;
+    el('rqDot').innerHTML = noiRq ? (' <b style="color:var(--gold)">'+noiRq+'</b>') : '';
+
+    /* corporate */
+    var brute=(d.leads||[]).filter(function(x){ return x && (x.src==='business'||x.src==='business-intrare') });
+    var lista = dedupBiz(brute);
+    var ascC = ascunseCorp(), delC = stergeCorp();
+    var noiC = lista.filter(function(x){
+      return ascC.indexOf(x.mail)<0 && delC.indexOf(x.mail)<0 && !bizTrimis(x) && !esteTest(x.mail);
+    }).length;
+    el('corpDot').innerHTML = noiC ? (' <b style="color:var(--gold)">'+noiC+'</b>') : '';
+  }catch(e){}
+}
+
+/* ============ FORMTE PROPRII ============ */
 var fmtId='', fTacut=2;
 function formate(){ return (book && book.formate) || [] }
 function paintFTacut(){
@@ -696,7 +1016,7 @@ el('lFmt').onclick=function(e){
   el('bFDel').style.display=''; say('mFmt',''); go('sFmt');
 };
 
-/* ---------- nevoile ---------- */
+/* ============ NEVOI ============ */
 var nevoi=[];
 async function incarcaNevoi(){
   say('mNev2','Se încarcă…');
@@ -713,157 +1033,7 @@ async function incarcaNevoi(){
   }catch(e){ say('mNev2', e.message, 'err') }
 }
 
-/* ---------- cereri de la companii ----------
-   FIX #1 și #2: deduplicare după email.
-   Când un client completează formularul (business-intrare) și apoi
-   chestionarul (business), avem două linii pentru același om.
-   Le combinăm într-una, păstrând datele complete de la chestionar. */
-var bizLista=[];
-function profil(raspuns){
-  if(!raspuns || !raspuns.length) return {nume:'—', dom:''};
-  var t={}, tot=0;
-  raspuns.forEach(function(g){ (g||[]).forEach(function(e){ t[e]=(t[e]||0)+1; tot++ }) });
-  if(!tot) return {nume:'—', dom:''};
-  if((t.STATUSQUO||0) >= tot/2) return {nume:'Începătorul precaut', dom:'STATUSQUO'};
-  delete t.STATUSQUO;
-  var ordine=['SILO','VIZIBILITATE','EFICIENTA','FRICTIUNE','DOVADA'];
-  var dom='', max=-1;
-  ordine.forEach(function(k){ if((t[k]||0)>max){ max=t[k]||0; dom=k } });
-  var nume={SILO:'Silozuri între echipe',VIZIBILITATE:'Vrea vizibilitate',
-    EFICIENTA:'Caută efect asupra rezultatelor',FRICTIUNE:'Nu tolerează muncă în plus',
-    DOVADA:'Cere dovadă măsurabilă'};
-  return {nume:nume[dom]||'—', dom:dom};
-}
-function dedupBiz(lista){
-  /* Grupăm după email. Dacă există două intrări pentru același email,
-     le unim: păstrăm raspuns/finale/reducere de la cea care le are. */
-  var byMail={};
-  (lista||[]).forEach(function(x){
-    var m=(x.mail||'').toLowerCase().trim();
-    if(!m) return;
-    if(!byMail[m]){ byMail[m]=Object.assign({},x); return }
-    var v=byMail[m];
-    /* completăm câmpurile lipsă */
-    ['comp','rol','raspuns','finale','reducere','src'].forEach(function(k){
-      if(!v[k] && x[k]) v[k]=x[k];
-    });
-    /* dacă x are raspuns dar v nu, îl luăm pe al lui x */
-    if(x.raspuns && (!v.raspuns || !v.raspuns.length)){ v.raspuns=x.raspuns; v.finale=x.finale; v.reducere=x.reducere }
-    /* păstrăm cel mai recent timestamp */
-    if((x.ts||0)>(v.ts||0)) v.ts=x.ts;
-  });
-  return Object.keys(byMail).map(function(k){ return byMail[k] })
-    .sort(function(a,b){ return (b.ts||0)-(a.ts||0) });
-}
-async function incarcaBiz(){
-  say('mBiz','Se încarcă…');
-  try{
-    var d=await API.book(key);
-    var brute=(d.leads||[]).filter(function(x){ return x && (x.src==='business'||x.src==='business-intrare') });
-    bizLista=dedupBiz(brute);
-    if(!bizLista.length){ el('bizList').innerHTML='<p class="sub2" style="padding:12px 0">Nicio cerere încă.</p>'; say('mBiz',''); return }
-    el('bizList').innerHTML=bizLista.map(function(x){
-      var p=profil(x.raspuns);
-      var rol={ceo:'conducere',hr:'resurse umane',parteneri:'agenție'}[x.rol]||'—';
-      var fin=(x.finale||[]).filter(Boolean);
-      var trimis = bizTrimis(x);
-      return '<div class="row" style="align-items:flex-start;flex-direction:column;gap:5px">'+
-        '<div style="display:flex;justify-content:space-between;width:100%;gap:10px">'+
-          '<b>'+(trimis?'':'<span style="color:var(--gold)">• </span>')+esc(x.comp||'(fără companie)')+'</b>'+
-          '<span style="font-size:12px;opacity:.6;white-space:nowrap">'+HH.fmtDate(x.ts)+'</span></div>'+
-        '<span style="font-size:13px">'+esc(x.mail||'')+' · '+rol+'</span>'+
-        (x.raspuns ? '<span style="font-size:13px;color:var(--gold)">'+esc(p.nume)+
-          (x.reducere ? '  ·  −'+x.reducere+'%' : '')+'</span>' : '<span style="font-size:13px;opacity:.5">doar a intrat, nu a completat</span>')+
-        (fin.length ? '<span style="font-size:12.5px;opacity:.75;margin-top:2px">'+fin.map(esc).join(' · ')+'</span>' : '')+
-        '<div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:7px">'+
-          '<button class="btn ghost small" data-msg="'+esc(x.mail||'')+'">Copiază mesajul</button>'+
-          '<button class="btn ghost small" data-trm="'+esc(x.mail||'')+'">'+(trimis?'Trimis ✓':'Marchează trimis')+'</button>'+
-        '</div>'+
-      '</div>';
-    }).join('');
-    say('mBiz', bizLista.length+' cereri', 'ok');
-  }catch(e){ say('mBiz', e.message, 'err') }
-}
-
-/* Ce s-a trimis deja. Se tine local, pe calculatorul tau. */
-function bizTrimisLista(){ try{ return JSON.parse(localStorage.getItem('hh_trm')||'[]') }catch(e){ return [] } }
-function bizTrimis(x){ return bizTrimisLista().indexOf(x.mail||'')>=0 }
-function bizMarcheaza(mail){
-  var l=bizTrimisLista(), i=l.indexOf(mail);
-  if(i>=0) l.splice(i,1); else l.push(mail);
-  try{ localStorage.setItem('hh_trm', JSON.stringify(l)) }catch(e){}
-}
-
-/* Mesajul de însoțire. */
-var PRIMA={
-  SILO:'Punctul pe care l-ați indicat este distanța dintre echipe.',
-  VIZIBILITATE:'Punctul pe care l-ați indicat este ce se întâmplă între oameni, fără să se vadă.',
-  DOVADA:'Punctul pe care l-ați indicat este lipsa unei cifre pe care să o puteți susține.',
-  FRICTIUNE:'Punctul pe care l-ați indicat este costul în timp al oricărei inițiative noi.',
-  EFICIENTA:'Punctul pe care l-ați indicat este efectul asupra rezultatelor, nu procesul.',
-  STATUSQUO:'Punctul pe care l-ați indicat este nevoia de dovadă înaintea oricărui angajament.'
-};
-var STRUCT={
-  SILO:{ mij:'Prezentarea arată ce se poate măsura între echipe și cât de repede.',
-    inch:'Decizia rămâne a dumneavoastră. Vă răspund la orice întrebare, fără să insist.'},
-  VIZIBILITATE:{ mij:'Prezentarea arată exact ce vedeți la final și ce nu ajunge niciodată în raport.',
-    inch:'Dacă vreți să vedeți cum arată un raport real, vi-l trimit.'},
-  DOVADA:{ mij:'Prezentarea are cifrele și sursele lor: anchete europene pe zeci de mii de respondenți, iar metodologia completă în anexă.',
-    inch:'Dacă departamentul dumneavoastră juridic vrea documentația de prelucrare a datelor, o trimit înainte de orice discuție.'},
-  FRICTIUNE:{ mij:'Nu cerem acces la niciun sistem, nu instalăm nimic și nu ocupăm timpul nimănui din echipă.',
-    inch:'Dacă la jumătate vă răzgândiți, se oprește dintr-un buton. Nu rămâne nimic instalat.'},
-  EFICIENTA:{ mij:'Prezentarea arată ce obțineți în paisprezece zile și ce decizie puteți lua pe baza acelor cifre.',
-    inch:'Dacă vreți, calculăm împreună ce ar însemna asta pentru organizația dumneavoastră.'},
-  STATUSQUO:{ mij:'Prezentarea are cei trei pași, în ordine, cu ce se întâmplă la fiecare.',
-    inch:'Nu e nevoie de nicio decizie acum. Citiți, iar dacă are sens, vorbim.'}
-};
-
-function bizMesaj(x){
-  var p=profil(x.raspuns);
-  var s=STRUCT[p.dom]||STRUCT.SILO;
-  var fin=(x.finale||[]);
-  var L=[];
-  L.push('Bună ziua,');
-  L.push('');
-  L.push('Vă mulțumesc pentru răspunsurile oferite.');
-  L.push('');
-  if(PRIMA[p.dom]) L.push(PRIMA[p.dom]);
-  L.push('');
-  L.push('Găsiți prezentarea aici — cinci pagini, un minut de citit:');
-  L.push('https://hellohuman.ro/masuram');
-  L.push('');
-  L.push(s.mij);
-  L.push('');
-  if(fin[2]){
-    L.push('La întrebarea despre ce ar însemna că a meritat, ați răspuns: „' + fin[2].replace(/^[„"]|[”"]$/g,'') + '”.');
-    L.push('Exact asta se vede în cifrele de la final.');
-    L.push('');
-  } else if(fin[1]){
-    L.push('Ați scris că v-ar folosi să știți: „' + fin[1].replace(/^[„"]|[”"]$/g,'') + '”.');
-    L.push('Aceea este una dintre cifrele pe care le livrăm.');
-    L.push('');
-  }
-  if(x.reducere){
-    L.push('Pentru răspunsurile suplimentare, primul ciclu beneficiază de o reducere de '+x.reducere+'%.');
-    L.push('');
-  }
-  L.push(s.inch);
-  L.push('');
-  L.push('Toate cele bune,');
-  L.push('Bogdan');
-  L.push('bogdan@hellohuman.ro');
-  return L.join('\n');
-}
-el('bizList').onclick=function(e){
-  var b=e.target.closest('button'); if(!b) return;
-  var mail=b.dataset.msg || b.dataset.trm; if(!mail) return;
-  var x=bizLista.filter(function(y){ return (y.mail||'')===mail })[0]; if(!x) return;
-  if(b.dataset.msg){ HH.copy(bizMesaj(x), b) }
-  else { bizMarcheaza(mail); incarcaBiz() }
-};
-
-
-/* ---------- locuri recomandate ---------- */
+/* ============ LOCURI RECOMANDATE ============ */
 var recLista=[];
 function recTrimisLista(){ try{ return JSON.parse(localStorage.getItem('hh_rec')||'[]') }catch(e){ return [] } }
 function recTrimis(x){ return recTrimisLista().indexOf((x.loc||'')+'|'+(x.oras||''))>=0 }
@@ -909,7 +1079,7 @@ async function incarcaRec(){
   }catch(e){ say('mRec2', e.message, 'err') }
 }
 
-/* ---------- Cherie ---------- */
+/* ============ CHERIE ============ */
 var cheLista=[];
 async function incarcaChe(){
   say('mChe','Se încarcă…');
@@ -949,31 +1119,6 @@ el('recList').onclick=function(e){
   var b=e.target.closest('button'); if(!b) return;
   if(b.dataset.cauta){ window.open('https://www.google.com/search?q='+encodeURIComponent(b.dataset.cauta),'_blank') }
   else if(b.dataset.rtrm){ recMarcheaza(b.dataset.rtrm); incarcaRec() }
-};
-
-el('bBiz').onclick=function(){ go('sBiz'); incarcaBiz() };
-
-/* FIX #5: bizPunct() și incarcaBiz() nu mai fac dublu request.
-   bizPunct citește o singură dată pentru a pune punctul pe buton. */
-async function bizPunct(){
-  try{
-    var d=await API.book(key);
-    var brute=(d.leads||[]).filter(function(x){
-      return x && (x.src==='business'||x.src==='business-intrare');
-    });
-    var unice=dedupBiz(brute);
-    var noi=unice.filter(function(x){ return !bizTrimis(x) }).length;
-    var b=el('bBiz');
-    b.innerHTML = 'Cereri de la companii' + (noi ? ' <b style="color:var(--gold)">'+noi+'</b>' : '');
-  }catch(e){}
-}
-el('bBizB').onclick=function(e){ e.preventDefault(); HH.back() };
-el('bBizRef').onclick=function(){ incarcaBiz() };
-el('bBizCopy').onclick=function(){
-  HH.copy(bizLista.map(function(x){
-    var p=profil(x.raspuns);
-    return (x.comp||'—')+'\t'+(x.mail||'')+'\t'+(x.rol||'')+'\t'+p.nume+'\t'+(x.reducere||0)+'%';
-  }).join('\n'), el('bBizCopy'));
 };
 
 el('bNev').onclick=function(){ go('sNev'); incarcaNevoi() };
@@ -1045,7 +1190,7 @@ el('bFDel').onclick=async function(){
   }catch(e){ say('mFmt',e.message,'err') }
 };
 
-/* ---------- fișa partenerului ---------- */
+/* ============ FIȘA PARTENERULUI ============ */
 var ptId='';
 function deschidePt(id){
   var p=(book.partners||[]).filter(function(x){return x.id===id})[0]; if(!p)return;
@@ -1089,17 +1234,12 @@ el('bPDel').onclick=async function(){
     paintMain(); HH.back() }catch(e){ say('mPart',e.message,'err') }
 };
 
-/* ---------- fișa rundei ---------- */
+/* ============ FIȘA RUNDEI ============ */
 var evId='';
-
-/* Verific dacă runda curentă e marcată ca probă.
-   FIX #4: raportul și perechile trebuie să respecte acest statut. */
 function esteDemo(){
   var e=(book.events||[]).filter(function(x){return x.id===evId})[0];
   return !!(e && e.demo);
 }
-
-/* Raportul pentru client. Doar cifre agregate. */
 var raportTxt='';
 function paintRaport(d){
   var box=el('raport'); if(!box) return;
@@ -1265,7 +1405,7 @@ el('bEDel').onclick=async function(){
     delete live[evId]; paintMain(); HH.back() }catch(err){ say('mEv',err.message,'err') }
 };
 
-/* ---------- partener nou ---------- */
+/* ============ PARTENER NOU ============ */
 var nProf='bar', nId='', dinCerere='';
 function paintNProf(){
   el('nProf').innerHTML=Object.keys(P).filter(function(k){return k!=='demo'}).map(function(k){
@@ -1303,7 +1443,7 @@ function nMsgTxt(){ return 'Panoul tău HelloHuman. '+el('nPwOut').textContent }
 el('bNSend').onclick=function(){ HH.shareLink(el('nLink').textContent, nMsgTxt()) };
 el('bNCopy').onclick=function(){ HH.copy(nMsg(), el('bNCopy')) };
 
-/* ---------- demonstrația ---------- */
+/* ============ DEMO ============ */
 var dQ=0;
 function paintDQ(){
   var dqs=(cLimba==='en'&&P.demo.qs.en)?P.demo.qs.en:P.demo.qs.ro;
@@ -1331,7 +1471,6 @@ el('bDGo').onclick=async function(){
   }catch(e){ say('mDemo',e.message,'err') }
   b.disabled=false; b.textContent='Pornește demonstrația';
 };
-
 var demoId='', demoT=null;
 function demoPornit(id){
   demoId=id;
@@ -1395,9 +1534,8 @@ el('qStop2').onclick=async function(){
   try{ await API.op(demoId,'stop'); demoTick() }catch(e){ say('qMsg',e.message,'err') }
 };
 
-/* ---------- pregătirea unei runde ---------- */
+/* ============ CONFIGURARE RUNDĂ ============ */
 var cProf='bar';
-
 var cLimba='ro';
 function paintCLang(){
   var b=el('cLang'); if(!b) return;
@@ -1410,8 +1548,6 @@ if(el('cLang')) el('cLang').onclick=function(e){
   cLimba=b.dataset.l; paintCLang();
   if(typeof paintCProf==='function') paintCProf();
 };
-
-
 function meseProp(cheie){
   var p=(typeof P!=='undefined'&&P[cheie])||null;
   if(!p) return '1, 2, 3, 4';
@@ -1420,8 +1556,6 @@ function meseProp(cheie){
   for(var i=1;i<=n;i++) a.push(i);
   return a.join(', ');
 }
-
-
 function altaLimba(lista){
   var p = P[cProf] || P.bar;
   var a = (cLimba==='en') ? (p.qs.en||[]) : (p.qs.ro||[]);
@@ -1432,7 +1566,6 @@ function altaLimba(lista){
   });
   return out.join('\n');
 }
-
 function paintCProf(){
   el('cProf').innerHTML=Object.keys(P).filter(function(k){return k!=='demo'}).map(function(k){
     return '<button class="opt'+(k===cProf?' sel':'')+'" data-p="'+k+'">'+esc(P[k].ro)+'</button>' }).join('');
@@ -1445,7 +1578,6 @@ function paintCProf(){
   el('cQ').value=((cLimba==='en'&&p.qs.en)?p.qs.en:p.qs.ro).join('\n'); if(el('cOfera'))el('cOfera').value='';
   paintDurate(cProf);
 }
-
 function paintDurate(cheie){
   var p=P[cheie]||P.bar, d=p.durate||[];
   if(!d.length){ el('cMOpt').innerHTML=''; return }
@@ -1473,7 +1605,6 @@ el('bNewEv').onclick=function(){
 };
 el('bCB').onclick=function(e){ e.preventDefault(); HH.back() };
 
-/* ---------- cum pornesc rundele ---------- */
 var cAutoMod='manual';
 function paintAuto(){
   var v=[['manual','Pornesc eu, când e momentul'],['auto','Pornește singur, la un număr de oameni']];
@@ -1488,7 +1619,6 @@ el('cAuto').onclick=function(e){
   paintAuto();
 };
 
-
 el('bImp').onclick=async function(){
   var cod=el('impCod').value.trim();
   if(!cod) return say('mImp','Scrie codul primit.','err');
@@ -1497,7 +1627,6 @@ el('bImp').onclick=async function(){
     var d=await API.get(cod);
     var q=(d.cfg&&d.cfg.quiz)||d.quiz||null;
     if(!q) return say('mImp','Codul nu conține o configurare.','err');
-
     el('cEv').value = q.ev||'';
     if(el('cCl')) el('cCl').value = q.client||'';
     el('cT').value = (q.tables||[]).join(', ');
@@ -1511,7 +1640,6 @@ el('bImp').onclick=async function(){
     el('cS').value = q.seats||4;
     el('cM').value = q.minutes||20;
     if(q.qs) el('cQ').value = q.qs;
-
     say('mImp','Gata. Verifică și creează runda.','ok');
     el('impCod').value='';
   }catch(e){ say('mImp', e.message==='evenimentul nu exista' ? 'Codul nu e valid sau a expirat.' : e.message, 'err') }
@@ -1543,7 +1671,7 @@ el('bCGo').onclick=async function(){
   b.disabled=false; b.textContent='Creează runda';
 };
 
-/* ---------- codul QR ---------- */
+/* ============ COD QR ============ */
 var qUrl='', qEv='', qHostUrl='', qHostPw='';
 function aratQR(nume, url, pw, id){
   qUrl=url; qEv=id; qHostUrl=HH.base()+'partener.html#m='+id; qHostPw=pw||'';
@@ -1574,7 +1702,6 @@ function tiparesteCod(adresa){
     if(!src && im) src=im.src;
     tmp.remove();
     if(!src){ alert('Codul nu s-a putut desena. Încearcă din alt browser.'); return }
-
     var adr=adresa.replace(/^https?:\/\//,'');
     var w=window.open('', '_blank');
     if(!w){ alert('Browserul a blocat fereastra de tipar. Permite ferestrele și încearcă din nou.'); return }
@@ -1604,16 +1731,15 @@ function tiparesteCod(adresa){
 }
 el('bQPrint').onclick=function(){ tiparesteCod(qUrl) };
 
-/* ---------- pornire ---------- */
+/* ============ PORNIRE ============ */
 HH.initNav(ECR,'sLog',function(){ HH.go('sLog',true) });
 (function(){
   var k=HH.recall('hh_k');
-  if(k){ intra(k).then(function(){ HH.go('sMain',true); paintMain(); porneste() })
+  if(k){ intra(k).then(function(){ HH.go('sMain',true); paintMain(); porneste(); puncte() })
          .catch(function(){ HH.drop('hh_k') }) }
 })();
 
 </script>
-
 
 </body>
 </html>
