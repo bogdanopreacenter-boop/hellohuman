@@ -79,6 +79,11 @@ body{background:#16302B;margin:0}
 .bl b{font:500 14px/1.45 var(--disp);text-align:right}
 .bt{font:400 13px/1 var(--sans);color:var(--dim);margin:0;letter-spacing:.06em}
 .bsub{text-align:center;font:italic 400 14px/1.5 var(--disp);color:var(--dim);margin:16px 0 0}
+
+/* Patru pași: pe ecrane late, se așază pe un rând. Sub 641px rămâne cum e. */
+@media(min-width:641px){
+  .steps{grid-template-columns:repeat(4,1fr)}
+}
 </style>
 <script type="application/ld+json">
 {
@@ -233,7 +238,7 @@ body{background:#16302B;margin:0}
     <p class="eyebrow" data-t="dE">Cercetare</p>
     <h2 data-t="dH">E mai bine decât pare</h2>
     <p class="lead" data-t="dP">Ne așteptăm ca o conversație cu un necunoscut să fie stânjenitoare. Se dovedește aproape întotdeauna că nu&nbsp;e.</p>
-    
+    <p class="lead" data-t="dP2" style="margin-top:14px">Cercetătorii de la Chicago Booth au pus mii de oameni în situația asta și au găsit același lucru de fiecare dată: participanții se simt mai bine, mai conectați, iar efectul durează luni de zile. Conversația cu un străin e, în medie, cu 40% mai plăcută decât ne imaginăm.</p>
   </div>
 </section>
 
@@ -246,6 +251,7 @@ body{background:#16302B;margin:0}
         <div class="step"><p class="n">1</p><h3 data-t="s1h">Scanezi codul</h3><p data-t="s1p">Un cartonaș pe masă. Zece secunde, fără cont.</p></div>
         <div class="step"><p class="n">2</p><h3 data-t="s2h">O apăsare</h3><p data-t="s2p">Vorbești, asculți, sau doar stai.</p></div>
         <div class="step"><p class="n">3</p><h3 data-t="s3h">Aștepți</h3><p data-t="s3p">Îți vibrează telefonul când începe.</p></div>
+        <div class="step"><p class="n">4</p><h3 data-t="s4h">Începi</h3><p data-t="s4p">Un prenume, un număr de masă, o întrebare. Atât ți se dă.</p></div>
       </div>
     
       <div class="bilet">
@@ -282,7 +288,7 @@ body{background:#16302B;margin:0}
   <div class="wrap">
     <p class="eyebrow" data-t="rE">Un loc anume</p>
     <h2 data-t="rH2">Unde ai vrea să găsești HelloHuman?</h2>
-    <p class="lead" data-t="rP2">Scrie-ne cum se numește și în ce oraș e.</p>
+    <p class="lead" data-t="rP2">Nu ne place să alegem noi locurile. Spune-ne unde ai vrea să se întâmple — într-un bar din cartier, într-o librărie, într-un aeroport.</p>
     <form id="fRec" novalidate style="max-width:420px;margin-top:26px">
       <label class="lb2" for="r1" data-t="rL1">CE LOC</label>
       <input type="text" id="r1" placeholder="Cafeneaua din colț" data-tp="rP1">
@@ -295,7 +301,7 @@ body{background:#16302B;margin:0}
       <button class="btn ghost" id="bRec" type="submit" data-t="rB">TRIMITE</button>
       <p class="msg3" id="mRec"></p>
     </form>
-    <p class="src2" data-t="rN">Te anunțăm când ajunge acolo.</p>
+    <p class="src2" data-t="rN">Când ajungem acolo, te anunțăm primul.</p>
   </div>
 </section>
 
@@ -608,11 +614,12 @@ en:{cOf:'On the house',dp1:'You scan the card on the table.',dp2:'You sit down w
  cdWa:'Send on WhatsApp',cdMail:'Send by email',cdCopy:'Copy the code'}
 };
 var SITE={
- ro:{phMail:"tu@email.com",kMasa:"MASA TA",kCu:"La masă cu tine",kQ:"De aici porniți",kQt:"Ce ai învățat prea târziu?",kSub:"Atât primești. Nimic altceva.",rL1:"CE LOC",rL2:"ÎN CE ORAȘ",rL3:"DE CE ACELA",rL4:"EMAILUL TĂU",rP1:"Cafeneaua din colț",rP2b:"București",rP3:"o propoziție",rP4:"tu@email.com",rB:"TRIMITE",rN:"Te anunțăm când ajunge acolo.",dE:"Cercetare",dH:"E mai bine decât pare",dP:"Ne așteptăm ca o conversație cu un necunoscut să fie stânjenitoare. Se dovedește aproape întotdeauna că nu&nbsp;e.",rE:"Un loc anume",rH2:"Unde ai vrea să găsești HelloHuman?",rP2:"Scrie-ne cum se numește și în ce oraș e.",rB2:"SPUNE-NE CARE", hP:'Fără cont. Fără rezervare. Doar curiozitate.',hP2:'Scanezi codul, spui în ce fel vrei să participi, iar telefonul îți arată la ce masă. Nu trebuie să abordezi pe nimeni.',
+ ro:{phMail:"tu@email.com",kMasa:"MASA TA",kCu:"La masă cu tine",kQ:"De aici porniți",kQt:"Ce ai învățat prea târziu?",kSub:"Atât primești. Nimic altceva.",rL1:"CE LOC",rL2:"ÎN CE ORAȘ",rL3:"DE CE ACELA",rL4:"EMAILUL TĂU",rP1:"Cafeneaua din colț",rP2b:"București",rP3:"o propoziție",rP4:"tu@email.com",rB:"TRIMITE",rN:"Când ajungem acolo, te anunțăm primul.",dE:"Cercetare",dH:"E mai bine decât pare",dP:"Ne așteptăm ca o conversație cu un necunoscut să fie stânjenitoare. Se dovedește aproape întotdeauna că nu&nbsp;e.",dP2:"Cercetătorii de la Chicago Booth au pus mii de oameni în situația asta și au găsit același lucru de fiecare dată: participanții se simt mai bine, mai conectați, iar efectul durează luni de zile. Conversația cu un străin e, în medie, cu 40% mai plăcută decât ne imaginăm.",rE:"Un loc anume",rH2:"Unde ai vrea să găsești HelloHuman?",rP2:"Nu ne place să alegem noi locurile. Spune-ne unde ai vrea să se întâmple — într-un bar din cartier, într-o librărie, într-un aeroport.",rB2:"SPUNE-NE CARE", hP:'Fără cont. Fără rezervare. Doar curiozitate.',hP2:'Scanezi codul, spui în ce fel vrei să participi, iar telefonul îți arată la ce masă. Nu trebuie să abordezi pe nimeni.',
  sP:'Restul se întâmplă.',
  s1h:'Scanezi codul',s1p:'Un cartonaș pe masă. Zece secunde, fără cont.',
  s2h:'O apăsare',s2p:'Vorbești, asculți, sau doar stai.',
  s3h:'Aștepți',s3p:'Îți vibrează telefonul când începe.',
+ s4h:'Începi',s4p:'Un prenume, un număr de masă, o întrebare. Atât ți se dă.',
  
  
  
@@ -633,11 +640,12 @@ var SITE={
  fEye:'Întrebări frecvente',fH:'Ai întrebări?<br>Iată răspunsurile.',
  wEye:'De ce funcționează',wH:'Știința din spatele<br>conexiunilor umane.',
  ftS:'Pe scurt',ftT:'Oameni care nu se cunosc ajung la aceeași masă pentru câteva minute, chiar acolo unde se aflau oricum.'},
- en:{phMail:"you@email.com",kMasa:"YOUR TABLE",kCu:"At your table",kQ:"Start from here",kQt:"What did you learn too late?",kSub:"That's all you get. Nothing else.",rL1:"WHICH PLACE",rL2:"WHICH CITY",rL3:"WHY THAT ONE",rL4:"YOUR EMAIL",rP1:"The café on the corner",rP2b:"Bucharest",rP3:"one sentence",rP4:"you@email.com",rB:"SEND",rN:"We let you know when it gets there.",dE:"Research",dH:"It goes better than expected",dP:"We expect a conversation with a stranger to be awkward. It almost never&nbsp;is.",rE:"A place in mind",rH2:"Where would you like to find HelloHuman?",rP2:"Tell us what it is called and which city.",rB2:"TELL US WHICH", hP:'No account. No booking. Just curiosity.',hP2:'Scan the code on the table, choose how you want to join, and we\'ll seat you at a table with people who want to talk.</b>',
+ en:{phMail:"you@email.com",kMasa:"YOUR TABLE",kCu:"At your table",kQ:"Start from here",kQt:"What did you learn too late?",kSub:"That's all you get. Nothing else.",rL1:"WHICH PLACE",rL2:"WHICH CITY",rL3:"WHY THAT ONE",rL4:"YOUR EMAIL",rP1:"The café on the corner",rP2b:"Bucharest",rP3:"one sentence",rP4:"you@email.com",rB:"SEND",rN:"When we get there, you will be the first to know.",dE:"Research",dH:"It goes better than expected",dP:"We expect a conversation with a stranger to be awkward. It almost never&nbsp;is.",dP2:"Researchers at Chicago Booth put thousands of people in exactly this situation and found the same thing every time: participants felt better, more connected, and the effect lasted for months. A conversation with a stranger is, on average, 40% more enjoyable than we imagine.",rE:"A place in mind",rH2:"Where would you like to find HelloHuman?",rP2:"We do not like choosing the places ourselves. Tell us where you would want it to happen — in a neighbourhood bar, in a bookshop, in an airport.",rB2:"TELL US WHICH", hP:'No account. No booking. Just curiosity.',hP2:'Scan the code on the table, choose how you want to join, and we\'ll seat you at a table with people who want to talk.</b>',
  sP:'The rest happens.',
  s1h:'You scan the code',s1p:'There is a code on the table. Scan it with your phone camera and write your first name.',
  s2h:'You choose how to join',s2p:'Want to talk? Rather listen? Looking for new ideas? Pick one, and we tell you straight away which table to sit at.',
  s3h:'You wait',s3p:'Your phone buzzes when it starts.',
+ s4h:'You begin',s4p:'A first name, a table number, one question. That is all you are given.',
  
  
  
