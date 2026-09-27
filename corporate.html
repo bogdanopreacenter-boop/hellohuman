@@ -47,11 +47,6 @@
 <link rel="apple-touch-icon" href="/logo-hellohuman.png">
 
 <style>
-/* ============================================================
-   Corporate.html — stiluri autonome
-   Suprascriu complet site.css ca să arate ca business.html
-   ============================================================ */
-
 :root{
   --verde:#0B2620;
   --verde2:#163A31;
@@ -106,22 +101,26 @@ h3{font-family:var(--serif);font-weight:500;font-size:clamp(18px,2.2vw,22px);lin
 
 /* ---------- Hero ---------- */
 .hero{padding:clamp(40px,6.5vw,72px) 0 clamp(56px,8.5vw,92px)}
-.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,56px);align-items:center}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,56px);align-items:center}
 @media(max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:36px}}
 
-/* Cardul "Masa ta" */
-.cardcap{color:var(--gri);font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-align:center;margin-bottom:14px;font-weight:500}
-.card{background:var(--os2);color:var(--verde);border:1px solid var(--linie);border-radius:4px;padding:32px 30px 26px;position:relative;box-shadow:0 20px 50px -25px rgba(11,38,32,.2);transform:rotate(-1.6deg)}
-.card::after{content:"";position:absolute;inset:8px;border:1px solid rgba(11,38,32,.08);border-radius:3px;pointer-events:none}
-.card .kk{font-family:var(--sans);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ocru2);font-weight:700}
-.card .no{font-family:var(--serif);font-weight:900;font-size:clamp(80px,14vw,120px);line-height:.85;letter-spacing:-.05em;margin:10px 0 4px;color:var(--verde);font-optical-sizing:auto}
-.card .rule{height:1px;background:var(--linie);margin:22px 0 16px}
-.card .row{display:flex;justify-content:space-between;gap:16px;padding:6px 0;font-size:15px}
-.card .row b{font-weight:600;text-align:right;color:var(--verde)}
-.card .tick{font-family:var(--serif);font-weight:500;font-size:34px;letter-spacing:-.02em;text-align:center;margin-top:14px;font-variant-numeric:tabular-nums;font-optical-sizing:auto}
+/* Mockup raport executiv */
+.repcap{color:var(--gri);font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-align:center;margin-bottom:16px;font-weight:600}
+.rep{background:var(--os2);border:1px solid var(--linie);border-radius:4px;padding:28px 26px 24px;position:relative;box-shadow:0 20px 50px -25px rgba(11,38,32,.22)}
+.rep::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--verde) 0%,var(--verde) 50%,var(--ocru) 50%,var(--ocru) 100%);border-radius:4px 4px 0 0}
+.rep-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:14px;border-bottom:1px solid var(--linie);margin-bottom:18px}
+.rep-head .lbl{font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ocru2);font-weight:700}
+.rep-head .date{font-family:var(--sans);font-size:11px;color:var(--gri2);letter-spacing:.05em}
+.rep h4{font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.2;color:var(--verde);margin-bottom:18px;font-optical-sizing:auto}
+.rep-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}
+.rep-metric{text-align:center}
+.rep-metric .num{font-family:var(--serif);font-weight:500;font-size:clamp(28px,4.5vw,36px);line-height:1;color:var(--ocru2);letter-spacing:-.02em;margin-bottom:6px;font-optical-sizing:auto}
+.rep-metric .lbl{font-family:var(--sans);font-size:10.5px;color:var(--gri);line-height:1.35;letter-spacing:.02em}
+.rep-footer{padding-top:16px;border-top:1px solid var(--linie);font-family:var(--sans);font-size:11px;color:var(--gri2);letter-spacing:.03em;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.rep-footer b{color:var(--gri);font-weight:600}
 @media(prefers-reduced-motion:no-preference){
-  .card{animation:land .7s cubic-bezier(.2,.8,.25,1) both}
-  @keyframes land{from{opacity:0;transform:rotate(-6deg) translateY(26px) scale(.96)}to{opacity:1;transform:rotate(-1.6deg)}}
+  .rep{animation:repIn .8s cubic-bezier(.2,.8,.25,1) both}
+  @keyframes repIn{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:none}}
 }
 
 /* ---------- Butoane ---------- */
@@ -144,10 +143,10 @@ section.dark .btn.ghost:hover{background:var(--ocru);border-color:var(--ocru);co
 
 .note{background:rgba(11,38,32,.04);border-left:2px solid var(--ocru);padding:16px 18px;font-size:15px;color:var(--gri);line-height:1.6;border-radius:0 2px 2px 0;margin-bottom:12px}
 .note b{color:var(--verde);display:block;margin-bottom:4px;font-weight:600;font-style:normal}
-section.dark .note{background:rgba(255,255,255,.04);border-left-color:var(--ocru);color:var(--mist,#A3B8AE)}
+section.dark .note{background:rgba(255,255,255,.04);border-left-color:var(--ocru);color:#A3B8AE}
 section.dark .note b{color:var(--os)}
 
-/* Rânduri descriptive (înlocuiesc .rand și .ctxrow) */
+/* Rânduri descriptive */
 .ctx{margin-top:36px}
 .ctxrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(16px,3vw,40px);padding:24px 0;border-top:1px solid var(--linie);align-items:baseline}
 .ctxrow:last-child{border-bottom:1px solid var(--linie)}
@@ -229,14 +228,31 @@ section.dark .steps .step p{color:#A3B8AE}
       <p class="sub2" style="margin-top:16px;font-size:13px" data-t="c5">Un minut, date esențiale. Răspundem în două zile lucrătoare.</p>
     </div>
     <div>
-      <p class="cardcap" data-t="c6">Ce văd echipele pe telefon</p>
-      <div class="card" aria-hidden="true">
-        <p class="kk" data-t="c7">Masa ta</p>
-        <p class="no">7</p>
-        <div class="rule"></div>
-        <div class="row"><span data-t="c8">Cu tine</span><b data-t="y1">Elena, Radu</b></div>
-        <div class="row"><span data-t="c9">Obiectivul rundei</span><b data-t="z0">Identificați trei provocări<br>comune în departamente</b></div>
-        <p class="tick">14:32</p>
+      <p class="repcap" data-t="c6">Ce primiți pe biroul clientului</p>
+      <div class="rep" aria-hidden="true">
+        <div class="rep-head">
+          <span class="lbl" data-t="c7">Raport executiv</span>
+          <span class="date">Q1 · 2026</span>
+        </div>
+        <h4 data-t="y1">Analiză de coeziune organizațională</h4>
+        <div class="rep-metrics">
+          <div class="rep-metric">
+            <div class="num">82%</div>
+            <div class="lbl" data-t="c8">Rată de participare</div>
+          </div>
+          <div class="rep-metric">
+            <div class="num">47</div>
+            <div class="lbl" data-t="c9">Interacțiuni noi</div>
+          </div>
+          <div class="rep-metric">
+            <div class="num">71</div>
+            <div class="lbl" data-t="z0">NPS intern coeziune</div>
+          </div>
+        </div>
+        <div class="rep-footer">
+          <span><b data-t="c11">Pregătit de:</b> Agenția dumneavoastră</span>
+          <span><b data-t="c12">Powered by:</b> HelloHuman</span>
+        </div>
       </div>
     </div>
   </div>
@@ -251,8 +267,8 @@ section.dark .steps .step p{color:#A3B8AE}
       <p class="lead" style="margin-top:16px" data-t="w0">Obstacolul principal la un eveniment corporate nu este timiditatea, ci structura de siloz și ierarhia. Sistemul asignează automat grupurile, eliminând anxietatea primului pas și facilitând intersecții de mare valoare între echipe.</p>
     </div>
     <div>
-      <div class="note"><b data-t="c11">Personalizarea obiectivelor</b>Setăm întrebările în funcție de obiectivele strategice ale companiei.</div>
-      <div class="note"><b data-t="c12">Fricțiune zero</b>Fără instalări de aplicații, fără conturi noi. Un simplu cod QR.</div>
+      <div class="note"><b data-t="c11b">Personalizarea obiectivelor</b>Setăm întrebările în funcție de obiectivele strategice ale companiei.</div>
+      <div class="note"><b data-t="c12b">Fricțiune zero</b>Fără instalări de aplicații, fără conturi noi. Un simplu cod QR.</div>
       <div class="note" style="margin-bottom:0"><b data-t="c13">Raport de impact executiv</b>Date anonimizate despre retenție, interacțiuni noi și eficiența percepției.</div>
     </div>
   </div>
@@ -329,10 +345,10 @@ section.dark .steps .step p{color:#A3B8AE}
       </ul>
     </div>
     <div>
-      <h4>Linkuri</h4>
+      <h4 data-t="ftLinks">Linkuri</h4>
       <ul>
         <li><a href="/" data-t="ftP">Pagina pentru participanți</a></li>
-        <li><a href="/alatura-te.html">Devino partener</a></li>
+        <li><a href="/alatura-te.html" data-t="ftPartner">Devino partener</a></li>
       </ul>
     </div>
   </div>
@@ -349,17 +365,19 @@ var L={ ro:{
   c45:"Participanții interacționează în runde structurate, optimizând coeziunea inter-departamentală fără fricțiuni. La final, clientul primește un raport de impact măsurabil. Dumneavoastră livrați o soluție premium, cu risc operațional zero.",
   c4:"Inițiați o implementare pilot",
   c5:"Un minut, date esențiale. Răspundem în două zile lucrătoare.",
-  c6:"Ce văd echipele pe telefon",
-  c7:"Masa ta",
-  c8:"Cu tine",
-  c9:"Obiectivul rundei",
-  y1:"Elena, Radu",
-  z0:"Identificați trei provocări<br>comune în departamente",
+  c6:"Ce primiți pe biroul clientului",
+  c7:"Raport executiv",
+  y1:"Analiză de coeziune organizațională",
+  c8:"Rată de participare",
+  c9:"Interacțiuni noi",
+  z0:"NPS intern coeziune",
+  c11:"Pregătit de:",
+  c12:"Powered by:",
   c10:"Arhitectura coeziunii organizaționale",
   z1:"Zero fricțiuni<br>de ierarhie.",
   w0:"Obstacolul principal la un eveniment corporate nu este timiditatea, ci structura de siloz și ierarhia. Sistemul asignează automat grupurile, eliminând anxietatea primului pas și facilitând intersecții de mare valoare între echipe.",
-  c11:"Personalizarea obiectivelor",
-  c12:"Fricțiune zero",
+  c11b:"Personalizarea obiectivelor",
+  c12b:"Fricțiune zero",
   c13:"Raport de impact executiv",
   hCe:"Valoarea adăugată pentru agenție",
   ag1:"O soluție premium propusă, cu risc operațional zero.",
@@ -396,7 +414,8 @@ var L={ ro:{
   c34:"Contactați-ne prin email",
   c35:"Timp mediu de răspuns: 2 zile lucrătoare.",
   ftS:"HelloHuman creează experiențe sociale ghidate, aducând oameni compatibili la aceeași masă.",
-  ftC:"Contact", ftP:"Pagina pentru participanți"
+  ftC:"Contact", ftP:"Pagina pentru participanți",
+  ftLinks:"Linkuri", ftPartner:"Devino partener"
 },
 en:{
   ttl:"HelloHuman For Enterprise — Organizational cohesion architecture",
@@ -407,17 +426,19 @@ en:{
   c45:"Participants interact in structured rounds, optimizing cross-departmental cohesion seamlessly. At the end, the client receives a measurable impact report. You deliver a premium solution with zero operational risk.",
   c4:"Initiate a pilot deployment",
   c5:"One minute, essential data. We reply within two working days.",
-  c6:"What teams see on their devices",
-  c7:"Your table",
-  c8:"With you",
-  c9:"Round objective",
-  y1:"Elena, Radu",
-  z0:"Identify three shared<br>departmental challenges",
+  c6:"What lands on the client's desk",
+  c7:"Executive Report",
+  y1:"Organizational Cohesion Analysis",
+  c8:"Participation rate",
+  c9:"New interactions",
+  z0:"Internal cohesion NPS",
+  c11:"Prepared by:",
+  c12:"Powered by:",
   c10:"Organizational cohesion architecture",
   z1:"Zero hierarchical<br>friction.",
   w0:"The main obstacle at a corporate event is not shyness, but silo structures and hierarchy. Our system automatically assigns groups, eliminating the anxiety of the first move and facilitating high-value cross-team intersections.",
-  c11:"Objective customization",
-  c12:"Zero friction",
+  c11b:"Objective customization",
+  c12b:"Zero friction",
   c13:"Executive impact report",
   hCe:"Added value for the agency",
   ag1:"A premium solution you propose, with zero operational risk.",
@@ -454,7 +475,8 @@ en:{
   c34:"Contact us via email",
   c35:"Average response time: 2 working days.",
   ftS:"HelloHuman curates social experiences, connecting like-minded people around tables.",
-  ftC:"Contact", ftP:"Participant page"
+  ftC:"Contact", ftP:"Participant page",
+  ftLinks:"Links", ftPartner:"Become a partner"
 }};
 function T(k){ return (L[lang]||L.ro)[k]||L.ro[k]||'' }
 function setLang(v){ lang=v; try{localStorage.setItem('hh_l',v)}catch(e){} applyLang() }
@@ -474,7 +496,6 @@ function applyLang(){
   if(b) b.onclick=function(){ setLang(lang==='ro'?'en':'ro') };
 })();
 
-/* Reveal la scroll */
 if('IntersectionObserver' in window){
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
