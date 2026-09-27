@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Vrei o seară HelloHuman la tine? — cerere în două minute</title>
-<meta name="description" content="Completează cinci lucruri despre locul tău și îți răspundem în două zile lucrătoare. Prima seară e gratuită.">
+<title>Găzduiți o seară HelloHuman — aplicație parteneri</title>
+<meta name="description" content="Aduceți comunitatea HelloHuman în spațiul dumneavoastră. Analizăm profilul locației și revenim în 48 de ore cu un concept personalizat. Prima seară este din partea noastră.">
 <link rel="canonical" href="https://hellohuman.ro/alatura-te.html">
 <meta name="robots" content="noindex,follow">
 <meta name="theme-color" content="#16302B">
@@ -21,7 +21,7 @@
   <div class="wrap">
     <a class="logo" href="/"><img src="/marca-inchis.svg" alt="" width="30" height="30" aria-hidden="true">Hello<span>Human</span></a>
     <nav class="barnav">
-      <a href="/parteneri.html" class="hidem" data-t="all">Toate locurile</a>
+      <a href="/parteneri.html" class="hidem" data-t="all">Toate locațiile</a>
       <a class="bizlink" href="tel:+40750255200">+40 750 255 200</a>
       <button class="lang" id="bLang">EN</button>
     </nav>
@@ -33,9 +33,9 @@
     <div class="wrap" style="grid-template-columns:1fr;max-width:720px">
       <div>
         <a class="back" href="/parteneri.html" data-t="back">← Înapoi</a>
-        <p class="eyebrow" data-t="eye">Cinci lucruri, un minut</p>
-        <h1 style="font-size:clamp(34px,6vw,58px)" data-t="h1">Spuneți-ne unde<br data-t="h2">și ce sperați.</h1>
-        <p class="lead" style="margin-top:18px" data-t="lead">Vă răspundem în două zile lucrătoare, cu o propunere concretă pentru locul dumneavoastră. Prima seară e gratuită oriunde.</p>
+        <p class="eyebrow" data-t="eye">Parteneriate & Experiențe urbane</p>
+        <h1 style="font-size:clamp(34px,6vw,58px)" data-t="h1">Aduceți comunitatea HelloHuman<br data-t="h2">în spațiul dumneavoastră.</h1>
+        <p class="lead" style="margin-top:18px" data-t="lead">Organizăm întâlniri cu sens la mesele dumneavoastră. Analizăm profilul locației și revenim în 48 de ore cu un concept personalizat. Prima seară este din partea noastră.</p>
       </div>
     </div>
   </section>
@@ -43,45 +43,45 @@
   <section class="paper" style="padding-top:40px">
     <div class="wrap" style="max-width:720px">
 
-      <label class="lb" for="rName" data-t="l1">Cum se numește locul</label>
-      <input type="text" id="rName" maxlength="60" data-tp="p1" placeholder="Barul Vechi">
+      <label class="lb" for="rName" data-t="l1">Numele locației</label>
+      <input type="text" id="rName" maxlength="60" data-tp="p1" placeholder="Ex: The Social Club">
 
-      <label class="lb" for="rCity" data-t="l2">În ce oraș</label>
-      <input type="text" id="rCity" maxlength="40" data-tp="p2" placeholder="București">
+      <label class="lb" for="rCity" data-t="l2">Orașul</label>
+      <input type="text" id="rCity" maxlength="40" data-tp="p2" placeholder="București, Cluj-Napoca...">
 
-      <label class="lb" data-t="l3">Ce fel de loc e</label>
+      <label class="lb" data-t="l3">Tipul spațiului</label>
       <div class="opts" id="rKind"></div>
 
       <div id="rCafeBox" style="display:none">
-        <label class="lb" data-t="l3b">Ce fel de cafenea e</label>
+        <label class="lb" data-t="l3b">Profilul cafenelei</label>
         <div class="opts" id="rCafeSub"></div>
       </div>
 
-      <label class="lb" data-t="l4">Cum ați dat de noi</label>
+      <label class="lb" data-t="l4">Cum ați aflat despre noi</label>
       <div class="opts" id="rFound"></div>
 
-      <label class="lb" for="rWant" data-t="l5">Ce sperați să obțineți</label>
-      <p class="sub2" style="margin:-4px 0 8px" data-t="l5s">O propoziție, în cuvintele dumneavoastră.</p>
-      <textarea id="rWant" rows="3" maxlength="400" data-tp="p3" placeholder="vreau să umplu după-amiaza"></textarea>
+      <label class="lb" for="rWant" data-t="l5">Viziunea dumneavoastră pentru acest spațiu</label>
+      <p class="sub2" style="margin:-4px 0 8px" data-t="l5s">Descrieți pe scurt atmosfera sau obiectivul pe care vi-l doriți.</p>
+      <textarea id="rWant" rows="3" maxlength="400" data-tp="p3" placeholder="Ex: Ne dorim să revitalizăm serile de marți și să atragem o comunitate dinamică."></textarea>
 
-      <label class="lb" for="rMail" data-t="l6">Emailul dumneavoastră</label>
-      <input type="email" id="rMail" maxlength="80" data-tp="p4" placeholder="tu@email.com" autocomplete="email" enterkeyhint="done">
+      <label class="lb" for="rMail" data-t="l6">Adresa de email</label>
+      <input type="email" id="rMail" maxlength="80" data-tp="p4" placeholder="partener@locatie.ro" autocomplete="email" enterkeyhint="done">
 
-      <label class="lb" for="rPhone" data-t="l7">Telefon, dacă preferați să vă sunăm</label>
-      <input type="text" id="rPhone" maxlength="30" data-tp="p5" placeholder="opțional" autocomplete="tel" enterkeyhint="done">
+      <label class="lb" for="rPhone" data-t="l7">Număr de telefon (opțional)</label>
+      <input type="text" id="rPhone" maxlength="30" data-tp="p5" placeholder="07xx xxx xxx" autocomplete="tel" enterkeyhint="done">
 
       <label class="check" id="rConsBox" style="justify-content:flex-start;margin-top:22px">
         <input type="checkbox" id="rCons">
-        <span data-t="gdpr">Sunt de acord să fiu contactat despre această cerere. Datele le folosim doar pentru asta, nu le dăm nimănui, iar la cerere le ștergem. contact@hellohuman.ro</span>
+        <span data-t="gdpr">Sunt de acord să primesc o propunere de parteneriat. Respectăm confidențialitatea datelor și le folosim exclusiv pentru această comunicare.</span>
       </label>
 
-      <button class="btn wide" id="rSend" style="margin-top:20px" data-t="send">Trimite cererea</button>
+      <button class="btn wide" id="rSend" style="margin-top:20px" data-t="send">Solicitați parteneriatul</button>
       <p class="msg2" id="rMsg" style="text-align:center"></p>
 
       <div id="rDone" style="display:none;text-align:center;padding:20px 0">
-        <p class="eyebrow" style="color:var(--rust)" data-t="okE">Am primit-o</p>
-        <h2 style="margin-bottom:14px" data-t="okH">Îți scriem în două<br>zile lucrătoare.</h2>
-        <p class="lead" data-t="okP">Un om se uită peste ce ați scris și vă răspunde cu o propunere pentru locul dumneavoastră. Dacă e urgent, sunați la <a href="tel:+40750255200" style="color:var(--rust);font-weight:700">+40 750 255 200</a>.</p>
+        <p class="eyebrow" style="color:var(--rust)" data-t="okE">Solicitare înregistrată</p>
+        <h2 style="margin-bottom:14px" data-t="okH">Suntem gata să<br>colaborăm.</h2>
+        <p class="lead" data-t="okP">Echipa noastră va analiza detaliile locației și va reveni în maxim 48 de ore cu o propunere adaptată. Pentru urgențe, ne puteți contacta direct la <a href="tel:+40750255200" style="color:var(--rust);font-weight:700">+40 750 255 200</a>.</p>
       </div>
 
     </div>
@@ -93,7 +93,7 @@
     <a href="/" class="footlogo"><img src="/logo-hellohuman-inchis.svg" width="150" height="150" loading="lazy" alt="HelloHuman"></a>
     <div>
       <p class="logo" style="font-size:24px">Hello<span>Human</span></p>
-      <p class="sm" style="margin-top:10px;max-width:36ch" data-t="ftS">HelloHuman organizează seri în care oameni care nu se cunosc stau câteva minute la aceeași masă.</p>
+      <p class="sm" style="margin-top:10px;max-width:36ch" data-t="ftS">HelloHuman creează experiențe sociale ghidate, aducând oameni compatibili la aceeași masă, în cele mai primitoare spații din oraș.</p>
     </div>
     <div class="col">
       <h4 data-t="ftC">Contact</h4>
@@ -111,34 +111,34 @@
 var lang='ro';
 var L={
  ro:{
-  gdpr:"Sunt de acord să fiu contactat despre această cerere. Datele le folosim doar pentru asta, nu le dăm nimănui, iar la cerere le ștergem. contact@hellohuman.ro",
-  ttl:'Vrei o seară HelloHuman la tine? — cerere în două minute',
-  back:'← Înapoi', eye:'Cinci lucruri, un minut',
-  h1:'Spuneți-ne unde', h2:'și ce sperați.',
-  lead:'Vă răspundem în două zile lucrătoare, cu o propunere concretă pentru locul dumneavoastră. Prima seară e gratuită oriunde.',
-  l1:'Cum se numește locul', l2:'În ce oraș', l3:'Ce fel de loc e', l3b:'Ce fel de cafenea e', l4:'Cum ați dat de noi',
-  l5:'Ce sperați să obțineți', l5s:'O propoziție, în cuvintele dumneavoastră.',
-  l6:'Emailul dumneavoastră', l7:'Telefon, dacă preferați să vă sunăm',
-  send:'Trimite cererea', okE:'Am primit-o', okH:'Îți scriem în două<br>zile lucrătoare.',
-  okP:'Un om se uită peste ce ați scris și vă răspunde cu o propunere pentru locul dumneavoastră. Dacă e urgent, sunați la',
-  ftS:'HelloHuman organizează seri în care oameni care nu se cunosc stau câteva minute la aceeași masă.',
-  ftC:'Contact', ftP:'Pagina pentru participanți', all:'Toate locurile',
-  p1:'Barul Vechi', p2:'București', p3:'vreau să umplu după-amiaza', p4:'tu@email.com', p5:'opțional'
+  gdpr:"Sunt de acord să primesc o propunere de parteneriat. Respectăm confidențialitatea datelor și le folosim exclusiv pentru această comunicare.",
+  ttl:'Găzduiți o seară HelloHuman — aplicație parteneri',
+  back:'← Înapoi', eye:'Parteneriate & Experiențe urbane',
+  h1:'Aduceți comunitatea HelloHuman', h2:'în spațiul dumneavoastră.',
+  lead:'Organizăm întâlniri cu sens la mesele dumneavoastră. Analizăm profilul locației și revenim în 48 de ore cu un concept personalizat. Prima seară este din partea noastră.',
+  l1:'Numele locației', l2:'Orașul', l3:'Tipul spațiului', l3b:'Profilul cafenelei', l4:'Cum ați aflat despre noi',
+  l5:'Viziunea dumneavoastră pentru acest spațiu', l5s:'Descrieți pe scurt atmosfera sau obiectivul pe care vi-l doriți.',
+  l6:'Adresa de email', l7:'Număr de telefon (opțional)',
+  send:'Solicitați parteneriatul', okE:'Solicitare înregistrată', okH:'Suntem gata să<br>colaborăm.',
+  okP:'Echipa noastră va analiza detaliile locației și va reveni în maxim 48 de ore cu o propunere adaptată. Pentru urgențe, ne puteți contacta direct la',
+  ftS:'HelloHuman creează experiențe sociale ghidate, aducând oameni compatibili la aceeași masă, în cele mai primitoare spații din oraș.',
+  ftC:'Contact', ftP:'Pagina pentru participanți', all:'Toate locațiile',
+  p1:'Ex: The Social Club', p2:'București, Cluj-Napoca...', p3:'Ex: Ne dorim să revitalizăm serile de marți și să atragem o comunitate dinamică.', p4:'partener@locatie.ro', p5:'07xx xxx xxx'
  },
  en:{
-  gdpr:"I agree to be contacted about this request. We use the data only to reply.",
-  ttl:'Want a HelloHuman evening at your place? — two-minute request',
-  back:'← Back', eye:'Five things, one minute',
-  h1:'Tell us where', h2:'and what you hope for.',
-  lead:'We reply within two working days, with a concrete proposal for your place. The first evening is free, anywhere.',
-  l1:'What the place is called', l2:'Which city', l3:'What kind of place it is', l3b:'What kind of café it is', l4:'How you found us',
-  l5:'What you hope to get', l5s:'One sentence, in your own words.',
-  l6:'Your email', l7:'Phone, if you would rather we called',
-  send:'Send the request', okE:'Got it', okH:'We will write within<br>two working days.',
-  okP:'A person reads what you wrote and comes back with a proposal for your place. If it is urgent, call',
-  ftS:'HelloHuman runs evenings where people who do not know each other spend a few minutes at the same table.',
-  ftC:'Contact', ftP:'Page for participants', all:'All venue types',
-  p1:'The Old Bar', p2:'Bucharest', p3:'I want to fill the afternoon', p4:'you@email.com', p5:'optional'
+  gdpr:"I agree to receive a partnership proposal. We respect your privacy and use this data solely for this purpose.",
+  ttl:'Host a HelloHuman evening — partner application',
+  back:'← Back', eye:'Partnerships & Curated Experiences',
+  h1:'Bring the HelloHuman community', h2:'to your space.',
+  lead:'We bring like-minded people to your tables. We review your venue and get back within 48 hours with a custom concept. The first evening is on us.',
+  l1:'Venue name', l2:'City', l3:'Space type', l3b:'Café profile', l4:'How did you find us',
+  l5:'Your vision for the space', l5s:'Briefly share the vibe or goal you want to achieve.',
+  l6:'Email address', l7:'Phone number (optional)',
+  send:'Apply for partnership', okE:'Application received', okH:'We are ready to<br>collaborate.',
+  okP:'Our team will review your venue details and return with a custom concept within 48 hours. For urgent requests, call us directly at',
+  ftS:'HelloHuman curates social experiences, connecting like-minded people around tables in the city’s best venues.',
+  ftC:'Contact', ftP:'Participant page', all:'All venues',
+  p1:'Ex: The Social Club', p2:'Bucharest, Cluj-Napoca...', p3:'Ex: We want to bring vibrant energy to Tuesday evenings and attract a dynamic crowd.', p4:'partner@venue.com', p5:'+40 7xx xxx xxx'
  }
 };
 function setLang(v){ lang=v; try{localStorage.setItem('hh_l',v)}catch(e){} applyLang() }
@@ -158,6 +158,7 @@ function applyLang(){
 
 var el=HH.el, esc=HH.esc, say=HH.say;
 
+/* Opțiunile de mai jos au rămas nemodificate pentru a proteja integrarea CRM */
 var KIND=[['bar','Bar sau restaurant'],['book','Librărie'],['cafe','Cafenea'],
           ['cult','Muzeu sau spațiu cultural'],['hotel','Hotel sau pensiune'],
           ['term','Aeroport, gară, terminal'],['agency','Agenție de evenimente'],
@@ -207,18 +208,20 @@ el('rSend').onclick=async function(){
   var b=el('rSend');
   var n=el('rName').value.trim(), c=el('rCity').value.trim();
   var m=el('rMail').value.trim(), p=el('rPhone').value.trim(), w=el('rWant').value.trim();
-  if(!n)return nu(lang==='en'?'Write the name of the place.':'Scrie numele locului.',el('rName'));
-  if(!c)return nu(lang==='en'?'Which city?':'În ce oraș ești?',el('rCity'));
-  if(!kind)return nu(lang==='en'?'Pick the kind of place.':'Alege ce fel de loc e.');
-  if(kind==='cafe' && !cafeSub)return nu(lang==='en'?'Pick the kind of café.':'Alege ce fel de cafenea e.');
-  if(!found)return nu(lang==='en'?'Tell us how you found us.':'Spuneți-ne cum ați dat de noi.');
-  if(!m||m.indexOf('@')<1||m.indexOf('.')<0)return nu(lang==='en'?'The email does not look right.':'Emailul nu pare corect.',el('rMail'));
+  
+  if(!n)return nu(lang==='en'?'Please enter the venue name.':'Vă rugăm să scrieți numele locației.',el('rName'));
+  if(!c)return nu(lang==='en'?'Please specify the city.':'Vă rugăm să specificați orașul.',el('rCity'));
+  if(!kind)return nu(lang==='en'?'Please select the space type.':'Vă rugăm să selectați tipul spațiului.');
+  if(kind==='cafe' && !cafeSub)return nu(lang==='en'?'Please select the café profile.':'Vă rugăm să selectați profilul cafenelei.');
+  if(!found)return nu(lang==='en'?'Please tell us how you found us.':'Vă rugăm să ne spuneți cum ați aflat de noi.');
+  if(!m||m.indexOf('@')<1||m.indexOf('.')<0)return nu(lang==='en'?'The email address does not look right.':'Adresa de email nu pare corectă.',el('rMail'));
   if(!el('rCons').checked){
     var box=el('rConsBox');
     box.style.background='rgba(196,85,47,.14)';box.style.borderRadius='3px';box.style.padding='8px';
     setTimeout(function(){box.style.background='';box.style.padding=''},2600);
-    return nu(lang==='en'?'Tick the box so we can reply.':'Bifează căsuța, ca să avem voie să-ți răspundem.');
+    return nu(lang==='en'?'Please tick the box so we can reply.':'Vă rugăm să bifați acordul pentru a vă putea răspunde.');
   }
+  
   b.disabled=true; b.textContent=lang==='en'?'Sending…':'Se trimite…'; say('rMsg','');
   try{
     await HH.API.request({
@@ -237,8 +240,8 @@ el('rSend').onclick=async function(){
     el('rDone').style.display='block';
     el('rDone').scrollIntoView({block:'center',behavior:'smooth'});
   }catch(e){
-    b.disabled=false; b.textContent=lang==='en'?'Send the request':'Trimite cererea';
-    nu((lang==='en'?'Could not send: ':'Nu am putut trimite: ')+e.message+'. '+(lang==='en'?'Write to contact@hellohuman.ro.':'Scrie-ne la contact@hellohuman.ro.'));
+    b.disabled=false; b.textContent=lang==='en'?'Apply for partnership':'Solicitați parteneriatul';
+    nu((lang==='en'?'Could not send: ':'Nu am putut trimite: ')+e.message+'. '+(lang==='en'?'You can write to us at contact@hellohuman.ro.':'Ne puteți scrie la contact@hellohuman.ro.'));
   }
 };
 (function(){
