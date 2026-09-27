@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title data-t="ttl">HelloHuman pentru hoteluri și turism</title>
-<meta name="description" content="O oră în lobby pentru clienții care călătoresc singuri, cu alți clienți și cu câțiva localnici. Recepția apasă un buton. Prima seară e gratuită.">
+<meta name="description" content="Oaspeții care coboară. Și care rămân. O oră în lobby, înainte de cină, pentru cei care călătoresc singuri. Prima seară e gratuită.">
 <link rel="canonical" href="https://hellohuman.ro/hoteluri.html">
-<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<meta rel="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta name="theme-color" content="#16302B">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ro_RO">
 <meta property="og:site_name" content="HelloHuman">
 <meta property="og:url" content="https://hellohuman.ro/hoteluri.html">
 <meta property="og:title" content="HelloHuman pentru hoteluri și turism">
-<meta property="og:description" content="O oră în lobby pentru clienții care călătoresc singuri, cu alți clienți și cu câțiva localnici. Recepția apasă un buton. Prima seară e gratuită.">
+<meta property="og:description" content="Oaspeții care coboară. Și care rămân. O oră în lobby, înainte de cină, pentru cei care călătoresc singuri.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Karla:wght@400;500;700&display=swap&subset=latin,latin-ext" rel="stylesheet">
@@ -29,7 +29,7 @@
    "url": "https://hellohuman.ro/",
    "email": "contact@hellohuman.ro",
    "telephone": "+40750255200",
-   "description": "HelloHuman organizează seri în care oameni care nu se cunosc stau câteva minute la aceeași masă, într-un local unde sunt deja prezenți.",
+   "description": "HelloHuman organizează întâlniri în care oameni care nu se cunosc stau câteva minute împreună, într-un loc unde sunt deja prezenți.",
    "areaServed": {
     "@type": "Country",
     "name": "România"
@@ -38,7 +38,7 @@
   {
    "@type": "Service",
    "name": "Experiențe sociale pentru hoteluri",
-   "description": "O oră în lobby pentru clienții care călătoresc singuri, cu alți clienți și cu câțiva localnici. Recepția apasă un buton. Prima seară e gratuită.",
+   "description": "Oaspeții care coboară. Și care rămân. O oră în lobby, înainte de cină, pentru cei care călătoresc singuri. Prima seară e gratuită.",
    "provider": {
     "@id": "https://hellohuman.ro/#org"
    },
@@ -107,7 +107,7 @@
     <a class="logo" href="/"><img src="/marca-inchis.svg" alt="" width="30" height="30" aria-hidden="true">Hello<span>Human</span></a>
     <nav class="barnav">
       <a href="/parteneri.html" class="hidem" data-t="nav1">Toate locurile</a>
-      <a class="lang" href="/alatura-te.html" data-t="nav2">Scrie-ne</a>
+      <button class="lang" id="bLang">EN</button>
     </nav>
   </div>
 </header>
@@ -118,23 +118,23 @@
       <div>
         <a class="back" href="/parteneri.html" data-t="back">← Toate tipurile de loc</a>
         <p class="eyebrow" data-t="e1">Hoteluri și turism</p>
-        <h1 data-t="h1">O oră în lobby,<br>înainte de cină.</h1>
-        <p class="lead" data-t="l1">Cei care călătoresc singuri cinează de obicei în cameră. Formatul le dă un motiv simplu să coboare în lobby și să rămână acolo.</p>
+        <h1 data-t="h1">Oaspeții care coboară.<br>Și care rămân.</h1>
+        <p class="lead" data-t="l1">Cei care călătoresc singuri cinează de obicei în cameră. O oră în lobby le dă un motiv simplu să coboare. Și să rămână.</p>
         <div class="cta">
-          <a class="btn" href="/alatura-te.html" data-t="cta1">Spune-ne despre hotelul vostru</a>
+          <a class="btn" href="/alatura-te.html" data-t="cta1">Spuneți-ne despre hotelul dumneavoastră</a>
           <a class="btn ghost" href="tel:+40750255200">+40 750 255 200</a>
         </div>
         <p class="sm" style="margin-top:14px;color:var(--dim)" data-t="sub1">Cinci lucruri, un minut. Vă răspundem în două zile lucrătoare.</p>
       </div>
       <div>
-        <p class="cardcap" data-t="cap">Ce văd clienții pe telefon</p>
+        <p class="cardcap" data-t="cap">Ce văd oaspeții pe telefon</p>
         <div class="card" aria-hidden="true">
-          <p class="kk" data-t="mt">Masa dumneavoastră</p>
+          <p class="kk" data-t="mt">Întâlnirea dumneavoastră</p>
           <p class="no">7</p>
           <div class="rule"></div>
-          <div class="row"><span data-t="wu">La masă cu</span><b>Diana, Paul</b></div>
-          <div class="row"><span data-t="yq">Întrebarea voastră</span><b>Care e cel mai bun loc<br>din orașul vostru?</b></div>
-          <p class="tick">14:32</p>
+          <div class="row"><span data-t="wu">Împreună cu</span><b>Diana, Paul</b></div>
+          <div class="row"><span data-t="yq">Tema serii</span><b>Care e cel mai bun loc<br>din orașul acesta?</b></div>
+          <p class="tick">19:00</p>
         </div>
       </div>
     </div>
@@ -145,35 +145,45 @@
       <div>
         <p class="eyebrow" data-t="e2">Unde se așază</p>
         <h2 data-t="h2">Ora de dinaintea<br>cinei, în lobby.</h2>
-        <p class="lead" style="margin-top:16px" data-t="l2">Clienții coboară oricum. Singura diferență e că acum au un motiv să se așeze împreună, nu fiecare la masa lui.</p>
+        <p class="lead" style="margin-top:16px" data-t="l2">Oaspeții coboară oricum. Singura diferență e că acum au un motiv să se așeze împreună, nu fiecare la masa lui.</p>
       </div>
       <div>
         <div class="note" style="margin-top:0"><b data-t="b1">Fără personal suplimentar</b>Recepția apasă un buton pe telefon. O fișă de o pagină spune ce face și ce răspunde.</div>
-        <div class="note"><b data-t="b2">În română și engleză</b>Clientul alege limba dintr-un buton.</div>
-        <div class="note"><b data-t="b3">Localnicii pot intra</b>Amestecul dintre clienți și oameni din oraș e ce ajunge în recenzii.</div>
+        <div class="note"><b data-t="b2">În română și engleză</b>Oaspetele alege limba dintr-un buton.</div>
+        <div class="note"><b data-t="b3">Localnicii pot participa</b>Amestecul dintre oaspeți și oameni din oraș este ce rămâne în memoria unei șederi.</div>
       </div>
     </div>
   </section>
+
+  <section class="sec"><div class="wrap">
+    <h2 data-t="hCe">Ce aduce HelloHuman într-un hotel</h2>
+    <div class="rand"><b data-t="ce1">Oaspeții singuri coboară.</b><span data-t="ce1s"> Cel care ar fi comandat în cameră se așază în lobby. Consumă acolo unde este mai bine pentru hotel.</span></div>
+    <div class="rand"><b data-t="ce2">Recenzii care vorbesc despre oameni, nu doar despre camere.</b><span data-t="ce2s"> Un oaspete care a cunoscut pe cineva scrie altfel despre șederea lui.</span></div>
+    <div class="rand"><b data-t="ce3">Zero investiție.</b><span data-t="ce3s"> Fără echipament, fără training. Recepția apasă un buton.</span></div>
+    <div class="rand"><b data-t="ce4">Localnicii pot intra.</b><span data-t="ce4s"> Amestecul dintre oaspeți și oameni din oraș este ce aduce oaspeții înapoi.</span></div>
+  </div></section>
+
   <section id="intrebari">
     <div class="wrap">
-      <p class="eyebrow" data-t="e4">Ce ne întreabă hotelurile</p>
-      <h2 data-t="h4">Patru întrebări,<br>de fiecare dată.</h2>
+      <p class="eyebrow" data-t="e4">Pe scurt</p>
+      <h2 data-t="h4">Patru lucruri<br>despre serile noastre.</h2>
       <div class="ctx">
-        <div class="ctxrow"><h3 data-t="q1">Cine se ocupă la recepție?</h3><p data-t="a1">O persoană care apasă un buton pe telefon și spune o propoziție. Primește o fișă de o pagină.</p></div>
-        <div class="ctxrow"><h3 data-t="q2">Clienții străini înțeleg?</h3><p data-t="a2">Da. Aplicația e în română și engleză, iar limba se schimbă dintr-un buton.</p></div>
-        <div class="ctxrow"><h3 data-t="q3">Putem invita și oameni din oraș?</h3><p data-t="a3">Da, și e chiar recomandat.</p></div>
-        <div class="ctxrow"><h3 data-t="q4">Cât costă?</h3><p data-t="a4">Prima seară e gratuită, fără echipament și fără angajament.</p></div>
+        <div class="ctxrow"><h3 data-t="q1">O persoană de la recepție.</h3><p data-t="a1">Apasă un buton și spune o propoziție. Primește o fișă de o pagină.</p></div>
+        <div class="ctxrow"><h3 data-t="q2">Clienții străini înțeleg.</h3><p data-t="a2">Aplicația este în română și engleză. Limba se schimbă dintr-un buton.</p></div>
+        <div class="ctxrow"><h3 data-t="q3">Localnicii pot participa.</h3><p data-t="a3">Amestecul dintre oaspeți și oameni din oraș este recomandat.</p></div>
+        <div class="ctxrow"><h3 data-t="q4">Prima seară e gratuită.</h3><p data-t="a4">Fără echipament, fără angajament.</p></div>
       </div>
     </div>
   </section>
+
   <section class="paper">
     <div class="wrap" style="text-align:center">
       <p class="eyebrow" data-t="e5">Dacă doriți să vorbim</p>
       <h2 data-t="h5">O oră din programul<br>pe care îl aveți deja.</h2>
-      <p class="lead" style="margin:18px auto 30px" data-t="l5">Ne spuneți ce fel de clienți aveți și în ce sezon. Vă răspundem în două zile lucrătoare.</p>
+      <p class="lead" style="margin:18px auto 30px" data-t="l5">Ne spuneți ce fel de oaspeți aveți și în ce sezon. Vă răspundem în două zile lucrătoare.</p>
       <div class="cta" style="justify-content:center">
-        <a class="btn" href="/alatura-te.html">Spune-ne despre hotelul vostru</a>
-        <a class="btn ghost" href="mailto:contact@hellohuman.ro" data-t="mail">Scrie direct pe email</a>
+        <a class="btn" href="/alatura-te.html" data-t="cta2">Spuneți-ne despre hotelul dumneavoastră</a>
+        <a class="btn ghost" href="mailto:contact@hellohuman.ro" data-t="mail">Scrieți-ne direct pe email</a>
       </div>
     </div>
   </section>
@@ -185,7 +195,7 @@
     <a href="/" class="footlogo"><img src="/logo-hellohuman-inchis.svg" width="150" height="150" loading="lazy" alt="HelloHuman"></a>
     <div>
       <p class="logo" style="font-size:24px">Hello<span>Human</span></p>
-      <p class="sm" style="margin-top:10px;max-width:36ch" data-t="ft">Seri în care oameni care nu se cunosc stau câteva minute la aceeași masă, în locuri unde sunt deja prezenți.</p>
+      <p class="sm" style="margin-top:10px;max-width:36ch" data-t="ft">Seri în care oameni care nu se cunosc stau câteva minute împreună, în locuri unde sunt deja prezenți.</p>
       <p class="sm" style="margin-top:10px" data-t="ftc">București și restul țării</p>
     </div>
     <div class="col">
@@ -212,8 +222,8 @@
 
 <script>
 (function(){
-var L={ro:{"ttl": "HelloHuman pentru hoteluri și turism", "e1": "Hoteluri și turism", "h1": "O oră în lobby,<br>înainte de cină.", "l1": "Cei care călătoresc singuri cinează de obicei în cameră. Formatul le dă un motiv simplu să coboare în lobby și să rămână acolo.", "cta1": "Spune-ne despre hotelul vostru", "e2": "Unde se așază", "h2": "Ora de dinaintea<br>cinei, în lobby.", "l2": "Clienții coboară oricum. Singura diferență e că acum au un motiv să se așeze împreună, nu fiecare la masa lui.", "b1": "Fără personal suplimentar", "b2": "În română și engleză", "b3": "Localnicii pot intra", "e4": "Ce ne întreabă hotelurile", "h4": "Patru întrebări,<br>de fiecare dată.", "q1": "Cine se ocupă la recepție?", "a1": "O persoană care apasă un buton pe telefon și spune o propoziție. Primește o fișă de o pagină.", "q2": "Clienții străini înțeleg?", "a2": "Da. Aplicația e în română și engleză, iar limba se schimbă dintr-un buton.", "q3": "Putem invita și oameni din oraș?", "a3": "Da, și e chiar recomandat.", "q4": "Cât costă?", "a4": "Prima seară e gratuită, fără echipament și fără angajament.", "h5": "O oră din programul<br>pe care îl aveți deja.", "l5": "Ne spuneți ce fel de clienți aveți și în ce sezon. Vă răspundem în două zile lucrătoare.", "nav1": "Toate locurile", "nav2": "Scrie-ne", "back": "← Toate tipurile de loc", "sub1": "Cinci lucruri, un minut. Vă răspundem în două zile lucrătoare.", "cap": "Ce văd clienții pe telefon", "mt": "Masa dumneavoastră", "wu": "La masă cu", "yq": "Întrebarea voastră", "mail": "Scrie direct pe email", "ft": "Seri în care oameni care nu se cunosc stau câteva minute la aceeași masă, în locuri unde sunt deja prezenți.", "ftc": "București și restul țării", "ftL": "Locuri", "ftC": "Contact", "l1n": "Baruri și restaurante", "l2n": "Librării și cafenele", "l3n": "Muzee și spații culturale", "l5n": "Aeroporturi și gări", "l6n": "Evenimente de firmă", "ftA": "Spuneți-ne despre locul dumneavoastră", "e5": "Dacă doriți să vorbim"},
- en:{"nav1": "All venues", "nav2": "Write to us", "back": "← All kinds of venue", "sub1": "Five things, one minute. We reply within two working days.", "cap": "What customers see on their phone", "mt": "Your table", "wu": "At your table", "yq": "Your question", "mail": "Write to us directly", "ft": "Evenings where people who do not know each other spend a few minutes at the same table, in places they are already in.", "ftc": "Bucharest and the rest of the country", "ftL": "Venues", "ftC": "Contact", "l1n": "Bars and restaurants", "l2n": "Bookshops and cafés", "l3n": "Museums and cultural spaces", "l5n": "Airports and stations", "l6n": "Company events", "ftA": "Tell us about your venue", "e5": "If you would like to talk", "ttl": "HelloHuman for hotels and tourism", "e1": "Hotels and tourism", "h1": "One hour in the lobby,<br>before dinner.", "l1": "Those travelling alone usually dine in their room. The format gives them a simple reason to come down to the lobby and stay there.", "cta1": "Tell us about your hotel", "e2": "Where they sit", "h2": "The hour before<br>dinner, in the lobby.", "l2": "Guests come down anyway. The only difference is that now they have a reason to sit together, rather than each at their own table.", "b1": "No extra staff", "b2": "In Romanian and English", "b3": "Locals can join", "e4": "What hotels ask us", "h4": "Four questions,<br>every time.", "q1": "Who handles it at reception?", "a1": "One person who presses a button on their phone and says one sentence. They get a one-page sheet.", "q2": "Will foreign guests understand?", "a2": "Yes. The app is in Romanian and English, and the language switches with one button.", "q3": "Can we invite people from the city?", "a3": "Yes, and we recommend it.", "q4": "What does it cost?", "a4": "The first evening is free, with no equipment and no commitment.", "h5": "One hour from a schedule<br>you already run.", "l5": "Tell us what kind of guests you have and in what season. We reply within two working days."}};
+var L={ro:{"ttl": "HelloHuman pentru hoteluri și turism", "e1": "Hoteluri și turism", "h1": "Oaspeții care coboară.<br>Și care rămân.", "l1": "Cei care călătoresc singuri cinează de obicei în cameră. O oră în lobby le dă un motiv simplu să coboare. Și să rămână.", "cta1": "Spuneți-ne despre hotelul dumneavoastră", "cta2": "Spuneți-ne despre hotelul dumneavoastră", "e2": "Unde se așază", "h2": "Ora de dinaintea<br>cinei, în lobby.", "l2": "Oaspeții coboară oricum. Singura diferență e că acum au un motiv să se așeze împreună, nu fiecare la masa lui.", "b1": "Fără personal suplimentar", "b2": "În română și engleză", "b3": "Localnicii pot participa", "hCe": "Ce aduce HelloHuman într-un hotel", "ce1": "Oaspeții singuri coboară.", "ce1s": " Cel care ar fi comandat în cameră se așază în lobby. Consumă acolo unde este mai bine pentru hotel.", "ce2": "Recenzii care vorbesc despre oameni, nu doar despre camere.", "ce2s": " Un oaspete care a cunoscut pe cineva scrie altfel despre șederea lui.", "ce3": "Zero investiție.", "ce3s": " Fără echipament, fără training. Recepția apasă un buton.", "ce4": "Localnicii pot intra.", "ce4s": " Amestecul dintre oaspeți și oameni din oraș este ce aduce oaspeții înapoi.", "e4": "Pe scurt", "h4": "Patru lucruri<br>despre serile noastre.", "q1": "O persoană de la recepție.", "a1": "Apasă un buton și spune o propoziție. Primește o fișă de o pagină.", "q2": "Clienții străini înțeleg.", "a2": "Aplicația este în română și engleză. Limba se schimbă dintr-un buton.", "q3": "Localnicii pot participa.", "a3": "Amestecul dintre oaspeți și oameni din oraș este recomandat.", "q4": "Prima seară e gratuită.", "a4": "Fără echipament, fără angajament.", "h5": "O oră din programul<br>pe care îl aveți deja.", "l5": "Ne spuneți ce fel de oaspeți aveți și în ce sezon. Vă răspundem în două zile lucrătoare.", "nav1": "Toate locurile", "back": "← Toate tipurile de loc", "sub1": "Cinci lucruri, un minut. Vă răspundem în două zile lucrătoare.", "cap": "Ce văd oaspeții pe telefon", "mt": "Întâlnirea dumneavoastră", "wu": "Împreună cu", "yq": "Tema serii", "mail": "Scrieți-ne direct pe email", "ft": "Seri în care oameni care nu se cunosc stau câteva minute împreună, în locuri unde sunt deja prezenți.", "ftc": "București și restul țării", "ftL": "Locuri", "ftC": "Contact", "l1n": "Baruri și restaurante", "l2n": "Librării și cafenele", "l3n": "Muzee și spații culturale", "l5n": "Aeroporturi și gări", "l6n": "Evenimente de firmă", "ftA": "Spuneți-ne despre locul dumneavoastră", "e5": "Dacă doriți să vorbim"},
+ en:{"nav1": "All venues", "back": "← All kinds of venue", "sub1": "Five things, one minute. We reply within two working days.", "cap": "What guests see on their phone", "mt": "Your meeting", "wu": "Together with", "yq": "The evening's theme", "mail": "Write to us directly", "ft": "Evenings where people who do not know each other spend a few minutes together, in places they are already in.", "ftc": "Bucharest and the rest of the country", "ftL": "Venues", "ftC": "Contact", "l1n": "Bars and restaurants", "l2n": "Bookshops and cafés", "l3n": "Museums and cultural spaces", "l5n": "Airports and stations", "l6n": "Company events", "ftA": "Tell us about your venue", "e5": "If you would like to talk", "ttl": "HelloHuman for hotels and tourism", "e1": "Hotels and tourism", "h1": "Guests who come down.<br>And who stay.", "l1": "Those travelling alone usually dine in their room. One hour in the lobby gives them a simple reason to come down. And to stay.", "cta1": "Tell us about your hotel", "cta2": "Tell us about your hotel", "e2": "Where they sit", "h2": "The hour before<br>dinner, in the lobby.", "l2": "Guests come down anyway. The only difference is that now they have a reason to sit together, rather than each at their own table.", "b1": "No extra staff", "b2": "In Romanian and English", "b3": "Locals can join", "hCe": "What HelloHuman brings to a hotel", "ce1": "Guests travelling alone come down.", "ce1s": " The one who would have ordered to the room sits in the lobby instead. They spend where it matters to the hotel.", "ce2": "Reviews that talk about people, not only about rooms.", "ce2s": " A guest who met someone writes differently about their stay.", "ce3": "Zero investment.", "ce3s": " No equipment, no training. Reception presses a button.", "ce4": "Locals can join.", "ce4s": " The mix of guests and people from the city is what brings guests back.", "e4": "In short", "h4": "Four things<br>about our evenings.", "q1": "One person at reception.", "a1": "They press a button and say one sentence. They get a one-page sheet.", "q2": "Foreign guests understand.", "a2": "The app is in Romanian and English. The language switches with one button.", "q3": "Locals can take part.", "a3": "The mix of guests and people from the city is recommended.", "q4": "The first evening is free.", "a4": "No equipment, no commitment.", "h5": "One hour from a schedule<br>you already run.", "l5": "Tell us what kind of guests you have and in what season. We reply within two working days."}};
 var lang="ro";
 function setLang(l){ lang=l; document.documentElement.lang=l;
   var d=L[l]; if(d.ttl) document.title=d.ttl;
