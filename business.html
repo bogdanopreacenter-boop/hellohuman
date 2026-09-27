@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ro">
 <head>
 <meta charset="utf-8">
@@ -10,511 +10,362 @@
 <meta property="og:title" content="HelloHuman pentru Companii — Coeziune Organizațională">
 <meta property="og:description" content="Arhitectură de coeziune organizațională bazată pe date din conexiuni umane reale.">
 <meta property="og:url" content="https://hellohuman.ro/business">
-<meta property="og:image" content="https://hellohuman.ro/logo-hellohuman-line.svg">
-<meta name="theme-color" content="#16302B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Karla:wght@400;500;700&display=swap&subset=latin,latin-ext" rel="stylesheet">
-<link rel="stylesheet" href="/site.css?v=6">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --verde:#0B2620;--verde2:#163A31;
+  --os:#F3EFE7;--os2:#FAF7F1;
+  --gri:#6B7A73;--gri2:#9AA8A1;
+  --ocru:#C8912A;--ocru2:#8C6114;
+  --linie:#DFE5E1;--linie-dark:#1B4238;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Inter",-apple-system,system-ui,sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:var(--os);color:var(--verde);font-family:var(--sans);font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.w{max-width:820px;margin:0 auto;padding:0 clamp(22px,6vw,40px)}
+.w-wide{max-width:1040px;margin:0 auto;padding:0 clamp(22px,6vw,40px)}
+
+/* ---------- Header ---------- */
+header{padding:clamp(22px,4vw,30px) 0;border-bottom:1px solid var(--linie);position:relative;z-index:10}
+header .w{display:flex;justify-content:space-between;align-items:baseline}
+.logo{font-family:var(--serif);font-size:19px;letter-spacing:.02em;color:var(--verde);text-decoration:none;display:inline-flex;align-items:center;gap:9px}
+.logo img{width:30px;height:30px;flex:none;opacity:.95}
+
+/* ---------- Secțiuni ---------- */
+section{padding:clamp(52px,8vw,84px) 0;border-bottom:1px solid var(--linie);position:relative}
+section.dark{background:var(--verde);color:var(--os);border-bottom-color:var(--linie-dark)}
+section.dark h2,section.dark b,section.dark h3{color:var(--os)}
+section.dark .lead,section.dark .note{color:var(--ocru)}
+section.dark .ey{color:var(--ocru)}
+
+/* ---------- Tipografie ---------- */
+.ey{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--ocru2);margin-bottom:14px;font-weight:500}
+h1{font-family:var(--serif);font-weight:300;font-size:clamp(32px,5.6vw,52px);line-height:1.08;letter-spacing:-.012em;max-width:24ch}
+h2{font-family:var(--serif);font-weight:300;font-size:clamp(25px,4vw,38px);line-height:1.14;letter-spacing:-.008em;max-width:24ch}
+h3{font-family:var(--serif);font-weight:500;font-size:clamp(18px,2.2vw,21px);line-height:1.25}
+.lead{font-family:var(--serif);font-style:italic;font-size:clamp(17px,2.3vw,21px);color:var(--ocru2);margin-top:16px;max-width:48ch;line-height:1.45}
+.sub{font-size:15px;color:var(--gri);margin-top:18px;max-width:58ch;line-height:1.72}
+.note{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--ocru2);margin-top:30px;padding-top:22px;border-top:1px solid var(--linie);max-width:52ch;line-height:1.45}
+section.dark .note{border-top-color:var(--linie-dark)}
+
+/* ---------- Hero ---------- */
+.hero{padding:clamp(38px,6vw,68px) 0 clamp(52px,8vw,90px)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,56px);align-items:center}
+.cta1{margin-top:clamp(24px,3.4vw,34px);display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.cta1 .mic{font-size:13px;color:var(--gri);flex-basis:100%;margin-top:4px}
+.hero-viz{position:relative;aspect-ratio:1/1;max-width:480px;margin:0 auto;width:100%}
+.hero-viz svg{width:100%;height:100%;display:block;overflow:visible}
+
+/* ---------- Butoane ---------- */
+.btn{display:inline-block;background:var(--verde);border:1px solid var(--verde);color:var(--os);
+  font-family:var(--sans);font-size:13px;letter-spacing:.18em;text-transform:uppercase;
+  padding:15px 32px;cursor:pointer;transition:all .3s var(--ease);border-radius:2px;
+  text-decoration:none;-webkit-tap-highlight-color:transparent}
+.btn:hover{background:var(--ocru);border-color:var(--ocru);color:var(--os);transform:translateY(-1px)}
+.btn:disabled{opacity:.34;cursor:default}
+
+/* ---------- Bento grid ---------- */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:clamp(28px,4vw,42px)}
+.bcard{background:var(--os2);border:1px solid var(--linie);border-radius:3px;padding:clamp(22px,3vw,30px);
+  transition:border-color .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease)}
+.bcard:hover{border-color:var(--ocru);transform:translateY(-2px);box-shadow:0 14px 34px -20px rgba(11,38,32,.28)}
+.bcard .ic{width:34px;height:34px;margin-bottom:16px}
+.bcard .ic svg{width:100%;height:100%;stroke:var(--ocru2);fill:none;stroke-width:1.5}
+.bcard h3{margin-bottom:10px}
+.bcard p{font-size:14.5px;color:var(--gri);line-height:1.7}
+.b1{grid-column:span 3}.b2{grid-column:span 3}.b3{grid-column:span 6}
+
+/* ---------- Stats ---------- */
+.stats{margin-top:clamp(26px,4vw,40px);border-top:1px solid var(--linie)}
+.stat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(14px,3vw,36px);
+  padding:24px 0;border-bottom:1px solid var(--linie);align-items:baseline}
+.stat b{font-family:var(--serif);font-weight:500;font-size:clamp(32px,5vw,52px);line-height:1;color:var(--ocru2);letter-spacing:-.02em}
+.stat p{font-size:15px;color:var(--gri);line-height:1.7}
+.stat p i{color:var(--gri2);font-style:normal;font-size:13px}
+
+/* ---------- Securitate ---------- */
+.sec-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:clamp(28px,4vw,42px)}
+.sec-card{background:rgba(255,255,255,.028);border:1px solid var(--linie-dark);border-radius:3px;
+  padding:clamp(20px,2.8vw,26px);transition:background .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease)}
+.sec-card:hover{background:rgba(255,255,255,.055);border-color:var(--ocru);transform:translateY(-2px)}
+.sec-card .ic{width:30px;height:30px;margin-bottom:14px}
+.sec-card .ic svg{width:100%;height:100%;stroke:var(--ocru);fill:none;stroke-width:1.4}
+.sec-card h3{font-size:17px;margin-bottom:8px;color:var(--os)}
+.sec-card p{font-size:14px;color:#A3B8AE;line-height:1.7}
+
+/* ---------- Formular ---------- */
+form{margin-top:clamp(26px,4vw,40px);max-width:440px}
+.lb{display:block;font-size:12px;letter-spacing:.14em;color:var(--gri2);margin:20px 0 4px;text-transform:uppercase}
+input,select{width:100%;background:transparent;border:0;border-bottom:1px solid var(--linie);
+  color:var(--verde);font-family:var(--sans);font-size:16px;font-weight:300;padding:11px 2px;
+  transition:border-color .3s var(--ease);border-radius:0}
+select{cursor:pointer;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7A73' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 2px center;padding-right:24px}
+input::placeholder{color:var(--gri2)}
+input:focus,select:focus{outline:none;border-bottom-color:var(--ocru)}
+.btn-submit{margin-top:26px}
+.msg{font-size:13.5px;margin-top:14px;min-height:1.3em;color:var(--gri)}
+.msg.err{color:#B4443A}.msg.ok{color:var(--ocru)}
+
+/* ---------- Footer ---------- */
+footer{padding:clamp(34px,5vw,48px) 0;font-size:13px;color:var(--gri2);background:var(--os)}
+footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer a{color:var(--gri);text-decoration:none;transition:color .3s}
+footer a:hover{color:var(--ocru)}
+
+/* ---------- Lang button ---------- */
+#lang{position:fixed;top:clamp(12px,2.5vw,18px);right:clamp(14px,3vw,22px);z-index:30;background:var(--os);
+  border:1px solid var(--linie);color:var(--gri);font-family:var(--sans);font-size:11px;letter-spacing:.2em;
+  padding:7px 13px;cursor:pointer;transition:.3s;border-radius:2px;-webkit-tap-highlight-color:transparent}
+#lang:hover{border-color:var(--ocru);color:var(--ocru)}
+
+:focus-visible{outline:1px solid var(--ocru);outline-offset:3px}
+
+/* ---------- Animații SVG ---------- */
+.np{animation:np 3s ease-in-out infinite}
+.np.d1{animation-delay:.4s}.np.d2{animation-delay:.9s}.np.d3{animation-delay:1.4s}.np.d4{animation-delay:1.9s}
+@keyframes np{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+.nl{stroke-dasharray:4 6;animation:nl 14s linear infinite}
+@keyframes nl{to{stroke-dashoffset:-200}}
+.norbit{transform-origin:center;animation:nspin 60s linear infinite}
+@keyframes nspin{to{transform:rotate(360deg)}}
+
+/* ---------- Reveal ---------- */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- Responsive ---------- */
+@media(max-width:820px){
+  .hero-grid{grid-template-columns:1fr;gap:32px}
+  .hero-viz{max-width:340px}
+  .bento{grid-template-columns:1fr}
+  .b1,.b2,.b3{grid-column:span 1}
+  .sec-grid{grid-template-columns:1fr}
+  h1,h2,.lead,.sub{max-width:none}
+  .stat{grid-template-columns:1fr;gap:6px}
+  section{padding:clamp(44px,7vw,68px) 0}
+  footer .w{display:block;text-align:center}
+  footer span{display:block;margin-bottom:8px}
+}
+@media(prefers-reduced-motion:reduce){
+  .np,.nl,.norbit,.rv{animation:none!important;transition:none!important;opacity:1!important;transform:none!important}
+}
+</style>
 <link rel="icon" type="image/svg+xml" href="/marca.svg">
 <link rel="apple-touch-icon" href="/logo-hellohuman.png">
-
-<style>
-/* ============================================================
-   BUSINESS.HTML — extensii peste site.css
-   Folosește exclusiv tokens din site.css (--pine, --oat, --gold, --rust)
-   ============================================================ */
-
-/* --- Hero cu rețea animată --- */
-.biz-hero{padding:clamp(24px,4vw,48px) 0 clamp(56px,8vw,96px)}
-.biz-hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,64px);align-items:center}
-@media(max-width:900px){.biz-hero .wrap{grid-template-columns:1fr;gap:36px}}
-.biz-hero h1{max-width:20ch}
-.biz-hero .lead{max-width:44ch;margin:20px 0 0;color:#B8CCC4}
-.biz-hero .cta{margin-top:clamp(20px,2.6vw,30px);align-items:center}
-.biz-hero .cta .mic{font-size:13.5px;color:var(--dim);margin-top:8px;flex-basis:100%}
-.biz-hero .cta .sec-link{color:var(--gold);text-decoration:none;font-size:14px;font-weight:500;
-  border-bottom:1px solid rgba(245,184,65,.4);padding-bottom:1px;transition:border-color .2s}
-.biz-hero .cta .sec-link:hover{border-color:var(--gold)}
-
-/* SVG rețea */
-.net-viz{position:relative;aspect-ratio:1/1;max-width:520px;margin:0 auto;width:100%}
-.net-viz svg{width:100%;height:100%;display:block;overflow:visible}
-.net-node{animation:netpulse 3s ease-in-out infinite}
-.net-node.d1{animation-delay:.4s}
-.net-node.d2{animation-delay:.9s}
-.net-node.d3{animation-delay:1.4s}
-.net-node.d4{animation-delay:1.9s}
-@keyframes netpulse{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
-.net-line{stroke-dasharray:4 6;animation:netflow 14s linear infinite}
-@keyframes netflow{to{stroke-dashoffset:-200}}
-.net-orbit{transform-origin:center;animation:netslowspin 60s linear infinite}
-@keyframes netslowspin{to{transform:rotate(360deg)}}
-@media(prefers-reduced-motion:reduce){
-  .net-node,.net-line,.net-orbit{animation:none}
-}
-
-/* --- Bară social proof --- */
-.biz-proof{background:var(--pine2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  padding:22px 0}
-.biz-proof .wrap{display:flex;align-items:center;gap:clamp(18px,3vw,40px);flex-wrap:wrap;justify-content:center}
-.biz-proof .lbl{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);font-weight:700;flex:none}
-.biz-proof .lg{display:flex;gap:clamp(22px,4vw,44px);flex-wrap:wrap;align-items:center;justify-content:center;opacity:.55;transition:opacity .4s}
-.biz-proof:hover .lg{opacity:.9}
-.biz-proof .lg span{font-family:var(--disp);font-size:clamp(15px,1.8vw,19px);color:var(--oat);font-weight:600;letter-spacing:.01em;white-space:nowrap}
-
-/* --- Bento pentru contexte --- */
-.biz-bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:clamp(28px,4vw,44px)}
-.biz-bento .bcard{background:var(--pine2);border:1px solid var(--line);border-radius:3px;
-  padding:clamp(22px,3vw,30px);transition:border-color .3s,transform .3s}
-.biz-bento .bcard:hover{border-color:var(--gold);transform:translateY(-2px)}
-.biz-bento .bcard .ic{width:36px;height:36px;margin-bottom:18px;opacity:.9}
-.biz-bento .bcard .ic svg{width:100%;height:100%;stroke:var(--gold);fill:none;stroke-width:1.5}
-.biz-bento .bcard h3{margin-bottom:10px;color:var(--oat)}
-.biz-bento .bcard p{font-size:15px;color:var(--mist);line-height:1.65;max-width:none}
-.biz-bento .b1{grid-column:span 3}
-.biz-bento .b2{grid-column:span 3}
-.biz-bento .b3{grid-column:span 6}
-@media(max-width:820px){
-  .biz-bento{grid-template-columns:1fr}
-  .biz-bento .b1,.biz-bento .b2,.biz-bento .b3{grid-column:span 1}
-}
-
-/* --- Pași numerotați --- */
-.biz-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,3vw,40px);
-  margin-top:clamp(30px,4vw,48px)}
-.biz-steps .stepc{position:relative;padding-top:22px;border-top:1px solid var(--line)}
-.biz-steps .stepc .n{font-family:var(--disp);font-weight:900;font-size:clamp(32px,4vw,44px);
-  line-height:1;color:var(--gold);letter-spacing:-.04em;margin-bottom:14px;display:block}
-.biz-steps .stepc h3{color:var(--oat);margin-bottom:9px}
-.biz-steps .stepc p{font-size:15px;color:var(--mist);line-height:1.65;max-width:none}
-@media(max-width:820px){.biz-steps{grid-template-columns:1fr;gap:26px}}
-
-/* --- Stats cu numărătoare --- */
-.biz-stats{margin-top:clamp(28px,4vw,44px);border-top:1px solid var(--line)}
-.biz-stat{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,2fr);gap:clamp(16px,3vw,40px);
-  padding:clamp(22px,3vw,30px) 0;border-bottom:1px solid var(--line);align-items:baseline}
-.biz-stat .num{font-family:var(--disp);font-weight:900;font-size:clamp(36px,5vw,56px);
-  line-height:1;color:var(--gold);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
-.biz-stat p{font-size:15.5px;color:var(--mist);line-height:1.7;max-width:none}
-.biz-stat p i{color:var(--dim);font-style:normal;font-size:13px}
-@media(max-width:700px){
-  .biz-stat{grid-template-columns:1fr;gap:6px}
-}
-
-/* --- Tabel comparație --- */
-.biz-cmp{margin-top:clamp(28px,4vw,44px);border-top:1px solid var(--line)}
-.biz-cmp .r{display:grid;grid-template-columns:1.2fr 1fr 1.1fr;gap:clamp(12px,2vw,28px);
-  padding:18px 0;border-bottom:1px solid var(--line);align-items:baseline}
-.biz-cmp .r.head{padding:14px 0;border-bottom:1px solid var(--gold)}
-.biz-cmp .r.head span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);font-weight:700}
-.biz-cmp .r.head span:last-child{color:var(--gold)}
-.biz-cmp .r .crit{font-family:var(--disp);font-weight:600;font-size:17px;color:var(--oat)}
-.biz-cmp .r .trad{font-size:14.5px;color:var(--dim);line-height:1.55}
-.biz-cmp .r .hh{font-size:14.5px;color:var(--oat);line-height:1.55}
-.biz-cmp .r .hh b{color:var(--gold);font-weight:700}
-@media(max-width:700px){
-  .biz-cmp .r{grid-template-columns:1fr;gap:4px;padding:16px 0}
-  .biz-cmp .r.head{display:none}
-  .biz-cmp .r .crit{padding-bottom:6px}
-}
-
-/* --- Securitate bento --- */
-.biz-sec{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:clamp(28px,4vw,44px)}
-.biz-sec .sc-card{background:rgba(240,235,224,.03);border:1px solid var(--line);border-radius:3px;
-  padding:clamp(22px,3vw,28px);transition:background .3s,border-color .3s,transform .3s}
-.biz-sec .sc-card:hover{background:rgba(240,235,224,.06);border-color:var(--gold);transform:translateY(-2px)}
-.biz-sec .sc-card .ic{width:32px;height:32px;margin-bottom:16px}
-.biz-sec .sc-card .ic svg{width:100%;height:100%;stroke:var(--gold);fill:none;stroke-width:1.4}
-.biz-sec .sc-card h3{font-size:17px;margin-bottom:8px;color:var(--oat)}
-.biz-sec .sc-card p{font-size:14.5px;color:var(--mist);line-height:1.65;max-width:none}
-@media(max-width:700px){.biz-sec{grid-template-columns:1fr}}
-
-/* --- Formular --- */
-.biz-form{margin-top:clamp(28px,4vw,44px);max-width:480px}
-.biz-form .frow{margin-bottom:22px}
-.biz-form .lb2{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--mist);margin-bottom:10px}
-.biz-form input,.biz-form select{width:100%;background:transparent;border:0;
-  border-bottom:1px solid var(--line);color:var(--oat);font-family:var(--sans);
-  font-size:16px;padding:11px 2px;outline:none;transition:border-color .3s;border-radius:0}
-.biz-form select{cursor:pointer;appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239DB3AB' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 2px center;padding-right:24px}
-.biz-form input::placeholder{color:var(--dim)}
-.biz-form input:focus,.biz-form select:focus{border-bottom-color:var(--gold)}
-.biz-form .prog{height:2px;background:var(--line);margin-top:10px;border-radius:2px;overflow:hidden}
-.biz-form .prog i{display:block;height:100%;background:var(--gold);width:0;transition:width .5s ease}
-.biz-form .msg2{font-size:13.5px;margin-top:14px;min-height:1.3em;color:var(--mist)}
-.biz-form .msg2.err{color:#F09B85}
-.biz-form .msg2.ok{color:#9BD8A8}
-
-/* --- Semnătură brand (logo-line) --- */
-.biz-signature{padding:clamp(40px,6vw,72px) 0;text-align:center;border-top:1px solid var(--line)}
-.biz-signature img{max-width:min(520px,80vw);height:auto;opacity:.85;margin:0 auto;display:block}
-.biz-signature p{margin:20px auto 0;max-width:44ch;color:var(--mist);font-family:var(--disp);
-  font-style:italic;font-size:19px;line-height:1.5}
-
-/* --- Reveal la scroll --- */
-.rv{opacity:0;transform:translateY(20px);transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1)}
-.rv.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
-
-/* --- Ajustare globală pentru business --- */
-section.biz{padding:clamp(56px,8vw,96px) 0;border-bottom:1px solid var(--line)}
-section.biz.dark{background:var(--pine2)}
-section.biz h2{color:var(--oat)}
-section.biz .eyebrow{color:var(--gold)}
-section.biz .lead{color:#B8CCC4}
-section.biz .note{background:rgba(240,235,224,.03);border-left:2px solid var(--gold)}
-</style>
 </head>
 <body>
 
-<header class="bar">
-  <div class="wrap">
-    <a class="logo" href="/">
-      <img src="/marca-inchis.svg" alt="" width="30" height="30" aria-hidden="true">Hello<span>Human</span>
-    </a>
-    <nav class="barnav">
-      <a href="/corporate.html" class="hidem" data-t="c0">For Enterprise</a>
-      <button class="lang" id="bLang" type="button" aria-label="English">EN</button>
-    </nav>
-  </div>
-</header>
+<button id="lang" type="button" aria-label="English">EN</button>
+<header><div class="w">
+  <a class="logo" href="/"><img src="/marca.svg" alt="" width="30" height="30" aria-hidden="true">HelloHuman</a>
+</div></header>
 
 <main>
 
 <!-- HERO -->
-<section class="biz-hero biz">
-  <div class="wrap">
+<section class="hero"><div class="w">
+  <div class="hero-grid">
     <div>
-      <p class="eyebrow" data-t="b0">Pentru Companii & Enterprise</p>
-      <h1 data-t="b1">Arhitectura coeziunii organizaționale. Fundamentată pe date reale, nu pe percepții.</h1>
+      <p class="ey" data-t="b0">Pentru Companii & Enterprise</p>
+      <h1 data-t="b1">Arhitectură de coeziune organizațională. Fundamentată pe date din conexiuni umane reale.</h1>
       <p class="lead" data-t="b2">La birou, remote sau în cadrul evenimentelor corporate. Privacy-by-design, fără integrare IT.</p>
-      <div class="cta">
-        <a class="btn" href="#start" data-t="x1">Evaluare rapidă · 2 minute</a>
-        <a class="sec-link" href="/hellohuman-raport-hr.pdf" download data-t="x3">Vezi un raport demo (PDF)</a>
+      <div class="cta1">
+        <a class="btn" href="#start" data-t="x1">EVALUARE RAPIDĂ · 2 MINUTE</a>
         <p class="mic" data-t="x2">Fără obligații comerciale. Zero apeluri nesolicitate.</p>
       </div>
     </div>
-    <div class="net-viz" aria-hidden="true">
+    <div class="hero-viz" aria-hidden="true">
       <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <radialGradient id="g" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#F5B841" stop-opacity=".18"/>
-            <stop offset="100%" stop-color="#F5B841" stop-opacity="0"/>
+          <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#C8912A" stop-opacity=".18"/>
+            <stop offset="100%" stop-color="#C8912A" stop-opacity="0"/>
           </radialGradient>
         </defs>
-        <circle cx="200" cy="200" r="180" fill="url(#g)"/>
-        <g class="net-orbit" opacity=".25">
-          <circle cx="200" cy="200" r="150" fill="none" stroke="#F0EBE0" stroke-width=".5" stroke-dasharray="2 4"/>
-          <circle cx="200" cy="200" r="110" fill="none" stroke="#F0EBE0" stroke-width=".5" stroke-dasharray="2 4"/>
+        <circle cx="200" cy="200" r="180" fill="url(#glow)"/>
+        <g class="norbit" opacity=".28">
+          <circle cx="200" cy="200" r="150" fill="none" stroke="#0B2620" stroke-width=".5" stroke-dasharray="2 4"/>
+          <circle cx="200" cy="200" r="110" fill="none" stroke="#0B2620" stroke-width=".5" stroke-dasharray="2 4"/>
         </g>
-        <line x1="200" y1="200" x2="90" y2="110" class="net-line" stroke="#F5B841" stroke-width="1.2" opacity=".75"/>
-        <line x1="200" y1="200" x2="310" y2="95" class="net-line" stroke="#F5B841" stroke-width="1.2" opacity=".85"/>
-        <line x1="200" y1="200" x2="110" y2="300" class="net-line" stroke="#F0EBE0" stroke-width="1" opacity=".35"/>
-        <line x1="200" y1="200" x2="330" y2="280" class="net-line" stroke="#F5B841" stroke-width="1.4" opacity=".9"/>
-        <line x1="90" y1="110" x2="310" y2="95" stroke="#F0EBE0" stroke-width=".8" opacity=".15"/>
-        <line x1="110" y1="300" x2="330" y2="280" stroke="#F0EBE0" stroke-width=".8" opacity=".25"/>
-        <line x1="310" y1="95" x2="330" y2="280" stroke="#F0EBE0" stroke-width=".8" opacity=".2"/>
-        <line x1="90" y1="110" x2="110" y2="300" stroke="#F0EBE0" stroke-width=".8" opacity=".15"/>
-        <circle cx="200" cy="200" r="20" fill="#F0EBE0" class="net-node"/>
-        <circle cx="200" cy="200" r="9" fill="#F5B841"/>
-        <circle cx="90" cy="110" r="13" fill="#F5B841" class="net-node d1"/>
-        <circle cx="310" cy="95" r="16" fill="#F0EBE0" class="net-node d2"/>
-        <circle cx="110" cy="300" r="10" fill="#F5B841" class="net-node d3"/>
-        <circle cx="330" cy="280" r="17" fill="#F0EBE0" class="net-node d4"/>
-        <circle cx="150" cy="150" r="4" fill="#F0EBE0" opacity=".5"/>
-        <circle cx="260" cy="130" r="5" fill="#F5B841" opacity=".7"/>
-        <circle cx="165" cy="270" r="4" fill="#F0EBE0" opacity=".45"/>
-        <circle cx="275" cy="325" r="5" fill="#F5B841" opacity=".65"/>
-        <circle cx="75" cy="215" r="3.5" fill="#F0EBE0" opacity=".35"/>
+        <line x1="200" y1="200" x2="90" y2="110" class="nl" stroke="#C8912A" stroke-width="1.2" opacity=".7"/>
+        <line x1="200" y1="200" x2="310" y2="95" class="nl" stroke="#C8912A" stroke-width="1.2" opacity=".85"/>
+        <line x1="200" y1="200" x2="110" y2="300" class="nl" stroke="#0B2620" stroke-width="1" opacity=".35"/>
+        <line x1="200" y1="200" x2="330" y2="280" class="nl" stroke="#C8912A" stroke-width="1.4" opacity=".9"/>
+        <line x1="90" y1="110" x2="310" y2="95" stroke="#0B2620" stroke-width=".8" opacity=".2"/>
+        <line x1="110" y1="300" x2="330" y2="280" stroke="#0B2620" stroke-width=".8" opacity=".3"/>
+        <line x1="310" y1="95" x2="330" y2="280" stroke="#0B2620" stroke-width=".8" opacity=".25"/>
+        <line x1="90" y1="110" x2="110" y2="300" stroke="#0B2620" stroke-width=".8" opacity=".2"/>
+        <circle cx="200" cy="200" r="20" fill="#0B2620" class="np"/>
+        <circle cx="200" cy="200" r="9" fill="#C8912A"/>
+        <circle cx="90" cy="110" r="13" fill="#C8912A" class="np d1"/>
+        <circle cx="310" cy="95" r="16" fill="#0B2620" class="np d2"/>
+        <circle cx="110" cy="300" r="10" fill="#C8912A" class="np d3"/>
+        <circle cx="330" cy="280" r="17" fill="#0B2620" class="np d4"/>
+        <circle cx="150" cy="150" r="4" fill="#0B2620" opacity=".5"/>
+        <circle cx="260" cy="130" r="5" fill="#C8912A" opacity=".7"/>
+        <circle cx="165" cy="270" r="4" fill="#0B2620" opacity=".45"/>
+        <circle cx="275" cy="325" r="5" fill="#C8912A" opacity=".65"/>
+        <circle cx="75" cy="215" r="3.5" fill="#0B2620" opacity=".35"/>
       </svg>
     </div>
   </div>
-</section>
-
-<!-- SOCIAL PROOF -->
-<section class="biz-proof">
-  <div class="wrap">
-    <p class="lbl" data-t="sp0">Parteneri & clienți</p>
-    <div class="lg">
-      <span>Telecom</span>
-      <span>Retail Group</span>
-      <span>Fintech Co.</span>
-      <span>Industrial S.A.</span>
-      <span>University</span>
-    </div>
-  </div>
-</section>
+</div></section>
 
 <!-- DIFERENȚIATOR STRATEGIC -->
-<section class="biz dark">
-  <div class="wrap rv">
-    <p class="eyebrow" data-t="s0">Diferențiatorul Strategic</p>
-    <h2 data-t="s1">Declarații subiective vs. Comportament organizațional real.</h2>
-    <p class="lead" data-t="s2">Sondajele tradiționale măsoară percepții declarate. HelloHuman cuantifică interacțiunile efective — frecvența, volumul și reciprocitatea conexiunilor, eliminând silozurile fără a compromite anonimatul.</p>
-  </div>
-</section>
+<section class="dark"><div class="w rv">
+  <p class="ey" data-t="s0">Diferențiatorul Strategic</p>
+  <h2 data-t="s1">Declarații subiective vs. Comportament organizațional real.</h2>
+  <p class="lead" data-t="s2">Sondajele tradiționale măsoară percepții declarate. HelloHuman cuantifică interacțiunile efective — frecvența, volumul și reciprocitatea conexiunilor, eliminând silozurile fără a compromite anonimatul.</p>
+</div></section>
 
-<!-- CUM FUNCȚIONEAZĂ -->
-<section class="biz">
-  <div class="wrap rv">
-    <p class="eyebrow" data-t="how0">Cum funcționează</p>
-    <h2 data-t="how1">Trei pași. Zero fricțiune.</h2>
-    <div class="biz-steps">
-      <div class="stepc">
-        <span class="n">01</span>
-        <h3 data-t="st1t">Scanați un cod QR</h3>
-        <p data-t="st1d">Participanții scanează un cod afișat la masă sau pe ecran. Fără aplicații, fără conturi, fără instalări.</p>
-      </div>
-      <div class="stepc">
-        <span class="n">02</span>
-        <h3 data-t="st2t">Algoritmul mapează conexiunile</h3>
-        <p data-t="st2d">Sistemul cuantifică volumul, frecvența și reciprocitatea interacțiunilor. Totul agregat, nimic nominal.</p>
-      </div>
-      <div class="stepc">
-        <span class="n">03</span>
-        <h3 data-t="st3t">Primiți raportul de coeziune</h3>
-        <p data-t="st3d">Managementul primește o hartă clară a conexiunilor reale și indicatori acționabili. Anonimizat integral.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTEXTE — BENTO -->
-<section class="biz dark">
-  <div class="wrap rv">
-    <p class="eyebrow" data-t="t0">Domenii de Aplicare</p>
+<!-- DOMENII DE APLICARE — BENTO -->
+<section><div class="w-wide">
+  <div class="rv">
+    <p class="ey" data-t="t0">Domenii de Aplicare</p>
     <h2 data-t="t1">Trei contexte operaționale. O singură infrastructură.</h2>
   </div>
-  <div class="wrap">
-    <div class="biz-bento">
-      <div class="bcard b1 rv">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg></div>
-        <h3 data-t="t2">In-Office & Pauze Operative</h3>
-        <p data-t="t3">Pauze dinamice de 15 minute. Facilităm schimbul cross-departamental de idei între echipe distincte.</p>
-      </div>
-      <div class="bcard b2 rv">
-        <div class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-        <h3 data-t="t4">Remote & Work-from-Home</h3>
-        <p data-t="t5">Conectare direct din browser pentru echipele distribuite. Fără instalări de software sau fricțiuni tehnice.</p>
-      </div>
-      <div class="bcard b3 rv">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <h3 data-t="t6">Evenimente Corporate & Summituri</h3>
-        <p data-t="t7">Team building-uri și întâlniri de linie. Arhitectură pre-calibrată de networking și raport de engagement generat post-eveniment.</p>
-      </div>
-    </div>
-    <p class="note rv" data-t="t8">Toate cele trei contexte sunt consolidate într-o singură metrică. Managementul primește o imagine clară asupra coeziunii interne.</p>
+  <div class="bento">
+    <article class="bcard b1 rv">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg></div>
+      <h3 data-t="t2">In-Office & Pauze Operative</h3>
+      <p data-t="t3">Pauze dinamice de 15 minute. Facilităm schimbul cross-departamental de idei între echipe distincte.</p>
+    </article>
+    <article class="bcard b2 rv">
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <h3 data-t="t4">Remote & Work-from-Home</h3>
+      <p data-t="t5">Conectare direct din browser pentru echipele distribuite. Fără instalări de software sau fricțiuni tehnice.</p>
+    </article>
+    <article class="bcard b3 rv">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <h3 data-t="t6">Evenimente Corporate & Summituri</h3>
+      <p data-t="t7">Team building-uri și întâlniri de linie. Arhitectură pre-calibrată de networking și raport de engagement generat post-eveniment.</p>
+    </article>
   </div>
-</section>
+  <p class="note rv" data-t="t8">Toate cele trei contexte sunt consolidate într-o singură metrică. Managementul primește o imagine clară asupra coeziunii interne.</p>
+</div></section>
 
-<!-- TRANSFER DE CUNOAȘTERE -->
-<section class="biz">
-  <div class="wrap rv">
-    <p class="eyebrow" data-t="k0">Transfer Strategic de Cunoaștere</p>
-    <h2 data-t="k1">Capitalul intelectual devine un activ durabil, securizat și transmis noilor generații de lideri.</h2>
-    <p class="lead" data-t="k2">Accelerăm onboarding-ul și retenția know-how-ului prin sesiuni structurate de mentorat și dialog inter-generațional.</p>
-  </div>
-</section>
+<!-- TRANSFER STRATEGIC -->
+<section class="dark"><div class="w rv">
+  <p class="ey" data-t="k0">Transfer Strategic de Cunoaștere</p>
+  <h2 data-t="k1">Capitalul intelectual devine un activ durabil, securizat și transmis noilor generații de lideri.</h2>
+  <p class="lead" data-t="k2">Accelerăm onboarding-ul și retenția know-how-ului prin sesiuni structurate de mentorat și dialog inter-generațional.</p>
+</div></section>
 
-<!-- STATS -->
-<section class="biz dark">
-  <div class="wrap">
-    <div class="rv">
-      <p class="eyebrow" data-t="r0">Standarde de Piață & Date</p>
-      <h2 data-t="r1">Impactul Financiar al Silozurilor Organizaționale.</h2>
-    </div>
-    <div class="biz-stats rv">
-      <div class="biz-stat">
-        <div class="num" data-count="51" data-suffix="%">0%</div>
-        <p data-t="r3">dintre angajați explorează activ sau pasiv noi oportunități de carieră. <i>Gallup</i></p>
-      </div>
-      <div class="biz-stat">
-        <div class="num" data-count="42" data-suffix="%">0%</div>
-        <p data-t="r5">din know-how-ul specific unui rol este deținut exclusiv de titular. <i>Panopto, 2018</i></p>
-      </div>
-      <div class="biz-stat">
-        <div class="num" data-count="5" data-prefix="3–" data-suffix=" ani">0 ani</div>
-        <p data-t="r7">necesari unui nou angajat pentru a atinge nivelul optim de conectivitate organizațională. <i>Rob Cross</i></p>
-      </div>
-    </div>
-    <p class="note rv" data-t="r8">Date validate la nivel internațional care reflectă costul invizibil al lipsei de coeziune.</p>
+<!-- STANDARDE DE PIAȚĂ -->
+<section><div class="w">
+  <div class="rv">
+    <p class="ey" data-t="r0">Standarde de Piață & Date</p>
+    <h2 data-t="r1">Impactul Financiar al Silozurilor Organizaționale.</h2>
   </div>
-</section>
+  <div class="stats rv">
+    <div class="stat"><b data-t="r2">51%</b><p data-t="r3">dintre angajați explorează activ sau pasiv noi oportunități de carieră. <i>Gallup</i></p></div>
+    <div class="stat"><b data-t="r4">42%</b><p data-t="r5">din know-how-ul specific unui rol este deținut exclusiv de titular. <i>Panopto, 2018</i></p></div>
+    <div class="stat"><b data-t="r6">3–5 ani</b><p data-t="r7">necesari unui nou angajat pentru a atinge nivelul optim de conectivitate organizațională. <i>Rob Cross</i></p></div>
+  </div>
+  <p class="note rv" data-t="r8">Date validate la nivel internațional care reflectă costul invizibil al lipsei de coeziune.</p>
+</div></section>
 
-<!-- COMPARAȚIE -->
-<section class="biz">
-  <div class="wrap">
-    <div class="rv">
-      <p class="eyebrow" data-t="cmp0">Comparație Directă</p>
-      <h2 data-t="cmp1">Sondaje tradiționale vs. HelloHuman.</h2>
-    </div>
-    <div class="biz-cmp rv">
-      <div class="r head">
-        <span data-t="cmpA">Criteriu</span>
-        <span data-t="cmpB">Sondaje tradiționale</span>
-        <span data-t="cmpC">HelloHuman</span>
-      </div>
-      <div class="r">
-        <span class="crit" data-t="cmp1a">Ce măsoară</span>
-        <span class="trad" data-t="cmp1b">Percepții declarate</span>
-        <span class="hh" data-t="cmp1c"><b>Interacțiuni reale</b></span>
-      </div>
-      <div class="r">
-        <span class="crit" data-t="cmp2a">Rată de participare</span>
-        <span class="trad" data-t="cmp2b">20–30%</span>
-        <span class="hh" data-t="cmp2c"><b>70–90%</b></span>
-      </div>
-      <div class="r">
-        <span class="crit" data-t="cmp3a">Anonimitate</span>
-        <span class="trad" data-t="cmp3b">Promisă, re-identificabilă</span>
-        <span class="hh" data-t="cmp3c"><b>Garantată prin design</b></span>
-      </div>
-      <div class="r">
-        <span class="crit" data-t="cmp4a">Implementare</span>
-        <span class="trad" data-t="cmp4b">Săptămâni, integrare IT</span>
-        <span class="hh" data-t="cmp4c"><b>2 minute, zero IT</b></span>
-      </div>
-      <div class="r">
-        <span class="crit" data-t="cmp5a">Cost</span>
-        <span class="trad" data-t="cmp5b">Licențe anuale mari</span>
-        <span class="hh" data-t="cmp5c"><b>Per eveniment</b></span>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ARHITECTURĂ PERSONALIZATĂ -->
+<section><div class="w rv">
+  <p class="ey" data-t="q0">Arhitectură Personalizată</p>
+  <h2 data-t="q1">Soluție calibrată pe provocările specifice ale organizației dumneavoastră.</h2>
+  <p class="lead" data-t="q2">Nicio organizație nu este identică. Fie că combateți izolationismul departamental, accelerarea onboarding-ului sau pierderea capitalului de cunoaștere, parametrii HelloHuman sunt configurați dedicat pentru obiectivele dumneavoastră.</p>
+  <p class="sub" data-t="q3">Metodologiile sunt dezvoltate în colaborare cu experți în sociologie organizațională, asigurând un cadru riguros și analize acționabile.</p>
+</div></section>
 
-<!-- PERSONALIZARE -->
-<section class="biz dark">
-  <div class="wrap rv">
-    <p class="eyebrow" data-t="q0">Arhitectură Personalizată</p>
-    <h2 data-t="q1">Soluție calibrată pe provocările specifice ale organizației dumneavoastră.</h2>
-    <p class="lead" data-t="q2">Nicio organizație nu este identică. Fie că combateți izolationismul departamental, accelerarea onboarding-ului sau pierderea capitalului de cunoaștere, parametrii HelloHuman sunt configurați dedicat pentru obiectivele dumneavoastră.</p>
-    <p style="margin-top:18px;color:var(--mist);max-width:58ch;line-height:1.75" data-t="q3">Metodologiile sunt dezvoltate în colaborare cu experți în sociologie organizațională, asigurând un cadru riguros și analize acționabile.</p>
-  </div>
-</section>
+<!-- ACTIVARE HIBRIDĂ -->
+<section class="dark"><div class="w rv">
+  <p class="ey" data-t="e0">Activare Hibridă & Offline</p>
+  <h2 data-t="e1">Tranziția de la Digital la Conexiune Reală.</h2>
+  <p class="lead" data-t="e2">Consolidarea procesului se realizează prin întâlniri de grup fizice sau virtuale. HelloHuman facilitează selecția locațiilor partenere premium pentru finalizarea experienței.</p>
+</div></section>
 
 <!-- SECURITATE -->
-<section class="biz">
-  <div class="wrap">
-    <div class="rv">
-      <p class="eyebrow" data-t="c0">Securitate & Confidențialitate</p>
-      <h2 data-t="c1">Garanția Anonimatului și a Siguranței Psihologice.</h2>
-      <p class="lead" data-t="c2">Pentru a obține date autentice, am eliminat complet frica de evaluare individuală prin arhitectură Privacy-by-Design.</p>
-    </div>
-    <div class="biz-sec">
-      <div class="sc-card rv">
-        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-        <h3 data-t="c3">Anonimat Total prin Design</h3>
-        <p data-t="c4">Fără nume reale sau identificatori unici. Sistemul nu stochează și nu validează date de identitate din organigramă.</p>
-      </div>
-      <div class="sc-card rv">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div>
-        <h3 data-t="c5">Zero Raportare Nominală</h3>
-        <p data-t="c6">Rapoartele executive nu dezvăluie niciodată conexiunile individuale sau perechile formate.</p>
-      </div>
-      <div class="sc-card rv">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <h3 data-t="c7">Prag Statistic de Siguranță</h3>
-        <p data-t="c8">Datele sunt agregate doar pentru eșantioane de minim cinci persoane, prevenind orice încercare de de-anonimizare.</p>
-      </div>
-      <div class="sc-card rv">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-        <h3 data-t="c9">Zero Integrare IT & Riscuri</h3>
-        <p data-t="c10">Fără conectare la Slack, Teams, servere interne sau baze de date corporative. Risc cibernetic zero.</p>
-      </div>
-    </div>
+<section class="dark"><div class="w-wide">
+  <div class="rv">
+    <p class="ey" data-t="c0">Securitate & Confidențialitate</p>
+    <h2 data-t="c1">Garanția Anonimatului și a Siguranței Psihologice.</h2>
+    <p class="lead" data-t="c2">Pentru a obține date autentice, am eliminat complet frica de evaluare individuală prin arhitectură Privacy-by-Design.</p>
   </div>
-</section>
+  <div class="sec-grid">
+    <article class="sec-card rv">
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+      <h3 data-t="c3">Anonimat Total prin Design</h3>
+      <p data-t="c4">Fără nume reale sau identificatori unici. Sistemul nu stochează și nu validează date de identitate din organigramă.</p>
+    </article>
+    <article class="sec-card rv">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div>
+      <h3 data-t="c5">Zero Raportare Nominală</h3>
+      <p data-t="c6">Rapoartele executive nu dezvăluie niciodată conexiunile individuale sau perechile formate.</p>
+    </article>
+    <article class="sec-card rv">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <h3 data-t="c7">Prag Statistic de Siguranță</h3>
+      <p data-t="c8">Datele sunt agregate doar pentru eșantioane de minim cinci persoane, prevenind orice încercare de de-anonimizare.</p>
+    </article>
+    <article class="sec-card rv">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+      <h3 data-t="c9">Zero Integrare IT & Riscuri</h3>
+      <p data-t="c10">Fără conectare la Slack, Teams, servere interne sau baze de date corporative. Risc cibernetic zero.</p>
+    </article>
+  </div>
+</div></section>
 
 <!-- FORMULAR -->
-<section class="biz dark" id="start">
-  <div class="wrap">
-    <div class="rv">
-      <p class="eyebrow" data-t="z0">Inițiere Calibrare</p>
-      <h2 data-t="z1">Evaluare Strategică · 2 Minute.</h2>
-      <p class="lead" data-t="z2">Selectați specificul organizației dumneavoastră pentru a primi un audit preliminar și o propunere calibrată. Fără obligații comerciale sau apeluri nesolicitate.</p>
-    </div>
-
-    <form id="f" novalidate class="biz-form rv">
-      <div class="frow">
-        <label class="lb2" for="em" data-t="z3">Email Corporate</label>
-        <input type="email" id="em" placeholder="adresa.ta@companie.ro" data-tp="p0" autocomplete="email" required>
-      </div>
-      <div class="frow">
-        <label class="lb2" for="fn" data-t="z4">Rol Organizațional</label>
-        <select id="fn">
-          <option value="" data-t="z6">— Selectați opțiunea —</option>
-          <option value="ceo" data-t="z7">Executive Leadership (CEO / C-Level)</option>
-          <option value="hr" data-t="z8">Human Resources & People Ops</option>
-          <option value="parteneri" data-t="z9">Consultanță Strategică & Event Agency</option>
-        </select>
-        <div class="prog"><i id="prog"></i></div>
-      </div>
-      <div class="frow">
-        <label class="lb2" for="co" data-t="z5">Organizația</label>
-        <input type="text" id="co" placeholder="Denumirea companiei" data-tp="p1" autocomplete="organization">
-      </div>
-      <button class="btn" id="b" type="submit" data-t="z10">Continuă evaluarea</button>
-      <p class="msg2" id="m"></p>
-    </form>
+<section><div class="w">
+  <div class="rv">
+    <p class="ey" id="start" data-t="z0">Inițiere Calibrare</p>
+    <h2 data-t="z1">Evaluare Strategică · 2 Minute.</h2>
+    <p class="sub" data-t="z2">Selectați specificul organizației dumneavoastră pentru a primi un audit preliminar și o propunere calibrată. Fără obligații comerciale sau apeluri nesolicitate.</p>
   </div>
-</section>
 
-<!-- SEMNĂTURĂ BRAND -->
-<section class="biz-signature">
-  <div class="wrap">
-    <img src="/logo-hellohuman-line.svg" alt="HelloHuman" width="520" height="auto" loading="lazy">
-    <p data-t="sig">Oameni care nu se cunosc interacționează constructiv, chiar acolo unde se aflau oricum.</p>
-  </div>
-</section>
+  <form id="f" novalidate class="rv">
+    <label class="lb" for="em" data-t="z3">EMAIL CORPORATE</label>
+    <input type="email" id="em" placeholder="adresa.ta@companie.ro" data-tp="p0" autocomplete="email" required>
+
+    <label class="lb" for="fn" data-t="z4">ROL ORGANIZAȚIONAL</label>
+    <select id="fn">
+      <option value="" data-t="z6">— Selectați opțiunea —</option>
+      <option value="ceo" data-t="z7">Executive Leadership (CEO / C-Level)</option>
+      <option value="hr" data-t="z8">Human Resources & People Ops</option>
+      <option value="parteneri" data-t="z9">Consultanță Strategică & Event Agency</option>
+    </select>
+
+    <label class="lb" for="co" data-t="z5">ORGANIZAȚIA</label>
+    <input type="text" id="co" placeholder="Denumirea companiei" data-tp="p1" autocomplete="organization">
+
+    <button class="btn btn-submit" id="b" type="submit" data-t="z10">CONTINUĂ EVALUAREA</button>
+    <p class="msg" id="m"></p>
+  </form>
+</div></section>
 
 </main>
 
-<footer class="foot">
-  <div class="wrap">
-    <a href="/" class="footlogo"><img src="/logo-hellohuman-inchis.svg" width="150" height="150" loading="lazy" alt="HelloHuman"></a>
-    <div>
-      <p class="logo" style="font-size:24px">Hello<span>Human</span></p>
-      <p class="sm" style="margin-top:10px;max-width:36ch" data-t="ftS">HelloHuman creează experiențe sociale ghidate, aducând oameni compatibili la aceeași masă, în cele mai primitoare spații din oraș.</p>
-    </div>
-    <div class="col">
-      <h4 data-t="ftC">Contact</h4>
-      <ul>
-        <li><a href="mailto:contact@hellohuman.ro">contact@hellohuman.ro</a></li>
-        <li><a href="tel:+40750255200">+40 750 255 200</a></li>
-        <li style="margin-top:14px"><a href="/" data-t="ftP">Pagina pentru participanți</a></li>
-      </ul>
-    </div>
+<footer>
+  <div class="w">
+    <span>HelloHuman · <a href="mailto:bogdan@hellohuman.ro">bogdan@hellohuman.ro</a></span>
+    <span><a href="/" data-t="z11">Pentru Locații Partenere & Events</a></span>
   </div>
 </footer>
 
 <script>
-var L={
-ro:{
+var L={ro:{
 ttl:"HelloHuman pentru Companii — Coeziune Organizațională & Network Analytics",
-c0:"For Enterprise",
 b0:"Pentru Companii & Enterprise",
-b1:"Arhitectura coeziunii organizaționale. Fundamentată pe date reale, nu pe percepții.",
+b1:"Arhitectură de coeziune organizațională. Fundamentată pe date din conexiuni umane reale.",
 b2:"La birou, remote sau în cadrul evenimentelor corporate. Privacy-by-design, fără integrare IT.",
-x1:"Evaluare rapidă · 2 minute",
+x1:"EVALUARE RAPIDĂ · 2 MINUTE",
 x2:"Fără obligații comerciale. Zero apeluri nesolicitate.",
-x3:"Vezi un raport demo (PDF)",
-sp0:"Parteneri & clienți",
 s0:"Diferențiatorul Strategic",
 s1:"Declarații subiective vs. Comportament organizațional real.",
 s2:"Sondajele tradiționale măsoară percepții declarate. HelloHuman cuantifică interacțiunile efective — frecvența, volumul și reciprocitatea conexiunilor, eliminând silozurile fără a compromite anonimatul.",
-how0:"Cum funcționează",
-how1:"Trei pași. Zero fricțiune.",
-st1t:"Scanați un cod QR",
-st1d:"Participanții scanează un cod afișat la masă sau pe ecran. Fără aplicații, fără conturi, fără instalări.",
-st2t:"Algoritmul mapează conexiunile",
-st2d:"Sistemul cuantifică volumul, frecvența și reciprocitatea interacțiunilor. Totul agregat, nimic nominal.",
-st3t:"Primiți raportul de coeziune",
-st3d:"Managementul primește o hartă clară a conexiunilor reale și indicatori acționabili. Anonimizat integral.",
 t0:"Domenii de Aplicare",
 t1:"Trei contexte operaționale. O singură infrastructură.",
 t2:"In-Office & Pauze Operative",
@@ -529,21 +380,20 @@ k1:"Capitalul intelectual devine un activ durabil, securizat și transmis noilor
 k2:"Accelerăm onboarding-ul și retenția know-how-ului prin sesiuni structurate de mentorat și dialog inter-generațional.",
 r0:"Standarde de Piață & Date",
 r1:"Impactul Financiar al Silozurilor Organizaționale.",
+r2:"51%",
 r3:"dintre angajați explorează activ sau pasiv noi oportunități de carieră. <i>Gallup</i>",
+r4:"42%",
 r5:"din know-how-ul specific unui rol este deținut exclusiv de titular. <i>Panopto, 2018</i>",
+r6:"3–5 ani",
 r7:"necesari unui nou angajat pentru a atinge nivelul optim de conectivitate organizațională. <i>Rob Cross</i>",
 r8:"Date validate la nivel internațional care reflectă costul invizibil al lipsei de coeziune.",
-cmp0:"Comparație Directă",cmp1:"Sondaje tradiționale vs. HelloHuman.",
-cmpA:"Criteriu",cmpB:"Sondaje tradiționale",cmpC:"HelloHuman",
-cmp1a:"Ce măsoară",cmp1b:"Percepții declarate",cmp1c:"<b>Interacțiuni reale</b>",
-cmp2a:"Rată de participare",cmp2b:"20–30%",cmp2c:"<b>70–90%</b>",
-cmp3a:"Anonimitate",cmp3b:"Promisă, re-identificabilă",cmp3c:"<b>Garantată prin design</b>",
-cmp4a:"Implementare",cmp4b:"Săptămâni, integrare IT",cmp4c:"<b>2 minute, zero IT</b>",
-cmp5a:"Cost",cmp5b:"Licențe anuale mari",cmp5c:"<b>Per eveniment</b>",
 q0:"Arhitectură Personalizată",
 q1:"Soluție calibrată pe provocările specifice ale organizației dumneavoastră.",
 q2:"Nicio organizație nu este identică. Fie că combateți izolationismul departamental, accelerarea onboarding-ului sau pierderea capitalului de cunoaștere, parametrii HelloHuman sunt configurați dedicat pentru obiectivele dumneavoastră.",
 q3:"Metodologiile sunt dezvoltate în colaborare cu experți în sociologie organizațională, asigurând un cadru riguros și analize acționabile.",
+e0:"Activare Hibridă & Offline",
+e1:"Tranziția de la Digital la Conexiune Reală.",
+e2:"Consolidarea procesului se realizează prin întâlniri de grup fizice sau virtuale. HelloHuman facilitează selecția locațiilor partenere premium pentru finalizarea experienței.",
 c0:"Securitate & Confidențialitate",
 c1:"Garanția Anonimatului și a Siguranței Psihologice.",
 c2:"Pentru a obține date autentice, am eliminat complet frica de evaluare individuală prin arhitectură Privacy-by-Design.",
@@ -555,41 +405,33 @@ c7:"Prag Statistic de Siguranță",
 c8:"Datele sunt agregate doar pentru eșantioane de minim cinci persoane, prevenind orice încercare de de-anonimizare.",
 c9:"Zero Integrare IT & Riscuri",
 c10:"Fără conectare la Slack, Teams, servere interne sau baze de date corporative. Risc cibernetic zero.",
-z0:"Inițiere Calibrare",z1:"Evaluare Strategică · 2 Minute.",
+z0:"Inițiere Calibrare",
+z1:"Evaluare Strategică · 2 Minute.",
 z2:"Selectați specificul organizației dumneavoastră pentru a primi un audit preliminar și o propunere calibrată. Fără obligații comerciale sau apeluri nesolicitate.",
-z3:"Email Corporate",z4:"Rol Organizațional",z5:"Organizația",
+z3:"EMAIL CORPORATE",
+z4:"ROL ORGANIZAȚIONAL",
+z5:"ORGANIZAȚIA",
 z6:"— Selectați opțiunea —",
 z7:"Executive Leadership (CEO / C-Level)",
 z8:"Human Resources & People Ops",
 z9:"Consultanță Strategică & Event Agency",
-z10:"Continuă evaluarea",
-p0:"adresa.ta@companie.ro",p1:"Denumirea companiei",
-sig:"Oameni care nu se cunosc interacționează constructiv, chiar acolo unde se aflau oricum.",
-ftS:"HelloHuman creează experiențe sociale ghidate, aducând oameni compatibili la aceeași masă.",
-ftC:"Contact",ftP:"Pagina pentru participanți"
+z10:"CONTINUĂ EVALUAREA",
+z11:"Pentru Locații Partenere & Events",
+p0:"adresa.ta@companie.ro",
+p1:"Denumirea companiei"
 },
 en:{
 ttl:"HelloHuman for Enterprise — Organizational Cohesion & Network Analytics",
-c0:"For Enterprise",
 b0:"For Enterprise",
-b1:"Organizational cohesion architecture. Built on real data, not perceptions.",
+b1:"Organizational cohesion architecture based on real human connection data.",
 b2:"In-office, remote, or at corporate events. Privacy-by-design, zero IT integration.",
-x1:"Rapid assessment · 2 minutes",
+x1:"RAPID ASSESSMENT · 2 MINUTES",
 x2:"No commercial commitment. Zero unsolicited calls.",
-x3:"View a demo report (PDF)",
-sp0:"Partners & clients",
 s0:"Strategic Differentiator",
 s1:"Subjective statements vs. real organizational behavior.",
 s2:"Traditional surveys capture declared perception. HelloHuman quantifies actual interaction — volume, frequency, and reciprocity — dissolving silos without compromising anonymity.",
-how0:"How it works",
-how1:"Three steps. Zero friction.",
-st1t:"Scan a QR code",
-st1d:"Participants scan a code displayed at the table or on screen. No apps, no accounts, no installation.",
-st2t:"The algorithm maps connections",
-st2d:"The system quantifies volume, frequency, and reciprocity of interactions. Fully aggregated, nothing nominal.",
-st3t:"Receive the cohesion report",
-st3d:"Leadership receives a clear map of real connections and actionable indicators. Fully anonymized.",
-t0:"Operational Scenarios",t1:"Three operational contexts. One unified platform.",
+t0:"Operational Scenarios",
+t1:"Three operational contexts. One unified platform.",
 t2:"In-Office & Operational Breaks",
 t3:"Dynamic 15-minute breaks. Facilitating cross-departmental idea exchanges between distinct teams.",
 t4:"Remote & Work-from-Home",
@@ -600,22 +442,22 @@ t8:"All three contexts are consolidated into a single metric, providing leadersh
 k0:"Strategic Knowledge Transfer",
 k1:"Intellectual capital becomes a durable asset, secured and passed on to incoming generations of talent.",
 k2:"Accelerating onboarding and know-how retention through structured mentoring sessions and intergenerational dialogue.",
-r0:"Industry Benchmarks",r1:"The Financial Impact of Organizational Silos.",
+r0:"Industry Benchmarks",
+r1:"The Financial Impact of Organizational Silos.",
+r2:"51%",
 r3:"of employees are actively or passively exploring new career opportunities. <i>Gallup</i>",
+r4:"42%",
 r5:"of role-specific know-how is held exclusively by the incumbent. <i>Panopto, 2018</i>",
+r6:"3–5 years",
 r7:"required for a new hire to reach optimal organizational connectivity. <i>Rob Cross</i>",
 r8:"Internationally validated data reflecting the hidden cost of fragmented workplace culture.",
-cmp0:"Direct Comparison",cmp1:"Traditional surveys vs. HelloHuman.",
-cmpA:"Criterion",cmpB:"Traditional surveys",cmpC:"HelloHuman",
-cmp1a:"What it measures",cmp1b:"Declared perceptions",cmp1c:"<b>Real interactions</b>",
-cmp2a:"Participation rate",cmp2b:"20–30%",cmp2c:"<b>70–90%</b>",
-cmp3a:"Anonymity",cmp3b:"Promised, re-identifiable",cmp3c:"<b>Guaranteed by design</b>",
-cmp4a:"Deployment",cmp4b:"Weeks, IT integration",cmp4c:"<b>2 minutes, zero IT</b>",
-cmp5a:"Cost",cmp5b:"Large annual licenses",cmp5c:"<b>Per event</b>",
 q0:"Tailored Architecture",
 q1:"Solutions calibrated to your organization's specific challenges.",
 q2:"No two organizations are identical. Whether tackling departmental isolation, onboarding acceleration, or knowledge loss, HelloHuman parameters are custom-configured for your strategic objectives.",
 q3:"Methodologies developed in collaboration with organizational sociologists, ensuring rigorous frameworks and actionable insights.",
+e0:"Hybrid & Offline Activation",
+e1:"Transitioning from Digital to Real-World Connection.",
+e2:"Program consolidation occurs through physical or virtual group gatherings. HelloHuman facilitates venue selection across premium partner locations.",
 c0:"Security & Privacy",
 c1:"Guaranteed Anonymity and Psychological Safety.",
 c2:"To obtain authentic data, we eliminated individual performance anxiety through a Privacy-by-Design architecture.",
@@ -627,73 +469,52 @@ c7:"Statistical Safety Threshold",
 c8:"Data is aggregated exclusively for cohorts of five or more, preventing any de-anonymization.",
 c9:"Zero IT Risk & Integration",
 c10:"No connection to Slack, Teams, email servers, or internal databases. Zero cybersecurity footprint.",
-z0:"Initiate Calibration",z1:"Strategic Assessment · 2 Minutes.",
+z0:"Initiate Calibration",
+z1:"Strategic Assessment · 2 Minutes.",
 z2:"Select your organization's specific focus to receive a tailored preliminary proposal. No commercial commitment, no unsolicited calls.",
-z3:"Corporate Email",z4:"Organizational Role",z5:"Organization",
+z3:"CORPORATE EMAIL",
+z4:"ORGANIZATIONAL ROLE",
+z5:"ORGANIZATION",
 z6:"— Select Option —",
 z7:"Executive Leadership (CEO / C-Level)",
 z8:"Human Resources & People Ops",
 z9:"Strategic Consulting & Event Agency",
-z10:"Continue assessment",
-p0:"your.email@company.com",p1:"Company Name",
-sig:"People who do not know each other interact constructively, right where they already are.",
-ftS:"HelloHuman curates social experiences, connecting like-minded people around tables.",
-ftC:"Contact",ftP:"Participant page"
+z10:"CONTINUE ASSESSMENT",
+z11:"For Venues & Events",
+p0:"your.email@company.com",
+p1:"Company Name"
 }};
 
 var lang="ro";
 function applyLang(){
   document.documentElement.lang=lang; document.title=L[lang].ttl;
   [].slice.call(document.querySelectorAll("[data-t]")).forEach(function(n){
-    var v=L[lang][n.getAttribute("data-t")]; if(v!==undefined) n.innerHTML=v });
+    var v=L[lang][n.getAttribute("data-t")]; if(v) n.innerHTML=v });
   [].slice.call(document.querySelectorAll("[data-tp]")).forEach(function(n){
-    var v=L[lang][n.getAttribute("data-tp")]; if(v!==undefined) n.placeholder=v });
-  var b=document.getElementById("bLang");
-  if(b) b.textContent = (lang==="ro"?"EN":"RO");
+    var v=L[lang][n.getAttribute("data-tp")]; if(v) n.placeholder=v });
+  var b=document.getElementById("lang"); if(b){ b.textContent=lang==="ro"?"EN":"RO";
+    b.setAttribute("aria-label", lang==="ro"?"English":"Română") }
 }
 var el=function(i){return document.getElementById(i)};
-function say(t,c){var m=el('m');if(!m)return;m.textContent=t;m.className='msg2'+(c?' '+c:'')}
+function say(t,c){var m=el('m');m.textContent=t;m.className='msg'+(c?' '+c:'')}
+el("lang").onclick=function(){ lang=lang==="ro"?"en":"ro"; applyLang() };
+try{ if((navigator.language||"").toLowerCase().indexOf("ro")!==0){ lang="en" } }catch(e){}
+applyLang();
 
-(function(){
-  try{ var s=localStorage.getItem('hh_l'); if(s)lang=s;
-    else if((navigator.language||'').toLowerCase().indexOf('ro')!==0)lang='en' }catch(e){}
-  applyLang();
-  var b=document.getElementById('bLang');
-  if(b) b.onclick=function(){ lang=(lang==='ro'?'en':'ro'); try{localStorage.setItem('hh_l',lang)}catch(e){} applyLang() };
-})();
-
-/* Reveal + counters */
+/* Reveal la scroll — pur vizual, nu afectează traducerea */
 if('IntersectionObserver' in window){
-  var io=new IntersectionObserver(function(en){
-    en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target) } })
-  },{threshold:.12});
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target) }
+    });
+  }, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.rv').forEach(function(n){ io.observe(n) });
-
-  var co=new IntersectionObserver(function(en){
-    en.forEach(function(e){
-      if(!e.isIntersecting) return;
-      var n=e.target, target=parseInt(n.dataset.count,10), pre=n.dataset.prefix||'', suf=n.dataset.suffix||'';
-      var t0=performance.now(), dur=1400;
-      function step(t){
-        var p=Math.min(1,(t-t0)/dur);
-        var eased=1-Math.pow(1-p,3);
-        n.textContent=pre+Math.round(target*eased)+suf;
-        if(p<1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step); co.unobserve(n);
-    })
-  },{threshold:.4});
-  document.querySelectorAll('[data-count]').forEach(function(n){ co.observe(n) });
 } else {
   document.querySelectorAll('.rv').forEach(function(n){ n.classList.add('in') });
 }
 
-/* Progress bar */
-if(el('fn')) el('fn').addEventListener('change',function(){ el('prog').style.width=this.value?'100%':'0' });
-if(el('em')) el('em').addEventListener('input',function(){ if(this.value.indexOf('@')>0) el('prog').style.width='50%' });
-
-/* Form submit */
-if(el('f')) el('f').onsubmit=async function(e){
+/* Formular — LOGICA ORIGINALĂ, neatinsă */
+el('f').onsubmit=async function(e){
   e.preventDefault();
   var mail=el('em').value.trim(), fn=el('fn').value, comp=el('co').value.trim();
   if(!mail || mail.indexOf('@')<1 || mail.indexOf('.')<3){ say(lang==='en'?'Please enter a valid address.':'Scrieți o adresă validă.','err'); return }
