@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title data-t="ttl">HelloHuman pentru librării și cafenele</title>
-<meta name="description" content="O masă, o oră, un subiect anunțat din timp, la aceeași oră în fiecare săptămână. Fără cronometru și fără runde. Prima serie e gratuită.">
+<meta name="description" content="Oameni care revin. Săptămână după săptămână. Aceeași zi, aceeași oră, un subiect care urcă în complexitate. Prima serie e gratuită.">
 <link rel="canonical" href="https://hellohuman.ro/librarii.html">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta name="theme-color" content="#16302B">
@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="HelloHuman">
 <meta property="og:url" content="https://hellohuman.ro/librarii.html">
 <meta property="og:title" content="HelloHuman pentru librării și cafenele">
-<meta property="og:description" content="O masă, o oră, un subiect anunțat din timp, la aceeași oră în fiecare săptămână. Fără cronometru și fără runde. Prima serie e gratuită.">
+<meta property="og:description" content="Oameni care revin. Săptămână după săptămână. Aceeași zi, aceeași oră, un subiect care urcă în complexitate. Prima serie e gratuită.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Karla:wght@400;500;700&display=swap&subset=latin,latin-ext" rel="stylesheet">
@@ -38,7 +38,7 @@
   {
    "@type": "Service",
    "name": "Seri tematice pentru librării și cafenele",
-   "description": "O masă, o oră, un subiect anunțat din timp, la aceeași oră în fiecare săptămână. Fără cronometru și fără runde. Prima serie e gratuită.",
+   "description": "Oameni care revin. Săptămână după săptămână. Aceeași zi, aceeași oră, un subiect care urcă în complexitate. Prima serie e gratuită.",
    "provider": {
     "@id": "https://hellohuman.ro/#org"
    },
@@ -54,7 +54,7 @@
     "@type": "Offer",
     "price": "0",
     "priceCurrency": "RON",
-    "description": "Prima seară este gratuită."
+    "description": "Prima serie este gratuită."
    }
   },
   {
@@ -65,7 +65,7 @@
      "name": "Cine ține masa?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "O persoană din echipa voastră. Citește întrebarea și predă scena mesei. Prezența cuiva la masă e singurul lucru fără de care formatul nu funcționează."
+      "text": "O persoană din echipa dumneavoastră. Citește întrebarea și predă scena mesei. Prezența cuiva la masă e singurul lucru fără de care formatul nu funcționează."
      }
     },
     {
@@ -89,7 +89,7 @@
      "name": "Cine alege subiectul?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Voi, dintr-o listă sau scris de voi. Anunțați-l din timp — oamenii vin pentru subiect."
+      "text": "Dumneavoastră, dintr-o listă sau scris de dumneavoastră. Anunțați-l din timp — oamenii vin pentru subiect."
      }
     }
    ]
@@ -107,7 +107,7 @@
     <a class="logo" href="/"><img src="/marca-inchis.svg" alt="" width="30" height="30" aria-hidden="true">Hello<span>Human</span></a>
     <nav class="barnav">
       <a href="/parteneri.html" class="hidem" data-t="nav1">Toate locurile</a>
-      <a class="lang" href="/alatura-te.html" data-t="nav2">Scrie-ne</a>
+      <button class="lang" id="bLang">EN</button>
     </nav>
   </div>
 </header>
@@ -118,10 +118,10 @@
       <div>
         <a class="back" href="/parteneri.html" data-t="back">← Toate tipurile de loc</a>
         <p class="eyebrow" data-t="e1">Librării și cafenele</p>
-        <h1 data-t="h1">O masă, o oră,<br>un subiect<br>anunțat din timp.</h1>
-        <p class="lead" data-t="l1">Gazda e o persoană din echipa voastră. Citește întrebarea și predă scena mesei. Subiectul urcă ediție cu ediție, iar cei care revin sunt singura măsură care contează.</p>
+        <h1 data-t="h1">Oameni care revin.<br>Săptămână<br>după săptămână.</h1>
+        <p class="lead" data-t="l1">Aceeași zi, aceeași oră, un subiect care urcă în complexitate. Nu vin pentru carte. Vin pentru cei de la masă.</p>
         <div class="cta">
-          <a class="btn" href="/alatura-te.html" data-t="cta1">Spune-ne despre librăria voastră</a>
+          <a class="btn" href="/alatura-te.html" data-t="cta1">Spuneți-ne despre librăria dumneavoastră</a>
           <a class="btn ghost" href="tel:+40750255200">+40 750 255 200</a>
         </div>
         <p class="sm" style="margin-top:14px;color:var(--dim)" data-t="sub1">Cinci lucruri, un minut. Vă răspundem în două zile lucrătoare.</p>
@@ -145,15 +145,23 @@
       <div>
         <p class="eyebrow" data-t="e2">Cum e diferit față de un bar</p>
         <h2 data-t="h2">Fără cronometru,<br>fără runde.</h2>
-        <p class="lead" style="margin-top:16px" data-t="l2">Nimeni nu e mutat nicăieri. Într-un bar, cronometrul e ce dă clienților curaj să se ridice de la masa lor. Aici nimeni nu s-a ridicat de nicăieri, deci un cronometru doar ar întrerupe.</p>
+        <p class="lead" style="margin-top:16px" data-t="l2">Nimeni nu e mutat nicăieri. Într-un bar, cronometrul este ce dă clienților curaj să se ridice de la masa lor. Aici nimeni nu s-a ridicat de nicăieri, deci un cronometru doar ar întrerupe.</p>
       </div>
       <div>
         <div class="note" style="margin-top:0"><b data-t="b1">Ritmul face totul</b>Aceeași zi, aceeași oră, săptămânal. Numărul ediției apare pe afiș.</div>
-        <div class="note"><b data-t="b2">Gazda e omul vostru</b>Nu ține o prezentare. Citește întrebarea și predă scena mesei.</div>
+        <div class="note"><b data-t="b2">Gazda e omul dumneavoastră</b>Nu ține o prezentare. Citește întrebarea și predă scena mesei.</div>
         <div class="note"><b data-t="b3">Fără cost</b>Prima serie e gratuită. O masă și o oră pe săptămână.</div>
       </div>
     </div>
   </section>
+
+  <section class="sec"><div class="wrap">
+    <h2 data-t="hCe">Ce aduce HelloHuman într-o librărie</h2>
+    <div class="rand"><b data-t="ce1">Oameni care revin.</b><span data-t="ce1s"> Nu o dată. Săptămânal. Aceeași zi, aceeași oră, aceiași oameni. Retenția e singura cifră care contează.</span></div>
+    <div class="rand"><b data-t="ce2">Vindeți cărți fără să vindeți cărți.</b><span data-t="ce2s"> Subiectul e o carte. Oamenii vin pentru discuție, dar pleacă cu cartea.</span></div>
+    <div class="rand"><b data-t="ce3">Comunitate, nu eveniment.</b><span data-t="ce3s"> Un eveniment se termină. O comunitate revine. Aici o construiți pe a doua.</span></div>
+    <div class="rand"><b data-t="ce4">Fără cost.</b><span data-t="ce4s"> Prima serie e gratuită. O masă și o oră pe săptămână.</span></div>
+  </div></section>
 
   <section>
     <div class="wrap">
@@ -169,13 +177,13 @@
   </section>
   <section id="intrebari">
     <div class="wrap">
-      <p class="eyebrow" data-t="e4">Ce ne întreabă librăriile</p>
-      <h2 data-t="h4">Patru întrebări,<br>de fiecare dată.</h2>
+      <p class="eyebrow" data-t="e4">Pe scurt</p>
+      <h2 data-t="h4">Patru lucruri<br>despre serile noastre.</h2>
       <div class="ctx">
-        <div class="ctxrow"><h3 data-t="q1">Cine ține masa?</h3><p data-t="a1">O persoană din echipa voastră. Citește întrebarea și predă scena mesei. Prezența cuiva la masă e singurul lucru fără de care formatul nu funcționează.</p></div>
-        <div class="ctxrow"><h3 data-t="q2">Câți oameni încap?</h3><p data-t="a2">Până la opt la o masă. Peste, se face a doua masă, cu a doua gazdă.</p></div>
-        <div class="ctxrow"><h3 data-t="q3">Cum aflăm dacă merge?</h3><p data-t="a3">Câți oameni din prima ediție sunt și la a patra. O ediție cu opt oameni dintre care șase au mai fost valorează mai mult decât una cu douăzeci de necunoscuți.</p></div>
-        <div class="ctxrow"><h3 data-t="q4">Cine alege subiectul?</h3><p data-t="a4">Voi, dintr-o listă sau scris de voi. Anunțați-l din timp — oamenii vin pentru subiect.</p></div>
+        <div class="ctxrow"><h3 data-t="q1">O persoană din echipa dumneavoastră.</h3><p data-t="a1">Citește întrebarea și predă scena mesei. Prezența cuiva la masă e singurul lucru fără de care formatul nu funcționează.</p></div>
+        <div class="ctxrow"><h3 data-t="q2">Până la opt la o masă.</h3><p data-t="a2">Peste, se face a doua masă, cu a doua gazdă.</p></div>
+        <div class="ctxrow"><h3 data-t="q3">Câți din prima ediție sunt și la a patra.</h3><p data-t="a3">O ediție cu opt oameni dintre care șase au mai fost valorează mai mult decât una cu douăzeci de necunoscuți.</p></div>
+        <div class="ctxrow"><h3 data-t="q4">Subiectul îl alegeți dumneavoastră.</h3><p data-t="a4">Dintr-o listă sau scris de dumneavoastră. Anunțați-l din timp — oamenii vin pentru subiect.</p></div>
       </div>
     </div>
   </section>
@@ -185,8 +193,8 @@
       <h2 data-t="h5">O masă și o oră<br>pe săptămână.</h2>
       <p class="lead" style="margin:18px auto 30px" data-t="l5">Atât presupune. Ne spuneți unde sunteți și ce public aveți, iar noi vă răspundem în două zile lucrătoare.</p>
       <div class="cta" style="justify-content:center">
-        <a class="btn" href="/alatura-te.html">Spune-ne despre librăria voastră</a>
-        <a class="btn ghost" href="mailto:contact@hellohuman.ro" data-t="mail">Scrie direct pe email</a>
+        <a class="btn" href="/alatura-te.html" data-t="cta2">Spuneți-ne despre librăria dumneavoastră</a>
+        <a class="btn ghost" href="mailto:contact@hellohuman.ro" data-t="mail">Scrieți-ne direct pe email</a>
       </div>
     </div>
   </section>
@@ -225,8 +233,8 @@
 
 <script>
 (function(){
-var L={ro:{"ttl": "HelloHuman pentru librării și cafenele", "e1": "Librării și cafenele", "h1": "O masă, o oră,<br>un subiect<br>anunțat din timp.", "l1": "Gazda e o persoană din echipa voastră. Citește întrebarea și predă scena mesei. Subiectul urcă ediție cu ediție, iar cei care revin sunt singura măsură care contează.", "cta1": "Spune-ne despre librăria voastră", "e2": "Cum e diferit față de un bar", "h2": "Fără cronometru,<br>fără runde.", "l2": "Nimeni nu e mutat nicăieri. Într-un bar, cronometrul e ce dă clienților curaj să se ridice de la masa lor. Aici nimeni nu s-a ridicat de nicăieri, deci un cronometru doar ar întrerupe.", "b1": "Ritmul face totul", "b2": "Gazda e omul vostru", "b3": "Fără cost", "e3": "Subiectul urcă ediție cu ediție", "h3": "Prima săptămână<br>e ușoară intenționat.", "l3": "Apropierea între oameni se construiește în trepte, nu dintr-o dată — asta arată cercetarea lui Aron din 1997. Sistemul ține minte a câta ediție e și urcă singur nivelul.", "s1": "Primele ediții", "s1p": "Cărți pe care nu le-am terminat. Ce citeam la douăzeci de ani. Subiecte la care oricine are un răspuns, fără să se expună.", "s2": "De la a patra încolo", "s2p": "O carte care m-a făcut să iau o decizie. Aici se construiește ce aduce oamenii înapoi.", "s3": "Cum se măsoară", "s3p": "Câți oameni din prima ediție sunt și la a patra. Nimic altceva.", "e4": "Ce ne întreabă librăriile", "h4": "Patru întrebări,<br>de fiecare dată.", "q1": "Cine ține masa?", "a1": "O persoană din echipa voastră. Citește întrebarea și predă scena mesei. Prezența cuiva la masă e singurul lucru fără de care formatul nu funcționează.", "q2": "Câți oameni încap?", "a2": "Până la opt la o masă. Peste, se face a doua masă, cu a doua gazdă.", "q3": "Cum aflăm dacă merge?", "a3": "Câți oameni din prima ediție sunt și la a patra. O ediție cu opt oameni dintre care șase au mai fost valorează mai mult decât una cu douăzeci de necunoscuți.", "q4": "Cine alege subiectul?", "a4": "Voi, dintr-o listă sau scris de voi. Anunțați-l din timp — oamenii vin pentru subiect.", "h5": "O masă și o oră<br>pe săptămână.", "l5": "Atât presupune. Ne spuneți unde sunteți și ce public aveți, iar noi vă răspundem în două zile lucrătoare.", "nav1": "Toate locurile", "nav2": "Scrie-ne", "back": "← Toate tipurile de loc", "sub1": "Cinci lucruri, un minut. Vă răspundem în două zile lucrătoare.", "cap": "Ce văd clienții pe telefon", "mt": "Masa dumneavoastră", "wu": "La masă cu", "yq": "Întrebarea voastră", "mail": "Scrie direct pe email", "ft": "Seri în care oameni care nu se cunosc stau câteva minute la aceeași masă, în locuri unde sunt deja prezenți.", "ftc": "București și restul țării", "ftL": "Locuri", "ftC": "Contact", "l1n": "Baruri și restaurante", "l3n": "Muzee și spații culturale", "l4n": "Hoteluri și turism", "l5n": "Aeroporturi și gări", "l6n": "Evenimente de firmă", "ftA": "Spuneți-ne despre locul dumneavoastră", "e5": "Dacă doriți să vorbim"},
- en:{"nav1": "All venues", "nav2": "Write to us", "back": "← All kinds of venue", "sub1": "Five things, one minute. We reply within two working days.", "cap": "What customers see on their phone", "mt": "Your table", "wu": "At your table", "yq": "Your question", "mail": "Write to us directly", "ft": "Evenings where people who do not know each other spend a few minutes at the same table, in places they are already in.", "ftc": "Bucharest and the rest of the country", "ftL": "Venues", "ftC": "Contact", "l1n": "Bars and restaurants", "l3n": "Museums and cultural spaces", "l4n": "Hotels and tourism", "l5n": "Airports and stations", "l6n": "Company events", "ftA": "Tell us about your venue", "e5": "If you would like to talk", "ttl": "HelloHuman for bookshops and cafés", "e1": "Bookshops and cafés", "h1": "One table, one hour,<br>a subject announced<br>in advance.", "l1": "The host is someone from your team. They read the question and hand the floor to the table. The subject deepens edition by edition, and those who come back are the only measure that counts.", "cta1": "Tell us about your bookshop", "e2": "How it differs from a bar", "h2": "No timer,<br>no rounds.", "l2": "Nobody is moved anywhere. In a bar, the timer is what gives customers the nerve to leave their own table. Here nobody stood up from anywhere, so a timer would only interrupt.", "b1": "The rhythm does everything", "b2": "The host is your own person", "b3": "No cost", "e3": "The subject deepens edition by edition", "h3": "The first week<br>is easy on purpose.", "l3": "Closeness between people is built in steps, not all at once — that is what Aron's 1997 research shows. The system remembers which edition it is and raises the level on its own.", "s1": "The first editions", "s1p": "Books we never finished. What we read at twenty. Subjects anyone can answer without exposing themselves.", "s2": "From the fourth onwards", "s2p": "A book that made me take a decision. This is where what brings people back gets built.", "s3": "How it is measured", "s3p": "How many people from the first edition are there at the fourth. Nothing else.", "e4": "What bookshops ask us", "h4": "Four questions,<br>every time.", "q1": "Who runs the table?", "a1": "Someone from your team. They read the question and hand the floor to the table. Someone being present is the only thing this does not work without.", "q2": "How many people fit?", "a2": "Up to eight at one table. Above that, a second table opens, with a second host.", "q3": "How do we know it works?", "a3": "How many people from the first edition are there at the fourth. An edition of eight where six have been before is worth more than one of twenty strangers.", "q4": "Who picks the subject?", "a4": "You do, from a list or written by you. Announce it in advance — people come for the subject.", "h5": "One table and one hour<br>a week.", "l5": "That is all it takes. Tell us where you are and what audience you have, and we reply within two working days."}};
+var L={ro:{"ttl": "HelloHuman pentru librării și cafenele", "e1": "Librării și cafenele", "h1": "Oameni care revin.<br>Săptămână<br>după săptămână.", "l1": "Aceeași zi, aceeași oră, un subiect care urcă în complexitate. Nu vin pentru carte. Vin pentru cei de la masă.", "cta1": "Spuneți-ne despre librăria dumneavoastră", "cta2": "Spuneți-ne despre librăria dumneavoastră", "e2": "Cum e diferit față de un bar", "h2": "Fără cronometru,<br>fără runde.", "l2": "Nimeni nu e mutat nicăieri. Într-un bar, cronometrul este ce dă clienților curaj să se ridice de la masa lor. Aici nimeni nu s-a ridicat de nicăieri, deci un cronometru doar ar întrerupe.", "b1": "Ritmul face totul", "b2": "Gazda e omul dumneavoastră", "b3": "Fără cost", "hCe": "Ce aduce HelloHuman într-o librărie", "ce1": "Oameni care revin.", "ce1s": " Nu o dată. Săptămânal. Aceeași zi, aceeași oră, aceiași oameni. Retenția e singura cifră care contează.", "ce2": "Vindeți cărți fără să vindeți cărți.", "ce2s": " Subiectul e o carte. Oamenii vin pentru discuție, dar pleacă cu cartea.", "ce3": "Comunitate, nu eveniment.", "ce3s": " Un eveniment se termină. O comunitate revine. Aici o construiți pe a doua.", "ce4": "Fără cost.", "ce4s": " Prima serie e gratuită. O masă și o oră pe săptămână.", "e3": "Subiectul urcă ediție cu ediție", "h3": "Prima săptămână<br>e ușoară intenționat.", "l3": "Apropierea între oameni se construiește în trepte, nu dintr-o dată — asta arată cercetarea lui Aron din 1997. Sistemul ține minte a câta ediție e și urcă singur nivelul.", "s1": "Primele ediții", "s1p": "Cărți pe care nu le-am terminat. Ce citeam la douăzeci de ani. Subiecte la care oricine are un răspuns, fără să se expună.", "s2": "De la a patra încolo", "s2p": "O carte care m-a făcut să iau o decizie. Aici se construiește ce aduce oamenii înapoi.", "s3": "Cum se măsoară", "s3p": "Câți oameni din prima ediție sunt și la a patra. Nimic altceva.", "e4": "Pe scurt", "h4": "Patru lucruri<br>despre serile noastre.", "q1": "O persoană din echipa dumneavoastră.", "a1": "Citește întrebarea și predă scena mesei. Prezența cuiva la masă e singurul lucru fără de care formatul nu funcționează.", "q2": "Până la opt la o masă.", "a2": "Peste, se face a doua masă, cu a doua gazdă.", "q3": "Câți din prima ediție sunt și la a patra.", "a3": "O ediție cu opt oameni dintre care șase au mai fost valorează mai mult decât una cu douăzeci de necunoscuți.", "q4": "Subiectul îl alegeți dumneavoastră.", "a4": "Dintr-o listă sau scris de dumneavoastră. Anunțați-l din timp — oamenii vin pentru subiect.", "h5": "O masă și o oră<br>pe săptămână.", "l5": "Atât presupune. Ne spuneți unde sunteți și ce public aveți, iar noi vă răspundem în două zile lucrătoare.", "nav1": "Toate locurile", "back": "← Toate tipurile de loc", "sub1": "Cinci lucruri, un minut. Vă răspundem în două zile lucrătoare.", "cap": "Ce văd clienții pe telefon", "mt": "Masa dumneavoastră", "wu": "La masă cu", "yq": "Întrebarea voastră", "mail": "Scrieți-ne direct pe email", "ft": "Seri în care oameni care nu se cunosc stau câteva minute la aceeași masă, în locuri unde sunt deja prezenți.", "ftc": "București și restul țării", "ftL": "Locuri", "ftC": "Contact", "l1n": "Baruri și restaurante", "l3n": "Muzee și spații culturale", "l4n": "Hoteluri și turism", "l5n": "Aeroporturi și gări", "l6n": "Evenimente de firmă", "ftA": "Spuneți-ne despre locul dumneavoastră", "e5": "Dacă doriți să vorbim"},
+ en:{"nav1": "All venues", "back": "← All kinds of venue", "sub1": "Five things, one minute. We reply within two working days.", "cap": "What customers see on their phone", "mt": "Your table", "wu": "At your table", "yq": "Your question", "mail": "Write to us directly", "ft": "Evenings where people who do not know each other spend a few minutes at the same table, in places they are already in.", "ftc": "Bucharest and the rest of the country", "ftL": "Venues", "ftC": "Contact", "l1n": "Bars and restaurants", "l3n": "Museums and cultural spaces", "l4n": "Hotels and tourism", "l5n": "Airports and stations", "l6n": "Company events", "ftA": "Tell us about your venue", "e5": "If you would like to talk", "ttl": "HelloHuman for bookshops and cafés", "e1": "Bookshops and cafés", "h1": "People who come back.<br>Week<br>after week.", "l1": "Same day, same hour, a subject that deepens as it goes. They do not come for the book. They come for the people at the table.", "cta1": "Tell us about your bookshop", "cta2": "Tell us about your bookshop", "e2": "How it differs from a bar", "h2": "No timer,<br>no rounds.", "l2": "Nobody is moved anywhere. In a bar, the timer is what gives customers the nerve to leave their own table. Here nobody stood up from anywhere, so a timer would only interrupt.", "b1": "The rhythm does everything", "b2": "The host is your own person", "b3": "No cost", "hCe": "What HelloHuman brings to a bookshop", "ce1": "People who come back.", "ce1s": " Not once. Weekly. Same day, same hour, same people. Retention is the only figure that counts.", "ce2": "You sell books without selling books.", "ce2s": " The subject is a book. People come for the conversation, but leave with the book.", "ce3": "Community, not an event.", "ce3s": " An event ends. A community comes back. Here you build the second one.", "ce4": "No cost.", "ce4s": " The first series is free. One table and one hour a week.", "e3": "The subject deepens edition by edition", "h3": "The first week<br>is easy on purpose.", "l3": "Closeness between people is built in steps, not all at once — that is what Aron's 1997 research shows. The system remembers which edition it is and raises the level on its own.", "s1": "The first editions", "s1p": "Books we never finished. What we read at twenty. Subjects anyone can answer without exposing themselves.", "s2": "From the fourth onwards", "s2p": "A book that made me take a decision. This is where what brings people back gets built.", "s3": "How it is measured", "s3p": "How many people from the first edition are there at the fourth. Nothing else.", "e4": "In short", "h4": "Four things<br>about our evenings.", "q1": "One person from your team.", "a1": "They read the question and hand the floor to the table. Someone being present is the only thing this does not work without.", "q2": "Up to eight at one table.", "a2": "Above that, a second table opens, with a second host.", "q3": "How many from the first edition are there at the fourth.", "a3": "An edition of eight where six have been before is worth more than one of twenty strangers.", "q4": "You pick the subject.", "a4": "From a list or written by you. Announce it in advance — people come for the subject.", "h5": "One table and one hour<br>a week.", "l5": "That is all it takes. Tell us where you are and what audience you have, and we reply within two working days."}};
 var lang="ro";
 function setLang(l){ lang=l; document.documentElement.lang=l;
   var d=L[l]; if(d.ttl) document.title=d.ttl;
