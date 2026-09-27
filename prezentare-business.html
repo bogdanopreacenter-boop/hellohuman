@@ -118,6 +118,7 @@ h2{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4.6vw,46px);
     <p class="ey" data-t="e1">Ce primiți</p>
     <h1 data-t="h1">Patru cifre care nu apar nicăieri</h1>
     <p class="lead" data-t="l1">Pe ce s-a întâmplat, nu pe ce presupuneți.</p>
+    <p class="perso" id="perso" style="display:none;font-family:var(--serif);font-style:italic;font-size:clamp(15px,1.9vw,18px);color:var(--ocru2);margin-top:clamp(12px,2vw,20px);max-width:52ch;line-height:1.55"></p>
 
     <div class="rand"><b data-t="r1a">Traversări</b><span data-t="r1b">Câte schimburi au traversat efectiv granița unui departament.</span></div>
     <div class="rand"><b data-t="r2a">Confirmate din ambele direcții</b><span data-t="r2b">Câte au fost indicate de amândoi participanții, separat, fără să știe unul de altul.</span></div>
@@ -144,7 +145,7 @@ h2{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4.6vw,46px);
   <div class="foot"><span>hellohuman.ro</span><span data-t="f2b">Surse publice, verificabile</span></div>
 </section>
 
-<!-- 2 -->
+<!-- 3 -->
 <section class="p dark">
   <div class="top"><a class="logo" href="/business">HelloHuman</a><span class="num">03 / 08</span></div>
   <div class="mid">
@@ -159,8 +160,7 @@ h2{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4.6vw,46px);
   <div class="foot"><span>hellohuman.ro</span><span data-t="f2">Angajații primesc cina. Dumneavoastră, raportul.</span></div>
 </section>
 
-<!-- 3 -->
-<!-- cazuri -->
+<!-- 4 -->
 <section class="p">
   <div class="top"><a class="logo" href="/business">HelloHuman</a><span class="num">04 / 08</span></div>
   <div class="mid">
@@ -195,7 +195,7 @@ h2{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4.6vw,46px);
   <div class="foot"><span>hellohuman.ro</span><span data-t="f3">Psihologie aplicată</span></div>
 </section>
 
-<!-- 4 -->
+<!-- 6 -->
 <section class="p dark">
   <div class="top"><a class="logo" href="/business">HelloHuman</a><span class="num">06 / 08</span></div>
   <div class="mid">
@@ -211,7 +211,7 @@ h2{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4.6vw,46px);
   <div class="foot"><span>hellohuman.ro</span><span data-t="f4">Exclusiv valori agregate</span></div>
 </section>
 
-<!-- 5 -->
+<!-- 7 -->
 <section class="p">
   <div class="top"><a class="logo" href="/business">HelloHuman</a><span class="num">07 / 08</span></div>
   <div class="mid">
@@ -228,7 +228,7 @@ h2{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4.6vw,46px);
   <div class="foot"><span>hellohuman.ro</span><span data-t="f5b">Fără angajament pe termen lung</span></div>
 </section>
 
-<!-- 6 -->
+<!-- 8 -->
 <section class="p">
   <div class="top"><a class="logo" href="/business">HelloHuman</a><span class="num">08 / 08</span></div>
   <div class="mid">
@@ -391,10 +391,42 @@ var L={
     b.textContent = lang==='ro' ? 'EN' : 'RO';
     b.setAttribute('aria-label', lang==='ro' ? 'English' : 'Română');
   }
-  b.onclick=function(){ lang = lang==='ro' ? 'en' : 'ro'; apply() };
+  b.onclick=function(){ lang = lang==='ro' ? 'en' : 'ro'; apply(); punePerso() };
   try{ if((navigator.language||'').toLowerCase().indexOf('ro')!==0){ lang='en' } }catch(e){}
   apply();
+  punePerso();
 })();
+
+var PERSO = {
+  ro: {
+    SILO: 'Pe baza răspunsurilor dumneavoastră, am pregătit această prezentare cu accent pe modul în care informația circulă între echipe — și unde nu circulă.',
+    VIZIBILITATE: 'Pe baza răspunsurilor dumneavoastră, am pregătit această prezentare cu accent pe ce devine vizibil despre felul în care echipele lucrează efectiv împreună.',
+    DOVADA: 'Pe baza răspunsurilor dumneavoastră, am pregătit această prezentare cu accent pe rezultatele măsurabile — și pe metodologia din spatele fiecărei cifre.',
+    FRICTIUNE: 'Pe baza răspunsurilor dumneavoastră, am pregătit această prezentare cu accent pe ce rulează alături de activitatea curentă, fără să adauge ceva la ea.',
+    EFICIENTA: 'Pe baza răspunsurilor dumneavoastră, am pregătit această prezentare cu accent pe ce se schimbă în practică, nu doar în teorie.',
+    STATUSQUO: 'Pe baza răspunsurilor dumneavoastră, am pregătit această prezentare cu accent pe primii pași — fără angajament, fără nimic de semnat.'
+  },
+  en: {
+    SILO: 'Based on your answers, we have prepared this overview with a focus on how information moves between teams — and where it does not.',
+    VIZIBILITATE: 'Based on your answers, we have prepared this overview with a focus on what becomes visible about how your teams actually work together.',
+    DOVADA: 'Based on your answers, we have prepared this overview with a focus on measurable outcomes — and the methodology behind each figure.',
+    FRICTIUNE: 'Based on your answers, we have prepared this overview with a focus on what runs alongside your current operations, without adding to them.',
+    EFICIENTA: 'Based on your answers, we have prepared this overview with a focus on what changes in practice, not just in theory.',
+    STATUSQUO: 'Based on your answers, we have prepared this overview with a focus on the first steps — no commitment, nothing to sign.'
+  }
+};
+
+function punePerso(){
+  var n = document.getElementById('perso');
+  if(!n) return;
+  var p = '';
+  try{ p = new URLSearchParams(location.search).get('p') || '' }catch(e){}
+  p = p.toUpperCase();
+  var lang = document.documentElement.lang || 'ro';
+  if(!p || !PERSO[lang] || !PERSO[lang][p]){ n.style.display='none'; return }
+  n.textContent = PERSO[lang][p];
+  n.style.display='';
+}
 </script>
 </body>
 </html>
