@@ -2,15 +2,14 @@
    emails.js — textele de email pentru CRM.
    Se incarca in crm.html cu: <script src="/emails.js"></script>
    Variabile: {{companie}}, {{loc}}, {{oras}}, {{reducere}},
-              {{raspuns2}}, {{raspuns3}}, {{nume}}, {{profil}}
+              {{raspuns2}}, {{raspuns3}}, {{nume}}, {{profil}}, {{want}}
    ============================================================ */
 
 var EMAILS = {
 
-  /* ============ CORPORATE — CEO, HR, Agenție/Consultanță ============ */
+  /* ============ CORPORATE ============ */
   corporate: {
     ro: {
-
       SILO: {
         subiect: 'Ce se întâmplă între echipele dumneavoastră',
         body: `Bună ziua,
@@ -32,7 +31,6 @@ Toate cele bune,
 Bogdan
 bogdan@hellohuman.ro`
       },
-
       VIZIBILITATE: {
         subiect: 'Ce nu apare în nicio organigramă',
         body: `Bună ziua,
@@ -54,7 +52,6 @@ Toate cele bune,
 Bogdan
 bogdan@hellohuman.ro`
       },
-
       DOVADA: {
         subiect: 'Cifre pe care le puteți susține',
         body: `Bună ziua,
@@ -76,7 +73,6 @@ Toate cele bune,
 Bogdan
 bogdan@hellohuman.ro`
       },
-
       FRICTIUNE: {
         subiect: 'Fără acces. Fără timp pierdut.',
         body: `Bună ziua,
@@ -98,7 +94,6 @@ Toate cele bune,
 Bogdan
 bogdan@hellohuman.ro`
       },
-
       EFICIENTA: {
         subiect: 'Ce obțineți în paisprezece zile',
         body: `Bună ziua,
@@ -120,7 +115,6 @@ Toate cele bune,
 Bogdan
 bogdan@hellohuman.ro`
       },
-
       STATUSQUO: {
         subiect: 'Trei pași, niciun angajament',
         body: `Bună ziua,
@@ -142,11 +136,8 @@ Toate cele bune,
 Bogdan
 bogdan@hellohuman.ro`
       }
-
     },
-
     en: {
-
       SILO: {
         subiect: 'What happens between your teams',
         body: `Hello,
@@ -168,7 +159,6 @@ Best,
 Bogdan
 bogdan@hellohuman.ro`
       },
-
       VIZIBILITATE: {
         subiect: 'What no org chart shows',
         body: `Hello,
@@ -190,7 +180,6 @@ Best,
 Bogdan
 bogdan@hellohuman.ro`
       },
-
       DOVADA: {
         subiect: 'Figures you can stand behind',
         body: `Hello,
@@ -212,7 +201,6 @@ Best,
 Bogdan
 bogdan@hellohuman.ro`
       },
-
       FRICTIUNE: {
         subiect: 'No access. No time lost.',
         body: `Hello,
@@ -234,7 +222,6 @@ Best,
 Bogdan
 bogdan@hellohuman.ro`
       },
-
       EFICIENTA: {
         subiect: 'What you get in fourteen days',
         body: `Hello,
@@ -256,7 +243,6 @@ Best,
 Bogdan
 bogdan@hellohuman.ro`
       },
-
       STATUSQUO: {
         subiect: 'Three steps, no commitment',
         body: `Hello,
@@ -278,7 +264,6 @@ Best,
 Bogdan
 bogdan@hellohuman.ro`
       }
-
     }
   },
 
@@ -286,8 +271,9 @@ bogdan@hellohuman.ro`
   localuri: {
     ro: {
 
+      /* BARURI — reflectă localuri.html */
       bar: {
-        subiect: '{{loc}} — o seară care nu costă nimic',
+        subiect: '{{loc}} — mesele nu se golesc',
         body: `Bună ziua,
 
 Mulțumim pentru interesul arătat. Am notat că {{loc}} este în {{oras}}.
@@ -296,13 +282,23 @@ Ce urmează, pas cu pas:
 
 1. Vorbim cincisprezece minute la telefon. Ne spuneți cum arată sala, ce ore sunt bune, câți clienți aveți într-o seară obișnuită.
 
-2. Alegem împreună o seară slabă din săptămână. Nu ocupăm mese la ore de vârf.
+2. Alegem împreună o seară slabă din săptămână — marți, miercuri sau joi. Nu ocupăm mese la ore de vârf.
 
 3. Facem prima rundă gratuit. Suntem acolo, punem codurile pe mese, rămânem până se termină.
 
 {{want}}
 
-Vedeți rezultatul și decideți. Nu semnați nimic înainte. Nu cerem exclusivitate și nu cerem nimic în avans.
+Ce aduce HelloHuman într-un bar:
+
+— Masa nu se golește la ora obișnuită. Clienții care ar fi plecat după 30 de minute stau o oră pentru că sunt la masă cu cineva nou.
+
+— Marți, miercuri, joi. Serile grele primesc un motiv clar să iasă cineva.
+
+— Zero investiție. Fără echipament, fără software, fără costuri ascunse.
+
+— Se întorc. Și aduc pe cineva. Un om care a cunoscut pe cineva revine. Și nu vine singur.
+
+Nu semnați nimic înainte. Nu cerem exclusivitate și nu cerem nimic în avans.
 
 Vă răspundem în două zile lucrătoare la orice întrebare.
 
@@ -311,13 +307,14 @@ Echipa HelloHuman
 contact@hellohuman.ro`
       },
 
+      /* LIBRĂRII — reflectă librarii.html */
       book: {
-        subiect: '{{loc}} — un subiect, o masă, un ritm',
+        subiect: '{{loc}} — oameni care revin',
         body: `Bună ziua,
 
 Mulțumim pentru interesul arătat. Am notat că {{loc}} este în {{oras}}.
 
-Formatul nostru pentru librării și cafenele e diferit de cel dintr-un bar. Aici nu e cronometru, nu e rundă. E o masă, o oră, un subiect anunțat din timp, la aceeași oră în fiecare săptămână.
+Formatul pentru librării și cafenele e diferit de cel dintr-un bar. Aici nu e cronometru, nu e rundă. E o masă, o oră, un subiect anunțat din timp, la aceeași oră în fiecare săptămână.
 
 Gazda din partea dumneavoastră citește întrebarea și predă scena mesei. Atât.
 
@@ -331,6 +328,16 @@ Ce urmează:
 
 {{want}}
 
+Ce aduce HelloHuman într-o librărie:
+
+— Oameni care revin. Nu o dată. Săptămânal. Aceeași zi, aceeași oră, aceiași oameni. Retenția e singura cifră care contează.
+
+— Vindeți cărți fără să vindeți cărți. Subiectul e o carte. Oamenii vin pentru discuție, dar pleacă cu cartea.
+
+— Comunitate, nu eveniment. Un eveniment se termină. O comunitate revine. Aici o construiți pe a doua.
+
+— Fără cost. Prima serie e gratuită. O masă și o oră pe săptămână.
+
 Cifra pe care o urmărim nu e câți vin prima dată. Ci câți din prima ediție sunt și la a patra.
 
 Cu bine,
@@ -338,13 +345,14 @@ Echipa HelloHuman
 contact@hellohuman.ro`
       },
 
+      /* MUZEE — reflectă cultura.html */
       cult: {
-        subiect: '{{loc}} — conversația de după vizită',
+        subiect: '{{loc}} — vizitatorii care rămân',
         body: `Bună ziua,
 
 Mulțumim pentru interesul arătat. Am notat că {{loc}} este în {{oras}}.
 
-Ideea e simplă: o masă la finalul vizitei, cu un subiect legat de expoziția curentă. Nu intervine peste experiența expoziției și nu cere ghid sau curator.
+Ideea e simplă: o întâlnire la finalul vizitei, cu un subiect legat de expoziția curentă. Nu intervine peste experiența expoziției și nu cere ghid sau curator.
 
 Gazda din partea muzeului se ocupă de întâlnire. Nu ține o prezentare.
 
@@ -358,13 +366,22 @@ Ce urmează:
 
 {{want}}
 
-Vizitatorii care schimbă o propoziție cu cineva se oprește altfel în fața unui obiect. Iar cei care au legat ceva revin.
+Ce aduce HelloHuman într-un muzeu:
+
+— Vizitatorii stau mai mult când au cu cine vorbi. Un om care schimbă o propoziție cu cineva se oprește altfel în fața unui obiect.
+
+— Aproape jumătate dintre vizitatori vin pentru companie, nu pentru expoziție. Nu sunt acolo doar pentru artă. Sunt acolo pentru a fi cu cineva.
+
+— Cei care revin sunt cei care au legat ceva. Un om care a cunoscut pe cineva la o ediție anterioară vine și la următoarea.
+
+— Comunitate, nu eveniment. Un vernisaj se termină. O întâlnire săptămânală construiește un public care revine pentru oameni, nu doar pentru expoziție.
 
 Cu bine,
 Echipa HelloHuman
 contact@hellohuman.ro`
       },
 
+      /* HOTELURI — reflectă hoteluri.html */
       hotel: {
         subiect: '{{loc}} — oaspeții care coboară',
         body: `Bună ziua,
@@ -383,15 +400,24 @@ Ce urmează:
 
 {{want}}
 
-Amestecul dintre oaspeți și oameni din oraș e ce aduce oaspeții înapoi. Localnicii pot participa — e chiar recomandat.
+Ce aduce HelloHuman într-un hotel:
+
+— Oaspeții singuri coboară. Cel care ar fi comandat în cameră se așază în lobby. Consumă acolo unde este mai bine pentru hotel.
+
+— Recenzii care vorbesc despre oameni, nu doar despre camere. Un oaspete care a cunoscut pe cineva scrie altfel despre șederea lui.
+
+— Zero investiție. Fără echipament, fără training. Recepția apasă un buton.
+
+— Localnicii pot intra. Amestecul dintre oaspeți și oameni din oraș este ce aduce oaspeții înapoi.
 
 Cu bine,
 Echipa HelloHuman
 contact@hellohuman.ro`
       },
 
+      /* TERMINALE — reflectă terminale.html */
       term: {
-        subiect: '{{loc}} — pornește singur',
+        subiect: '{{loc}} — pasagerii rămân în zona comercială',
         body: `Bună ziua,
 
 Mulțumim pentru interesul arătat. Am notat că {{loc}} este în {{oras}}.
@@ -410,13 +436,22 @@ Ce urmează:
 
 {{want}}
 
-Pasagerii care ar fi stat la poartă rămân în zona comercială. Consumul nu se mută, se adaugă.
+Ce aduce HelloHuman unui terminal:
+
+— Pasagerii rămân în zona comercială. Cei care ar fi stat la poartă rămân la masă. Consumul nu se mută, se adaugă.
+
+— Conversația ocupă timpul de așteptare. Un pasager care stă singur cu telefonul nu consumă. Un pasager care stă cu cineva comandă încă o cafea.
+
+— Zero investiție. Zero personal. Cartonașele se pun o singură dată la instalare.
+
+— Pornire automată, oprire automată. Sistemul pornește singur când se adună trei pasageri și se închide cu douăzeci de minute înainte de îmbarcare.
 
 Cu bine,
 Echipa HelloHuman
 contact@hellohuman.ro`
       },
 
+      /* AGENȚII — reflectă corporate.html */
       agency: {
         subiect: '{{loc}} — un instrument pentru clienții dumneavoastră',
         body: `Bună ziua,
@@ -424,8 +459,6 @@ contact@hellohuman.ro`
 Mulțumim pentru interesul arătat. Am notat că {{loc}} este în {{oras}}.
 
 Pentru o agenție, HelloHuman nu e un serviciu pe care îl propuneți — e un instrument pe care îl puneți în pachet, iar noi îl livrăm.
-
-Nu vă consumă timp din echipă. La final, clientul primește patru cifre scrise, cu numele agenției pe document. Ceva concret de arătat la următoarea ședință.
 
 Ce urmează:
 
@@ -437,13 +470,25 @@ Ce urmează:
 
 {{want}}
 
-Un eveniment care lasă în urmă un raport se recomandă mai departe. Se vede în bugetul următor.
+Ce câștigă agenția:
+
+— Un serviciu pe care îl propuneți, nu îl executați. Îl puneți în pachet, îl livrăm noi. Nu vă consumă timp din echipă.
+
+— Un raport pe care clientul îl vede. La final, clientul primește patru cifre scrise, cu numele agenției pe document. Ceva concret de arătat la următoarea ședință.
+
+— Un motiv să fiți chemat din nou. Un eveniment care lasă în urmă un raport se recomandă mai departe. Se vede în bugetul următor.
+
+Cum lucrăm:
+— Vorbiți cu clientul, completați șapte întrebări scurte.
+— Evenimentul se creează din răspunsuri, cu parola gazdei generată pe loc.
+— Primiți codul QR, îl printați sau îl afișați în sală.
 
 Cu bine,
 Echipa HelloHuman
 contact@hellohuman.ro`
       },
 
+      /* ALTCEVA */
       other: {
         subiect: '{{loc}} — spuneți-ne mai multe',
         body: `Bună ziua,
@@ -474,7 +519,7 @@ contact@hellohuman.ro`
     en: {
 
       bar: {
-        subiect: '{{loc}} — an evening that costs nothing',
+        subiect: '{{loc}} — tables that do not empty',
         body: `Hello,
 
 Thank you for your interest. We noted that {{loc}} is in {{city}}.
@@ -483,13 +528,23 @@ Here is what happens next, step by step:
 
 1. We talk for fifteen minutes on the phone. You tell us what the room looks like, which hours work, how many customers you get on a normal evening.
 
-2. We choose together a slow evening of the week. We do not take tables at peak hours.
+2. We choose together a slow evening of the week — Tuesday, Wednesday or Thursday. We do not take tables at peak hours.
 
 3. We run the first round for free. We are there, we put the codes on the tables, we stay until it is over.
 
 {{want}}
 
-You see the result and decide. You sign nothing in advance. No exclusivity, nothing paid upfront.
+What HelloHuman brings to a bar:
+
+— The table does not empty at the usual hour. Customers who would have left after 30 minutes stay an hour because they are at a table with someone new.
+
+— Tuesday, Wednesday, Thursday. Slow evenings get a clear reason to go out.
+
+— Zero investment. No equipment, no software, no hidden costs.
+
+— They come back. And bring someone. Someone who met someone returns. And does not come alone.
+
+You sign nothing in advance. No exclusivity, nothing paid upfront.
 
 We reply within two working days to any question.
 
@@ -499,7 +554,7 @@ contact@hellohuman.ro`
       },
 
       book: {
-        subiect: '{{loc}} — a topic, a table, a rhythm',
+        subiect: '{{loc}} — people who come back',
         body: `Hello,
 
 Thank you for your interest. We noted that {{loc}} is in {{city}}.
@@ -518,6 +573,16 @@ What happens next:
 
 {{want}}
 
+What HelloHuman brings to a bookshop:
+
+— People who come back. Not once. Weekly. Same day, same hour, same people. Retention is the only figure that counts.
+
+— You sell books without selling books. The subject is a book. People come for the conversation, but leave with the book.
+
+— Community, not an event. An event ends. A community comes back. Here you build the second one.
+
+— No cost. The first series is free. One table and one hour a week.
+
 The figure we follow is not how many come the first time. It is how many from the first edition are there at the fourth.
 
 Best,
@@ -526,12 +591,12 @@ contact@hellohuman.ro`
       },
 
       cult: {
-        subiect: '{{loc}} — the conversation after the visit',
+        subiect: '{{loc}} — visitors who stay',
         body: `Hello,
 
 Thank you for your interest. We noted that {{loc}} is in {{city}}.
 
-The idea is simple: one table at the end of the visit, on a subject tied to the current exhibition. It does not interfere with the exhibition experience and needs no guide or curator.
+The idea is simple: one meeting at the end of the visit, on a subject tied to the current exhibition. It does not interfere with the exhibition experience and needs no guide or curator.
 
 Your host handles the meeting. No presentation.
 
@@ -545,7 +610,15 @@ What happens next:
 
 {{want}}
 
-Visitors who exchange a sentence with someone stop differently in front of an object. And those who connected come back.
+What HelloHuman brings to a museum:
+
+— Visitors stay longer when they have someone to talk to. Someone who exchanges a sentence with another person stops differently in front of an object.
+
+— Nearly half of visitors come for the company, not the exhibition. They are not there only for the art. They are there to be with someone.
+
+— Those who come back are the ones who connected with something. Someone who met someone at an earlier edition comes to the next one too.
+
+— Community, not an event. An opening ends. A weekly meeting builds an audience that returns for the people, not only for the exhibition.
 
 Best,
 The HelloHuman team
@@ -570,7 +643,15 @@ What happens next:
 
 {{want}}
 
-The mix of guests and people from the city is what brings guests back. Locals can join — we recommend it.
+What HelloHuman brings to a hotel:
+
+— Guests travelling alone come down. The one who would have ordered to the room sits in the lobby instead. They spend where it matters to the hotel.
+
+— Reviews that talk about people, not only about rooms. A guest who met someone writes differently about their stay.
+
+— Zero investment. No equipment, no training. Reception presses a button.
+
+— Locals can join. The mix of guests and people from the city is what brings guests back.
 
 Best,
 The HelloHuman team
@@ -578,7 +659,7 @@ contact@hellohuman.ro`
       },
 
       term: {
-        subiect: '{{loc}} — it starts on its own',
+        subiect: '{{loc}} — passengers stay in the commercial area',
         body: `Hello,
 
 Thank you for your interest. We noted that {{loc}} is in {{city}}.
@@ -597,7 +678,15 @@ What happens next:
 
 {{want}}
 
-Passengers who would have waited at the gate stay in the commercial area. Spending is not shifted, it is added.
+What HelloHuman brings to a terminal:
+
+— Passengers stay in the commercial area. Those who would have waited at the gate stay at a table. Spending is not shifted, it is added.
+
+— Conversation fills the waiting time. A passenger sitting alone with a phone spends nothing. A passenger sitting with someone orders one more coffee.
+
+— Zero investment. Zero staff. The cards are placed once at installation.
+
+— Automatic start, automatic stop. The system starts on its own when three passengers gather and closes twenty minutes before boarding.
 
 Best,
 The HelloHuman team
@@ -612,8 +701,6 @@ Thank you for your interest. We noted that {{loc}} is in {{city}}.
 
 For an agency, HelloHuman is not a service you deliver — it is an instrument you put in the package, and we deliver it.
 
-It takes no time from your team. At the end, the client receives four written figures, with the agency's name on the document. Something concrete to show at the next meeting.
-
 What happens next:
 
 1. We talk for fifteen minutes. You tell us what kind of events you run and for which clients.
@@ -624,7 +711,18 @@ What happens next:
 
 {{want}}
 
-An event that leaves a report behind gets recommended further. It shows in the next budget.
+What the agency gains:
+
+— A service you propose, not one you deliver. You put it in the package, we deliver it. It costs you no team time.
+
+— A report the client sees. At the end, the client receives four written figures, with the agency's name on the document. Something concrete to show at the next meeting.
+
+— A reason to be called again. An event that leaves a report behind gets recommended further. It shows in the next budget.
+
+How we work:
+— You talk to the client, you fill in seven short questions.
+— The event is created from the answers, with the host password generated on the spot.
+— You receive the QR code, you print it or show it in the room.
 
 Best,
 The HelloHuman team
