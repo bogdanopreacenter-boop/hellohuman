@@ -501,9 +501,14 @@ function inlocuieste(text, x, lang){
     .trim();
 }
 
+/* ============================================================
+   MODIFICARE — recunoaște și cafeneaua
+   Verificarea pentru cafenea e ÎNAINTE de cea pentru librărie.
+   ============================================================ */
 function ghicesteTipLoc(kind){
   kind = (kind||'').toLowerCase();
-  if(kind.indexOf('librăr')>=0 || kind.indexOf('librar')>=0 || kind.indexOf('cafenea')>=0 || kind.indexOf('book')>=0) return 'book';
+  if(kind.indexOf('cafenea')>=0 || kind.indexOf('cafe')>=0) return 'cafe';
+  if(kind.indexOf('librăr')>=0 || kind.indexOf('librar')>=0 || kind.indexOf('book')>=0) return 'book';
   if(kind.indexOf('muzeu')>=0 || kind.indexOf('cultural')>=0 || kind.indexOf('galerie')>=0) return 'cult';
   if(kind.indexOf('hotel')>=0 || kind.indexOf('pensiune')>=0) return 'hotel';
   if(kind.indexOf('aeroport')>=0 || kind.indexOf('gară')>=0 || kind.indexOf('gara')>=0 || kind.indexOf('terminal')>=0) return 'term';
@@ -762,7 +767,7 @@ function paintReqs(){
       +'<div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline">'
       +'<div class="nm">'+esc(r.name)+'</div>'
       +'<div class="numt" style="color:'+cul+'">'+esc(r.status)+'</div></div>'
-      +'<div class="sub">'+esc(r.kind||'—')+' · '+esc(r.city||'—')+' · '+when(r.ts)+'</div>'
+      +'<div class="sub">'+esc(r.kind||'—')+(r.cafeSub?(' · '+esc(r.cafeSub)):'')+' · '+esc(r.city||'—')+' · '+when(r.ts)+'</div>'
       +'<div class="sub" style="margin-top:4px;color:var(--gold)">a dat de noi: '+esc(r.found||'—')+'</div>'
       +(r.want?('<p class="sub" style="margin-top:8px;font-style:italic">„'+esc(r.want)+'”</p>'):'')
       +'<div class="sub" style="margin-top:8px">'+esc(r.email)+(r.phone?(' · '+esc(r.phone)):'')+'</div>'
