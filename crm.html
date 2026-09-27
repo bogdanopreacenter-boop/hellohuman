@@ -11,21 +11,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Karla:wght@400;500;700&display=swap&subset=latin,latin-ext" rel="stylesheet">
 <link rel="stylesheet" href="/site.css?v=4">
 <style>
-/* Garanție de afișare: paginile astea nu depind de nicio regulă din altă parte. */
 body.appbody{background:#16302B;margin:0}
 body.appbody .app{display:block!important;max-width:560px;margin:0 auto;padding:26px 20px 60px;min-height:100vh}
 body.appbody .sc{display:none}
 body.appbody .sc.on{display:block}
 </style>
-
-
 <link rel="icon" type="image/svg+xml" href="/marca.svg">
 <link rel="apple-touch-icon" href="/logo-hellohuman.png">
 </head>
 <body class="appbody">
 <div class="app">
 
-<!-- parola -->
 <section class="sc on" id="sLog">
   <p class="eyebrow">HelloHuman</p>
   <h2>Panoul tău</h2>
@@ -35,7 +31,6 @@ body.appbody .sc.on{display:block}
   <div class="push"><button class="btn wide" id="bLog">Intră</button></div>
 </section>
 
-<!-- panoul principal -->
 <section class="sc" id="sMain">
   <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
     <div><p class="eyebrow">Proprietar</p><h2>Registrul tău</h2></div>
@@ -79,7 +74,7 @@ body.appbody .sc.on{display:block}
     <div class="list" id="lPt" style="max-height:none;margin-top:14px"></div>
     <button class="btn wide" id="bNewPt" style="margin-top:16px">Adaugă un partener</button>
     <button class="btn ghost wide" id="bFmt" style="margin-top:9px">Formate proprii</button>
-  <button class="btn ghost wide" id="bNev" style="margin-top:9px">Ce le lipsește oamenilor</button>
+    <button class="btn ghost wide" id="bNev" style="margin-top:9px">Ce le lipsește oamenilor</button>
     <button class="btn ghost wide" id="bBiz" style="margin-top:9px">Cereri de la companii</button>
     <button class="btn ghost wide" id="bRec2" style="margin-top:9px">Locuri recomandate</button>
     <button class="btn ghost wide" id="bChe" style="margin-top:9px">Cherie</button>
@@ -103,8 +98,6 @@ body.appbody .sc.on{display:block}
   <div class="push"><button class="btn ghost wide" id="bOut">Ieși din cont</button></div>
 </section>
 
-
-<!-- fișa partenerului -->
 <section class="sc" id="sPart">
   <a class="back" href="#" id="bPB">← Parteneri</a>
   <p class="eyebrow" id="pKind">—</p>
@@ -134,7 +127,6 @@ body.appbody .sc.on{display:block}
   </div>
 </section>
 
-<!-- fișa rundei -->
 <section class="sc" id="sEv">
   <a class="back" href="#" id="bEB">← Runde</a>
   <p class="eyebrow" id="eWho">—</p>
@@ -165,8 +157,6 @@ body.appbody .sc.on{display:block}
   <p class="sub2" style="margin-top:6px">Cine pe cine a ales. Dacă se aleg reciproc, e semnalul cel mai puternic.</p>
 </section>
 
-
-<!-- format propriu -->
 <section class="sc" id="sChe">
   <a class="back" href="#" id="bCheB">← Înapoi</a>
   <p class="eyebrow">Cherie</p>
@@ -259,7 +249,6 @@ body.appbody .sc.on{display:block}
   </div>
 </section>
 
-<!-- partener nou -->
 <section class="sc" id="sNew">
   <a class="back" href="#" id="bNB">← Parteneri</a>
   <p class="eyebrow">Proprietar</p>
@@ -290,7 +279,6 @@ body.appbody .sc.on{display:block}
   </div>
 </section>
 
-<!-- demonstrație: un singur ecran, totul precompletat -->
 <section class="sc" id="sDemo">
   <a class="back" href="#" id="bDB">← Înapoi</a>
   <p class="eyebrow">Șase minute</p>
@@ -304,7 +292,6 @@ body.appbody .sc.on{display:block}
   <div class="push"><button class="btn wide" id="bDGo">Pornește demonstrația</button></div>
 </section>
 
-<!-- configurarea unei runde -->
 <section class="sc" id="sCfg">
   <a class="back" href="#" id="bCB">← Runde</a>
   <p class="eyebrow">Proprietar</p>
@@ -327,8 +314,7 @@ body.appbody .sc.on{display:block}
     <button class="opt sel" data-l="ro">Română</button>
     <button class="opt" data-l="en">English</button>
   </div>
-<p class="note" id="cNote"></p>
-  
+  <p class="note" id="cNote"></p>
   
   <label class="lb" for="cSala">Câți oameni sunt în sală</label>
   <input type="text" id="cSala" maxlength="5" inputmode="numeric" placeholder="120">
@@ -336,34 +322,28 @@ body.appbody .sc.on{display:block}
 
   <label class="lb" for="cT">Numerele meselor</label>
   <input type="text" id="cT" placeholder="1, 2, 3, 4, 5, 6">
-    
-
-  
 
   <label class="lb" for="cS">Oameni la o masă</label>
-    <input type="text" id="cS" maxlength="2" inputmode="numeric" placeholder="3">
+  <input type="text" id="cS" maxlength="2" inputmode="numeric" placeholder="3">
   <label class="lb" for="cM">Minute pe rundă</label>
-    <div class="opts" id="cMOpt" style="margin-bottom:8px"></div>
-    <input type="text" id="cM" maxlength="3" inputmode="numeric" placeholder="15">
+  <div class="opts" id="cMOpt" style="margin-bottom:8px"></div>
+  <input type="text" id="cM" maxlength="3" inputmode="numeric" placeholder="15">
 
   <button class="btn ghost small" id="bCAdv" style="margin-top:22px">Ajustează detaliile</button>
   <div id="cAdv" style="display:none">
     <label class="lb" for="cCl">Partenerul</label>
-  <select id="cCl"></select>
+    <select id="cCl"></select>
     <label class="lb" for="cEv">Numele rundei</label>
-  <input type="text" id="cEv" maxlength="46" placeholder="Joi la Barul Vechi">
+    <input type="text" id="cEv" maxlength="46" placeholder="Joi la Barul Vechi">
     <label class="lb" for="cOfera">Ce oferă localul, dacă oferă ceva</label>
-  <input type="text" id="cOfera" maxlength="80" placeholder="o cafea din partea casei">
+    <input type="text" id="cOfera" maxlength="80" placeholder="o cafea din partea casei">
     <label class="lb" for="cQ">Întrebările de la mese, una pe rând</label>
     <textarea id="cQ" rows="5"></textarea>
-    
-    
     <label class="lb">Ce alege participantul</label>
     <input type="text" id="cC0" maxlength="46" placeholder="—">
     <input type="text" id="cC1" maxlength="46" placeholder="—" style="margin-top:6px">
     <input type="text" id="cC2" maxlength="46" placeholder="—" style="margin-top:6px">
     <input type="text" id="cC3" maxlength="46" placeholder="—" style="margin-top:6px">
-    
   </div>
   <label class="lb">Cum pornesc rundele</label>
   <div class="opts" id="cAuto"></div>
@@ -378,7 +358,6 @@ body.appbody .sc.on{display:block}
   <div class="push"><button class="btn wide" id="bCGo">Creează runda</button></div>
 </section>
 
-<!-- codul QR -->
 <section class="sc" id="sQR">
   <a class="back" href="#" id="bQB">← Înapoi</a>
   <p class="eyebrow" id="qEye">Codul de pe masă — pentru oameni</p>
@@ -416,8 +395,7 @@ body.appbody .sc.on{display:block}
 
 <script>
 /* ============================================================
-   crm.html — panoul proprietarului. Nimeni altcineva nu ajunge aici.
-   Adresa nu apare nicăieri pe site și pagina e marcată neindexabilă.
+   crm.html — panoul proprietarului.
    ============================================================ */
 var el=HH.el, esc=HH.esc, say=HH.say, go=HH.go, API=HH.API;
 var P=HH.PROFILES;
@@ -452,10 +430,12 @@ async function salveaza(mut){
   await API.bookSave(key,{partners:book.partners,events:book.events,formate:book.formate||[]});
 }
 
-/* ---------- starea reală a rundelor ---------- */
+/* ---------- starea reală a rundelor ----------
+   FIX #3: fereastră extinsă de la 3 zile la 30 zile,
+   ca să prindă și evenimentele lungi. */
 async function citesteLive(){
-  var prag=Date.now()-3*86400000;
-  var recente=(book.events||[]).filter(function(e){return (e.ts||0)>prag}).slice(-12);
+  var prag=Date.now()-30*86400000;
+  var recente=(book.events||[]).filter(function(e){return (e.ts||0)>prag}).slice(-30);
   for(var i=0;i<recente.length;i++){
     var e=recente[i];
     try{
@@ -473,7 +453,7 @@ function porneste(){
   opreste();
   citesteLive().then(paintMain);
   timer=setInterval(function(){
-    if(!el('sMain').classList.contains('on'))return;   // în fișe nu deranjăm
+    if(!el('sMain').classList.contains('on'))return;
     citesteLive().then(paintMain);
   },8000);
 }
@@ -610,6 +590,8 @@ el('bEMark').onclick=async function(){
     e.demo=nou; el('bEMark').textContent=nou?'Scoate din probe':'Marchează ca probă';
     say('mEv',nou?'Marcată ca probă. Nu mai intră în cifre.':'Scoasă din probe.','ok');
     paintMain();
+    /* FIX #4: reîmprospătăm și raportul/perechile ca să respecte noul statut */
+    reciteste(evId);
   }catch(err){ say('mEv',err.message,'err') }
 };
 
@@ -672,7 +654,6 @@ el('lRq').onclick=async function(e){
     try{ await API.reqStatus(key,r.id,'respins'); r.status='respins'; paintReqs() }catch(err){ say('mMain',err.message,'err') }
     return;
   }
-  // acceptă: deschide crearea partenerului, precompletată din cerere
   nId=''; el('nTitle').textContent='Acceptă: '+r.name;
   el('nName').value=r.name; el('nCity').value=r.city||'';
   nProf=ghiceste(r.kind); el('nPw').value=String(Math.floor(1000+Math.random()*9000));
@@ -685,6 +666,7 @@ function ghiceste(k){
   if(k.indexOf('agenți')>=0)return 'corp';
   return 'bar';
 }
+
 /* ---------- formate proprii ---------- */
 var fmtId='', fTacut=2;
 function formate(){ return (book && book.formate) || [] }
@@ -714,8 +696,7 @@ el('lFmt').onclick=function(e){
   el('bFDel').style.display=''; say('mFmt',''); go('sFmt');
 };
 
-/* Nevoile. Fiecare propozitie vine de la un om care tocmai a stat la o masa.
-   Astea sunt materia prima pentru orice mesaj catre cineva care a reusit. */
+/* ---------- nevoile ---------- */
 var nevoi=[];
 async function incarcaNevoi(){
   say('mNev2','Se încarcă…');
@@ -732,8 +713,11 @@ async function incarcaNevoi(){
   }catch(e){ say('mNev2', e.message, 'err') }
 }
 
-/* Cereri de la companii. Profilul se calculeaza aici, nu in pagina de chestionar,
-   ca sa nu se vada logica. Regula: status quo peste jumatate opreste totul. */
+/* ---------- cereri de la companii ----------
+   FIX #1 și #2: deduplicare după email.
+   Când un client completează formularul (business-intrare) și apoi
+   chestionarul (business), avem două linii pentru același om.
+   Le combinăm într-una, păstrând datele complete de la chestionar. */
 var bizLista=[];
 function profil(raspuns){
   if(!raspuns || !raspuns.length) return {nume:'—', dom:''};
@@ -750,12 +734,33 @@ function profil(raspuns){
     DOVADA:'Cere dovadă măsurabilă'};
   return {nume:nume[dom]||'—', dom:dom};
 }
+function dedupBiz(lista){
+  /* Grupăm după email. Dacă există două intrări pentru același email,
+     le unim: păstrăm raspuns/finale/reducere de la cea care le are. */
+  var byMail={};
+  (lista||[]).forEach(function(x){
+    var m=(x.mail||'').toLowerCase().trim();
+    if(!m) return;
+    if(!byMail[m]){ byMail[m]=Object.assign({},x); return }
+    var v=byMail[m];
+    /* completăm câmpurile lipsă */
+    ['comp','rol','raspuns','finale','reducere','src'].forEach(function(k){
+      if(!v[k] && x[k]) v[k]=x[k];
+    });
+    /* dacă x are raspuns dar v nu, îl luăm pe al lui x */
+    if(x.raspuns && (!v.raspuns || !v.raspuns.length)){ v.raspuns=x.raspuns; v.finale=x.finale; v.reducere=x.reducere }
+    /* păstrăm cel mai recent timestamp */
+    if((x.ts||0)>(v.ts||0)) v.ts=x.ts;
+  });
+  return Object.keys(byMail).map(function(k){ return byMail[k] })
+    .sort(function(a,b){ return (b.ts||0)-(a.ts||0) });
+}
 async function incarcaBiz(){
   say('mBiz','Se încarcă…');
   try{
     var d=await API.book(key);
-    bizLista=(d.leads||[]).filter(function(x){ return x && (x.src==='business'||x.src==='business-intrare') });
-    bizLista.sort(function(a,b){ return (b.ts||0)-(a.ts||0) });
+    var brute=(d.leads||[]).filter(function(x){ return x && (x.src==='business'||x.src==='business-intrare') });
+    bizLista=dedupBiz(brute);
     if(!bizLista.length){ el('bizList').innerHTML='<p class="sub2" style="padding:12px 0">Nicio cerere încă.</p>'; say('mBiz',''); return }
     el('bizList').innerHTML=bizLista.map(function(x){
       var p=profil(x.raspuns);
@@ -780,7 +785,7 @@ async function incarcaBiz(){
   }catch(e){ say('mBiz', e.message, 'err') }
 }
 
-/* Ce s-a trimis deja. Se tine local, pe calculatorul tau — nu are rost pe server. */
+/* Ce s-a trimis deja. Se tine local, pe calculatorul tau. */
 function bizTrimisLista(){ try{ return JSON.parse(localStorage.getItem('hh_trm')||'[]') }catch(e){ return [] } }
 function bizTrimis(x){ return bizTrimisLista().indexOf(x.mail||'')>=0 }
 function bizMarcheaza(mail){
@@ -789,11 +794,7 @@ function bizMarcheaza(mail){
   try{ localStorage.setItem('hh_trm', JSON.stringify(l)) }catch(e){}
 }
 
-/* Mesajul de însoțire.
-   Tema vine din profil. Structura de limbaj vine din același profil —
-   un om care cere dovadă nu se convinge cum se convinge unul care decide singur.
-   Iar cuvintele lui, din răspunsurile deschise, se întorc neschimbate. */
-
+/* Mesajul de însoțire. */
 var PRIMA={
   SILO:'Punctul pe care l-ați indicat este distanța dintre echipe.',
   VIZIBILITATE:'Punctul pe care l-ați indicat este ce se întâmplă între oameni, fără să se vadă.',
@@ -802,26 +803,18 @@ var PRIMA={
   EFICIENTA:'Punctul pe care l-ați indicat este efectul asupra rezultatelor, nu procesul.',
   STATUSQUO:'Punctul pe care l-ați indicat este nevoia de dovadă înaintea oricărui angajament.'
 };
-
-/* Structura de limbaj, după profil. */
 var STRUCT={
-  SILO:{      /* traversare — accent pe ce se leagă */
-    mij:'Prezentarea arată ce se poate măsura între echipe și cât de repede.',
+  SILO:{ mij:'Prezentarea arată ce se poate măsura între echipe și cât de repede.',
     inch:'Decizia rămâne a dumneavoastră. Vă răspund la orice întrebare, fără să insist.'},
-  VIZIBILITATE:{
-    mij:'Prezentarea arată exact ce vedeți la final și ce nu ajunge niciodată în raport.',
+  VIZIBILITATE:{ mij:'Prezentarea arată exact ce vedeți la final și ce nu ajunge niciodată în raport.',
     inch:'Dacă vreți să vedeți cum arată un raport real, vi-l trimit.'},
-  DOVADA:{    /* extern — dovezi, referințe, metodologie */
-    mij:'Prezentarea are cifrele și sursele lor: anchete europene pe zeci de mii de respondenți, iar metodologia completă în anexă.',
+  DOVADA:{ mij:'Prezentarea are cifrele și sursele lor: anchete europene pe zeci de mii de respondenți, iar metodologia completă în anexă.',
     inch:'Dacă departamentul dumneavoastră juridic vrea documentația de prelucrare a datelor, o trimit înainte de orice discuție.'},
-  FRICTIUNE:{ /* dinspre — accent pe ce evită */
-    mij:'Nu cerem acces la niciun sistem, nu instalăm nimic și nu ocupăm timpul nimănui din echipă.',
+  FRICTIUNE:{ mij:'Nu cerem acces la niciun sistem, nu instalăm nimic și nu ocupăm timpul nimănui din echipă.',
     inch:'Dacă la jumătate vă răzgândiți, se oprește dintr-un buton. Nu rămâne nimic instalat.'},
-  EFICIENTA:{ /* către — accent pe ce obține */
-    mij:'Prezentarea arată ce obțineți în paisprezece zile și ce decizie puteți lua pe baza acelor cifre.',
+  EFICIENTA:{ mij:'Prezentarea arată ce obțineți în paisprezece zile și ce decizie puteți lua pe baza acelor cifre.',
     inch:'Dacă vreți, calculăm împreună ce ar însemna asta pentru organizația dumneavoastră.'},
-  STATUSQUO:{ /* proceduri — pași, ordine, fără angajament */
-    mij:'Prezentarea are cei trei pași, în ordine, cu ce se întâmplă la fiecare.',
+  STATUSQUO:{ mij:'Prezentarea are cei trei pași, în ordine, cu ce se întâmplă la fiecare.',
     inch:'Nu e nevoie de nicio decizie acum. Citiți, iar dacă are sens, vorbim.'}
 };
 
@@ -841,7 +834,6 @@ function bizMesaj(x){
   L.push('');
   L.push(s.mij);
   L.push('');
-  /* cuvintele lui, întoarse neschimbate */
   if(fin[2]){
     L.push('La întrebarea despre ce ar însemna că a meritat, ați răspuns: „' + fin[2].replace(/^[„"]|[”"]$/g,'') + '”.');
     L.push('Exact asta se vede în cifrele de la final.');
@@ -871,8 +863,7 @@ el('bizList').onclick=function(e){
 };
 
 
-/* Locuri recomandate. Oameni care vin acolo, iar vor HelloHuman la ei.
-   Nu au datele patronului — le cautam noi. */
+/* ---------- locuri recomandate ---------- */
 var recLista=[];
 function recTrimisLista(){ try{ return JSON.parse(localStorage.getItem('hh_rec')||'[]') }catch(e){ return [] } }
 function recTrimis(x){ return recTrimisLista().indexOf((x.loc||'')+'|'+(x.oras||''))>=0 }
@@ -888,7 +879,6 @@ async function incarcaRec(){
     recLista=(d.leads||[]).filter(function(x){ return x && x.src==='recomandare' });
     recLista.sort(function(a,b){ return (b.ts||0)-(a.ts||0) });
     if(!recLista.length){ el('recList').innerHTML='<p class="sub2" style="padding:12px 0">Nicio recomandare încă.</p>'; say('mRec2',''); return }
-    /* grupez pe loc: daca doi oameni recomanda acelasi loc, conteaza dublu */
     var grup={};
     recLista.forEach(function(x){
       var k=(x.loc||'').toLowerCase().trim()+'|'+(x.oras||'').toLowerCase().trim();
@@ -919,7 +909,7 @@ async function incarcaRec(){
   }catch(e){ say('mRec2', e.message, 'err') }
 }
 
-/* Cherie. Formular ascuns, fara legatura din site. */
+/* ---------- Cherie ---------- */
 var cheLista=[];
 async function incarcaChe(){
   say('mChe','Se încarcă…');
@@ -962,13 +952,17 @@ el('recList').onclick=function(e){
 };
 
 el('bBiz').onclick=function(){ go('sBiz'); incarcaBiz() };
-/* punct pe buton cand sunt cereri netrimise */
+
+/* FIX #5: bizPunct() și incarcaBiz() nu mai fac dublu request.
+   bizPunct citește o singură dată pentru a pune punctul pe buton. */
 async function bizPunct(){
   try{
     var d=await API.book(key);
-    var noi=(d.leads||[]).filter(function(x){
-      return x && (x.src==='business'||x.src==='business-intrare') && !bizTrimis(x);
-    }).length;
+    var brute=(d.leads||[]).filter(function(x){
+      return x && (x.src==='business'||x.src==='business-intrare');
+    });
+    var unice=dedupBiz(brute);
+    var noi=unice.filter(function(x){ return !bizTrimis(x) }).length;
     var b=el('bBiz');
     b.innerHTML = 'Cereri de la companii' + (noi ? ' <b style="color:var(--gold)">'+noi+'</b>' : '');
   }catch(e){}
@@ -1098,18 +1092,26 @@ el('bPDel').onclick=async function(){
 /* ---------- fișa rundei ---------- */
 var evId='';
 
-/* Perechile alese. Votul 'ch:ID' inseamna: omul a ales pe cineva de la masa lui. */
+/* Verific dacă runda curentă e marcată ca probă.
+   FIX #4: raportul și perechile trebuie să respecte acest statut. */
+function esteDemo(){
+  var e=(book.events||[]).filter(function(x){return x.id===evId})[0];
+  return !!(e && e.demo);
+}
 
-/* Raportul pentru client. Doar cifre agregate — niciun nume, nicio pereche.
-   Aia e chiar promisiunea din prezentare, iar trebuie respectata literal. */
+/* Raportul pentru client. Doar cifre agregate. */
 var raportTxt='';
 function paintRaport(d){
   var box=el('raport'); if(!box) return;
+  if(esteDemo()){
+    box.innerHTML='<p class="sub2" style="padding:12px 0">Rundă de probă. Nu intră în cifre.</p>';
+    raportTxt='';
+    return;
+  }
   var st=(d && d.state) || {}, cfg=(d && d.cfg) || {};
   var ist=st.istoric || [];
   if(!ist.length && !(st.round)){ box.innerHTML='<p class="sub2" style="padding:12px 0">Încă nu s-a ținut nicio rundă.</p>'; return }
 
-  /* toti oamenii care au trecut prin rundele de azi */
   var toti={}, mese=[];
   function strange(r){
     (r.tables||[]).forEach(function(t){
@@ -1126,11 +1128,9 @@ function paintRaport(d){
   var nOameni = n || oameniIst;
   var nMese = mese.length || meseIst;
 
-  /* 1. rata de participare */
   var sala=cfg.sala||0;
   var rata = sala ? Math.round(nOameni/sala*100) : 0;
 
-  /* 2. conexiuni intre departamente — perechi de la aceeasi masa, din echipe diferite */
   var cross=0, perechiTot=0, meseMixte=0;
   mese.forEach(function(t){
     var p=(t.people||[]); var dep={};
@@ -1142,7 +1142,6 @@ function paintRaport(d){
     }
   });
 
-  /* 3. reciprocitate — cate perechi s-au ales una pe alta */
   var v=st.votes||{}, ales={};
   Object.keys(v).forEach(function(k){
     var val=String(v[k]||''); if(val.indexOf('ch:')===0) ales[k]=val.slice(3);
@@ -1153,7 +1152,6 @@ function paintRaport(d){
     if(ales[b]===a){ var key=[a,b].sort().join('|'); if(!vazut[key]){ vazut[key]=1; recip++ } }
   });
 
-  /* 4. integrarea noilor veniti */
   var noi=0, noiCross=0;
   mese.forEach(function(t){
     var p=(t.people||[]);
@@ -1186,6 +1184,10 @@ el('bRapCopy').onclick=function(){ HH.copy(raportTxt||'—', el('bRapCopy')) };
 
 function paintPerechi(d){
   var box=el('evPerechi'); if(!box) return;
+  if(esteDemo()){
+    box.innerHTML='<p class="sub2" style="padding:12px 0">Rundă de probă. Nu intră în cifre.</p>';
+    return;
+  }
   var st=(d && d.state) || {};
   var v=st.votes || {};
   var nume={};
@@ -1228,7 +1230,7 @@ function deschideEv(id){
 async function reciteste(id){
   try{
     var d=await API.get(id), st=(d&&d.state)||{}, r=st.round;
-  try{ paintRaport(d); paintPerechi(d) }catch(e){}
+    try{ paintRaport(d); paintPerechi(d) }catch(e){}
     el('eState').innerHTML='<b>'+(r?'Rundă în curs':'Nicio rundă acum')+'</b>'+
       (r?(r.tables.length+' mese'+(r.dur?(' · '+HH.fmtLeft(r.start+r.dur-Date.now())+' rămas'):'')):
          ((st.wait||[]).length+' în coadă · '+(st.rounds||0)+' runde ținute'));
@@ -1301,7 +1303,7 @@ function nMsgTxt(){ return 'Panoul tău HelloHuman. '+el('nPwOut').textContent }
 el('bNSend').onclick=function(){ HH.shareLink(el('nLink').textContent, nMsgTxt()) };
 el('bNCopy').onclick=function(){ HH.copy(nMsg(), el('bNCopy')) };
 
-/* ---------- demonstrația: un ecran, totul precompletat ---------- */
+/* ---------- demonstrația ---------- */
 var dQ=0;
 function paintDQ(){
   var dqs=(cLimba==='en'&&P.demo.qs.en)?P.demo.qs.en:P.demo.qs.ro;
@@ -1315,7 +1317,7 @@ el('bDGo').onclick=async function(){
   var b=el('bDGo'); b.disabled=true; b.textContent='…';
   var t=el('dT').value.split(',').map(function(x){return parseInt(x.trim(),10)}).filter(function(x){return !isNaN(x)&&x>0});
   if(t.length<2)t=[1,2];
-  var qs=((cLimba==='en'&&P.demo.qs.en)?P.demo.qs.en:P.demo.qs.ro).slice(dQ).concat(((cLimba==='en'&&P.demo.qs.en)?P.demo.qs.en:P.demo.qs.ro).slice(0,dQ));  // pornim de la cea aleasă
+  var qs=((cLimba==='en'&&P.demo.qs.en)?P.demo.qs.en:P.demo.qs.ro).slice(dQ).concat(((cLimba==='en'&&P.demo.qs.en)?P.demo.qs.en:P.demo.qs.ro).slice(0,dQ));
   var pw=String(Math.floor(1000+Math.random()*9000));
   var cfg={ev:'Demonstrație',client:'',profile:'demo',tables:t,seats:3,minutes:3,
            cats:((cLimba==='en'&&P.demo.cats.en)?P.demo.cats.en:P.demo.cats.ro),ofera:(el('cOfera')?el('cOfera').value.trim():''), sala:parseInt(el('cSala').value,10)||0, qs:qs.join('\n'), qs2:altaLimba(qs),pwHost:pw, auto:(cAutoMod==='auto'), prag:parseInt(el('cPrag').value,10)||8,dep:false,quiet:'',demo:true};
@@ -1330,9 +1332,6 @@ el('bDGo').onclick=async function(){
   b.disabled=false; b.textContent='Pornește demonstrația';
 };
 
-/* ---------- demonstrația se conduce din același ecran ----------
-   La o demonstrație tu ești și organizator, și gazdă. Nu ai cui să
-   trimiți un link: stai lângă patron, cu telefonul în mână. */
 var demoId='', demoT=null;
 function demoPornit(id){
   demoId=id;
@@ -1399,8 +1398,6 @@ el('qStop2').onclick=async function(){
 /* ---------- pregătirea unei runde ---------- */
 var cProf='bar';
 
-/* Limba rundei. Se alege la creare si nu se mai schimba —
-   toti de la aceeasi masa trebuie sa citeasca acelasi text. */
 var cLimba='ro';
 function paintCLang(){
   var b=el('cLang'); if(!b) return;
@@ -1415,8 +1412,6 @@ if(el('cLang')) el('cLang').onclick=function(e){
 };
 
 
-/* Cate mese propunem. Sunt spatiu de manevra, nu obligatie:
-   daca vin putini, sistemul ii strange la mai putine mese. */
 function meseProp(cheie){
   var p=(typeof P!=='undefined'&&P[cheie])||null;
   if(!p) return '1, 2, 3, 4';
@@ -1427,16 +1422,13 @@ function meseProp(cheie){
 }
 
 
-/* Perechea intrebarilor in cealalta limba.
-   Se salveaza o data, la creare. Fiecare om vede intrebarea in limba lui,
-   dar ramane aceeasi intrebare — doar tradusa. */
 function altaLimba(lista){
   var p = P[cProf] || P.bar;
   var a = (cLimba==='en') ? (p.qs.en||[]) : (p.qs.ro||[]);
   var b = (cLimba==='en') ? (p.qs.ro||[]) : (p.qs.en||[]);
   var out = lista.map(function(q){
     var i = a.indexOf(q);
-    return (i>=0 && b[i]) ? b[i] : q;   // daca a fost scrisa de om, ramane cum e
+    return (i>=0 && b[i]) ? b[i] : q;
   });
   return out.join('\n');
 }
@@ -1497,8 +1489,6 @@ el('cAuto').onclick=function(e){
 };
 
 
-/* Cod de configurare de la o firma de evenimente.
-   Ei completeaza chestionarul in aplicatie, iti trimit codul, tu il incarci aici. */
 el('bImp').onclick=async function(){
   var cod=el('impCod').value.trim();
   if(!cod) return say('mImp','Scrie codul primit.','err');
@@ -1570,8 +1560,6 @@ el('bHCopy').onclick=function(){ HH.copy(qHostUrl+'\nParola: '+qHostPw, el('bHCo
 el('bHShare').onclick=function(){ HH.shareLink(qHostUrl, 'Linkul gazdei. Parola: '+qHostPw) };
 el('bQCopy').onclick=function(){ HH.copy(qUrl, el('bQCopy')) };
 el('bQShare').onclick=function(){ HH.shareLink(qUrl, 'Scanează codul de pe masă') };
-/* Tiparul se face intr-o fereastra proprie, cu HTML curat.
-   Asa nu se amesteca cu stilurile panoului, care au propriile reguli de tipar. */
 
 function tiparesteCod(adresa){
   var tmp=document.createElement('div'); tmp.style.display='none';
@@ -1617,7 +1605,7 @@ function tiparesteCod(adresa){
 el('bQPrint').onclick=function(){ tiparesteCod(qUrl) };
 
 /* ---------- pornire ---------- */
-HH.initNav(ECR,'sLog',function(){ /* la ieșirea din istoric rămânem pe loc */ HH.go('sLog',true) });
+HH.initNav(ECR,'sLog',function(){ HH.go('sLog',true) });
 (function(){
   var k=HH.recall('hh_k');
   if(k){ intra(k).then(function(){ HH.go('sMain',true); paintMain(); porneste() })
