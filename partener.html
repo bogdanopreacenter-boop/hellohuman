@@ -412,7 +412,7 @@ var P=HH.PROFILES;
 var TT={never:'niciodata',now:'chiar acum',min:'acum {n} min',hour:'acum {n} h'};
 var when=function(ts){return HH.fmtWhen(ts,TT)};
 var ECR=['sLog','sPanel','sCfg','sHost','sQR'];
-var mod='', id='', partner=null, pw='', events=[], live={}, timer=null;
+var mod='', id='', partner=null, pw='', events=[], live={}, timer=null, cProf='bar';
 var eid='', cfg={}, doc={}, freeT=[], busy=false;
 
 /* ---------- ce fel de intrare ---------- */
@@ -546,17 +546,20 @@ function paintCLang(){
 if(el('cLang')) el('cLang').onclick=function(e){
   var b=e.target.closest('.opt'); if(!b) return;
   cLimba=b.dataset.l; paintCLang();
-  if(typeof incarcaProfil==='function') incarcaProfil();
+  paintCfg();
 };
 
 function paintCfg(){
   var p=P[partner?(partner.profile||'bar'):'bar'];
+  cProf = partner ? (partner.profile||'bar') : 'bar';
   el('cNote').innerHTML='<b>'+T('rest')+'</b>'+esc(p.note.ro);
   el('cS').value=p.seats; el('cM').value=p.minutes;
   if(el('cT')) el('cT').value=meseProp(cProf);
   var LL=(cLimba==='en'&&p.cats.en)?p.cats.en:p.cats.ro;
   for(var i=0;i<4;i++)el('cC'+i).value=LL[i]||'';
   el('cQ').value=((cLimba==='en'&&p.qs.en)?p.qs.en:p.qs.ro).join('\n'); if(el('cOfera'))el('cOfera').value='';
+  paintCLang();
+  paintDurate(cProf);
 }
 el('bNew').onclick=function(){
   el('cEv').value=''; el('cT').value=meseProp(cProf);
@@ -645,24 +648,17 @@ el('bCGo').onclick=async function(){
 var autoBusy=false;
 async function incearcaAuto(){
   if(autoBusy || busy || !eid) return;
-  if(!cfg.auto) return;                                 // partenerul a ales să pornească el
+  if(!cfg.auto) return;
   var s=(doc&&doc.state)||{};
-  if(s.round) return;                                   // deja rulează
-  if(cfg.oneTable) return;                              // librăria are gazdă, nu prag
+  if(s.round) return;
+  if(cfg.oneTable) return;
   var q=(s.wait||[]).slice().sort(HH.ordq);
   if(!q.length) return;
 
-  // Pragul e cel ales de partener. Cu prag mic se formează o singură masă mereu,
-  // iar algoritmul nu are ce echilibra.
   var prag = cfg.prag || 8;
-
-  // Dacă TOȚI cei care așteaptă au bifat că merge și mai puțini, coborâm la 2.
-  // Bifa spune "merge și în doi" — dacă pragul rămâne 3, bifa minte.
   var totiAccepta = q.every(function(w){ return w.accept });
   if (totiAccepta) prag = 2;
 
-  // Iar dacă cineva așteaptă de peste 12 minute și sunt cel puțin 3, pornim oricum.
-  // Mai bine o masă de trei decât trei oameni care pleacă.
   var acum = Date.now();
   var celMaiVechi = Math.min.apply(null, q.map(function(w){ return w.ts || acum }));
   if (q.length >= 3 && (acum - celMaiVechi) > 12*60000) prag = 3;
@@ -699,7 +695,6 @@ function paintHost(){
         ? '<b>'+T('hAuto')+'</b>'+T('hAutoA')+' '+(cfg.prag||8)+' '+T('hAutoB')+' '+q0+'.'
         : '<b>'+T('hMan')+'</b>'+T('hManA')+' '+q0+' '+T('hManB'));
 
-  // raportul rundelor de azi — ce s-a intamplat, cu ora
   var azi=(s&&s.istoric)||[];
   if(azi.length){
     var tot=azi.reduce(function(a,x){return a+(x.oameni||0)},0);
@@ -746,14 +741,12 @@ function capIntreaba(cati, locuri){
 }
 
 function capTine(mod){
-  // Tinem minte alegerea. Un om ocupat nu vrea sa raspunda de doua ori.
   try{ localStorage.setItem('hh_cap', mod) }catch(e){}
   capMod = mod;
   el('capBox').style.display='none';
 }
 
 async function capAdauga(cati, locuri){
-  // adaugam exact cate mese lipsesc, numerotate dupa ultima
   var lista = (cfg.tables||[1]).map(String);
   var nr = lista.map(Number).filter(function(x){ return !isNaN(x) });
   var urm = nr.length ? Math.max.apply(null, nr) : lista.length;
@@ -789,8 +782,6 @@ el('bStart').onclick=async function(){
   var q=(doc.state.wait||[]).slice().sort(HH.ordq);
   if(q.length<2)return say('mHost',T('need2'),'err');
 
-  // Daca nu incap toti, gazda alege. Ea vede sala, noi nu.
-  // Iar daca nu are timp, sistemul decide in locul ei.
   var mese=(cfg.tables||[1]).length, locuri=mese*((cfg.seats||4)+1);
   if(q.length>locuri && !cfg.oneTable && capMod!=='go'){
     if(capMod==='auto'){ await capAdauga(q.length, locuri); }
@@ -856,8 +847,6 @@ function aratQR(nume,url,hpw,evid){
 el('bQB').onclick=function(e){ e.preventDefault(); HH.back() };
 el('bQCp').onclick=function(){ HH.copy(qu, el('bQCp')) };
 el('bQSh').onclick=function(){ HH.shareLink(qu, 'Scanează codul de pe masă') };
-/* Tiparul se face intr-o fereastra proprie, cu HTML curat.
-   Asa nu se amesteca cu stilurile panoului, care au propriile reguli de tipar. */
 function tiparesteCod(adresa){
   var tmp=document.createElement('div'); tmp.style.display='none';
   document.body.appendChild(tmp);
