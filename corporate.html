@@ -7,187 +7,137 @@
 <meta name="description" content="Arhitectură de coeziune organizațională. Un instrument strategic pe care agenția îl propune, iar clientul îl măsoară printr-un raport detaliat.">
 <link rel="canonical" href="https://hellohuman.ro/corporate.html">
 <meta name="robots" content="noindex,follow">
-<meta name="theme-color" content="#F7F4ED">
+<meta name="theme-color" content="#0B2620">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ro_RO">
 <meta property="og:site_name" content="HelloHuman">
 <meta property="og:url" content="https://hellohuman.ro/corporate.html">
 <meta property="og:title" content="HelloHuman For Enterprise — Arhitectură de coeziune">
 <meta property="og:description" content="Arhitectură de coeziune organizațională pe care agenția o propune, iar clientul o măsoară. Zero integrare IT.">
+<meta property="og:image" content="https://hellohuman.ro/masa-birou-companie.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hellohuman.ro/masa-birou-companie.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css?v=6">
 <script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@graph": [
-  {
-   "@type": "Organization",
-   "@id": "https://hellohuman.ro/#org",
-   "name": "HelloHuman",
-   "url": "https://hellohuman.ro/",
-   "email": "contact@hellohuman.ro",
-   "telephone": "+40750255200",
-   "description": "HelloHuman oferă arhitectură de coeziune organizațională și networking structurat pentru mediul enterprise.",
-   "areaServed": {"@type": "Country","name": "România"}
-  },
-  {
-   "@type": "Service",
-   "name": "Arhitectură de coeziune organizațională",
-   "description": "Un instrument strategic pe care agenția îl propune, cu raportare detaliată a impactului și zero efort de integrare IT.",
-   "provider": {"@id": "https://hellohuman.ro/#org"},
-   "areaServed": {"@type": "Country","name": "România"},
-   "audience": {"@type": "BusinessAudience","audienceType": "Agenții de evenimente, resurse umane, companii enterprise"},
-   "offers": {"@type": "Offer","price": "0","priceCurrency": "RON","description": "Implementarea pilot este gratuită."}
-  }
- ]
-}
+{"@context":"https://schema.org","@graph":[
+ {"@type":"Organization","@id":"https://hellohuman.ro/#org","name":"HelloHuman","url":"https://hellohuman.ro/","email":"contact@hellohuman.ro","telephone":"+40750255200","description":"HelloHuman oferă arhitectură de coeziune organizațională și networking structurat pentru mediul enterprise.","areaServed":{"@type":"Country","name":"România"}},
+ {"@type":"Service","name":"Arhitectură de coeziune organizațională","description":"Un instrument strategic pe care agenția îl propune, cu raportare detaliată a impactului și zero efort de integrare IT.","provider":{"@id":"https://hellohuman.ro/#org"},"areaServed":{"@type":"Country","name":"România"},"audience":{"@type":"BusinessAudience","audienceType":"Agenții de evenimente, resurse umane, companii enterprise"},"offers":{"@type":"Offer","price":"0","priceCurrency":"RON","description":"Implementarea pilot este gratuită."}}
+]}
 </script>
 <link rel="icon" type="image/svg+xml" href="/marca.svg">
 <link rel="apple-touch-icon" href="/logo-hellohuman.png">
 
 <style>
-:root{
-  --verde:#0B2620;
-  --verde2:#163A31;
-  --os:#F7F4ED;
-  --os2:#FDFBF6;
-  --gri:#6B7A73;
-  --gri2:#9AA8A1;
-  --ocru:#C8912A;
-  --ocru2:#8C6114;
-  --linie:#E4DDD0;
-  --linie-dark:#1B4238;
-  --serif:"Newsreader",Georgia,serif;
-  --sans:"Inter",-apple-system,system-ui,sans-serif;
-  --brand:"Plus Jakarta Sans",-apple-system,system-ui,sans-serif;
-  --ease:cubic-bezier(.22,.61,.36,1);
+/* ============================================================
+   CORPORATE.HTML — override-uri specifice
+   ============================================================ */
+h1, h2, h3{font-variation-settings:"opsz" 48}
+
+/* Hero cu SVG + QR în centru */
+.corp-hero{padding:clamp(30px,5vw,60px) 0 clamp(56px,8vw,88px);background:var(--oat)}
+.corp-hero .wrap{max-width:1180px;display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(28px,4vw,56px);align-items:center}
+@media(max-width:900px){.corp-hero .wrap{grid-template-columns:1fr;gap:40px}}
+.corp-hero .eyebrow{margin-bottom:clamp(10px,1.4vw,14px)}
+.corp-hero h1{margin:0 0 clamp(14px,2vw,20px);max-width:20ch}
+.corp-hero .lead{margin:0 0 clamp(22px,3vw,30px);max-width:44ch;color:var(--gold2)}
+.corp-hero .cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:clamp(20px,2.6vw,28px)}
+.corp-hero .cta .mic{font-size:13px;color:var(--dim);flex-basis:100%;margin:6px 0 0}
+
+.scene{position:relative;width:100%;max-width:620px;margin:0 auto;aspect-ratio:1/1;overflow:hidden}
+.scene::before{
+  content:"";position:absolute;inset:-15%;z-index:0;border-radius:50%;
+  background:radial-gradient(circle at 50% 50%, rgba(200,145,42,.22) 0%, rgba(200,145,42,.06) 32%, rgba(247,244,237,0) 62%);
+  filter:blur(36px);
+  animation:glowBreath 8s ease-in-out infinite;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{background:var(--os);color:var(--verde);font-family:var(--sans);font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-.wrap{max-width:900px;margin:0 auto;padding:0 clamp(22px,6vw,40px)}
-.w-wide{max-width:1040px;margin:0 auto;padding:0 clamp(22px,6vw,40px)}
+@keyframes glowBreath{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
 
-/* ---------- Header ---------- */
-.bar{position:sticky;top:0;z-index:60;background:rgba(247,244,237,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--linie)}
-.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
-.logo{font-family:var(--brand);font-weight:600;letter-spacing:-.02em;font-size:19px;color:var(--verde);text-decoration:none;display:inline-flex;align-items:center;gap:10px}
-.logo svg{width:32px;height:32px;flex:none;display:block}
-.barnav{display:flex;align-items:center;gap:10px}
-.barnav a{font-family:var(--sans);font-size:14px;color:var(--gri);text-decoration:none;transition:color .2s}
-.barnav a:hover{color:var(--verde)}
-.lang{background:transparent;border:1px solid var(--linie);color:var(--gri);font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.2em;padding:7px 13px;cursor:pointer;transition:.3s;border-radius:2px}
-.lang:hover{border-color:var(--ocru);color:var(--ocru)}
-@media(max-width:640px){.barnav a.hidem{display:none}}
+.viz-svg{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:2;overflow:visible}
+.hh-node{animation:hhPulse 3.4s ease-in-out infinite}
+.hh-node.d1{animation-delay:.5s}.hh-node.d2{animation-delay:1s}.hh-node.d3{animation-delay:1.5s}.hh-node.d4{animation-delay:2s}.hh-node.d5{animation-delay:2.5s}
+@keyframes hhPulse{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.07)}}
+.hh-line{stroke-dasharray:420;stroke-dashoffset:420;animation:hhDraw 2.4s cubic-bezier(.22,.61,.36,1) forwards}
+.hh-line.l1{animation-delay:.4s}.hh-line.l2{animation-delay:.7s}.hh-line.l3{animation-delay:1s}.hh-line.l4{animation-delay:1.3s}.hh-line.l5{animation-delay:1.6s}.hh-line.l6{animation-delay:1.9s}
+@keyframes hhDraw{to{stroke-dashoffset:0}}
+.hh-pulse{opacity:0;animation:hhTravel 3.6s linear infinite}
+.hh-pulse.p1{animation-delay:2.4s}.hh-pulse.p2{animation-delay:3s}.hh-pulse.p3{animation-delay:3.6s}.hh-pulse.p4{animation-delay:4.2s}.hh-pulse.p5{animation-delay:4.8s}.hh-pulse.p6{animation-delay:5.4s}
+@keyframes hhTravel{0%{opacity:0;transform:translate(0,0)}10%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy))}}
+.hh-hub-rot{transform-origin:center;animation:hhSpin 80s linear infinite}
+@keyframes hhSpin{to{transform:rotate(360deg)}}
 
-/* ---------- Sections ---------- */
-section{padding:clamp(56px,8.5vw,92px) 0;background:var(--os);color:var(--verde);border-bottom:1px solid var(--linie);position:relative}
-section.dark{background:var(--verde);color:var(--os);border-bottom-color:var(--linie-dark)}
-section.dark h2,section.dark h3,section.dark .eyebrow,section.dark .lead,section.dark .note,section.dark .sub2,section.dark b{color:var(--os)}
-section.dark .lead,section.dark .note{color:var(--ocru)}
-section.dark .eyebrow{color:var(--ocru)}
-
-/* ---------- Tipografie ---------- */
-.eyebrow{font-family:var(--serif);font-style:italic;font-size:17px;font-weight:400;color:var(--ocru2);margin-bottom:16px;font-optical-sizing:auto}
-section.dark .eyebrow{color:var(--ocru)}
-h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5.8vw,56px);line-height:1.1;letter-spacing:-.016em;max-width:22ch;font-optical-sizing:auto}
-h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,4.2vw,40px);line-height:1.16;letter-spacing:-.012em;max-width:24ch;font-optical-sizing:auto}
-h3{font-family:var(--serif);font-weight:500;font-size:clamp(18px,2.2vw,22px);line-height:1.28;letter-spacing:-.008em;font-optical-sizing:auto}
-.lead{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(17px,2.3vw,21px);color:var(--ocru2);margin-top:18px;max-width:52ch;line-height:1.48;font-optical-sizing:auto}
-.sub2{font-size:15px;color:var(--gri);line-height:1.7;max-width:58ch}
-.back{display:inline-flex;align-items:center;gap:8px;color:var(--gri);text-decoration:none;font-size:14px;margin-bottom:18px;transition:color .2s}
-.back:hover{color:var(--ocru2)}
-
-/* ---------- Hero ---------- */
-.hero{padding:clamp(40px,6.5vw,72px) 0 clamp(56px,8.5vw,92px)}
-.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,56px);align-items:center}
-@media(max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:36px}}
-
-/* Mockup raport executiv */
-.repcap{color:var(--gri);font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-align:center;margin-bottom:16px;font-weight:600}
-.rep{background:var(--os2);border:1px solid var(--linie);border-radius:4px;padding:28px 26px 24px;position:relative;box-shadow:0 20px 50px -25px rgba(11,38,32,.22)}
-.rep::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--verde) 0%,var(--verde) 50%,var(--ocru) 50%,var(--ocru) 100%);border-radius:4px 4px 0 0}
-.rep-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:14px;border-bottom:1px solid var(--linie);margin-bottom:18px}
-.rep-head .lbl{font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ocru2);font-weight:700}
-.rep-head .date{font-family:var(--sans);font-size:11px;color:var(--gri2);letter-spacing:.05em}
-.rep h4{font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.2;color:var(--verde);margin-bottom:18px;font-optical-sizing:auto}
-.rep-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}
-.rep-metric{text-align:center}
-.rep-metric .num{font-family:var(--serif);font-weight:500;font-size:clamp(28px,4.5vw,36px);line-height:1;color:var(--ocru2);letter-spacing:-.02em;margin-bottom:6px;font-optical-sizing:auto}
-.rep-metric .lbl{font-family:var(--sans);font-size:10.5px;color:var(--gri);line-height:1.35;letter-spacing:.02em}
-.rep-footer{padding-top:16px;border-top:1px solid var(--linie);font-family:var(--sans);font-size:11px;color:var(--gri2);letter-spacing:.03em;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.rep-footer b{color:var(--gri);font-weight:600}
-@media(prefers-reduced-motion:no-preference){
-  .rep{animation:repIn .8s cubic-bezier(.2,.8,.25,1) both}
-  @keyframes repIn{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:none}}
+.hub-qr{
+  position:absolute;top:50%;left:50%;width:32%;aspect-ratio:1/1;
+  transform:translate(-50%,-50%);z-index:5;border-radius:50%;
+  background:#F7F4ED;padding:3%;box-sizing:content-box;
+  box-shadow:
+    0 0 0 4px #0B2620,
+    0 0 0 7px #C8912A,
+    0 0 0 8px rgba(200,145,42,.20),
+    0 20px 40px -16px rgba(11,38,32,.55);
+  animation:hubRingPulse 5s ease-in-out infinite;
 }
+@keyframes hubRingPulse{
+  0%,100%{box-shadow:0 0 0 4px #0B2620, 0 0 0 7px #C8912A, 0 0 0 8px rgba(200,145,42,.20), 0 20px 40px -16px rgba(11,38,32,.55)}
+  50%    {box-shadow:0 0 0 4px #0B2620, 0 0 0 7px #C8912A, 0 0 0 14px rgba(200,145,42,.10), 0 20px 40px -16px rgba(11,38,32,.55)}
+}
+.hub-qr canvas{width:100%;height:100%;display:block;border-radius:50%}
 
-/* ---------- Butoane ---------- */
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
-  background:var(--ocru);border:1px solid var(--ocru);color:var(--verde);
-  font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
-  padding:16px 30px;cursor:pointer;text-decoration:none;border-radius:2px;
-  transition:all .3s var(--ease);box-shadow:0 10px 28px -12px rgba(200,145,42,.4);
-  -webkit-tap-highlight-color:transparent}
-.btn:hover{background:var(--verde);border-color:var(--verde);color:var(--os);transform:translateY(-2px);box-shadow:0 16px 34px -12px rgba(11,38,32,.35)}
-.btn.ghost{background:transparent;border:1px solid var(--linie);color:var(--gri);box-shadow:none}
-.btn.ghost:hover{background:var(--verde);border-color:var(--verde);color:var(--os);transform:translateY(-2px)}
-section.dark .btn.ghost{border-color:rgba(240,235,224,.25);color:var(--os)}
-section.dark .btn.ghost:hover{background:var(--ocru);border-color:var(--ocru);color:var(--verde)}
-
-/* ---------- Secțiuni cu conținut ---------- */
+/* Two columns */
 .two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,56px);align-items:start}
 @media(max-width:820px){.two{grid-template-columns:1fr}}
 
-.note{background:rgba(11,38,32,.04);border-left:2px solid var(--ocru);padding:16px 18px;font-size:15px;color:var(--gri);line-height:1.6;border-radius:0 2px 2px 0;margin-bottom:12px}
-.note b{color:var(--verde);display:block;margin-bottom:4px;font-weight:600;font-style:normal}
-section.dark .note{background:rgba(255,255,255,.04);border-left-color:var(--ocru);color:#A3B8AE}
-section.dark .note b{color:var(--os)}
+.note{background:rgba(11,38,32,.04);border-left:2px solid var(--gold);padding:16px 18px;font-size:15px;color:var(--dim);line-height:1.6;border-radius:0 2px 2px 0;margin-bottom:12px}
+.note b{color:var(--ink);display:block;margin-bottom:4px;font-weight:600;font-style:normal}
+section.dark .note{background:rgba(240,235,224,.04);border-left-color:var(--gold);color:var(--mist)}
+section.dark .note b{color:var(--oat)}
 
-/* Rânduri descriptive */
-.ctx{margin-top:36px}
-.ctxrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(16px,3vw,40px);padding:24px 0;border-top:1px solid var(--linie);align-items:baseline}
-.ctxrow:last-child{border-bottom:1px solid var(--linie)}
-.ctxrow h3{color:var(--verde);margin:0}
-.ctxrow p{font-size:15px;color:var(--gri);line-height:1.7;margin:0}
-@media(max-width:760px){.ctxrow{grid-template-columns:1fr;gap:6px}}
-section.dark .ctxrow{border-top-color:var(--linie-dark);border-bottom-color:var(--linie-dark)}
-section.dark .ctxrow h3{color:var(--os)}
-section.dark .ctxrow p{color:#A3B8AE}
+.rand{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(16px,3vw,40px);padding:22px 0;border-top:1px solid var(--lined);align-items:start}
+.rand:first-of-type{margin-top:28px}
+.rand b{font-family:var(--disp);font-weight:500;font-size:19px;line-height:1.25;color:var(--ink)}
+.rand span{font-size:14.5px;color:var(--dim);line-height:1.65}
+@media(max-width:700px){.rand{grid-template-columns:1fr;gap:5px}}
+section.dark .rand{border-top-color:var(--line)}
+section.dark .rand b{color:var(--oat)}
+section.dark .rand span{color:var(--mist)}
 
 /* Pași numerotați */
-.steps{margin-top:38px}
-.steps .step{padding:26px 0;border-top:1px solid var(--linie)}
-.steps .step:first-child{border-top:0;padding-top:0}
-.steps .step .n{font-family:var(--serif);font-weight:900;font-size:clamp(36px,5vw,52px);line-height:1;color:var(--ocru2);letter-spacing:-.04em;margin-bottom:14px;font-optical-sizing:auto}
-.steps .step h3{margin-bottom:8px}
-.steps .step p{font-size:15.5px;color:var(--gri);line-height:1.7}
-section.dark .steps .step{border-top-color:var(--linie-dark)}
-section.dark .steps .step .n{color:var(--ocru)}
-section.dark .steps .step h3{color:var(--os)}
-section.dark .steps .step p{color:#A3B8AE}
+.steps-grid{margin-top:clamp(30px,4vw,46px)}
+.steps-grid .step{padding:26px 0;border-top:1px solid var(--lined)}
+.steps-grid .step:first-child{border-top:0;padding-top:0}
+.steps-grid .step .n{font-family:var(--disp);font-weight:900;font-size:clamp(36px,5vw,52px);line-height:1;color:var(--gold);letter-spacing:-.04em;margin-bottom:14px;font-variation-settings:"opsz" 72}
+.steps-grid .step h3{margin-bottom:8px;color:var(--ink)}
+.steps-grid .step p{font-size:15.5px;color:var(--dim);line-height:1.7}
+section.dark .steps-grid .step{border-top-color:var(--line)}
+section.dark .steps-grid .step h3{color:var(--oat)}
+section.dark .steps-grid .step p{color:var(--mist)}
 
-/* ---------- Footer ---------- */
-.foot{background:var(--verde);color:var(--os);padding:52px 0 40px;border-top:1px solid var(--linie-dark)}
-.foot .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
-@media(max-width:760px){.foot .wrap{grid-template-columns:1fr;gap:26px}}
-.foot .brand{font-family:var(--brand);font-weight:600;font-size:22px;color:var(--os);letter-spacing:-.02em;margin-bottom:10px}
-.foot p{font-size:14px;color:#A3B8AE;line-height:1.6;max-width:36ch;margin:0}
-.foot h4{font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ocru);margin-bottom:12px;letter-spacing:.1em;text-transform:uppercase}
-.foot ul{list-style:none;padding:0;margin:0}
-.foot li{margin-bottom:10px;font-size:15px}
-.foot a{color:var(--os);text-decoration:none;transition:color .2s}
-.foot a:hover{color:var(--ocru)}
-
-:focus-visible{outline:1px solid var(--ocru);outline-offset:3px}
+/* CTA final */
+.corp-final{padding:clamp(56px,8vw,92px) 0;background:var(--pine);color:var(--oat);text-align:center}
+.corp-final .wrap{max-width:820px;margin:0 auto;padding:0 clamp(22px,6vw,40px)}
+.corp-final h2{color:var(--oat);margin:0 auto 20px}
+.corp-final .lead{color:var(--gold);margin:0 auto 30px;max-width:44ch}
+.corp-final .cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.corp-final .sub2{color:var(--mist);margin-top:14px;font-size:13px;opacity:.85}
 
 /* Reveal */
-.rv{opacity:0;transform:translateY(22px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity 1s cubic-bezier(.22,.61,.36,1),transform 1s cubic-bezier(.22,.61,.36,1)}
 .rv.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.rv{opacity:1!important;transform:none!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1!important;transform:none!important;transition:none!important}.hh-node,.hh-line,.hh-pulse,.hh-hub-rot{animation:none!important}.hh-line{stroke-dashoffset:0}}
+
+/* Header mobil fix */
+@media(max-width:640px){
+  .barnav .hidem{display:none !important}
+  .barnav .bizlink{white-space:nowrap; font-size:13px}
+  .barnav{gap:4px}
+  .logo{font-size:17px}
+  .lang{padding:6px 10px; font-size:11px}
+}
+.btn span{display:inline}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 </head>
 <body>
 
@@ -213,52 +163,58 @@ section.dark .steps .step p{color:#A3B8AE}
 
 <main>
 
-<!-- HERO -->
-<section class="hero">
+<section class="corp-hero">
   <div class="wrap">
     <div>
-      <a class="back" href="/parteneri.html" data-t="c2">← Toate tipurile de loc</a>
       <p class="eyebrow" data-t="c3">HelloHuman For Enterprise</p>
       <h1 data-t="hh">Arhitectură de coeziune<br>pe care agenția o propune,<br>iar clientul o măsoară.</h1>
       <p class="lead" data-t="c45">Participanții interacționează în runde structurate, optimizând coeziunea inter-departamentală fără fricțiuni. La final, clientul primește un raport de impact măsurabil. Dumneavoastră livrați o soluție premium, cu risc operațional zero.</p>
       <div class="cta">
-        <a class="btn" href="/alatura-te.html" data-t="c4">Inițiați o implementare pilot</a>
-        <a class="btn ghost" href="tel:+40750255200">+40 750 255 200</a>
+        <a class="btn" href="/alatura-te.html"><span data-t="c4">Inițiați o implementare pilot</span></a>
+        <a class="btn ghost" href="tel:+40750255200"><span data-t="cphone">+40 750 255 200</span></a>
+        <p class="mic" data-t="c5">Un minut, date esențiale. Răspundem în două zile lucrătoare.</p>
       </div>
-      <p class="sub2" style="margin-top:16px;font-size:13px" data-t="c5">Un minut, date esențiale. Răspundem în două zile lucrătoare.</p>
     </div>
-    <div>
-      <p class="repcap" data-t="c6">Ce primiți pe biroul clientului</p>
-      <div class="rep" aria-hidden="true">
-        <div class="rep-head">
-          <span class="lbl" data-t="c7">Raport executiv</span>
-          <span class="date">Q1 · 2026</span>
-        </div>
-        <h4 data-t="y1">Analiză de coeziune organizațională</h4>
-        <div class="rep-metrics">
-          <div class="rep-metric">
-            <div class="num">82%</div>
-            <div class="lbl" data-t="c8">Rată de participare</div>
-          </div>
-          <div class="rep-metric">
-            <div class="num">47</div>
-            <div class="lbl" data-t="c9">Interacțiuni noi</div>
-          </div>
-          <div class="rep-metric">
-            <div class="num">71</div>
-            <div class="lbl" data-t="z0">NPS intern coeziune</div>
-          </div>
-        </div>
-        <div class="rep-footer">
-          <span><b data-t="c11">Pregătit de:</b> Agenția dumneavoastră</span>
-          <span><b data-t="c12">Powered by:</b> HelloHuman</span>
-        </div>
+
+    <div class="scene" aria-hidden="true">
+      <svg class="viz-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="hhGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#C8912A" stop-opacity=".22"/>
+            <stop offset="100%" stop-color="#C8912A" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="200" cy="200" r="185" fill="url(#hhGlow)"/>
+        <g class="hh-hub-rot" opacity=".18">
+          <circle cx="200" cy="200" r="155" fill="none" stroke="#0B2620" stroke-width=".5" stroke-dasharray="1 5"/>
+          <circle cx="200" cy="200" r="105" fill="none" stroke="#0B2620" stroke-width=".5" stroke-dasharray="1 5"/>
+        </g>
+        <path d="M 200 200 Q 245 155 320 130" class="hh-line l1" stroke="#C8912A" stroke-width="1.2" fill="none" opacity=".9"/>
+        <path d="M 200 200 Q 245 245 305 305" class="hh-line l2" stroke="#C8912A" stroke-width="1.2" fill="none" opacity=".9"/>
+        <path d="M 200 200 Q 155 245 95 305" class="hh-line l3" stroke="#0B2620" stroke-width="1" fill="none" opacity=".45"/>
+        <path d="M 200 200 Q 155 155 80 130" class="hh-line l4" stroke="#C8912A" stroke-width="1.2" fill="none" opacity=".85"/>
+        <path d="M 200 200 Q 200 130 200 75" class="hh-line l5" stroke="#0B2620" stroke-width="1" fill="none" opacity=".4"/>
+        <path d="M 200 200 Q 200 270 200 330" class="hh-line l6" stroke="#C8912A" stroke-width="1.2" fill="none" opacity=".8"/>
+        <circle r="3.5" fill="#C8912A" class="hh-pulse p1" style="--dx:120px;--dy:-70px"/>
+        <circle r="3.5" fill="#C8912A" class="hh-pulse p2" style="--dx:105px;--dy:105px"/>
+        <circle r="3" fill="#0B2620" class="hh-pulse p3" style="--dx:-105px;--dy:105px"/>
+        <circle r="3.5" fill="#C8912A" class="hh-pulse p4" style="--dx:-120px;--dy:-70px"/>
+        <circle r="3" fill="#0B2620" class="hh-pulse p5" style="--dx:0px;--dy:-125px"/>
+        <circle r="3.5" fill="#C8912A" class="hh-pulse p6" style="--dx:0px;--dy:130px"/>
+        <circle cx="320" cy="130" r="14" fill="#0B2620" class="hh-node d1"/>
+        <circle cx="305" cy="305" r="11" fill="#C8912A" class="hh-node d2"/>
+        <circle cx="95" cy="305" r="9" fill="#0B2620" class="hh-node d3"/>
+        <circle cx="80" cy="130" r="12" fill="#C8912A" class="hh-node d4"/>
+        <circle cx="200" cy="75" r="8" fill="#0B2620" class="hh-node d5"/>
+        <circle cx="200" cy="330" r="10" fill="#C8912A" class="hh-node"/>
+      </svg>
+      <div class="hub-qr">
+        <canvas id="qrCanvasCorp" width="400" height="400"></canvas>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ARHITECTURA -->
 <section class="dark">
   <div class="wrap two rv">
     <div>
@@ -267,31 +223,29 @@ section.dark .steps .step p{color:#A3B8AE}
       <p class="lead" style="margin-top:16px" data-t="w0">Obstacolul principal la un eveniment corporate nu este timiditatea, ci structura de siloz și ierarhia. Sistemul asignează automat grupurile, eliminând anxietatea primului pas și facilitând intersecții de mare valoare între echipe.</p>
     </div>
     <div>
-      <div class="note"><b data-t="c11b">Personalizarea obiectivelor</b>Setăm întrebările în funcție de obiectivele strategice ale companiei.</div>
-      <div class="note"><b data-t="c12b">Fricțiune zero</b>Fără instalări de aplicații, fără conturi noi. Un simplu cod QR.</div>
+      <div class="note"><b data-t="c11">Personalizarea obiectivelor</b>Setăm întrebările în funcție de obiectivele strategice ale companiei.</div>
+      <div class="note"><b data-t="c12">Fricțiune zero</b>Fără instalări de aplicații, fără conturi noi. Un simplu cod QR.</div>
       <div class="note" style="margin-bottom:0"><b data-t="c13">Raport de impact executiv</b>Date anonimizate despre retenție, interacțiuni noi și eficiența percepției.</div>
     </div>
   </div>
 </section>
 
-<!-- VALOAREA PENTRU AGENȚIE -->
 <section>
   <div class="wrap rv">
     <h2 data-t="hCe">Valoarea adăugată pentru agenție</h2>
-    <div class="ctx">
-      <div class="ctxrow"><h3 data-t="ag1">O soluție premium propusă, cu risc operațional zero.</h3><p data-t="ag1s">O integrați în arhitectura evenimentului, noi o livrăm integral. Zero consum de resurse interne.</p></div>
-      <div class="ctxrow"><h3 data-t="ag2">Un raport executiv pe biroul clientului.</h3><p data-t="ag2s">La final, clientul primește un document cu indicatori de performanță, purtând brandul agenției. Argumentul perfect pentru retenție.</p></div>
-      <div class="ctxrow"><h3 data-t="ag3">Dovada ROI-ului în bugetul viitor.</h3><p data-t="ag3s">Un eveniment cu impact măsurabil justifică recurența. Parteneriatul dumneavoastră devine strategic.</p></div>
+    <div style="margin-top:36px">
+      <div class="rand"><b data-t="ag1">O soluție premium propusă, cu risc operațional zero.</b><span data-t="ag1s">O integrați în arhitectura evenimentului, noi o livrăm integral. Zero consum de resurse interne.</span></div>
+      <div class="rand"><b data-t="ag2">Un raport executiv pe biroul clientului.</b><span data-t="ag2s">La final, clientul primește un document cu indicatori de performanță, purtând brandul agenției. Argumentul perfect pentru retenție.</span></div>
+      <div class="rand"><b data-t="ag3">Dovada ROI-ului în bugetul viitor.</b><span data-t="ag3s">Un eveniment cu impact măsurabil justifică recurența. Parteneriatul dumneavoastră devine strategic.</span></div>
     </div>
   </div>
 </section>
 
-<!-- ECOSISTEMUL -->
 <section class="dark">
   <div class="wrap rv">
     <p class="eyebrow" data-t="c14">Ecosistemul de colaborare</p>
     <h2 data-t="c15">Trei pași simpli.</h2>
-    <div class="steps">
+    <div class="steps-grid">
       <div class="step"><p class="n">1</p><h3 data-t="c16">Definiți perimetrul</h3><p data-t="w1">Comunicați variabilele: volum, structură echipe și obiectivul de coeziune. Configurarea durează sub trei minute.</p></div>
       <div class="step"><p class="n">2</p><h3 data-t="c17">Sistemul generează instanța</h3><p data-t="c18">Primiți accesul de administrator și infrastructura digitală dedicată evenimentului.</p></div>
       <div class="step"><p class="n">3</p><h3 data-t="c19">Implementare frictionless</h3><p data-t="c20">Afișați codul QR. Un coordonator din echipa dumneavoastră gestionează fluxul dintr-un singur buton.</p></div>
@@ -299,7 +253,6 @@ section.dark .steps .step p{color:#A3B8AE}
   </div>
 </section>
 
-<!-- DATE TEHNICE -->
 <section id="intrebari">
   <div class="wrap rv">
     <p class="eyebrow" data-t="c21">Date tehnice</p>
@@ -314,18 +267,17 @@ section.dark .steps .step p{color:#A3B8AE}
   </div>
 </section>
 
-<!-- CTA FINAL -->
-<section class="dark">
-  <div class="wrap rv" style="text-align:center">
-    <p class="eyebrow" data-t="c31">Inițiere colaborare</p>
-    <h2 data-t="z3" style="margin-left:auto;margin-right:auto">Evaluați potențialul<br>pentru clienții dumneavoastră.</h2>
-    <p class="lead" style="margin:18px auto 30px;max-width:48ch" data-t="c32">Detaliați-ne profilul evenimentelor și tipologia clienților. Revenim cu un model arhitectural în 48 de ore.</p>
-    <div class="cta" style="justify-content:center">
-      <a class="btn" href="/alatura-te.html" data-t="y9">Inițiați o implementare pilot</a>
-      <a class="btn ghost" id="bPdfC" href="/hellohuman-raport-hr.pdf" download data-t="c33">Documentație executivă (PDF)</a>
-      <a class="btn ghost" href="mailto:contact@hellohuman.ro" data-t="c34">Contactați-ne prin email</a>
+<section class="corp-final">
+  <div class="wrap rv">
+    <p class="eyebrow" style="color:var(--gold)" data-t="c31">Inițiere colaborare</p>
+    <h2 data-t="z3">Evaluați potențialul<br>pentru clienții dumneavoastră.</h2>
+    <p class="lead" data-t="c32">Detaliați-ne profilul evenimentelor și tipologia clienților. Revenim cu un model arhitectural în 48 de ore.</p>
+    <div class="cta">
+      <a class="btn" href="/alatura-te.html"><span data-t="y9">Inițiați o implementare pilot</span></a>
+      <a class="btn ghost" id="bPdfC" href="/hellohuman-raport-hr.pdf" download><span data-t="c33">Documentație executivă (PDF)</span></a>
+      <a class="btn ghost" href="mailto:contact@hellohuman.ro"><span data-t="c34">Contactați-ne prin email</span></a>
     </div>
-    <p class="sub2" style="margin-top:14px;opacity:.7;color:#A3B8AE;font-size:13px" data-t="c35">Timp mediu de răspuns: 2 zile lucrătoare.</p>
+    <p class="sub2" data-t="c35">Timp mediu de răspuns: 2 zile lucrătoare.</p>
   </div>
 </section>
 
@@ -335,20 +287,21 @@ section.dark .steps .step p{color:#A3B8AE}
   <div class="wrap">
     <div>
       <p class="brand">HelloHuman</p>
-      <p data-t="ftS">HelloHuman creează experiențe sociale ghidate, aducând oameni compatibili la aceeași masă.</p>
+      <p data-t="ftS">Așezăm la aceeași masă oameni care încă nu se cunosc. Serile se prelungesc, iar cine s-a simțit bine se întoarce.</p>
     </div>
     <div>
-      <h4 data-t="ftC">Contact</h4>
+      <h4 data-t="ftL">Pe scurt</h4>
       <ul>
-        <li><a href="mailto:contact@hellohuman.ro">contact@hellohuman.ro</a></li>
-        <li><a href="tel:+40750255200">+40 750 255 200</a></li>
+        <li><a href="/parteneri.html" data-t="ftVen">Pentru locații</a></li>
+        <li><a href="/business" data-t="ftCorp">Pentru companii</a></li>
+        <li><a href="/alatura-te.html" data-t="ftPar">Devino partener</a></li>
       </ul>
     </div>
     <div>
-      <h4 data-t="ftLinks">Linkuri</h4>
+      <h4>Contact</h4>
       <ul>
-        <li><a href="/" data-t="ftP">Pagina pentru participanți</a></li>
-        <li><a href="/alatura-te.html" data-t="ftPartner">Devino partener</a></li>
+        <li><a href="mailto:contact@hellohuman.ro">contact@hellohuman.ro</a></li>
+        <li><a href="tel:+40750255200">+40 750 255 200</a></li>
       </ul>
     </div>
   </div>
@@ -356,29 +309,17 @@ section.dark .steps .step p{color:#A3B8AE}
 
 <script>
 var lang='ro';
-var L={ ro:{
+var L={ro:{
   ttl:"HelloHuman For Enterprise — Arhitectură de coeziune",
-  c0:"Toate locațiile",
-  c2:"← Înapoi la tipuri de locații",
-  c3:"HelloHuman For Enterprise",
+  c0:"Toate locurile",c3:"HelloHuman For Enterprise",
   hh:"Arhitectură de coeziune<br>pe care agenția o propune,<br>iar clientul o măsoară.",
   c45:"Participanții interacționează în runde structurate, optimizând coeziunea inter-departamentală fără fricțiuni. La final, clientul primește un raport de impact măsurabil. Dumneavoastră livrați o soluție premium, cu risc operațional zero.",
-  c4:"Inițiați o implementare pilot",
+  c4:"Inițiați o implementare pilot",cphone:"+40 750 255 200",
   c5:"Un minut, date esențiale. Răspundem în două zile lucrătoare.",
-  c6:"Ce primiți pe biroul clientului",
-  c7:"Raport executiv",
-  y1:"Analiză de coeziune organizațională",
-  c8:"Rată de participare",
-  c9:"Interacțiuni noi",
-  z0:"NPS intern coeziune",
-  c11:"Pregătit de:",
-  c12:"Powered by:",
   c10:"Arhitectura coeziunii organizaționale",
   z1:"Zero fricțiuni<br>de ierarhie.",
   w0:"Obstacolul principal la un eveniment corporate nu este timiditatea, ci structura de siloz și ierarhia. Sistemul asignează automat grupurile, eliminând anxietatea primului pas și facilitând intersecții de mare valoare între echipe.",
-  c11b:"Personalizarea obiectivelor",
-  c12b:"Fricțiune zero",
-  c13:"Raport de impact executiv",
+  c11:"Personalizarea obiectivelor",c12:"Fricțiune zero",c13:"Raport de impact executiv",
   hCe:"Valoarea adăugată pentru agenție",
   ag1:"O soluție premium propusă, cu risc operațional zero.",
   ag1s:"O integrați în arhitectura evenimentului, noi o livrăm integral. Zero consum de resurse interne.",
@@ -386,16 +327,14 @@ var L={ ro:{
   ag2s:"La final, clientul primește un document cu indicatori de performanță, purtând brandul agenției. Argumentul perfect pentru retenție.",
   ag3:"Dovada ROI-ului în bugetul viitor.",
   ag3s:"Un eveniment cu impact măsurabil justifică recurența. Parteneriatul dumneavoastră devine strategic.",
-  c14:"Ecosistemul de colaborare",
-  c15:"Trei pași simpli.",
+  c14:"Ecosistemul de colaborare",c15:"Trei pași simpli.",
   c16:"Definiți perimetrul",
   w1:"Comunicați variabilele: volum, structură echipe și obiectivul de coeziune. Configurarea durează sub trei minute.",
   c17:"Sistemul generează instanța",
   c18:"Primiți accesul de administrator și infrastructura digitală dedicată evenimentului.",
   c19:"Implementare frictionless",
   c20:"Afișați codul QR. Un coordonator din echipa dumneavoastră gestionează fluxul dintr-un singur buton.",
-  c21:"Date tehnice",
-  z2:"Cinci parametri<br>de bază.",
+  c21:"Date tehnice",z2:"Cinci parametri<br>de bază.",
   c22:"Care este durata optimă?",
   c23:"Aproximativ 60 de minute pentru patru interacțiuni succesive. Se integrează perfect în agenda existentă.",
   c24:"Ce conține raportul de impact?",
@@ -413,33 +352,20 @@ var L={ ro:{
   c33:"Documentație executivă (PDF)",
   c34:"Contactați-ne prin email",
   c35:"Timp mediu de răspuns: 2 zile lucrătoare.",
-  ftS:"HelloHuman creează experiențe sociale ghidate, aducând oameni compatibili la aceeași masă.",
-  ftC:"Contact", ftP:"Pagina pentru participanți",
-  ftLinks:"Linkuri", ftPartner:"Devino partener"
+  ftS:"Așezăm la aceeași masă oameni care încă nu se cunosc. Serile se prelungesc, iar cine s-a simțit bine se întoarce.",
+  ftL:"Pe scurt",ftVen:"Pentru locații",ftCorp:"Pentru companii",ftPar:"Devino partener"
 },
 en:{
   ttl:"HelloHuman For Enterprise — Organizational cohesion architecture",
-  c0:"All venues",
-  c2:"← All venue types",
-  c3:"HelloHuman For Enterprise",
+  c0:"All venues",c3:"HelloHuman For Enterprise",
   hh:"Cohesion architecture<br>the agency proposes,<br>and the client measures.",
   c45:"Participants interact in structured rounds, optimizing cross-departmental cohesion seamlessly. At the end, the client receives a measurable impact report. You deliver a premium solution with zero operational risk.",
-  c4:"Initiate a pilot deployment",
+  c4:"Initiate a pilot deployment",cphone:"+40 750 255 200",
   c5:"One minute, essential data. We reply within two working days.",
-  c6:"What lands on the client's desk",
-  c7:"Executive Report",
-  y1:"Organizational Cohesion Analysis",
-  c8:"Participation rate",
-  c9:"New interactions",
-  z0:"Internal cohesion NPS",
-  c11:"Prepared by:",
-  c12:"Powered by:",
   c10:"Organizational cohesion architecture",
   z1:"Zero hierarchical<br>friction.",
   w0:"The main obstacle at a corporate event is not shyness, but silo structures and hierarchy. Our system automatically assigns groups, eliminating the anxiety of the first move and facilitating high-value cross-team intersections.",
-  c11b:"Objective customization",
-  c12b:"Zero friction",
-  c13:"Executive impact report",
+  c11:"Objective customization",c12:"Zero friction",c13:"Executive impact report",
   hCe:"Added value for the agency",
   ag1:"A premium solution you propose, with zero operational risk.",
   ag1s:"You integrate it into the event architecture, we deliver it fully. Zero internal resources consumed.",
@@ -447,16 +373,14 @@ en:{
   ag2s:"At the end, the client receives a KPI document bearing the agency's brand. The perfect retention argument.",
   ag3:"Proof of ROI for the next budget.",
   ag3s:"An event with measurable impact justifies recurrence. Your partnership becomes strategic.",
-  c14:"The collaboration ecosystem",
-  c15:"Three simple steps.",
+  c14:"The collaboration ecosystem",c15:"Three simple steps.",
   c16:"Define the perimeter",
   w1:"Communicate the variables: volume, team structure, and cohesion objective. Setup takes under three minutes.",
   c17:"The system generates the instance",
   c18:"You receive admin access and the dedicated digital infrastructure for the event.",
   c19:"Frictionless deployment",
   c20:"Display the QR code. A coordinator from your team manages the flow with a single button.",
-  c21:"Technical specifications",
-  z2:"Five core<br>parameters.",
+  c21:"Technical specifications",z2:"Five core<br>parameters.",
   c22:"What is the optimal duration?",
   c23:"Approximately 60 minutes for four successive interactions. It fits perfectly into your existing agenda.",
   c24:"What does the impact report contain?",
@@ -474,38 +398,42 @@ en:{
   c33:"Executive documentation (PDF)",
   c34:"Contact us via email",
   c35:"Average response time: 2 working days.",
-  ftS:"HelloHuman curates social experiences, connecting like-minded people around tables.",
-  ftC:"Contact", ftP:"Participant page",
-  ftLinks:"Links", ftPartner:"Become a partner"
+  ftS:"We seat people who haven't met yet at the same table. Evenings run longer, and anyone who had a good night comes back.",
+  ftL:"In short",ftVen:"For venues",ftCorp:"For companies",ftPar:"Become a partner"
 }};
+
 function T(k){ return (L[lang]||L.ro)[k]||L.ro[k]||'' }
 function setLang(v){ lang=v; try{localStorage.setItem('hh_l',v)}catch(e){} applyLang() }
 function applyLang(){
-  var d=document.getElementById('bPdfC');
-  if(d) d.href = (lang==='en') ? '/hellohuman-hr-report.pdf' : '/hellohuman-raport-hr.pdf';
   document.documentElement.lang=lang; document.title=T('ttl');
   [].slice.call(document.querySelectorAll('[data-t]')).forEach(function(n){
-    var v=T(n.getAttribute('data-t')); if(v)n.innerHTML=v });
+    var v=T(n.getAttribute('data-t')); if(v!=='' && v!==undefined && v!==null)n.innerHTML=v });
   var b=document.getElementById('bLang'); if(b)b.textContent=(lang==='ro'?'EN':'RO');
+  var d=document.getElementById('bPdfC');
+  if(d) d.href=(lang==='en')?'/hellohuman-hr-report.pdf':'/hellohuman-raport-hr.pdf';
 }
 (function(){
   try{ var s=localStorage.getItem('hh_l'); if(s)lang=s;
     else if((navigator.language||'').toLowerCase().indexOf('ro')!==0)lang='en' }catch(e){}
   applyLang();
   var b=document.getElementById('bLang');
-  if(b) b.onclick=function(){ setLang(lang==='ro'?'en':'ro') };
+  if(b)b.onclick=function(){ setLang(lang==='ro'?'en':'ro') };
+})();
+
+/* QR în hub */
+(function(){
+  var c = document.getElementById('qrCanvasCorp');
+  if(!c || typeof QRCode === 'undefined') return;
+  QRCode.toCanvas(c, 'https://hellohuman.ro', {
+    width: 400, margin: 0, errorCorrectionLevel: 'H',
+    color: { dark: '#0B2620', light: '#F7F4ED' }
+  }, function(err){ if(err) console.error(err); });
 })();
 
 if('IntersectionObserver' in window){
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target) }
-    });
-  }, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
+  var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target) } }) }, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.rv').forEach(function(n){ io.observe(n) });
-} else {
-  document.querySelectorAll('.rv').forEach(function(n){ n.classList.add('in') });
-}
+} else { document.querySelectorAll('.rv').forEach(function(n){ n.classList.add('in') }) }
 </script>
 </body>
 </html>
