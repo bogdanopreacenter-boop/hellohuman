@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title data-t="ttl">HelloHuman pentru locații — oamenii stau mai mult, consumă mai mult, se întorc</title>
-<meta name="description" content="Oamenii stau mai mult, consumă mai mult și se întorc. Un cod QR pe mese, o oră pe care o alegeți, zero investiție.">
+<title data-t="ttl">HelloHuman pentru locații — prima seară, din partea noastră</title>
+<meta name="description" content="Locul dumneavoastră îi primește. Masa comună îi readuce. Așezăm la aceeași masă oameni care încă nu se cunosc. Prima seară e din partea noastră.">
 <link rel="canonical" href="https://hellohuman.ro/parteneri.html">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta name="theme-color" content="#0B2620">
@@ -13,41 +13,52 @@
 <meta property="og:site_name" content="HelloHuman">
 <meta property="og:url" content="https://hellohuman.ro/parteneri.html">
 <meta property="og:title" content="Oamenii stau mai mult. Consumă mai mult. Și se întorc.">
-<meta property="og:description" content="Un cod QR pe mese. Fără cont, fără instalare, fără personal în plus.">
+<meta property="og:description" content="Un cod QR pe mese. Prima seară e din partea noastră.">
+<meta property="og:image" content="https://hellohuman.ro/hero-scanare-real.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hellohuman.ro/hero-scanare-real.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/site.css?v=6">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://hellohuman.ro/#org","name":"HelloHuman","url":"https://hellohuman.ro/","email":"contact@hellohuman.ro","telephone":"+40750255200","areaServed":{"@type":"Country","name":"România"}},{"@type":"Service","name":"HelloHuman pentru organizatori","description":"Oamenii stau mai mult, consumă mai mult și se întorc.","provider":{"@id":"https://hellohuman.ro/#org"},"areaServed":{"@type":"Country","name":"România"},"offers":{"@type":"Offer","price":"0","priceCurrency":"RON","description":"Prima rundă este gratuită."}}]}</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"Organization","@id":"https://hellohuman.ro/#org","name":"HelloHuman","url":"https://hellohuman.ro/","email":"contact@hellohuman.ro","telephone":"+40750255200","areaServed":{"@type":"Country","name":"România"}},
+ {"@type":"Service","name":"HelloHuman pentru organizatori","description":"Oamenii stau mai mult, consumă mai mult și se întorc.","provider":{"@id":"https://hellohuman.ro/#org"},"areaServed":{"@type":"Country","name":"România"},"offers":{"@type":"Offer","price":"0","priceCurrency":"RON","description":"Prima rundă este gratuită."}}
+]}
+</script>
 <link rel="icon" type="image/svg+xml" href="/marca.svg">
 <link rel="apple-touch-icon" href="/logo-hellohuman.png">
-<meta property="og:image" content="https://hellohuman.ro/cartonas-cod-qr-masa-bar.jpg">
 
 <style>
-/* Fix butoane cu data-t — textul stă în span interior */
-.btn span{display:inline}
-
-/* Header mobil — fix pentru „All venue types" care se rupea pe 3 rânduri */
-@media(max-width:640px){
-  .barnav .hidem{display:none !important}
-  .barnav .bizlink{white-space:nowrap; font-size:13px; margin-right:0}
-  .barnav{gap:4px}
-  .logo{font-size:17px}
-  .lang{padding:6px 10px; font-size:11px}
-}
-
-/* Hero — SVG singur, fără QR offset */
+/* Parteneri — override */
 .part-hero{padding:clamp(30px,5vw,60px) 0 clamp(56px,8vw,88px);background:var(--oat)}
-.part-hero .wrap{max-width:1120px;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,64px);align-items:center}
+.part-hero .wrap{max-width:1180px;display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(28px,4vw,56px);align-items:center}
 @media(max-width:900px){.part-hero .wrap{grid-template-columns:1fr;gap:40px}}
 .part-hero .eyebrow{margin-bottom:clamp(10px,1.4vw,14px)}
-.part-hero h1{margin:0 0 clamp(14px,2vw,20px);max-width:16ch}
+.part-hero h1{margin:0 0 clamp(14px,2vw,20px);max-width:18ch;font-variation-settings:"opsz" 48}
 .part-hero .lead{margin:0 0 clamp(22px,3vw,30px);max-width:42ch;color:var(--gold2)}
 .part-hero .cta{display:flex;flex-direction:column;gap:12px;align-items:flex-start;margin-top:clamp(20px,2.6vw,28px)}
 .part-hero .cta .mic{font-size:13.5px;color:var(--dim);margin-top:6px}
 
-.viz-svg{position:relative;aspect-ratio:1/1;width:100%;max-width:480px;margin:0 auto}
+/* Scena cu SVG + poză offset */
+.viz-wrap{position:relative;width:100%;max-width:620px;margin:0 auto}
+.viz-svg{position:relative;aspect-ratio:1/1;width:100%}
 .viz-svg svg{width:100%;height:100%;display:block;overflow:visible}
+
+.qr-float{
+  position:absolute;bottom:-16px;left:-20px;
+  width:min(180px,45vw);
+  background:var(--oat2);border:1px solid var(--gold);
+  border-radius:3px;padding:10px;
+  transform:rotate(-4deg);
+  box-shadow:0 20px 46px -18px rgba(11,38,32,.32);
+  z-index:2;transition:transform .4s cubic-bezier(.22,.61,.36,1);
+}
+.qr-float:hover{transform:rotate(-1deg) scale(1.03)}
+.qr-float img{width:100%;height:auto;display:block;border-radius:2px}
+@media(max-width:900px){.qr-float{bottom:-10px;left:0;width:150px}}
+@media(max-width:520px){.qr-float{position:relative;bottom:auto;left:auto;margin:24px auto 0;width:180px;transform:rotate(-2deg)}}
 
 /* SVG animations */
 .hh-node{animation:hhPulse 3.4s ease-in-out infinite}
@@ -62,15 +73,21 @@
 .hh-hub-rot{transform-origin:center;animation:hhSpin 80s linear infinite}
 @keyframes hhSpin{to{transform:rotate(360deg)}}
 
-/* Ce văd clienții pe telefon — poză + card alături */
+/* Ce văd clienții pe telefon */
 .what-customers{padding:clamp(48px,7vw,80px) 0;background:var(--pine);color:var(--oat)}
-.what-customers h2{color:var(--oat);font-family:var(--disp);font-weight:400;font-size:clamp(24px,3.6vw,34px);letter-spacing:-.012em;line-height:1.18;margin:0 0 clamp(30px,4vw,44px);text-align:center;font-optical-sizing:auto}
+.what-customers h2{color:var(--oat);font-family:var(--disp);font-weight:400;font-size:clamp(24px,3.6vw,34px);letter-spacing:-.012em;line-height:1.18;margin:0 0 clamp(30px,4vw,44px);text-align:center;font-variation-settings:"opsz" 48}
 .what-inner{max-width:960px;margin:0 auto;padding:0 clamp(22px,6vw,40px)}
 .what-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,52px);align-items:center}
 @media(max-width:820px){.what-grid{grid-template-columns:1fr;gap:32px}}
 .what-photo{border-radius:3px;overflow:hidden;border:1px solid rgba(240,235,224,.18);transform:rotate(-1.5deg);box-shadow:0 24px 60px -24px rgba(0,0,0,.5)}
 .what-photo img{width:100%;height:auto;display:block}
-.what-customers .card{margin:0 auto;max-width:340px;transform:rotate(1.5deg)}
+.what-customers .card{margin:0 auto;max-width:340px;transform:rotate(1.5deg);background:var(--oat2);color:var(--ink);border-radius:3px;padding:32px 30px 26px;box-shadow:0 24px 60px -20px rgba(0,0,0,.4)}
+.what-customers .kk{font-family:var(--sans);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);font-weight:700}
+.what-customers .no{font-family:var(--disp);font-weight:900;font-size:clamp(80px,14vw,120px);line-height:.85;letter-spacing:-.05em;margin:10px 0 4px;color:var(--ink);font-variation-settings:"opsz" 144}
+.what-customers .rule{height:1px;background:var(--lined);margin:22px 0 16px}
+.what-customers .row{display:flex;justify-content:space-between;gap:16px;padding:6px 0;font-size:15px}
+.what-customers .row b{font-weight:500;text-align:right;color:var(--ink)}
+.what-customers .tick{font-family:var(--disp);font-weight:500;font-size:34px;letter-spacing:-.02em;text-align:center;margin-top:14px;font-variation-settings:"opsz" 36}
 
 /* Doors */
 .doors{margin-top:clamp(30px,4vw,48px);border-top:1px solid var(--lined)}
@@ -102,6 +119,16 @@ section.dark .rand{border-top-color:var(--line)}
 section.dark .rand b{color:var(--oat)}
 section.dark .rand span{color:var(--mist)}
 
+/* Header mobil fix */
+@media(max-width:640px){
+  .barnav .hidem{display:none !important}
+  .barnav .bizlink{white-space:nowrap; font-size:13px}
+  .barnav{gap:4px}
+  .logo{font-size:17px}
+  .lang{padding:6px 10px; font-size:11px}
+}
+.btn span{display:inline}
+
 .rv{opacity:0;transform:translateY(22px);transition:opacity 1s cubic-bezier(.22,.61,.36,1),transform 1s cubic-bezier(.22,.61,.36,1)}
 .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1!important;transform:none!important;transition:none!important}.hh-node,.hh-line,.hh-pulse,.hh-hub-rot{animation:none!important}.hh-line{stroke-dashoffset:0}}
@@ -123,7 +150,6 @@ section.dark .rand span{color:var(--mist)}
       HelloHuman
     </a>
     <nav class="barnav">
-      <span class="aici hidem" data-t="all">Toate locurile</span>
       <a class="bizlink" href="/" data-t="part">Pentru participanți</a>
       <button class="lang" id="bLang">EN</button>
     </nav>
@@ -132,13 +158,12 @@ section.dark .rand span{color:var(--mist)}
 
 <main>
 
-<!-- 1. HERO — SVG animat singur -->
 <section class="part-hero">
   <div class="wrap">
     <div>
       <p class="eyebrow" data-t="e1">Pentru locații</p>
-      <h1 data-t="h1">Oamenii stau mai mult.<br>Consumă mai mult.<br>Și se întorc.</h1>
-      <p class="lead" data-t="h1p">Îi așezăm la aceeași masă cu oameni pe care nu îi cunosc. Masa rămâne ocupată mai mult, iar seara devine un motiv să revină.</p>
+      <h1 data-t="h1">Îi primiți regește.<br>Noi le dăm un motiv în plus să revină.</h1>
+      <p class="lead" data-t="h1p">Așezăm la aceeași masă oameni care încă nu se cunosc. Serile se prelungesc, consumul crește, iar cine s-a simțit bine se întoarce — și nu vine singur.</p>
       <div class="cta">
         <a class="btn" href="/alatura-te.html"><span data-t="bA">VREAU HELLOHUMAN LA MINE</span></a>
         <a class="btn ghost" href="/partener.html"><span data-t="b2">Sunt deja partener</span></a>
@@ -147,59 +172,55 @@ section.dark .rand span{color:var(--mist)}
       <p class="sm" style="margin-top:16px;color:var(--dim)" data-t="call">Sau sună la <a href="tel:+40750255200" style="color:var(--gold2);font-weight:700">+40 750 255 200</a></p>
     </div>
 
-    <div class="viz-svg" aria-hidden="true">
-      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="hhGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#C8912A" stop-opacity=".22"/>
-            <stop offset="100%" stop-color="#C8912A" stop-opacity="0"/>
-          </radialGradient>
-          <radialGradient id="hhHub" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#C8912A"/>
-            <stop offset="60%" stop-color="#C8912A"/>
-            <stop offset="100%" stop-color="#8C6114"/>
-          </radialGradient>
-        </defs>
-        <circle cx="200" cy="200" r="185" fill="url(#hhGlow)"/>
-        <g class="hh-hub-rot" opacity=".18">
-          <circle cx="200" cy="200" r="155" fill="none" stroke="#0B2620" stroke-width=".5" stroke-dasharray="1 5"/>
-          <circle cx="200" cy="200" r="105" fill="none" stroke="#0B2620" stroke-width=".5" stroke-dasharray="1 5"/>
-        </g>
-        <path d="M 200 200 Q 245 155 320 130" class="hh-line l1" stroke="#C8912A" stroke-width="1.2" fill="none" opacity=".9"/>
-        <path d="M 200 200 Q 245 245 305 305" class="hh-line l2" stroke="#C8912A" stroke-width="1.2" fill="none" opacity=".9"/>
-        <path d="M 200 200 Q 155 245 95 305" class="hh-line l3" stroke="#0B2620" stroke-width="1" fill="none" opacity=".45"/>
-        <path d="M 200 200 Q 155 155 80 130" class="hh-line l4" stroke="#C8912A" stroke-width="1.2" fill="none" opacity=".85"/>
-        <path d="M 200 200 Q 200 130 200 75" class="hh-line l5" stroke="#0B2620" stroke-width="1" fill="none" opacity=".4"/>
-        <path d="M 200 200 Q 200 270 200 330" class="hh-line l6" stroke="#C8912A" stroke-width="1.2" fill="none" opacity=".8"/>
-        <circle r="3.5" fill="#C8912A" class="hh-pulse p1" style="--dx:120px;--dy:-70px"/>
-        <circle r="3.5" fill="#C8912A" class="hh-pulse p2" style="--dx:105px;--dy:105px"/>
-        <circle r="3" fill="#0B2620" class="hh-pulse p3" style="--dx:-105px;--dy:105px"/>
-        <circle r="3.5" fill="#C8912A" class="hh-pulse p4" style="--dx:-120px;--dy:-70px"/>
-        <circle r="3" fill="#0B2620" class="hh-pulse p5" style="--dx:0px;--dy:-125px"/>
-        <circle r="3.5" fill="#C8912A" class="hh-pulse p6" style="--dx:0px;--dy:130px"/>
-        <circle cx="320" cy="130" r="14" fill="#0B2620" class="hh-node d1"/>
-        <circle cx="305" cy="305" r="11" fill="#C8912A" class="hh-node d2"/>
-        <circle cx="95" cy="305" r="9" fill="#0B2620" class="hh-node d3"/>
-        <circle cx="80" cy="130" r="12" fill="#C8912A" class="hh-node d4"/>
-        <circle cx="200" cy="75" r="8" fill="#0B2620" class="hh-node d5"/>
-        <circle cx="200" cy="330" r="10" fill="#C8912A" class="hh-node"/>
-        <circle cx="200" cy="200" r="32" fill="#0B2620"/>
-        <circle cx="200" cy="200" r="22" fill="url(#hhHub)"/>
-        <circle cx="200" cy="200" r="10" fill="#0B2620"/>
-        <circle cx="200" cy="200" r="4" fill="#C8912A"/>
-      </svg>
+    <div class="viz-wrap">
+      <div class="viz-svg" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="hhGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#C8912A" stop-opacity=".22"/>
+              <stop offset="100%" stop-color="#C8912A" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="200" cy="200" r="185" fill="url(#hhGlow)"/>
+          <g class="hh-hub-rot" opacity=".18">
+            <circle cx="200" cy="200" r="155" fill="none" stroke="#0B2620" stroke-width=".5" stroke-dasharray="1 5"/>
+            <circle cx="200" cy="200" r="105" fill="none" stroke="#0B2620" stroke-width=".5" stroke-dasharray="1 5"/>
+          </g>
+          <path d="M 200 200 Q 245 155 320 130" class="hh-line l1" stroke="#C8912A" stroke-width="1.2" fill="none" opacity=".9"/>
+          <path d="M 200 200 Q 245 245 305 305" class="hh-line l2" stroke="#C8912A" stroke-width="1.2" fill="none" opacity=".9"/>
+          <path d="M 200 200 Q 155 245 95 305" class="hh-line l3" stroke="#0B2620" stroke-width="1" fill="none" opacity=".45"/>
+          <path d="M 200 200 Q 155 155 80 130" class="hh-line l4" stroke="#C8912A" stroke-width="1.2" fill="none" opacity=".85"/>
+          <path d="M 200 200 Q 200 130 200 75" class="hh-line l5" stroke="#0B2620" stroke-width="1" fill="none" opacity=".4"/>
+          <path d="M 200 200 Q 200 270 200 330" class="hh-line l6" stroke="#C8912A" stroke-width="1.2" fill="none" opacity=".8"/>
+          <circle r="3.5" fill="#C8912A" class="hh-pulse p1" style="--dx:120px;--dy:-70px"/>
+          <circle r="3.5" fill="#C8912A" class="hh-pulse p2" style="--dx:105px;--dy:105px"/>
+          <circle r="3" fill="#0B2620" class="hh-pulse p3" style="--dx:-105px;--dy:105px"/>
+          <circle r="3.5" fill="#C8912A" class="hh-pulse p4" style="--dx:-120px;--dy:-70px"/>
+          <circle r="3" fill="#0B2620" class="hh-pulse p5" style="--dx:0px;--dy:-125px"/>
+          <circle r="3.5" fill="#C8912A" class="hh-pulse p6" style="--dx:0px;--dy:130px"/>
+          <circle cx="320" cy="130" r="14" fill="#0B2620" class="hh-node d1"/>
+          <circle cx="305" cy="305" r="11" fill="#C8912A" class="hh-node d2"/>
+          <circle cx="95" cy="305" r="9" fill="#0B2620" class="hh-node d3"/>
+          <circle cx="80" cy="130" r="12" fill="#C8912A" class="hh-node d4"/>
+          <circle cx="200" cy="75" r="8" fill="#0B2620" class="hh-node d5"/>
+          <circle cx="200" cy="330" r="10" fill="#C8912A" class="hh-node"/>
+        </svg>
+      </div>
+      <div class="qr-float">
+        <img src="/hero-scanare-real.jpg" width="1408" height="768" loading="lazy" decoding="async"
+             alt="Cartonaș HelloHuman cu cod QR, scanat cu telefonul, pe o masă de bar.">
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 2. CE VĂD CLIENȚII PE TELEFON — poză + card alături -->
 <section class="what-customers">
   <div class="what-inner rv">
     <h2 data-t="cap">Ce văd clienții pe telefon</h2>
     <div class="what-grid">
       <div class="what-photo">
-        <img src="/cartonas-cod-qr-masa-bar.jpg" width="1408" height="768" loading="lazy" decoding="async"
-             alt="Un cartonaș cu cod QR HelloHuman, așezat pe o masă de bar, cu un client care îl scanează.">
+        <img src="/cartonas-final.jpg" width="1408" height="768" loading="lazy" decoding="async"
+             alt="Cartonașul HelloHuman cu cod QR, față și spate.">
       </div>
       <div class="card" aria-hidden="true">
         <p class="kk" data-t="mt">Masa ta</p>
@@ -213,7 +234,6 @@ section.dark .rand span{color:var(--mist)}
   </div>
 </section>
 
-<!-- 3. DOORS -->
 <section>
   <div class="wrap rv">
     <p class="eyebrow" data-t="e2">Fiecare loc, altă oră</p>
@@ -232,28 +252,12 @@ section.dark .rand span{color:var(--mist)}
   </div>
 </section>
 
-<!-- 4. VALOAREA PENTRU LOCAL -->
 <section class="dark">
-  <div class="wrap rv">
-    <h2 data-t="hCe">Ce aduce HelloHuman</h2>
-    <div style="margin-top:36px">
-      <div class="rand"><b data-t="ce1">Oamenii stau mai mult.</b><span data-t="ce1s">O conversație începută cere încă o comandă.</span></div>
-      <div class="rand"><b data-t="ce2">Marți, miercuri, joi.</b><span data-t="ce2s">Serile liniștite primesc un motiv clar pentru a ieși în oraș.</span></div>
-      <div class="rand"><b data-t="ce3">Zero investiție.</b><span data-t="ce3s">Fără echipament, fără software, fără costuri ascunse.</span></div>
-      <div class="rand"><b data-t="ce4">Se întorc. Și aduc pe cineva.</b><span data-t="ce4s">Cine a cunoscut pe cineva revine. Și nu vine singur.</span></div>
-      <div class="rand"><b data-t="ce5">Un motiv să vii care nu se găsește pe nicio altă terasă.</b><span data-t="ce5s">Meniul se copiază. Oamenii care se cunosc între ei, nu.</span></div>
-      <div class="rand"><b data-t="ce6">Ora pe care o alegeți.</b><span data-t="ce6s">Nu mai depinde de cine intră pe ușă.</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- 5. CUM SE DESFĂȘOARĂ -->
-<section>
   <div class="wrap two rv">
     <div>
       <p class="eyebrow" data-t="e3">Cum se desfășoară</p>
       <h2 data-t="h3">Nu aveți nimic<br>de făcut.</h2>
-      <p class="lead" style="margin-top:16px;color:var(--gold2)" data-t="l3">Un cod tipărit pe mese, o oră pe care o alegeți, iar cineva apasă un buton. Fără cont, fără instalare, fără personal.</p>
+      <p class="lead" style="margin-top:16px" data-t="l3">Un cod tipărit pe mese, o oră pe care o alegeți, iar cineva apasă un buton. Fără cont, fără instalare, fără personal.</p>
     </div>
     <div>
       <div class="note"><b data-t="y1">Din partea dumneavoastră.</b><span data-t="y1p"> O oră, câteva mese și o persoană care apasă un buton pe telefon, la ora pe care o stabiliți.</span></div>
@@ -263,8 +267,33 @@ section.dark .rand span{color:var(--mist)}
   </div>
 </section>
 
-<!-- 6. PE SCURT -->
-<section class="dark" id="intrebari">
+<section>
+  <div class="wrap rv">
+    <h2 data-t="hCe">Ce aduce HelloHuman</h2>
+    <div style="margin-top:36px">
+      <div class="rand"><b data-t="ce1">Oamenii stau mai mult.</b><span data-t="ce1s"> O conversație începută cere încă o comandă.</span></div>
+      <div class="rand"><b data-t="ce2">Marți, miercuri, joi.</b><span data-t="ce2s"> Serile liniștite primesc un motiv clar pentru a ieși în oraș.</span></div>
+      <div class="rand"><b data-t="ce3">Zero investiție.</b><span data-t="ce3s"> Fără echipament, fără software, fără costuri ascunse.</span></div>
+      <div class="rand"><b data-t="ce4">Se întorc. Și aduc pe cineva.</b><span data-t="ce4s"> Cine a cunoscut pe cineva revine. Și nu vine singur.</span></div>
+      <div class="rand"><b data-t="ce5">Un motiv să vii care nu se găsește pe nicio altă terasă.</b><span data-t="ce5s"> Meniul se copiază. Oamenii care se cunosc între ei, nu.</span></div>
+      <div class="rand"><b data-t="ce6">Ora pe care o alegeți.</b><span data-t="ce6s"> Nu mai depinde de cine intră pe ușă.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap rv">
+    <h2 data-t="hNou">Ce urmează, pas cu pas</h2>
+    <div style="margin-top:36px">
+      <div class="rand"><b data-t="pNou1">Completați un formular de un minut.</b><span data-t="pNou1s"> Cinci întrebări despre local, nu despre dumneavoastră.</span></div>
+      <div class="rand"><b data-t="pNou2">Vorbim cincisprezece minute la telefon.</b><span data-t="pNou2s"> Ne spuneți cum arată sala, ce ore sunt bune, câți clienți aveți într-o seară obișnuită.</span></div>
+      <div class="rand"><b data-t="pNou3">Facem prima rundă împreună.</b><span data-t="pNou3s"> Gratuit. Suntem acolo, punem codurile pe mese, rămânem până se termină.</span></div>
+      <div class="rand"><b data-t="pNou4">Vedeți rezultatul și decideți.</b><span data-t="pNou4s"> Nu semnați nimic înainte. Dacă nu vi se pare că merită, rămâne doar prima rundă.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="intrebari">
   <div class="wrap rv">
     <p class="eyebrow" data-t="e4">Pe scurt</p>
     <h2 data-t="h4">Patru lucruri<br>despre HelloHuman.</h2>
@@ -277,21 +306,20 @@ section.dark .rand span{color:var(--mist)}
   </div>
 </section>
 
-<!-- 7. CE URMEAZĂ, PAS CU PAS -->
-<section>
+<section class="dark">
   <div class="wrap rv">
-    <h2 data-t="hNou">Ce urmează, pas cu pas</h2>
+    <h2 data-t="oH">Pentru cine deține locul</h2>
     <div style="margin-top:36px">
-      <div class="rand"><b data-t="pNou1">Completați un formular de un minut.</b><span data-t="pNou1s"> Cinci întrebări despre local, nu despre dumneavoastră.</span></div>
-      <div class="rand"><b data-t="pNou2">Vorbim cincisprezece minute la telefon.</b><span data-t="pNou2s"> Ne spuneți cum arată sala, ce ore sunt bune, câți clienți aveți într-o seară obișnuită.</span></div>
-      <div class="rand"><b data-t="pNou3">Facem prima rundă împreună.</b><span data-t="pNou3s"> Gratuit. Suntem acolo, punem codurile pe mese, rămânem până se termină.</span></div>
-      <div class="rand"><b data-t="pNou4">Vedeți rezultatul și decideți.</b><span data-t="pNou4s"> Nu semnați nimic înainte. Dacă nu vi se pare că merită, rămâne doar prima rundă.</span></div>
+      <div class="rand"><b data-t="o1">Ora pe care o alegeți.</b><span data-t="o1s"> Nu mai depinde de cine intră pe ușă.</span></div>
+      <div class="rand"><b data-t="o2">Mesele nu se golesc la fel de repede.</b><span data-t="o2s"> O conversație începută cere încă o comandă.</span></div>
+      <div class="rand"><b data-t="o3">Se întorc pentru ce s-a întâmplat.</b><span data-t="o3s"> Cine a cunoscut pe cineva revine.</span></div>
+      <div class="rand"><b data-t="o4">Un motiv să vii care nu se găsește pe nicio altă terasă.</b><span data-t="o4s"> Meniul se copiază. Oamenii care se cunosc între ei, nu.</span></div>
+      <div class="rand"><b data-t="o5">Marți și miercuri sunt cele mai liniștite.</b><span data-t="o5s"> HelloHuman le dă un motiv clar.</span></div>
     </div>
   </div>
 </section>
 
-<!-- 8. CTA FINAL -->
-<section class="dark">
+<section>
   <div class="wrap rv" style="text-align:center">
     <p class="eyebrow" data-t="e5">Dacă doriți să vorbim</p>
     <h2 data-t="h5" style="margin-left:auto;margin-right:auto">Un minut, cinci<br>lucruri despre dumneavoastră.</h2>
@@ -310,7 +338,7 @@ section.dark .rand span{color:var(--mist)}
   <div class="wrap">
     <div>
       <p class="brand">HelloHuman</p>
-      <p data-t="ftS">Oameni care nu se cunosc stau câteva minute la aceeași masă, în locuri unde sunt deja prezenți.</p>
+      <p data-t="ftS">Așezăm la aceeași masă oameni care încă nu se cunosc. Serile se prelungesc, iar cine s-a simțit bine se întoarce.</p>
       <p style="margin-top:10px" data-t="ftGeo">Oriunde sunt oameni care nu se cunosc</p>
     </div>
     <div>
@@ -338,8 +366,9 @@ section.dark .rand span{color:var(--mist)}
 
 <script>
 var lang='ro';
-var L={ ro:{bCta:"VREAU HELLOHUMAN LA MINE",bCta2:"Vreau HelloHuman la mine",bPart2:"Sunt deja partener",bMail2:"Scrie direct pe email",e1:"Pentru locații",h1:"Oamenii stau mai mult.<br>Consumă mai mult.<br>Și se întorc.",h1p:"Îi așezăm la aceeași masă cu oameni pe care nu îi cunosc. Masa rămâne ocupată mai mult, iar seara devine un motiv să revină.",bA:"VREAU HELLOHUMAN LA MINE",bSub:"Răspundem în două zile. Tuturor.",oH:"Pentru cine deține locul",o1:"Ora pe care o alegeți.",o1s:" Nu mai depinde de cine intră pe ușă.",o2:"Mesele nu se golesc la fel de repede.",o2s:" O conversație începută cere încă o comandă.",o3:"Se întorc pentru ce s-a întâmplat.",o3s:" Cine a cunoscut pe cineva revine.",o4:"Un motiv să vii care nu se găsește pe nicio altă terasă.",o4s:" Meniul se copiază. Oamenii care se cunosc între ei, nu.",o5:"Marți și miercuri sunt cele mai liniștite.",o5s:" HelloHuman le dă un motiv clar.",lead2:"Într-un bar se întâmplă seara, într-o librărie în jurul unui subiect, într-un muzeu la finalul vizitei.",ftGeo:"Oriunde sunt oameni care nu se cunosc",k3b:"Muzee și spații culturale",tellus:"Spuneți-ne despre locul dumneavoastră",ttl:"HelloHuman pentru locații — oamenii stau mai mult, consumă mai mult, se întorc",all:"Toate locurile",part:"Pentru participanți",b1:"Vreau HelloHuman la mine",b2:"Sunt deja partener",call:'Sau sună la <a href="tel:+40750255200" style="color:var(--gold2);font-weight:700">+40 750 255 200</a>',cap:"Ce văd clienții pe telefon",mt:"Masa ta",wu:"Cu tine",yq:"Întrebarea voastră",yqv:"Găsiți trei lucruri<br>pe care le aveți în comun",e2:"Fiecare loc, altă oră",h2:"Fiecare are alt ritm.",k1:"Baruri și restaurante",k1p:"O rundă scurtă, seara.",see:"Vezi cum",k2:"Librării și anticariate",k2p:"O masă, o oră, un subiect anunțat.",k2b:"Cafenele",k2bp:"Oameni noi în orele moarte.",k3:"Muzee și spații culturale",k3p:"Conversație la finalul vizitei.",k4:"Hoteluri și turism",k4p:"O oră în lobby, înainte de cină.",k5:"Aeroporturi și gări",k5p:"Pornește singur, fără personal.",k6:"Pentru companii",k6p:"Runde scurte, cu raport la final.",other:"Aveți altceva — un club, un spațiu de coworking?",wri:"Scrieți-ne oricum",otherp:". Funcționează oriunde oamenii stau în același loc fără să se cunoască.",e3:"Cum se desfășoară",h3:"Nu aveți nimic<br>de făcut.",l3:"Un cod tipărit pe mese, o oră pe care o alegeți, iar cineva apasă un buton. Fără cont, fără instalare, fără personal.",y1:"Din partea dumneavoastră.",y1p:" O oră, câteva mese și o persoană care apasă un buton pe telefon, la ora pe care o stabiliți.",y2:"Din partea noastră.",y2p:" Oamenii, codul QR de printat și o fișă de o pagină pentru cel care ține runda.",y3:"Cum se vede rezultatul.",y3p:" Vânzarea din ziua respectivă față de aceeași zi din săptămâna precedentă. La evenimente de firmă, un raport scris.",hCe:"Ce aduce HelloHuman",ce1:"Oamenii stau mai mult.",ce1s:" O conversație începută cere încă o comandă.",ce2:"Marți, miercuri, joi.",ce2s:" Serile liniștite primesc un motiv clar pentru a ieși în oraș.",ce3:"Zero investiție.",ce3s:" Fără echipament, fără software, fără costuri ascunse.",ce4:"Se întorc. Și aduc pe cineva.",ce4s:" Cine a cunoscut pe cineva revine. Și nu vine singur.",ce5:"Un motiv să vii care nu se găsește pe nicio altă terasă.",ce5s:" Meniul se copiază. Oamenii care se cunosc între ei, nu.",ce6:"Ora pe care o alegeți.",ce6s:" Nu mai depinde de cine intră pe ușă.",hNou:"Ce urmează, pas cu pas",pNou1:"Completați un formular de un minut.",pNou1s:" Cinci întrebări despre local, nu despre dumneavoastră.",pNou2:"Vorbim cincisprezece minute la telefon.",pNou2s:" Ne spuneți cum arată sala, ce ore sunt bune, câți clienți aveți într-o seară obișnuită.",pNou3:"Facem prima rundă împreună.",pNou3s:" Gratuit. Suntem acolo, punem codurile pe mese, rămânem până se termină.",pNou4:"Vedeți rezultatul și decideți.",pNou4s:" Nu semnați nimic înainte. Dacă nu vi se pare că merită, rămâne doar prima rundă.",e4:"Pe scurt",h4:"Patru lucruri<br>despre HelloHuman.",q1:"Gratuit.",a1:"Facem împreună. După două săptămâni vă contactăm noi să vedem ce a ieșit.",q2:"Clienții nu instalează nimic.",a2:"Un cod QR pe masă. Se deschide în browser. Zece secunde.",q3:"Nu e nevoie de personal suplimentar.",a3:"",q4:"Nu este o aplicație de dating.",a4:"Mese de 3-4 persoane. Fără profiluri, fără poze, fără vârste. Sistemul așază.",e5:"Dacă doriți să vorbim",h5:"Un minut, cinci<br>lucruri despre dumneavoastră.",l5:"Ne spuneți unde sunteți, ce fel de loc aveți și ce căutați. Vă răspundem în două zile lucrătoare.",pdfS:"Nu-ți cerem adresa. O descarci și gata.",mail:"Scrie direct pe email",ftS:"Oameni care nu se cunosc stau câteva minute la aceeași masă, în locuri unde sunt deja prezenți.",ftL:"Locuri",ftC:"Contact"},
- en:{bCta:"I WANT HELLOHUMAN HERE",bCta2:"I want HelloHuman here",bPart2:"I am already a partner",bMail2:"Write to us directly",e1:"For venues",h1:"People stay longer.<br>Spend more.<br>And come back.",h1p:"We seat them at the same table with people they don't know. Tables stay full longer, giving them a clear reason to return.",bA:"I WANT HELLOHUMAN HERE",bSub:"We reply in two days. To everyone.",oH:"If the place is yours",o1:"The hour you choose.",o1s:" It no longer depends on who walks in.",o2:"Tables do not empty as fast.",o2s:" A conversation that started asks for one more order.",o3:"They come back for what happened.",o3s:" People who make a connection return.",o4:"A reason to come that no other venue can offer.",o4s:" Menus can be copied. The community built at your tables cannot.",o5:"Tuesdays and Wednesdays are usually slow.",o5s:" HelloHuman gives guests a reason to show up.",lead2:"The idea is the same everywhere, but the obstacle differs. In a bar, nobody gets up from their own table.",ftGeo:"Wherever there are people who do not know each other",k3b:"Museums and cultural spaces",tellus:"Tell us about your place",ttl:"HelloHuman for venues — people stay longer, spend more, come back",all:"All venue types",part:"For participants",b1:"I want HelloHuman at my place",b2:"I am already a partner",call:'Or call <a href="tel:+40750255200" style="color:var(--gold2);font-weight:700">+40 750 255 200</a>',cap:"What customers see on their phone",mt:"Your table",wu:"With you",yq:"Your question",yqv:"Find three things<br>you have in common",e2:"Each place, a different hour",h2:"Each has its own rhythm.",k1:"Bars and restaurants",k1p:"One short round, in the evening.",see:"See how",k2:"Bookshops and antiquarian bookshops",k2p:"One table, one hour, a topic announced in advance.",k2b:"Cafés",k2bp:"New people in the quiet hours.",k3:"Museums and cultural spaces",k3p:"A conversation at the end of the visit.",k4:"Hotels and tourism",k4p:"An hour in the lobby, before dinner.",k5:"Airports and stations",k5p:"Starts on its own, no staff needed.",k6:"For companies",k6p:"Short rounds, with a report at the end.",other:"Something else — a club, a coworking space?",wri:"Write to us anyway",otherp:". It works anywhere people sit in the same place without knowing each other.",e3:"What it takes",h3:"One hour, a few tables,<br>and one person who<br>presses a button.",l3:"A printed code on the tables, an hour you choose, and someone presses a button. No account, no installation, no staff.",y1:"From you.",y1p:" One hour, a few tables and one person who presses a button on their phone, at the time you set.",y2:"From us.",y2p:" The people, the QR code to print and a one-page sheet for whoever runs the round.",y3:"How you see the result.",y3p:" Takings for that day against the same day the week before. For company events, a written report.",hCe:"What HelloHuman brings",ce1:"People stay longer.",ce1s:" A great conversation naturally leads to another round.",ce2:"Tuesday, Wednesday, Thursday.",ce2s:" Quiet evenings get a clear draw for guests to go out.",ce3:"Zero investment.",ce3s:" No equipment, no software, no hidden costs.",ce4:"They come back. And bring someone.",ce4s:" People who make a connection come back. And they bring friends.",ce5:"A reason to come that no other venue can offer.",ce5s:" Menus can be copied. The community built at your tables cannot.",ce6:"The hour you choose.",ce6s:" It no longer depends on who walks in.",hNou:"What happens next, step by step",pNou1:"You fill in a one-minute form.",pNou1s:" Five questions about the place, not about you.",pNou2:"We talk for fifteen minutes on the phone.",pNou2s:" You tell us what the room looks like, which hours work, how many customers you get on a normal evening.",pNou3:"We run the first round together.",pNou3s:" Free. We are there, we put the codes on the tables, we stay until it is over.",pNou4:"You see the result and decide.",pNou4s:" You sign nothing in advance. If it does not seem worth it, the first round stands alone.",e4:"In short",h4:"Four things<br>about HelloHuman.",q1:"Free.",a1:"We do it together. After two weeks we get in touch to see how it went.",q2:"Customers install nothing.",a2:"A QR code on the table. Opens in the browser. Ten seconds.",q3:"No extra staff needed.",a3:"",q4:"It is not a dating app.",a4:"Tables of 3-4. No profiles, no photos, no ages. The system seats.",e5:"If you would like to talk",h5:"One minute, five<br>things about you.",l5:"Tell us where you are, what kind of place you have and what you are after. We read it and reply within two working days.",pdfS:"We do not ask for your address. You just download it.",mail:"Write to us by email",ftS:"People who do not know each other spend a few minutes at the same table, in places where they already are.",ftL:"Venues",ftC:"Contact"} };
+var L={ro:{bA:"VREAU HELLOHUMAN LA MINE",b2:"Sunt deja partener",e1:"Pentru locații",h1:"Îi primiți regește.<br>Noi le dăm un motiv în plus să revină.",h1p:"Așezăm la aceeași masă oameni care încă nu se cunosc. Serile se prelungesc, consumul crește, iar cine s-a simțit bine se întoarce — și nu vine singur.",bSub:"Răspundem în două zile. Tuturor.",oH:"Pentru cine deține locul",o1:"Ora pe care o alegeți.",o1s:" Nu mai depinde de cine intră pe ușă.",o2:"Mesele nu se golesc la fel de repede.",o2s:" O conversație începută cere încă o comandă.",o3:"Se întorc pentru ce s-a întâmplat.",o3s:" Cine a cunoscut pe cineva revine.",o4:"Un motiv să vii care nu se găsește pe nicio altă terasă.",o4s:" Meniul se copiază. Oamenii care se cunosc între ei, nu.",o5:"Marți și miercuri sunt cele mai liniștite.",o5s:" HelloHuman le dă un motiv clar.",lead2:"Într-un bar se întâmplă seara, într-o librărie în jurul unui subiect, într-un muzeu la finalul vizitei.",ftGeo:"Oriunde sunt oameni care nu se cunosc",k3b:"Muzee și spații culturale",tellus:"Spuneți-ne despre locul dumneavoastră",ttl:"HelloHuman pentru locații — prima seară, din partea noastră",part:"Pentru participanți",b1:"Vreau HelloHuman la mine",call:'Sau sună la <a href="tel:+40750255200" style="color:var(--gold2);font-weight:700">+40 750 255 200</a>',cap:"Ce văd clienții pe telefon",mt:"Masa ta",wu:"Cu tine",yq:"Întrebarea voastră",yqv:"Găsiți trei lucruri<br>pe care le aveți în comun",e2:"Fiecare loc, altă oră",h2:"Fiecare are alt ritm.",k1:"Baruri și restaurante",k1p:"O rundă scurtă, seara.",see:"Vezi cum",k2:"Librării și anticariate",k2p:"O masă, o oră, un subiect anunțat.",k2b:"Cafenele",k2bp:"Oameni noi în orele moarte.",k3:"Muzee și spații culturale",k3p:"Conversație la finalul vizitei.",k4:"Hoteluri și turism",k4p:"O oră în lobby, înainte de cină.",k5:"Aeroporturi și gări",k5p:"Pornește singur, fără personal.",k6:"Pentru companii",k6p:"Runde scurte, cu raport la final.",other:"Aveți altceva — un club, un spațiu de coworking?",wri:"Scrieți-ne oricum",otherp:". Funcționează oriunde oamenii stau în același loc fără să se cunoască.",e3:"Cum se desfășoară",h3:"Nu aveți nimic<br>de făcut.",l3:"Un cod tipărit pe mese, o oră pe care o alegeți, iar cineva apasă un buton. Fără cont, fără instalare, fără personal.",y1:"Din partea dumneavoastră.",y1p:" O oră, câteva mese și o persoană care apasă un buton pe telefon, la ora pe care o stabiliți.",y2:"Din partea noastră.",y2p:" Oamenii, codul QR de printat și o fișă de o pagină pentru cel care ține runda.",y3:"Cum se vede rezultatul.",y3p:" Vânzarea din ziua respectivă față de aceeași zi din săptămâna precedentă. La evenimente de firmă, un raport scris.",hCe:"Ce aduce HelloHuman",ce1:"Oamenii stau mai mult.",ce1s:" O conversație începută cere încă o comandă.",ce2:"Marți, miercuri, joi.",ce2s:" Serile liniștite primesc un motiv clar pentru a ieși în oraș.",ce3:"Zero investiție.",ce3s:" Fără echipament, fără software, fără costuri ascunse.",ce4:"Se întorc. Și aduc pe cineva.",ce4s:" Cine a cunoscut pe cineva revine. Și nu vine singur.",ce5:"Un motiv să vii care nu se găsește pe nicio altă terasă.",ce5s:" Meniul se copiază. Oamenii care se cunosc între ei, nu.",ce6:"Ora pe care o alegeți.",ce6s:" Nu mai depinde de cine intră pe ușă.",hNou:"Ce urmează, pas cu pas",pNou1:"Completați un formular de un minut.",pNou1s:" Cinci întrebări despre local, nu despre dumneavoastră.",pNou2:"Vorbim cincisprezece minute la telefon.",pNou2s:" Ne spuneți cum arată sala, ce ore sunt bune, câți clienți aveți într-o seară obișnuită.",pNou3:"Facem prima rundă împreună.",pNou3s:" Gratuit. Suntem acolo, punem codurile pe mese, rămânem până se termină.",pNou4:"Vedeți rezultatul și decideți.",pNou4s:" Nu semnați nimic înainte. Dacă nu vi se pare că merită, rămâne doar prima rundă.",e4:"Pe scurt",h4:"Patru lucruri<br>despre HelloHuman.",q1:"Gratuit.",a1:"Facem împreună. După două săptămâni vă contactăm noi să vedem ce a ieșit.",q2:"Clienții nu instalează nimic.",a2:"Un cod QR pe masă. Se deschide în browser. Zece secunde.",q3:"Nu e nevoie de personal suplimentar.",a3:"",q4:"Nu este o aplicație de dating.",a4:"Mese de 3-4 persoane. Fără profiluri, fără poze, fără vârste. Sistemul așază.",e5:"Dacă doriți să vorbim",h5:"Un minut, cinci<br>lucruri despre dumneavoastră.",l5:"Ne spuneți unde sunteți, ce fel de loc aveți și ce căutați. Vă răspundem în două zile lucrătoare.",pdfS:"Nu-ți cerem adresa. O descarci și gata.",mail:"Scrie direct pe email",ftS:"Așezăm la aceeași masă oameni care încă nu se cunosc. Serile se prelungesc, iar cine s-a simțit bine se întoarce.",ftL:"Locuri",ftC:"Contact"},
+en:{bA:"I WANT HELLOHUMAN HERE",b2:"I am already a partner",e1:"For venues",h1:"You make them feel at home.<br>We give them one more reason to come back.",h1p:"We seat people who haven't met yet at the same table. Evenings run longer, spend grows, and anyone who had a good night comes back — and brings someone.",bSub:"We reply in two days. To everyone.",oH:"If the place is yours",o1:"The hour you choose.",o1s:" It no longer depends on who walks in.",o2:"Tables do not empty as fast.",o2s:" A conversation that started asks for one more order.",o3:"They come back for what happened.",o3s:" People who make a connection return.",o4:"A reason to come that no other venue can offer.",o4s:" Menus can be copied. The community built at your tables cannot.",o5:"Tuesdays and Wednesdays are usually slow.",o5s:" HelloHuman gives guests a reason to show up.",lead2:"The idea is the same everywhere, but the obstacle differs. In a bar, nobody gets up from their own table.",ftGeo:"Wherever there are people who do not know each other",k3b:"Museums and cultural spaces",tellus:"Tell us about your place",ttl:"HelloHuman for venues — the first evening is on us",part:"For participants",b1:"I want HelloHuman at my place",call:'Or call <a href="tel:+40750255200" style="color:var(--gold2);font-weight:700">+40 750 255 200</a>',cap:"What customers see on their phone",mt:"Your table",wu:"With you",yq:"Your question",yqv:"Find three things<br>you have in common",e2:"Each place, a different hour",h2:"Each has its own rhythm.",k1:"Bars and restaurants",k1p:"One short round, in the evening.",see:"See how",k2:"Bookshops and antiquarian bookshops",k2p:"One table, one hour, a topic announced in advance.",k2b:"Cafés",k2bp:"New people in the quiet hours.",k3:"Museums and cultural spaces",k3p:"A conversation at the end of the visit.",k4:"Hotels and tourism",k4p:"An hour in the lobby, before dinner.",k5:"Airports and stations",k5p:"Starts on its own, no staff needed.",k6:"For companies",k6p:"Short rounds, with a report at the end.",other:"Something else — a club, a coworking space?",wri:"Write to us anyway",otherp:". It works anywhere people sit in the same place without knowing each other.",e3:"What it takes",h3:"One hour, a few tables,<br>and one person who<br>presses a button.",l3:"A printed code on the tables, an hour you choose, and someone presses a button. No account, no installation, no staff.",y1:"From you.",y1p:" One hour, a few tables and one person who presses a button on their phone, at the time you set.",y2:"From us.",y2p:" The people, the QR code to print and a one-page sheet for whoever runs the round.",y3:"How you see the result.",y3p:" Takings for that day against the same day the week before. For company events, a written report.",hCe:"What HelloHuman brings",ce1:"People stay longer.",ce1s:" A great conversation naturally leads to another round.",ce2:"Tuesday, Wednesday, Thursday.",ce2s:" Quiet evenings get a clear draw for guests to go out.",ce3:"Zero investment.",ce3s:" No equipment, no software, no hidden costs.",ce4:"They come back. And bring someone.",ce4s:" People who make a connection come back. And they bring friends.",ce5:"A reason to come that no other venue can offer.",ce5s:" Menus can be copied. The community built at your tables cannot.",ce6:"The hour you choose.",ce6s:" It no longer depends on who walks in.",hNou:"What happens next, step by step",pNou1:"You fill in a one-minute form.",pNou1s:" Five questions about the place, not about you.",pNou2:"We talk for fifteen minutes on the phone.",pNou2s:" You tell us what the room looks like, which hours work, how many customers you get on a normal evening.",pNou3:"We run the first round together.",pNou3s:" Free. We are there, we put the codes on the tables, we stay until it is over.",pNou4:"You see the result and decide.",pNou4s:" You sign nothing in advance. If it does not seem worth it, the first round stands alone.",e4:"In short",h4:"Four things<br>about HelloHuman.",q1:"Free.",a1:"We do it together. After two weeks we get in touch to see how it went.",q2:"Customers install nothing.",a2:"A QR code on the table. Opens in the browser. Ten seconds.",q3:"No extra staff needed.",a3:"",q4:"It is not a dating app.",a4:"Tables of 3-4. No profiles, no photos, no ages. The system seats.",e5:"If you would like to talk",h5:"One minute, five<br>things about you.",l5:"Tell us where you are, what kind of place you have and what you are after. We read it and reply within two working days.",pdfS:"We do not ask for your address. You just download it.",mail:"Write to us by email",ftS:"We seat people who haven't met yet at the same table. Evenings run longer, and anyone who had a good night comes back.",ftL:"Venues",ftC:"Contact"}};
+
 function T(k){ return (L[lang]||L.ro)[k]||L.ro[k]||'' }
 function setLang(v){ lang=v; try{localStorage.setItem('hh_l',v)}catch(e){} applyLang() }
 function applyLang(){
