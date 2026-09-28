@@ -29,7 +29,7 @@
  {"@type":"Organization","@id":"https://hellohuman.ro/#org","name":"HelloHuman","url":"https://hellohuman.ro/","email":"contact@hellohuman.ro","telephone":"+40750255200","areaServed":{"@type":"Country","name":"România"}},
  {"@type":"WebSite","url":"https://hellohuman.ro/","name":"HelloHuman","publisher":{"@id":"https://hellohuman.ro/#org"},"inLanguage":["ro","en"]},
  {"@type":"FAQPage","mainEntity":[
-  {"@type":"Question","name":"Ce este HelloHuman?","acceptedAnswer":{"@type":"Answer","text":"Un cod QR care stă pe masă, în locuri unde oamenii sunt deja: baruri, restaurante, librării, cafenele, muzee, hoteluri. Îl scanezi și stai câteva minute cu doi sau trei oameni pe care nu îi cunoști."}},
+  {"@type":"Question","name":"Ce este HelloHuman?","acceptedAnswer":{"@type":"Answer","text":"Un cod QR care stă pe masă, în locuri unde oamenii sunt deja. Îl scanezi și stai câteva minute cu doi sau trei oameni pe care nu îi cunoști."}},
   {"@type":"Question","name":"Este o aplicație de dating?","acceptedAnswer":{"@type":"Answer","text":"Nu. Nu există profiluri, poze sau vârste. Sistemul așază."}},
   {"@type":"Question","name":"Ce fac dacă sunt introvertit?","acceptedAnswer":{"@type":"Answer","text":"Poți alege să asculți. Sistemul nu așază trei ascultători la aceeași masă."}},
   {"@type":"Question","name":"Pot veni cu un prieten?","acceptedAnswer":{"@type":"Answer","text":"Da. Unul generează un cod de 3 cifre, celălalt îl introduce."}},
@@ -76,12 +76,10 @@
 .hh-hub-rot{transform-origin:center;animation:hhSpin 80s linear infinite}
 @keyframes hhSpin{to{transform:rotate(360deg)}}
 
-/* ============================================
-   HUB — poza cu mâna care scanează
-   ============================================ */
+/* HUB — poza cu mâna care scanează */
 .hub-photo{
   position:absolute;top:50%;left:50%;
-  width:42%;aspect-ratio:1/1;              /* mărit pentru vizibilitate */
+  width:32%;aspect-ratio:1/1;
   transform:translate(-50%,-50%);
   z-index:5;border-radius:50%;
   overflow:hidden;background:#F7F4ED;
@@ -278,7 +276,6 @@ section.dark .door span{color:var(--gold)}
         <circle cx="200" cy="330" r="10" fill="#C8912A" class="hh-node"/>
       </svg>
 
-      <!-- Poza cu mâna care scanează, în centrul hub-ului -->
       <div class="hub-photo">
         <img src="/hero-scanare-real.jpg" alt="Cartonaș HelloHuman cu cod QR, scanat cu telefonul, pe o masă de bar.">
       </div>
@@ -286,7 +283,6 @@ section.dark .door span{color:var(--gold)}
   </div>
 </section>
 
-<!-- CERCETARE -->
 <section class="dark">
   <div class="wrap rv">
     <p class="eyebrow" data-t="dE">Cercetare</p>
@@ -296,7 +292,6 @@ section.dark .door span{color:var(--gold)}
   </div>
 </section>
 
-<!-- CUM FUNCȚIONEAZĂ -->
 <section id="how">
   <div class="wrap rv">
     <p class="eyebrow" data-t="sEye">Cum funcționează?</p>
@@ -311,15 +306,14 @@ section.dark .door span{color:var(--gold)}
       </div>
       <div>
         <div class="qr-card">
-          <img src="/cartonas-cod-qr-masa-bar.jpg" width="1408" height="768" loading="lazy" decoding="async"
-               alt="Un cartonaș cu cod QR HelloHuman, așezat pe o masă de bar.">
+          <img src="/cartonas-a-frame.jpg" width="1408" height="768" loading="lazy" decoding="async"
+               alt="Cartonașul HelloHuman cu cod QR, așezat pe o masă de bar.">
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PARTENERI -->
 <section class="partners-section">
   <div class="partners-inner rv">
     <div class="audience-grid">
@@ -347,7 +341,6 @@ section.dark .door span{color:var(--gold)}
   </div>
 </section>
 
-<!-- UNDE -->
 <section class="dark">
   <div class="wrap rv">
     <p class="eyebrow" data-t="whereEye">Fiecare loc, altă oră</p>
@@ -366,7 +359,6 @@ section.dark .door span{color:var(--gold)}
   </div>
 </section>
 
-<!-- FAQ -->
 <section class="paper" id="faq">
   <div class="wrap rv">
     <p class="eyebrow" data-t="fEye">Întrebări frecvente</p>
@@ -381,7 +373,6 @@ section.dark .door span{color:var(--gold)}
   </div>
 </section>
 
-<!-- RECOMANDĂ -->
 <section class="dark">
   <div class="wrap rv">
     <p class="eyebrow" data-t="rE">Un loc anume</p>
