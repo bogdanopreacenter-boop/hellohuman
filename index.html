@@ -52,7 +52,6 @@
 .hero .lead{margin:0 0 clamp(22px,3vw,30px);max-width:40ch;color:var(--gold2)}
 .hero .btn{margin-top:0}
 
-/* Scena */
 .scene{position:relative;width:100%;max-width:620px;margin:0 auto;aspect-ratio:1/1;overflow:hidden}
 .scene::before{
   content:"";position:absolute;inset:-15%;z-index:0;border-radius:50%;
@@ -62,7 +61,6 @@
 }
 @keyframes glowBreath{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
 
-/* SVG animație */
 .viz-svg{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:2;overflow:visible}
 .hh-node{animation:hhPulse 3.4s ease-in-out infinite}
 .hh-node.d1{animation-delay:.5s}.hh-node.d2{animation-delay:1s}.hh-node.d3{animation-delay:1.5s}.hh-node.d4{animation-delay:2s}.hh-node.d5{animation-delay:2.5s}
@@ -76,7 +74,6 @@
 .hh-hub-rot{transform-origin:center;animation:hhSpin 80s linear infinite}
 @keyframes hhSpin{to{transform:rotate(360deg)}}
 
-/* HUB — poza cu mâna care scanează */
 .hub-photo{
   position:absolute;top:50%;left:50%;
   width:32%;aspect-ratio:1/1;
@@ -96,7 +93,6 @@
 }
 .hub-photo img{width:100%;height:100%;object-fit:cover;display:block}
 
-/* Cum funcționează */
 .how-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;margin-top:clamp(30px,4vw,46px)}
 @media(max-width:900px){.how-grid{grid-template-columns:1fr;gap:40px}}
 .how-steps .step{padding:22px 0;border-top:1px solid var(--lined)}
@@ -107,21 +103,31 @@
 .qr-card{background:var(--oat2);border:1px solid var(--lined);border-radius:3px;padding:clamp(20px,3vw,28px);transform:rotate(-2deg);box-shadow:0 24px 60px -24px rgba(11,38,32,.28);max-width:380px;margin:0 auto}
 .qr-card img{width:100%;height:auto;display:block;border-radius:2px}
 
-/* Partners */
 .partners-section{padding:clamp(48px,7vw,80px) 0;background:var(--oat);border-top:1px solid var(--lined)}
 .partners-inner{max-width:900px;margin:0 auto;padding:0 clamp(22px,6vw,40px)}
 .audience-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:clamp(20px,3vw,30px)}
 @media(max-width:640px){.audience-grid{grid-template-columns:1fr}}
-.aud-card{display:flex;flex-direction:column;justify-content:space-between;background:var(--oat2);border:1px solid var(--lined);border-radius:3px;padding:clamp(22px,3vw,28px) clamp(20px,2.8vw,26px);text-decoration:none;color:var(--ink);transition:all .3s cubic-bezier(.22,.61,.36,1);min-height:145px}
-.aud-card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 18px 40px -24px rgba(11,38,32,.22)}
-.aud-card .aud-eyebrow{display:block;font-family:var(--sans);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold2);font-weight:600;margin-bottom:14px}
-.aud-card .aud-title{font-family:var(--disp);font-weight:500;font-size:clamp(19px,2.4vw,23px);line-height:1.22;letter-spacing:-.01em;color:var(--ink);margin:0 0 20px;font-variation-settings:"opsz" 36}
-.aud-card .aud-arrow{display:flex;align-items:center;justify-content:space-between;font-family:var(--sans);font-size:13px;font-weight:500;color:var(--dim);transition:color .3s}
-.aud-card .aud-arrow svg{width:20px;height:20px;flex:none;stroke:var(--dim);stroke-width:1.6;fill:none;transition:stroke .3s,transform .3s}
-.aud-card:hover .aud-arrow,.aud-card:hover .aud-arrow svg{color:var(--gold2);stroke:var(--gold)}
-.aud-card:hover .aud-arrow svg{transform:translateX(4px)}
 
-/* Doors */
+.aud-card{
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;text-decoration:none;border-radius:3px;
+  padding:clamp(26px,3.4vw,36px) clamp(22px,3vw,30px);
+  transition:all .3s cubic-bezier(.22,.61,.36,1);
+  min-height:170px;border:0;cursor:pointer;
+}
+.aud-card.aud-gold{background:var(--gold);color:var(--ink);box-shadow:0 10px 28px -12px rgba(200,145,42,.5)}
+.aud-card.aud-gold:hover{background:#0B2620;color:#F7F4ED;transform:translateY(-3px);box-shadow:0 20px 40px -16px rgba(11,38,32,.4)}
+.aud-card.aud-verde{background:#0B2620;color:#F7F4ED;box-shadow:0 10px 28px -14px rgba(11,38,32,.35)}
+.aud-card.aud-verde:hover{background:var(--gold);color:var(--ink);transform:translateY(-3px);box-shadow:0 20px 40px -16px rgba(200,145,42,.5)}
+.aud-card .aud-eyebrow{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;margin-bottom:14px;opacity:.75}
+.aud-card.aud-gold .aud-eyebrow{color:var(--ink)}
+.aud-card.aud-verde .aud-eyebrow{color:var(--gold)}
+.aud-card .aud-title{font-family:var(--disp);font-weight:600;font-size:clamp(20px,2.6vw,25px);line-height:1.2;letter-spacing:-.012em;margin:0;font-variation-settings:"opsz" 36}
+.aud-card.aud-gold .aud-title{color:var(--ink)}
+.aud-card.aud-verde .aud-title{color:#F7F4ED}
+.aud-card.aud-gold:hover .aud-title{color:#F7F4ED}
+.aud-card.aud-verde:hover .aud-title{color:var(--ink)}
+
 .doors{margin-top:clamp(30px,4vw,48px);border-top:1px solid var(--lined)}
 section.dark .doors{border-top-color:var(--line)}
 .door{background:transparent;color:inherit;text-decoration:none;display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:clamp(14px,3vw,40px);padding:clamp(20px,2.6vw,28px) 0;border-bottom:1px solid var(--lined);transition:padding-left .18s ease}
@@ -136,12 +142,10 @@ section.dark .door span{color:var(--gold)}
 .door:hover span{opacity:1}
 @media(max-width:560px){.door{grid-template-columns:1fr;gap:0;padding:20px 0}.door span{grid-column:1;grid-row:auto;margin-top:10px;display:block}.door h3{font-size:20px}}
 
-/* Reveal */
 .rv{opacity:0;transform:translateY(22px);transition:opacity 1s cubic-bezier(.22,.61,.36,1),transform 1s cubic-bezier(.22,.61,.36,1)}
 .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1!important;transform:none!important;transition:none!important}.hh-node,.hh-line,.hh-pulse,.hh-hub-rot{animation:none!important}.hh-line{stroke-dashoffset:0}}
 
-/* App — logica neatinsă */
 #app{display:none;background:var(--oat);color:var(--ink);font-family:var(--sans)}
 #app.on{display:block;max-width:560px;margin:0 auto;padding:26px 20px 60px;min-height:100vh}
 #app .sc{display:none}
@@ -185,7 +189,6 @@ section.dark .door span{color:var(--gold)}
 #aLang:active{background:var(--gold);color:var(--ink)}
 #app:not(.on) #aLang{display:none}
 
-/* Dropdown */
 .pmenu{position:relative;display:inline-block}
 .pbtn{background:none;border:0;font:inherit;color:inherit;cursor:pointer;padding:0;-webkit-tap-highlight-color:transparent;font-family:var(--sans);font-size:14.5px;font-weight:500;color:var(--dim)}
 .pbtn::after{content:"›";display:inline-block;margin-left:5px;transform:rotate(90deg);font-size:.9em;opacity:.55;transition:transform .22s}
@@ -306,8 +309,8 @@ section.dark .door span{color:var(--gold)}
       </div>
       <div>
         <div class="qr-card">
-          <img src="/cartonas-a-frame.jpg" width="1408" height="768" loading="lazy" decoding="async"
-               alt="Cartonașul HelloHuman cu cod QR, așezat pe o masă de bar.">
+          <img src="/cartonas-final.jpg" width="1408" height="768" loading="lazy" decoding="async"
+               alt="Cartonașul HelloHuman cu cod QR, față și spate.">
         </div>
       </div>
     </div>
@@ -317,25 +320,13 @@ section.dark .door span{color:var(--gold)}
 <section class="partners-section">
   <div class="partners-inner rv">
     <div class="audience-grid">
-      <a class="aud-card" href="/parteneri.html">
-        <div>
-          <span class="aud-eyebrow" data-t="aud1E">Pentru locații</span>
-          <p class="aud-title" data-t="aud1T">Vreau HelloHuman la mine</p>
-        </div>
-        <div class="aud-arrow">
-          <span data-t="aud1Cta">Vezi cum funcționează</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
+      <a class="aud-card aud-gold" href="/parteneri.html">
+        <span class="aud-eyebrow" data-t="aud1E">Pentru locații</span>
+        <p class="aud-title" data-t="aud1T">Vreau HelloHuman la mine</p>
       </a>
-      <a class="aud-card" href="/business">
-        <div>
-          <span class="aud-eyebrow" data-t="aud2E">Pentru companii</span>
-          <p class="aud-title" data-t="aud2T">Evaluare rapidă · 2 minute</p>
-        </div>
-        <div class="aud-arrow">
-          <span data-t="aud2Cta">Începe evaluarea</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
+      <a class="aud-card aud-verde" href="/business">
+        <span class="aud-eyebrow" data-t="aud2E">Pentru companii</span>
+        <p class="aud-title" data-t="aud2T">Evaluare rapidă · 2 minute</p>
       </a>
     </div>
   </div>
@@ -422,7 +413,6 @@ section.dark .door span{color:var(--gold)}
 </footer>
 </div>
 
-<!-- APLICAȚIA participantului — LOGICA ORIGINALĂ -->
 <div id="app">
 <button id="aLang" type="button" aria-label="Language">EN</button>
 
