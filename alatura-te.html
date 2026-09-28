@@ -131,6 +131,7 @@ h1, h2, .hero h1{font-variation-settings:"opsz" 48 !important; font-optical-sizi
 <script src="/core.js"></script>
 <script>
 var lang='ro';
+
 var L={
  ro:{
   ttl:'HelloHuman pentru locații — prima seară, din partea noastră',
@@ -176,6 +177,9 @@ var L={
  }
 };
 
+/* === IMPORTANT: toate variabilele de bază sunt definite SUS === */
+var el=HH.el, esc=HH.esc, say=HH.say;
+
 /* Valorile trimise la CRM rămân mereu în română */
 var KIND=[['bar','Bar sau restaurant'],['book','Librărie'],['cafe','Cafenea'],
           ['cult','Muzeu sau spațiu cultural'],['hotel','Hotel sau pensiune'],
@@ -186,7 +190,7 @@ var FOUND=[['rec','Mi-a recomandat cineva'],['google','Am căutat pe Google'],['
            ['fb','Facebook sau Instagram'],['event','Am fost la o seară'],['press','Presă sau podcast'],
            ['other','Altfel']];
 
-/* Traduceri pentru afișare (cheia rămâne aceeași) */
+/* Traduceri pentru afișare */
 var KIND_EN={bar:'Bar or restaurant',book:'Bookshop',cafe:'Café',
              cult:'Museum or cultural space',hotel:'Hotel or guesthouse',
              term:'Airport, station, terminal',agency:'Event agency',
@@ -198,11 +202,6 @@ var FOUND_EN={rec:'Someone recommended it',google:'Searched on Google',linkedin:
 
 var kind='', cafeSub='', found='';
 
-function labelDe(list, enMap, val){
-  if(lang==='en'){ return enMap[val] || ''; }
-  var f=list.filter(function(x){return x[0]===val})[0];
-  return f?f[1]:'';
-}
 function nume(list,v){ var f=list.filter(function(x){return x[0]===v})[0]; return f?f[1]:'' }
 
 function paint(box,list,enMap,sel){
@@ -262,8 +261,6 @@ function nu(msg,camp){
   el('rMsg').scrollIntoView({block:'center',behavior:'smooth'});
 }
 
-var el=HH.el, esc=HH.esc, say=HH.say;
-
 el('rMail').onkeydown=el('rPhone').onkeydown=function(e){ if(e.key==='Enter'){e.preventDefault();el('rSend').click()} };
 
 el('rSend').onclick=async function(){
@@ -287,7 +284,6 @@ el('rSend').onclick=async function(){
   var span=b.querySelector('span');
   b.disabled=true; if(span)span.textContent=(lang==='en'?'Sending…':'Se trimite…'); say('rMsg','');
   try{
-    /* Trimitem valorile originale (RO) către CRM, indiferent de limba interfeței */
     await HH.API.request({
       name:n,
       city:c,
