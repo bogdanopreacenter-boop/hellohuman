@@ -15,7 +15,6 @@
 <style>
 h1, h2, .hero h1{font-variation-settings:"opsz" 48 !important; font-optical-sizing:none !important;}
 .trust-micro{font-size:13px; color:var(--dim); text-align:center; margin-top:12px; letter-spacing:.01em;}
-.trust-micro span{display:inline-block}
 @media(max-width:640px){
   .barnav .hidem{display:none !important}
   .barnav .bizlink{white-space:nowrap; font-size:13px}
@@ -177,6 +176,70 @@ var L={
  }
 };
 
+/* Valorile trimise la CRM rămân mereu în română */
+var KIND=[['bar','Bar sau restaurant'],['book','Librărie'],['cafe','Cafenea'],
+          ['cult','Muzeu sau spațiu cultural'],['hotel','Hotel sau pensiune'],
+          ['term','Aeroport, gară, terminal'],['agency','Agenție de evenimente'],
+          ['other','Altceva']];
+var CAFE_SUB=[['specialty','De specialitate'],['cartier','De cartier'],['lant','Lanț sau flux mare'],['altul','Altceva']];
+var FOUND=[['rec','Mi-a recomandat cineva'],['google','Am căutat pe Google'],['linkedin','LinkedIn'],
+           ['fb','Facebook sau Instagram'],['event','Am fost la o seară'],['press','Presă sau podcast'],
+           ['other','Altfel']];
+
+/* Traduceri pentru afișare (cheia rămâne aceeași) */
+var KIND_EN={bar:'Bar or restaurant',book:'Bookshop',cafe:'Café',
+             cult:'Museum or cultural space',hotel:'Hotel or guesthouse',
+             term:'Airport, station, terminal',agency:'Event agency',
+             other:'Other'};
+var CAFE_SUB_EN={specialty:'Specialty',cartier:'Neighbourhood',lant:'Chain or high traffic',altul:'Other'};
+var FOUND_EN={rec:'Someone recommended it',google:'Searched on Google',linkedin:'LinkedIn',
+              fb:'Facebook or Instagram',event:'Attended an evening',press:'Press or podcast',
+              other:'Other'};
+
+var kind='', cafeSub='', found='';
+
+function labelDe(list, enMap, val){
+  if(lang==='en'){ return enMap[val] || ''; }
+  var f=list.filter(function(x){return x[0]===val})[0];
+  return f?f[1]:'';
+}
+function nume(list,v){ var f=list.filter(function(x){return x[0]===v})[0]; return f?f[1]:'' }
+
+function paint(box,list,enMap,sel){
+  el(box).innerHTML=list.map(function(x){
+    var label = (lang==='en' && enMap[x[0]]) ? enMap[x[0]] : x[1];
+    return '<button class="opt'+(x[0]===sel?' sel':'')+'" data-v="'+x[0]+'">'+esc(label)+'</button>' }).join('');
+}
+function paintKind(){ paint('rKind',KIND,KIND_EN,kind) }
+function paintFound(){ paint('rFound',FOUND,FOUND_EN,found) }
+function paintCafeSub(){ paint('rCafeSub',CAFE_SUB,CAFE_SUB_EN,cafeSub) }
+
+function selUnic(box, val){
+  var copii = el(box).children;
+  for(var i=0;i<copii.length;i++){
+    var c = copii[i];
+    if(c.dataset && c.dataset.v === val){ c.classList.add('sel') }
+    else { c.classList.remove('sel') }
+  }
+}
+
+el('rKind').onclick=function(e){
+  var b=e.target.closest('.opt'); if(!b)return;
+  kind=b.dataset.v;
+  selUnic('rKind', kind);
+  el('rCafeBox').style.display=(kind==='cafe')?'':'none';
+};
+el('rCafeSub').onclick=function(e){
+  var b=e.target.closest('.opt'); if(!b)return;
+  cafeSub=b.dataset.v;
+  selUnic('rCafeSub', cafeSub);
+};
+el('rFound').onclick=function(e){
+  var b=e.target.closest('.opt'); if(!b)return;
+  found=b.dataset.v;
+  selUnic('rFound', found);
+};
+
 function setLang(v){ lang=v; try{localStorage.setItem('hh_l',v)}catch(e){} applyLang() }
 function applyLang(){
   var d=L[lang];
@@ -192,52 +255,15 @@ function applyLang(){
   paintKind(); paintFound(); paintCafeSub();
 }
 
-var el=HH.el, esc=HH.esc, say=HH.say;
-
-/* Opțiunile rămân neschimbate pentru a proteja integrarea CRM */
-var KIND=[['bar','Bar sau restaurant'],['book','Librărie'],['cafe','Cafenea'],
-          ['cult','Muzeu sau spațiu cultural'],['hotel','Hotel sau pensiune'],
-          ['term','Aeroport, gară, terminal'],['agency','Agenție de evenimente'],
-          ['other','Altceva']];
-var CAFE_SUB=[['specialty','De specialitate'],['cartier','De cartier'],['lant','Lanț sau flux mare'],['altul','Altceva']];
-var FOUND=[['rec','Mi-a recomandat cineva'],['google','Am căutat pe Google'],['linkedin','LinkedIn'],
-           ['fb','Facebook sau Instagram'],['event','Am fost la o seară'],['press','Presă sau podcast'],
-           ['other','Altfel']];
-var kind='', cafeSub='', found='';
-
-function paint(box,list,sel){
-  el(box).innerHTML=list.map(function(x){
-    return '<button class="opt'+(x[0]===sel?' sel':'')+'" data-v="'+x[0]+'">'+esc(x[1])+'</button>' }).join('');
-}
-function paintKind(){ paint('rKind',KIND,kind) }
-function paintFound(){ paint('rFound',FOUND,found) }
-function paintCafeSub(){ paint('rCafeSub',CAFE_SUB,cafeSub) }
-paintKind();
-paintFound();
-paintCafeSub();
-
-el('rKind').onclick=function(e){
-  var b=e.target.closest('.opt'); if(!b)return;
-  kind=b.dataset.v;
-  [].slice.call(el('rKind').children).forEach(function(x){x.classList.toggle('sel',x.dataset.v===kind)});
-  el('rCafeBox').style.display=(kind==='cafe')?'':'none';
-};
-el('rCafeSub').onclick=function(e){
-  var b=e.target.closest('.opt'); if(!b)return;
-  cafeSub=b.dataset.v;
-  [].slice.call(el('rCafeSub').children).forEach(function(x){x.classList.toggle('sel',x.dataset.v===cafeSub)});
-};
-el('rFound').onclick=function(e){var b=e.target.closest('.opt');if(!b)return;found=b.dataset.v;
-  [].slice.call(el('rFound').children).forEach(function(x){x.classList.toggle('sel',x.dataset.v===found)})};
-
-function nume(list,v){ var f=list.filter(function(x){return x[0]===v})[0]; return f?f[1]:'' }
-
 function nu(msg,camp){
   say('rMsg',msg,'err');
   if(camp){camp.style.borderColor='var(--rust)';camp.focus();
     setTimeout(function(){camp.style.borderColor=''},2500)}
   el('rMsg').scrollIntoView({block:'center',behavior:'smooth'});
 }
+
+var el=HH.el, esc=HH.esc, say=HH.say;
+
 el('rMail').onkeydown=el('rPhone').onkeydown=function(e){ if(e.key==='Enter'){e.preventDefault();el('rSend').click()} };
 
 el('rSend').onclick=async function(){
@@ -261,6 +287,7 @@ el('rSend').onclick=async function(){
   var span=b.querySelector('span');
   b.disabled=true; if(span)span.textContent=(lang==='en'?'Sending…':'Se trimite…'); say('rMsg','');
   try{
+    /* Trimitem valorile originale (RO) către CRM, indiferent de limba interfeței */
     await HH.API.request({
       name:n,
       city:c,
@@ -281,6 +308,7 @@ el('rSend').onclick=async function(){
     nu((lang==='en'?'Could not send: ':'Nu am putut trimite: ')+e.message+'. '+(lang==='en'?'You can write to us at contact@hellohuman.ro.':'Ne puteți scrie la contact@hellohuman.ro.'));
   }
 };
+
 (function(){
   try{ var s=localStorage.getItem('hh_l'); if(s)lang=s;
     else if((navigator.language||'').toLowerCase().indexOf('ro')!==0)lang='en' }catch(e){}
