@@ -100,8 +100,80 @@
 .how-steps .step .n{font-family:var(--disp);font-weight:900;font-size:clamp(34px,4.5vw,46px);line-height:1;color:var(--gold);letter-spacing:-.04em;margin-bottom:10px;font-variation-settings:"opsz" 72}
 .how-steps .step h3{margin-bottom:6px;color:var(--ink)}
 .how-steps .step p{font-size:15px;color:var(--dim);line-height:1.65;max-width:none}
-.qr-card{background:var(--oat2);border:1px solid var(--lined);border-radius:3px;padding:clamp(20px,3vw,28px);transform:rotate(-2deg);box-shadow:0 24px 60px -24px rgba(11,38,32,.28);max-width:380px;margin:0 auto}
-.qr-card img{width:100%;height:auto;display:block;border-radius:2px}
+
+/* ---------- Tichetul premium din „Cum funcționează" ---------- */
+.ticket-showcase{
+  position:relative;
+  max-width:340px;
+  margin:0 auto;
+  padding:clamp(26px,3.4vw,34px) clamp(24px,3.2vw,32px);
+  background:var(--oat2);
+  border:1px solid var(--lined);
+  border-radius:3px;
+  color:var(--ink);
+  transform:rotate(-1.8deg);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.9) inset,
+    0 34px 64px -34px rgba(11,38,32,.38),
+    0 14px 28px -18px rgba(11,38,32,.18),
+    0 4px 10px -6px rgba(11,38,32,.10);
+  transition:transform .5s cubic-bezier(.22,.61,.36,1),box-shadow .5s cubic-bezier(.22,.61,.36,1);
+}
+.ticket-showcase::after{
+  content:"";
+  position:absolute;inset:9px;
+  border:1px solid rgba(11,38,32,.07);
+  border-radius:3px;
+  pointer-events:none;
+}
+.ticket-showcase:hover{
+  transform:rotate(-.6deg) translateY(-3px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.9) inset,
+    0 42px 76px -34px rgba(11,38,32,.42),
+    0 18px 34px -18px rgba(11,38,32,.22),
+    0 6px 12px -6px rgba(11,38,32,.12);
+}
+@media(prefers-reduced-motion:no-preference){
+  .ticket-showcase{animation:tsIn .8s cubic-bezier(.2,.8,.25,1) both}
+  @keyframes tsIn{from{opacity:0;transform:rotate(-6deg) translateY(24px) scale(.96)}to{opacity:1;transform:rotate(-1.8deg)}}
+}
+.ts-k{
+  font-family:var(--sans);font-size:10.5px;font-weight:600;
+  letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold2);margin:0 0 8px;
+}
+.ts-n{
+  font-family:var(--disp);font-weight:500;
+  font-size:clamp(48px,7.5vw,62px);line-height:1;
+  letter-spacing:-.03em;color:var(--ink);
+  margin:0 0 22px;font-variation-settings:"opsz" 72;
+}
+.ts-r{display:block;height:1px;background:var(--lined);margin:0 0 16px}
+.ts-row{
+  display:flex;justify-content:space-between;gap:16px;
+  padding:7px 0;align-items:baseline;
+}
+.ts-row span{
+  font-family:var(--sans);font-size:12.5px;color:var(--dim);flex:none;
+}
+.ts-row b{
+  font-family:var(--disp);font-weight:500;font-size:15px;
+  text-align:right;color:var(--ink);line-height:1.3;
+  font-variation-settings:"opsz" 24;max-width:60%;
+}
+.ts-t{
+  font-family:var(--sans);font-size:13px;color:var(--dim);
+  margin:16px 0 0;letter-spacing:.08em;
+  font-variant-numeric:tabular-nums;
+}
+@media(max-width:900px){
+  .ticket-showcase{max-width:320px}
+}
+@media(max-width:520px){
+  .ticket-showcase{max-width:100%;transform:rotate(-1.4deg)}
+  .ticket-showcase:hover{transform:rotate(-.4deg)}
+}
 
 .partners-section{padding:clamp(48px,7vw,80px) 0;background:var(--oat);border-top:1px solid var(--lined)}
 .partners-inner{max-width:900px;margin:0 auto;padding:0 clamp(22px,6vw,40px)}
@@ -214,74 +286,82 @@ section.dark .door span{color:var(--gold)}
 }
 .fly-ticket{
   position:absolute;
-  width:168px;
-  padding:13px 15px;
+  width:140px;
+  padding:11px 13px;
   background:var(--oat2);
-  border:1px solid rgba(200,145,42,.38);
+  border:1px solid rgba(200,145,42,.42);
   border-radius:3px;
   color:var(--ink);
   opacity:0;
-  filter:blur(3.5px);
-  box-shadow:0 10px 26px -14px rgba(11,38,32,.28);
+  filter:blur(2.5px);
+  box-shadow:0 8px 22px -12px rgba(11,38,32,.30);
   animation:ticketFloat 14s cubic-bezier(.22,.61,.36,1) infinite;
   will-change:transform,opacity;
 }
 .fly-ticket .ft-k{
-  font-family:var(--sans);font-size:9px;font-weight:600;
+  font-family:var(--sans);font-size:8px;font-weight:600;
   letter-spacing:.22em;text-transform:uppercase;
   color:var(--gold2);margin:0 0 3px;
 }
 .fly-ticket .ft-n{
-  font-family:var(--disp);font-size:26px;font-weight:500;
+  font-family:var(--disp);font-size:20px;font-weight:500;
   line-height:1;letter-spacing:-.03em;color:var(--ink);
-  margin:0 0 9px;font-variation-settings:"opsz" 48;
+  margin:0 0 8px;font-variation-settings:"opsz" 48;
 }
 .fly-ticket .ft-r{
   display:block;height:1px;
   background:rgba(11,38,32,.14);
-  margin:0 0 9px;
+  margin:0 0 8px;
 }
 .fly-ticket .ft-w{
-  font-family:var(--disp);font-size:13.5px;font-weight:500;
-  color:var(--ink);margin:0 0 7px;line-height:1.25;
+  font-family:var(--disp);font-size:11.5px;font-weight:500;
+  color:var(--ink);margin:0 0 6px;line-height:1.25;
   letter-spacing:-.008em;
 }
 .fly-ticket .ft-q{
   font-family:var(--disp);font-style:italic;font-weight:400;
-  font-size:13px;color:var(--gold2);margin:0;line-height:1.35;
+  font-size:11px;color:var(--gold2);margin:0;line-height:1.35;
 }
 
-.fly-ticket.ft-a{top:5%;left:3%;animation-delay:0s;--dx:42px;--dy:34px;--rot:-3deg}
-.fly-ticket.ft-b{top:8%;right:3%;animation-delay:3.5s;--dx:-44px;--dy:30px;--rot:2.5deg}
-.fly-ticket.ft-c{bottom:7%;left:5%;animation-delay:7s;--dx:46px;--dy:-32px;--rot:-2deg}
-.fly-ticket.ft-d{bottom:5%;right:5%;animation-delay:10.5s;--dx:-40px;--dy:-36px;--rot:3deg}
+.fly-ticket.ft-a{top:5%;left:3%;animation-delay:0s;--dx:36px;--dy:30px;--rot:-3deg}
+.fly-ticket.ft-b{top:8%;right:3%;animation-delay:3.5s;--dx:-38px;--dy:26px;--rot:2.5deg}
+.fly-ticket.ft-c{bottom:7%;left:5%;animation-delay:7s;--dx:40px;--dy:-28px;--rot:-2deg}
+.fly-ticket.ft-d{bottom:5%;right:5%;animation-delay:10.5s;--dx:-34px;--dy:-32px;--rot:3deg}
 
 @keyframes ticketFloat{
   0%   {opacity:0;transform:translate(0,0) rotate(0deg) scale(.94)}
-  10%  {opacity:.45}
-  65%  {opacity:.45;transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(1)}
+  10%  {opacity:.55}
+  65%  {opacity:.55;transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(1)}
   82%  {opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(1)}
   100% {opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(1)}
 }
 
 @media(max-width:700px){
   .fly-ticket{
-    width:132px;padding:10px 12px;
-    filter:blur(5px);
+    width:92px;
+    padding:8px 10px;
+    filter:blur(1.5px);
   }
-  .fly-ticket .ft-k{font-size:8px;letter-spacing:.2em;margin-bottom:2px}
-  .fly-ticket .ft-n{font-size:20px;margin-bottom:7px}
-  .fly-ticket .ft-r{margin-bottom:7px}
-  .fly-ticket .ft-w{font-size:12px;margin-bottom:5px}
-  .fly-ticket .ft-q{font-size:11.5px}
+  .fly-ticket .ft-k{font-size:6.5px;letter-spacing:.18em;margin-bottom:2px}
+  .fly-ticket .ft-n{font-size:15px;margin-bottom:6px}
+  .fly-ticket .ft-r{margin-bottom:6px}
+  .fly-ticket .ft-w{font-size:9.5px;margin-bottom:4px}
+  .fly-ticket .ft-q{font-size:9px;line-height:1.3}
   .fly-ticket.ft-a{top:3%;left:1%}
   .fly-ticket.ft-b{top:5%;right:1%}
   .fly-ticket.ft-c{bottom:4%;left:2%}
   .fly-ticket.ft-d{bottom:3%;right:2%}
+  @keyframes ticketFloat{
+    0%   {opacity:0;transform:translate(0,0) rotate(0deg) scale(.94)}
+    10%  {opacity:.70}
+    65%  {opacity:.70;transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(1)}
+    82%  {opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(1)}
+    100% {opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(1)}
+  }
 }
 
 @media(prefers-reduced-motion:reduce){
-  .fly-ticket{animation:none;opacity:.35;filter:blur(3.5px)}
+  .fly-ticket{animation:none;opacity:.45;filter:blur(2.5px)}
 }
 </style>
 </head>
@@ -420,9 +500,14 @@ section.dark .door span{color:var(--gold)}
         <div class="step"><p class="n">4</p><h3 data-t="s4h">Începi</h3><p data-t="s4p">Un prenume, un număr de masă, o întrebare. Atât ți se dă.</p></div>
       </div>
       <div>
-        <div class="qr-card">
-          <img src="/cartonas-final.jpg" width="1408" height="768" loading="lazy" decoding="async"
-               alt="Cartonașul HelloHuman cu cod QR, față și spate.">
+        <div class="ticket-showcase" aria-hidden="true">
+          <p class="ts-k">MASA TA</p>
+          <p class="ts-n">7</p>
+          <span class="ts-r"></span>
+          <div class="ts-row"><span data-t="kCu">La masă cu tine</span><b>Ana, Radu</b></div>
+          <div class="ts-row"><span data-t="kQ">De aici porniți</span><b data-t="kQt">Ce ai învățat prea târziu?</b></div>
+          <span class="ts-r"></span>
+          <p class="ts-t">20:00</p>
         </div>
       </div>
     </div>
