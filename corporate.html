@@ -36,7 +36,7 @@
    ============================================================ */
 h1, h2, h3{font-variation-settings:"opsz" 48}
 
-/* Hero cu SVG + QR în centru */
+/* Hero cu SVG + poză în hub */
 .corp-hero{padding:clamp(30px,5vw,60px) 0 clamp(56px,8vw,88px);background:var(--oat)}
 .corp-hero .wrap{max-width:1180px;display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(28px,4vw,56px);align-items:center}
 @media(max-width:900px){.corp-hero .wrap{grid-template-columns:1fr;gap:40px}}
@@ -68,10 +68,12 @@ h1, h2, h3{font-variation-settings:"opsz" 48}
 .hh-hub-rot{transform-origin:center;animation:hhSpin 80s linear infinite}
 @keyframes hhSpin{to{transform:rotate(360deg)}}
 
-.hub-qr{
-  position:absolute;top:50%;left:50%;width:32%;aspect-ratio:1/1;
-  transform:translate(-50%,-50%);z-index:5;border-radius:50%;
-  background:#F7F4ED;padding:3%;box-sizing:content-box;
+.hub-photo{
+  position:absolute;top:50%;left:50%;
+  width:32%;aspect-ratio:1/1;
+  transform:translate(-50%,-50%);
+  z-index:5;border-radius:50%;
+  overflow:hidden;background:#F7F4ED;
   box-shadow:
     0 0 0 4px #0B2620,
     0 0 0 7px #C8912A,
@@ -83,7 +85,7 @@ h1, h2, h3{font-variation-settings:"opsz" 48}
   0%,100%{box-shadow:0 0 0 4px #0B2620, 0 0 0 7px #C8912A, 0 0 0 8px rgba(200,145,42,.20), 0 20px 40px -16px rgba(11,38,32,.55)}
   50%    {box-shadow:0 0 0 4px #0B2620, 0 0 0 7px #C8912A, 0 0 0 14px rgba(200,145,42,.10), 0 20px 40px -16px rgba(11,38,32,.55)}
 }
-.hub-qr canvas{width:100%;height:100%;display:block;border-radius:50%}
+.hub-photo img{width:100%;height:100%;object-fit:cover;display:block}
 
 /* Two columns */
 .two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,56px);align-items:start}
@@ -137,7 +139,6 @@ section.dark .steps-grid .step p{color:var(--mist)}
 }
 .btn span{display:inline}
 </style>
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 </head>
 <body>
 
@@ -208,8 +209,8 @@ section.dark .steps-grid .step p{color:var(--mist)}
         <circle cx="200" cy="75" r="8" fill="#0B2620" class="hh-node d5"/>
         <circle cx="200" cy="330" r="10" fill="#C8912A" class="hh-node"/>
       </svg>
-      <div class="hub-qr">
-        <canvas id="qrCanvasCorp" width="400" height="400"></canvas>
+      <div class="hub-photo">
+        <img src="/hero-scanare-real.jpg" alt="Cartonaș HelloHuman cu cod QR, scanat cu telefonul, pe o masă de bar.">
       </div>
     </div>
   </div>
@@ -418,16 +419,6 @@ function applyLang(){
   applyLang();
   var b=document.getElementById('bLang');
   if(b)b.onclick=function(){ setLang(lang==='ro'?'en':'ro') };
-})();
-
-/* QR în hub */
-(function(){
-  var c = document.getElementById('qrCanvasCorp');
-  if(!c || typeof QRCode === 'undefined') return;
-  QRCode.toCanvas(c, 'https://hellohuman.ro', {
-    width: 400, margin: 0, errorCorrectionLevel: 'H',
-    color: { dark: '#0B2620', light: '#F7F4ED' }
-  }, function(err){ if(err) console.error(err); });
 })();
 
 if('IntersectionObserver' in window){
