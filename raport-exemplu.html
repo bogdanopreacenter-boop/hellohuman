@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Raport exemplu — HelloHuman</title>
+<meta name="description" content="Exemplu de raport de coeziune organizațională. Harta conexiunilor interne după 2 săptămâni de pauze de cafea structurate.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0B2620">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="/marca.svg">
+
+<style>
+:root{
+  --verde:#0B2620;--verde2:#163A31;
+  --os:#F7F4ED;--os2:#FDFBF6;
+  --gri:#6B7A73;--gri2:#9AA8A1;
+  --ocru:#C8912A;--ocru2:#8C6114;
+  --linie:#E4DDD0;
+  --disp:"Newsreader",Georgia,serif;
+  --sans:"Inter",-apple-system,system-ui,sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--os);color:var(--verde);font-family:var(--sans);
+  font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;
+  padding:clamp(28px,6vw,64px) clamp(22px,6vw,48px);
+  padding-top:calc(clamp(28px,6vw,64px) + env(safe-area-inset-top,0px));
+  padding-bottom:calc(clamp(28px,6vw,64px) + env(safe-area-inset-bottom,0px));
+}
+.wrap{max-width:780px;margin:0 auto}
+
+/* Header */
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:clamp(34px,6vw,54px);gap:16px}
+.logo{font-family:var(--sans);font-weight:600;letter-spacing:-.02em;font-size:18px;
+  color:var(--verde);display:inline-flex;align-items:center;gap:10px;
+  text-decoration:none;transition:opacity .25s}
+.logo:hover{opacity:.72}
+.logo svg{width:30px;height:30px;flex:none;display:block}
+.tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gri);font-weight:500}
+
+/* Typography */
+h1{font-family:var(--disp);font-weight:400;font-size:clamp(30px,5vw,44px);
+  line-height:1.1;letter-spacing:-.015em;margin-bottom:14px;
+  font-optical-sizing:auto;font-variation-settings:"opsz" 48}
+h2{font-family:var(--disp);font-weight:400;font-size:clamp(22px,3.4vw,30px);
+  line-height:1.2;letter-spacing:-.01em;margin:0 0 12px;
+  font-optical-sizing:auto;font-variation-settings:"opsz" 36}
+h3{font-family:var(--disp);font-weight:500;font-size:18px;
+  line-height:1.3;letter-spacing:-.008em;margin:0 0 8px;
+  font-optical-sizing:auto}
+.lead{font-family:var(--disp);font-style:italic;font-weight:400;
+  font-size:clamp(17px,2.3vw,20px);color:var(--ocru2);
+  line-height:1.5;margin-bottom:22px;font-optical-sizing:auto}
+p.t{font-size:15px;color:var(--gri);line-height:1.75;margin-bottom:14px}
+.mic{font-size:13px;color:var(--gri)}
+
+/* Section */
+section{margin-bottom:clamp(38px,6vw,60px)}
+.eyebrow{font-family:var(--disp);font-style:italic;font-size:15px;
+  color:var(--ocru2);margin-bottom:14px}
+
+/* Carduri cifre */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}
+@media(max-width:600px){.stats{grid-template-columns:1fr}}
+.stat{background:var(--os2);border:1px solid var(--linie);
+  border-radius:3px;padding:22px 20px}
+.stat .n{font-family:var(--disp);font-weight:500;font-size:clamp(32px,5vw,40px);
+  line-height:1;color:var(--verde);letter-spacing:-.03em;
+  font-optical-sizing:auto;font-variation-settings:"opsz" 72}
+.stat .l{font-size:12px;color:var(--gri);margin-top:10px;
+  letter-spacing:.06em;line-height:1.4}
+
+/* Harta SVG */
+.harta{background:var(--os2);border:1px solid var(--linie);
+  border-radius:3px;padding:32px 20px;margin:24px 0;
+  position:relative;overflow:hidden}
+.harta svg{display:block;width:100%;max-width:520px;margin:0 auto;height:auto}
+.harta .cap{font-size:12px;color:var(--gri);text-align:center;
+  margin-top:20px;font-style:italic}
+
+/* Lista cu ce arată / nu arată */
+.liste{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+@media(max-width:600px){.liste{grid-template-columns:1fr}}
+.lista{background:var(--os2);border:1px solid var(--linie);
+  border-radius:3px;padding:24px 22px}
+.lista h3{font-family:var(--sans);font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ocru2);font-weight:600;
+  margin-bottom:14px}
+.lista ul{list-style:none;padding:0;margin:0}
+.lista li{font-size:14.5px;color:var(--gri);line-height:1.6;
+  padding:7px 0 7px 18px;position:relative}
+.lista li::before{content:"";position:absolute;left:0;top:14px;
+  width:6px;height:1px;background:var(--ocru)}
+.lista li b{color:var(--verde);font-weight:500}
+
+/* Nota */
+.note{background:rgba(200,145,42,.08);border-left:2px solid var(--ocru);
+  padding:18px 20px;border-radius:0 2px 2px 0;margin:24px 0;
+  font-size:14.5px;color:var(--gri);line-height:1.65}
+.note b{color:var(--verde);display:block;margin-bottom:6px;
+  font-weight:600;font-style:normal}
+
+/* Semnătura metodologie */
+.metod{background:var(--verde);color:var(--os);border-radius:3px;
+  padding:28px 26px;margin:32px 0;text-align:center}
+.metod .k{font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--ocru);font-weight:600;margin-bottom:12px}
+.metod p{font-size:14.5px;color:rgba(247,244,237,.75);
+  line-height:1.65;max-width:520px;margin:0 auto}
+.metod .sig{font-family:var(--disp);font-style:italic;font-size:15px;
+  color:var(--os);margin-top:16px;font-optical-sizing:auto}
+
+/* CTA final */
+.final{text-align:center;padding:32px 20px;background:var(--os2);
+  border:1px solid var(--linie);border-radius:3px;margin-top:40px}
+.final p{font-size:15px;color:var(--gri);margin-bottom:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;
+  background:var(--ocru);border:1px solid var(--ocru);color:var(--verde);
+  font-family:var(--sans);font-size:13px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  padding:14px 28px;text-decoration:none;border-radius:3px;
+  transition:all .3s var(--ease);cursor:pointer}
+.btn:hover{background:var(--verde);border-color:var(--verde);color:var(--os);
+  transform:translateY(-2px)}
+
+/* Footer */
+.foot{margin-top:48px;padding-top:24px;border-top:1px solid var(--linie);
+  font-size:12.5px;color:var(--gri2);text-align:center;line-height:1.7}
+.foot a{color:var(--gri);text-decoration:none}
+.foot a:hover{color:var(--verde)}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="topbar">
+    <a class="logo" href="/" aria-label="HelloHuman">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g transform="translate(50 52)">
+          <ellipse cx="0" cy="-22" rx="17" ry="22" fill="#0B2620"/>
+          <ellipse cx="0" cy="-22" rx="17" ry="22" fill="#0B2620" transform="rotate(120)"/>
+          <ellipse cx="0" cy="-22" rx="17" ry="22" fill="#C8912A" transform="rotate(240)"/>
+          <circle r="13" fill="#F7F4ED"/>
+        </g>
+      </svg>
+      HelloHuman
+    </a>
+    <span class="tag">Exemplu de raport</span>
+  </div>
+
+  <section>
+    <p class="eyebrow">Mostră</p>
+    <h1>Harta conexiunilor interne.</h1>
+    <p class="lead">Un exemplu de raport după 2 săptămâni de pauze de cafea structurate, la o companie cu 4 departamente și echipe distribuite.</p>
+    <p class="t">Cifrele de mai jos sunt fictive, dar structura și formatul sunt exacte. Acesta este documentul pe care îl primiți la finalul unui pilot.</p>
+  </section>
+
+  <section>
+    <div class="stats">
+      <div class="stat"><div class="n">78%</div><div class="l">Rată de participare<br>187 din 240 invitați</div></div>
+      <div class="stat"><div class="n">312</div><div class="l">Interacțiuni unice<br>între departamente</div></div>
+      <div class="stat"><div class="n">68</div><div class="l">Perechi reciproce<br>confirmate</div></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Ce vedeți în raport</p>
+    <h2>Harta departamentelor.</h2>
+    <p class="t">Fiecare nod este un departament. Fiecare linie este o conexiune nouă formată în cele 2 săptămâni. Grosimea liniei arată frecvența interacțiunilor. Zonele fără linii sunt zonele izolate.</p>
+
+    <div class="harta">
+      <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- Legături -->
+        <line x1="150" y1="110" x2="350" y2="100" stroke="#C8912A" stroke-width="3" opacity=".7"/>
+        <line x1="150" y1="110" x2="120" y2="290" stroke="#C8912A" stroke-width="2" opacity=".5"/>
+        <line x1="350" y1="100" x2="400" y2="270" stroke="#0B2620" stroke-width="4" opacity=".55"/>
+        <line x1="120" y1="290" x2="400" y2="270" stroke="#C8912A" stroke-width="2" opacity=".45"/>
+        <line x1="350" y1="100" x2="120" y2="290" stroke="#0B2620" stroke-width="1.5" opacity=".3"/>
+        <!-- Noduri -->
+        <g>
+          <circle cx="150" cy="110" r="44" fill="#F7F4ED" stroke="#0B2620" stroke-width="2"/>
+          <text x="150" y="115" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#0B2620">Vânzări</text>
+        </g>
+        <g>
+          <circle cx="350" cy="100" r="48" fill="#F7F4ED" stroke="#C8912A" stroke-width="2.5"/>
+          <text x="350" y="105" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#0B2620">IT</text>
+        </g>
+        <g>
+          <circle cx="120" cy="290" r="42" fill="#F7F4ED" stroke="#0B2620" stroke-width="2"/>
+          <text x="120" y="295" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#0B2620">Marketing</text>
+        </g>
+        <g>
+          <circle cx="400" cy="270" r="38" fill="#F7F4ED" stroke="#9AA8A1" stroke-width="2" stroke-dasharray="3 4"/>
+          <text x="400" y="275" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#6B7A73">Operațiuni</text>
+        </g>
+        <!-- Legenda -->
+        <text x="250" y="380" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-style="italic" fill="#9AA8A1">Conexiunile reciproce sunt reprezentate prin linii pline</text>
+      </svg>
+      <p class="cap">Operațiuni apare cu linie punctată: a rămas izolat de restul rețelei.</p>
+    </div>
+
+    <p class="t">Observații extrase automat din date:</p>
+    <div class="note">
+      <b>Zona de risc</b>
+      Operațiuni a avut cele mai puține conexiuni noi. Doar 2 interacțiuni în 2 săptămâni, ambele cu Vânzări. Zero cu IT.
+    </div>
+    <div class="note">
+      <b>Zona de creștere</b>
+      IT și Vânzări au format 14 perechi reciproce, cel mai mare număr din organizație. Este o punte care nu exista înainte.
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Ce include și ce nu include raportul</p>
+    <h2>Anonimatul, în detaliu.</h2>
+
+    <div class="liste">
+      <div class="lista">
+        <h3>Ce arată raportul</h3>
+        <ul>
+          <li>Câte conexiuni noi s-au format</li>
+          <li>Ce departamente s-au apropiat</li>
+          <li>Care au rămas izolate</li>
+          <li>Frecvența și reciprocitatea interacțiunilor</li>
+        </ul>
+      </div>
+      <div class="lista">
+        <h3>Ce NU arată raportul</h3>
+        <ul>
+          <li>Nu arată <b>cine</b> a vorbit cu cine</li>
+          <li>Nu arată <b>cine</b> e izolat</li>
+          <li>Nu arată <b>ce</b> a spus fiecare</li>
+          <li>Nu arată persoane unice, doar interacțiuni</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="t">Datele sunt agregate pe departamente, pentru grupuri de minim 5 persoane. Niciun rezultat nu poate fi urmărit la nivel individual. Este o regulă pe care o aplicăm automat, nu una pe care o promitem.</p>
+  </section>
+
+  <section>
+    <div class="metod">
+      <p class="k">Metodologie</p>
+      <p>Raportul este generat folosind principiile Organizational Network Analysis, aplicate pe interacțiuni reale măsurate la masă. Metodologia a fost dezvoltată împreună cu psihologi și sociologi organizaționali.</p>
+      <p class="sig">Validat de [Nume psiholog], acreditat COP nr. [număr]</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="final">
+      <p>Vă interesează un pilot gratuit de 2 săptămâni pentru departamentele dumneavoastră?</p>
+      <a class="btn" href="mailto:contact@hellohuman.ro?subject=Pilot%20HelloHuman">Scrieți-ne</a>
+    </div>
+  </section>
+
+  <div class="foot">
+    <p>HelloHuman · <a href="mailto:contact@hellohuman.ro">contact@hellohuman.ro</a> · <a href="/business">hellohuman.ro/business</a></p>
+    <p style="margin-top:8px">Acest document este o mostră. Cifrele sunt fictive. Structura, formatul și metodologia sunt cele reale.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
