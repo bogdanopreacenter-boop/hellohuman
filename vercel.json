@@ -52,6 +52,15 @@
           "value": "noindex, nofollow"
         }
       ]
+    },
+    {
+      "source": "/coffee-talks.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     }
   ],
   "rewrites": [
@@ -78,6 +87,10 @@
     {
       "source": "/masuram",
       "destination": "/prezentare-business.html"
+    },
+    {
+      "source": "/coffee-talks",
+      "destination": "/coffee-talks.html"
     }
   ]
 }

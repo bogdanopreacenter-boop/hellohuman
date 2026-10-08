@@ -1,0 +1,359 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Coffee Talks Share|Care|Dare</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Plus+Jakarta+Sans:wght@600&display=swap" rel="stylesheet">
+<style>
+/* Layout: one phone-width column, one question per screen; progress on top, co-brand line at the bottom. */
+:root {
+  --bg: #EFEADF;
+  --surface: #FDFBF6;
+  --ink: #0B2620;
+  --muted: #5A6B64;
+  --line: #E4DDD0;
+  --accent: #C8912A;
+  --accent-ink: #8C6114;
+  --select: #F5ECDA;
+  --share: #0F7D5B;
+  --care: #B97A12;
+  --dare: #3F504A;
+  --btn-bg: #0B2620;
+  --btn-fg: #F7F4ED;
+  --ribbon-bg: #0B2620;
+  --ribbon-fg: #E9DCC1;
+  --danger: #A33A2B;
+  --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-mark: 'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #06140F; --surface: #0E2620; --ink: #F2EEE4; --muted: #A3B8AE; --line: #24453C;
+    --accent: #D9A441; --accent-ink: #E3B45C; --select: #1B3A31; --share: #6BB896; --care: #E3B45C; --dare: #C9D6CF;
+    --btn-bg: #E3B45C; --btn-fg: #0B2620; --ribbon-bg: #020A07; --ribbon-fg: #E9DCC1; --danger: #F08A7A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #06140F; --surface: #0E2620; --ink: #F2EEE4; --muted: #A3B8AE; --line: #24453C;
+  --accent: #D9A441; --accent-ink: #E3B45C; --select: #1B3A31; --share: #6BB896; --care: #E3B45C; --dare: #C9D6CF;
+  --btn-bg: #E3B45C; --btn-fg: #0B2620; --ribbon-bg: #020A07; --ribbon-fg: #E9DCC1; --danger: #F08A7A;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { min-height: 100%; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-ui); font-size: 15px; line-height: 1.5; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+.ribbon { background: var(--ribbon-bg); color: var(--ribbon-fg); font-size: 12px; letter-spacing: 0.04em; text-align: center; padding: 7px 16px; }
+.wrap { padding-inline: 16px; padding-block: 20px 28px; }
+.app { max-width: 430px; margin-inline: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding-inline: 22px; padding-block: 20px 18px; display: flex; flex-direction: column; gap: 22px; min-height: 640px; }
+@media (max-width: 480px) {
+  .wrap { padding-inline: 0; padding-block: 0; }
+  .app { border: 0; border-radius: 0; min-height: calc(100vh - 31px); padding-inline: 18px; }
+}
+
+.top { display: flex; flex-direction: column; gap: 14px; }
+.brand { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.brand .ct { font-family: var(--font-display); font-size: 21px; font-weight: 500; letter-spacing: -0.005em; }
+.brand .ev { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-ink); }
+.progress { display: flex; flex-direction: column; gap: 6px; }
+.progress .lab { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.bar { height: 3px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 3px; transition: width 240ms ease; }
+
+.screen { display: flex; flex-direction: column; gap: 16px; flex: 1; }
+.screen h1, .screen h2 { margin: 0; font-family: var(--font-display); font-weight: 400; line-height: 1.15; text-wrap: balance; }
+.screen h1 { font-size: 30px; }
+.screen h2 { font-size: 26px; }
+.screen h1:focus, .screen h2:focus { outline: none; }
+.lead { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.55; }
+.hint { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 0; padding: 0; list-style: none; }
+.facts li { font-size: 13px; border: 1px solid var(--line); border-radius: 999px; padding: 5px 11px; color: var(--ink); }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-ink); }
+
+.field { display: flex; flex-direction: column; gap: 7px; }
+.field label { font-size: 13px; font-weight: 600; }
+.field input[type="text"], .field input[type="email"] {
+  font: inherit; font-size: 17px; color: var(--ink); background: var(--surface);
+  border: 1.5px solid var(--line); border-radius: 12px; padding: 13px 14px; width: 100%;
+}
+.field input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+.err { color: var(--danger); font-size: 13px; margin: 0; }
+
+fieldset { border: 0; margin: 0; padding: 0; min-width: 0; display: flex; flex-direction: column; gap: 9px; }
+legend { padding: 0; margin-bottom: 9px; font-size: 13px; font-weight: 600; }
+.pillar { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin-top: 6px; }
+.pillar::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--dot); }
+.pillar.share { --dot: var(--share); color: var(--share); }
+.pillar.care { --dot: var(--care); color: var(--care); }
+.pillar.dare { --dot: var(--dare); color: var(--dare); }
+.chip { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-ink); border: 1px solid var(--accent); border-radius: 999px; padding: 2px 8px; align-self: flex-start; }
+
+.opt { position: relative; display: flex; gap: 12px; align-items: flex-start; border: 1.5px solid var(--line); border-radius: 12px; padding: 12px 14px; cursor: pointer; background: var(--surface); }
+.opt input { position: absolute; opacity: 0; pointer-events: none; }
+.opt .dot { flex: none; width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--muted); margin-top: 2px; display: grid; place-items: center; }
+.opt .dot::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: transparent; }
+.opt .txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.opt .t { font-size: 15px; font-weight: 500; }
+.opt .s { font-size: 13px; color: var(--muted); line-height: 1.45; }
+.opt:has(input:checked) { border-color: var(--accent); background: var(--select); }
+.opt:has(input:checked) .dot { border-color: var(--accent); }
+.opt:has(input:checked) .dot::after { background: var(--accent); }
+.opt:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.45; cursor: pointer; }
+.check input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--accent); flex: none; }
+.note { font-size: 13px; line-height: 1.45; color: var(--ink); background: var(--select); border-radius: 10px; padding: 10px 12px; margin: 0; }
+
+.summary { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 9px 16px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-block: 14px; font-size: 14px; }
+.summary dt { color: var(--muted); }
+.summary dd { margin: 0; font-weight: 500; min-width: 0; overflow-wrap: anywhere; }
+.next-steps { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 1.5; }
+.next-steps li::marker { color: var(--accent-ink); font-weight: 600; }
+.subhead { margin: 4px 0 0; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-ink); }
+.demo-note { margin: 0; font-size: 12px; color: var(--muted); }
+
+.actions { display: flex; gap: 10px; align-items: center; }
+.btn { font: inherit; font-size: 16px; font-weight: 600; border-radius: 12px; padding: 14px 18px; cursor: pointer; border: 1.5px solid transparent; }
+.btn.primary { flex: 1; background: var(--btn-bg); color: var(--btn-fg); }
+.btn.primary:disabled { opacity: 0.38; cursor: not-allowed; }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.powered { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; color: var(--muted); padding-top: 4px; }
+.powered b { font-family: var(--font-mark); font-weight: 600; color: var(--ink); font-size: 13px; }
+.powered svg { width: 18px; height: 18px; }
+.mark-a { fill: var(--ink); } .mark-b { fill: var(--accent); } .mark-c { fill: var(--surface); }
+@media (prefers-reduced-motion: reduce) { .bar i { transition: none; } }
+</style>
+
+<div class="ribbon">Demo pentru HR Club · răspunsurile nu se salvează</div>
+<div class="wrap">
+<main class="app" aria-live="polite">
+  <header class="top">
+    <div class="brand"><span class="ct">Coffee Talks</span><span class="ev">Share | Care | Dare</span></div>
+    <div class="progress" id="progress" hidden>
+      <span class="lab" id="stepLabel">Pasul 1 din 5</span>
+      <div class="bar"><i id="barFill"></i></div>
+    </div>
+  </header>
+
+  <!-- 0 · intro -->
+  <section class="screen" data-step="0">
+    <span class="eyebrow">Ați scanat codul de la intrare</span>
+    <h1 tabindex="-1">Continuați conversațiile de la conferință, în grupuri mici.</h1>
+    <p class="lead">Alegeți tema și cu cine doriți să vorbiți. După conferință vă invităm într-un grup de 4–8 oameni: la o cină în București sau online, de pe laptop.</p>
+    <ul class="facts">
+      <li>Sub un minut</li>
+      <li>Fără cont, fără aplicație</li>
+      <li>Nu este nevoie de numele real</li>
+    </ul>
+  </section>
+
+  <!-- 1 · nickname -->
+  <section class="screen" data-step="1" hidden>
+    <h2 tabindex="-1">Cum doriți să vă spună colegii?</h2>
+    <div class="field">
+      <label for="nick">Prenume sau poreclă</label>
+      <input type="text" id="nick" name="nick" maxlength="24" autocomplete="off" placeholder="de exemplu, Ana">
+    </div>
+    <p class="hint">Numele real nu este necesar. Așa vă vor vedea ceilalți din grup.</p>
+  </section>
+
+  <!-- 2 · theme -->
+  <section class="screen" data-step="2" hidden>
+    <h2 tabindex="-1">Despre ce doriți să vorbiți?</h2>
+    <span class="chip">Teme exemplu</span>
+    <fieldset id="themeSet">
+      <legend class="sr-only">Tema</legend>
+      <span class="pillar share">Share</span>
+      <label class="opt"><input type="radio" name="theme" id="th1" value="Ce a funcționat anul acesta în HR" data-pillar="Share"><span class="dot"></span><span class="txt"><span class="t">Ce a funcționat anul acesta în HR</span></span></label>
+      <label class="opt"><input type="radio" name="theme" id="th2" value="Bugete și salarii pentru anul viitor" data-pillar="Share"><span class="dot"></span><span class="txt"><span class="t">Bugete și salarii pentru anul viitor</span></span></label>
+      <span class="pillar care">Care</span>
+      <label class="opt"><input type="radio" name="theme" id="th3" value="Generații diferite în aceeași echipă" data-pillar="Care"><span class="dot"></span><span class="txt"><span class="t">Generații diferite în aceeași echipă</span></span></label>
+      <label class="opt"><input type="radio" name="theme" id="th4" value="Starea de bine, dincolo de beneficii" data-pillar="Care"><span class="dot"></span><span class="txt"><span class="t">Starea de bine, dincolo de beneficii</span></span></label>
+      <span class="pillar dare">Dare</span>
+      <label class="opt"><input type="radio" name="theme" id="th5" value="Inteligența artificială în HR" data-pillar="Dare"><span class="dot"></span><span class="txt"><span class="t">Inteligența artificială în HR</span></span></label>
+      <label class="opt"><input type="radio" name="theme" id="th6" value="Schimbări conduse de HR" data-pillar="Dare"><span class="dot"></span><span class="txt"><span class="t">Schimbări conduse de HR</span></span></label>
+    </fieldset>
+    <p class="hint">Alegeți o singură temă. Temele finale le stabilește HR Club.</p>
+  </section>
+
+  <!-- 3 · role and who -->
+  <section class="screen" data-step="3" hidden>
+    <h2 tabindex="-1">Cu cine doriți să vorbiți?</h2>
+    <fieldset id="roleSet">
+      <legend>Participați ca</legend>
+      <label class="opt"><input type="radio" name="role" id="roleP" value="practician"><span class="dot"></span><span class="txt"><span class="t">Practician</span><span class="s">HR sau manager de oameni</span></span></label>
+      <label class="opt"><input type="radio" name="role" id="roleF" value="furnizor"><span class="dot"></span><span class="txt"><span class="t">Furnizor</span><span class="s">Servicii sau soluții pentru HR</span></span></label>
+    </fieldset>
+    <fieldset id="prefSet" hidden>
+      <legend>Doriți să vorbiți cu</legend>
+      <label class="opt"><input type="radio" name="pref" id="prefP" value="Practicieni"><span class="dot"></span><span class="txt"><span class="t">Practicieni</span><span class="s">Doar colegi din HR și manageri de oameni</span></span></label>
+      <label class="opt"><input type="radio" name="pref" id="prefM" value="Practicieni și furnizori"><span class="dot"></span><span class="txt"><span class="t">Practicieni și furnizori</span><span class="s">Un grup mixt</span></span></label>
+      <label class="opt"><input type="radio" name="pref" id="prefF" value="Furnizori"><span class="dot"></span><span class="txt"><span class="t">Furnizori</span><span class="s">Căutați soluții pentru echipa dumneavoastră</span></span></label>
+    </fieldset>
+    <p class="note" id="vendorNote" hidden>Vă includem în grupuri cu practicieni care au ales să vorbească și cu furnizori.</p>
+  </section>
+
+  <!-- 4 · format -->
+  <section class="screen" data-step="4" hidden>
+    <h2 tabindex="-1">Cum doriți să continuăm?</h2>
+    <fieldset id="formatSet">
+      <legend class="sr-only">Formatul</legend>
+      <label class="opt"><input type="radio" name="format" id="fmtD" value="Cină în București"><span class="dot"></span><span class="txt"><span class="t">Cină în București</span><span class="s">Grup de 4–8 oameni, după conferință</span></span></label>
+      <label class="opt"><input type="radio" name="format" id="fmtO" value="Online, de pe laptop"><span class="dot"></span><span class="txt"><span class="t">Online, de pe laptop</span><span class="s">Sesiune cu moderator, în camera virtuală HelloHuman. Apăreți ca avatar și vorbiți cu vocea dumneavoastră.</span></span></label>
+      <label class="opt"><input type="radio" name="format" id="fmtA" value="Oricare"><span class="dot"></span><span class="txt"><span class="t">Oricare</span><span class="s">Mergeți acolo unde se formează grupul dumneavoastră</span></span></label>
+    </fieldset>
+  </section>
+
+  <!-- 5 · email -->
+  <section class="screen" data-step="5" hidden>
+    <h2 tabindex="-1">Unde vă trimitem invitația?</h2>
+    <div class="field">
+      <label for="email">Email (opțional)</label>
+      <input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="nume@companie.ro">
+      <p class="err" id="emailErr" hidden>Verificați adresa: pare incompletă.</p>
+    </div>
+    <label class="check" for="consent"><input type="checkbox" id="consent" name="consent"><span>Sunt de acord să primesc pe acest email invitația la întâlnire.</span></label>
+    <p class="hint">Folosim emailul doar pentru invitație, iar ceilalți participanți nu îl văd. Puteți continua și fără el, dar atunci nu vă putem invita direct.</p>
+  </section>
+
+  <!-- 6 · done -->
+  <section class="screen" data-step="6" hidden>
+    <span class="eyebrow">Înscriere primită</span>
+    <h1 tabindex="-1">Vă mulțumim, <span id="cName"></span>.</h1>
+    <dl class="summary">
+      <dt>Tema</dt><dd id="cTheme"></dd>
+      <dt>Grupul</dt><dd id="cWho"></dd>
+      <dt>Formatul</dt><dd id="cFormat"></dd>
+      <dt>Invitația</dt><dd id="cInvite"></dd>
+    </dl>
+    <p class="subhead">Ce urmează</p>
+    <ol class="next-steps">
+      <li>După conferință formăm grupuri de 4–8 oameni care au ales aceeași temă.</li>
+      <li>Întâlnirile au loc în primele două săptămâni după conferință.</li>
+      <li>După întâlnire puteți da like celor cu care ați mai vorbi.</li>
+    </ol>
+    <p class="demo-note">Acesta e un demo: nu s-a trimis și nu s-a salvat nimic.</p>
+  </section>
+
+  <nav class="actions">
+    <button class="btn ghost" id="back" type="button" hidden>Înapoi</button>
+    <button class="btn primary" id="next" type="button">Începeți</button>
+  </nav>
+
+  <footer class="powered">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><g transform="translate(50 52)"><ellipse class="mark-a" cx="0" cy="-22" rx="17" ry="22"></ellipse><ellipse class="mark-a" cx="0" cy="-22" rx="17" ry="22" transform="rotate(120)"></ellipse><ellipse class="mark-b" cx="0" cy="-22" rx="17" ry="22" transform="rotate(240)"></ellipse><circle class="mark-c" r="13"></circle></g></svg>
+    <span>powered by <b>HelloHuman</b></span>
+  </footer>
+</main>
+</div>
+
+<script>
+(function () {
+  var TOTAL = 5;
+  var step = 0;
+  var screens = Array.prototype.slice.call(document.querySelectorAll('.screen'));
+  var nextBtn = document.getElementById('next');
+  var backBtn = document.getElementById('back');
+  var progress = document.getElementById('progress');
+  var stepLabel = document.getElementById('stepLabel');
+  var barFill = document.getElementById('barFill');
+  var nick = document.getElementById('nick');
+  var email = document.getElementById('email');
+  var consent = document.getElementById('consent');
+  var emailErr = document.getElementById('emailErr');
+  var prefSet = document.getElementById('prefSet');
+  var vendorNote = document.getElementById('vendorNote');
+
+  function val(name) {
+    var el = document.querySelector('input[name="' + name + '"]:checked');
+    return el ? el.value : '';
+  }
+  function emailOk(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+
+  function valid(s) {
+    if (s === 1) return nick.value.trim().length > 0;
+    if (s === 2) return !!val('theme');
+    if (s === 3) { var r = val('role'); return r === 'furnizor' || (r === 'practician' && !!val('pref')); }
+    if (s === 4) return !!val('format');
+    if (s === 5) { var e = email.value.trim(); return e === '' || (emailOk(e) && consent.checked); }
+    return true;
+  }
+
+  function label() {
+    if (step === 0) return 'Începeți';
+    if (step === 5) return email.value.trim() === '' ? 'Continuați fără email' : 'Trimiteți';
+    if (step === 6) return 'Încercați din nou';
+    return 'Continuați';
+  }
+
+  function refresh() {
+    nextBtn.textContent = label();
+    nextBtn.disabled = !valid(step);
+    backBtn.hidden = (step === 0 || step === 6);
+    var inFlow = step >= 1 && step <= TOTAL;
+    progress.hidden = !inFlow;
+    if (inFlow) {
+      stepLabel.textContent = 'Pasul ' + step + ' din ' + TOTAL;
+      barFill.style.width = (step / TOTAL * 100) + '%';
+    }
+    var role = val('role');
+    prefSet.hidden = role !== 'practician';
+    vendorNote.hidden = role !== 'furnizor';
+  }
+
+  function fillSummary() {
+    var themeEl = document.querySelector('input[name="theme"]:checked');
+    document.getElementById('cName').textContent = nick.value.trim();
+    document.getElementById('cTheme').textContent = themeEl ? themeEl.value + ' · ' + themeEl.getAttribute('data-pillar') : '';
+    document.getElementById('cWho').textContent = val('role') === 'furnizor' ? 'Practicieni deschiși și spre furnizori' : val('pref');
+    document.getElementById('cFormat').textContent = val('format');
+    var e = email.value.trim();
+    document.getElementById('cInvite').textContent = e ? 'pe ' + e : 'Fără email: nu vă putem invita direct';
+  }
+
+  function show(s) {
+    step = s;
+    screens.forEach(function (el) { el.hidden = Number(el.getAttribute('data-step')) !== s; });
+    if (s === 6) fillSummary();
+    refresh();
+    var h = screens[s].querySelector('h1, h2');
+    if (h) h.focus({ preventScroll: false });
+    if (s === 1) nick.focus();
+    window.scrollTo(0, 0);
+  }
+
+  function reset() {
+    document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(function (i) { i.checked = false; });
+    nick.value = ''; email.value = ''; emailErr.hidden = true;
+    show(0);
+  }
+
+  nextBtn.addEventListener('click', function () {
+    if (step === 6) { reset(); return; }
+    if (!valid(step)) return;
+    show(step + 1);
+  });
+  backBtn.addEventListener('click', function () { if (step > 0) show(step - 1); });
+  document.addEventListener('change', function (ev) {
+    if (ev.target && ev.target.name === 'role' && ev.target.value === 'furnizor') {
+      document.querySelectorAll('input[name="pref"]').forEach(function (i) { i.checked = false; });
+    }
+    refresh();
+  });
+  nick.addEventListener('input', refresh);
+  nick.addEventListener('keydown', function (ev) { if (ev.key === 'Enter' && valid(1)) show(2); });
+  email.addEventListener('input', function () { emailErr.hidden = true; refresh(); });
+  email.addEventListener('blur', function () {
+    var e = email.value.trim();
+    emailErr.hidden = e === '' || emailOk(e);
+  });
+  show(0);
+})();
+</script>
+
+</body></html>
